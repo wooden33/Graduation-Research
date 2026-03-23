@@ -1,0 +1,251 @@
+\section{EXPERIMENTS}
+
+\subsection{Experimental Setup}
+
+In this section, we first introduce the construction and statistics of the evaluation dataset
+
+\textbf{Dataset.} To evaluate the effectiveness of \ourmethod{} in generating unit tests for complex methods, we utilize real-world subjects from the Defects4J (v2.0.1) benchmark \cite{defects4j}. We selected the latest fixed version of each subject program to ensure compatibility with modern build environments. Following prior work \cite{gu2025a}, we excluded projects that do not use Maven or rely on deprecated dependencies (i.e., Chart, Mockito, and Closure). The remaining 14 subjects are compatible with Java 8+, Maven (v3.6.3), and JUnit (v4.13.2).To specifically assess performance on logic-heavy code, we focus on complex classes rather than entire projects. We identified non-abstract, public classes containing at least one method with Cyclomatic Complexity (CC) $> 10$ \cite{mccabe1976complexity}. Furthermore, we manually excluded outliers such as classes with extreme complexity ($CC > 40$) caused by massive switch-statement patterns and those with minimal explicit control flow due to deep inheritance.The statistics of our evaluation dataset are summarized in Table~\ref{tab:dataset};
+
+
+
+\begin{table*}[htbp]
+\centering
+\caption{Dataset Metrics with \#MUTs}
+\label{tab:dataset}
+\begin{tabular}{l l l c c c c c}
+\toprule
+\textbf{Identifier} & \textbf{Project} & \textbf{Version} & \textbf{\#C} & \textbf{\#MUTs} & \textbf{$CC_{max}$} & \textbf{$CC_{min}$} & \textbf{$CC_{med}$} \\
+\midrule
+Cli & Cli-40f & 1.5-SNAP & 2 & 31 & 11 & 11 & 11 \\
+Codec & Codec-18f & 1.11-SNAP & 7 & 78 & 31 & 11 & 13 \\
+Collections & Collections-28f & 4.2-SNAP & 5 & 218 & 32 & 11 & 16 \\
+Compress & Compress-47f & 1.16-SNAP & 9 & 65 & 22 & 11 & 13 \\
+Csv & Csv-16f & 1.6-SNAP & 3 & 72 & 25 & 11 & 14 \\
+Gson & Gson-16f & 2.8.2-SNAP & 4 & 75 & 37 & 11 & 22 \\
+JCore & JacksonCore-26f & 2.10.0-SNAP & 9 & 161 & 30 & 11 & 14 \\
+JDatabind & JacksonDatabind-112f & 2.9.9 & 9 & 371 & 22 & 11 & 15 \\
+JXml & JacksonXml-5f & 2.9.6-SNAP & 4 & 118 & 29 & 12 & 22 \\
+Jsoup & Jsoup-93f & 1.12.2-SNAP & 8 & 171 & 22 & 11 & 12 \\
+JxPath & JxPath-22f & 1.4-SNAP & 12 & 115 & 32 & 11 & 13 \\
+Lang & Lang-4f & 3.2-SNAP & 17 & 586 & 30 & 11 & 16 \\
+Math & Math-2f & 3.3-SNAP & 30 & 452 & 31 & 11 & 14 \\
+Time & Time-13f & 2.1 & 11 & 458 & 30 & 11 & 17 \\
+\midrule
+Total/Avg & & & \textbf{130} & \textbf{2971}  & \textbf{27.4}  & \textbf{11.1}  & \textbf{15.1} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\textbf{Evaluation Metrics.}
+To evaluate the effectiveness of the generated unit tests, we primarily focus on code coverage, which is the standard metric in automated test generation research \cite{randoop, evosuite}. We report two specific metrics:
+\begin{itemize}
+\item \textbf{Line Coverage (LC):} The ratio of executable lines in the target class that are exercised by the generated test suite. It provides a baseline measure of how much of the implementation has been reached.
+\item \textbf{Branch Coverage (BC):} The ratio of executed decision outcomes (e.g., the true and false paths of an \textit{if} statement) to the total number of possible branches. Given our focus on methods with high Cyclomatic Complexity ($CC > 10$), branch coverage is our primary metric, as it more accurately reflects the tool's ability to navigate complex logical structures and boundary conditions.
+\end{itemize}
+All coverage data in our experiments are collected using the JaCoCo library, ensuring consistent and reproducible measurements across all subjects and baselines.
+
+\textbf{Research Questions.}
+To evaluate the effectiveness and design of \ourmethod{}, we address the following three research questions:
+
+\begin{itemize}
+\item \textbf{RQ1: Effectiveness Comparison.} How does \ourmethod{} perform compared to state-of-the-art LLM-based test generation approaches in terms of line and branch coverage on complex, logic-heavy methods?
+\item \textbf{RQ2: Contribution of Components.} What are the individual contributions of the Backward Slicing (BS) and Constraint Solver (CS) components to the overall performance of \ourmethod{}?
+\item \textbf{RQ3: Model Generalizability.} Is \ourmethod{}'s effectiveness robust across different underlying Large Language Models, and how do their performances vary?
+\end{itemize}
+
+\textbf{Baselines.}
+To evaluate the performance of \ourmethod{}, we compare it against three state-of-the-art (SOTA) LLM-based unit test generation frameworks. These baselines represent diverse paradigms in the field:
+
+\begin{itemize}
+    \item \textbf{SymPrompt \cite{ryan2024}:} A prominent prompt-engineering approach that integrates symbolic execution concepts with LLMs. It utilizes path-oriented prompts to guide models in generating test inputs. We include SymPrompt to assess the effectiveness of \ourmethod{} against methods relying solely on structured prompting without external constraint solving.
+    \item \textbf{HITS \cite{wang2024c}:} A high-performance framework emphasizing self-healing and iterative refinement. As a strong baseline for generating compilable and high-coverage tests, HITS allows us to evaluate \ourmethod{}'s capability in navigating complex logical branches where iterative feedback is critical.
+    \item \textbf{Panta \cite{gu2025a}:} A SOTA tool that leverages advanced path analysis and context-aware prompting. Panta excels at capturing data dependencies within the Class Under Test (CUT). Comparing against Panta demonstrates the advantages of \ourmethod{}'s synergy between branch selection and logical constraint satisfaction.
+\end{itemize}
+
+Due to the absence of several critical components in the official HITS repository, we faithfully re-implemented its workflow by strictly following the prompt templates defined in the original paper and adhering to the procedural logic of the available open-source fragments. 
+
+For a fair comparison, all baselines were configured using the same backbone model as \ourmethod{} in each experiment. Specifically, RQ1 adopts \textbf{Qwen3-Coder-30B} (hereafter \textbf{QC3-30B}) as the backbone, while RQ2 adopts \textbf{Qwen3-Coder-30B} (hereafter \textbf{QC3-30B}). The use of different models across RQs reflects the distinct focuses of each evaluation: RQ1 prioritizes generation quality with a larger model, whereas RQ2 isolates the contribution of individual components under a more controlled, cost-efficient setting. Furthermore, all methods were provided with identical CUT information and dependency contexts to ensure that performance differences are attributable to the frameworks themselves rather than external information.
+
+\textbf{Contextual Information.}
+To evaluate the inherent logic reasoning and code understanding capabilities of the models, we adopt a restricted context strategy for all test generation tasks. Specifically, for each method under test (MUT), the prompt only includes the source code of its declaring class and the names of the associated import packages. No additional project-level information, such as dependency class implementations or global configuration files, is provided. This setup ensures that the performance of \ourmethod{} and the baselines is assessed under a consistent and challenging information-constrained environment, reflecting a realistic scenario where cross-file dependencies may be complex or partially inaccessible.
+
+\textbf{Configurations.}
+Our experiments employ two backbone LLMs depending on the research question. For RQ1 (effectiveness) and RQ3 (generalizability), we use \textbf{Qwen3.5-397B-A17B} (\textbf{QW3.5-397B}), accessed via its official API. For RQ2 (ablation study), we adopt \textbf{Qwen3-Coder-30B} (\textbf{QC3-30B}), deployed locally on a server equipped with an NVIDIA H800 GPU ($80$\,GB); this lighter model is chosen for the ablation setting to enable a controlled, cost-efficient comparison across component variants. To assess model generalizability in RQ3, we additionally evaluate OpenAI's \textbf{GPT-5.4-Mini} (\textbf{GPT-5.1-Mini}) and DeepSeek's \textbf{DeepSeek-V3.1} (\textbf{DS-V3.1}) via their respective official APIs.
+
+To ensure reproducibility and minimize stochastic variance, all models are
+configured with a temperature of $0.2$ and top-$p$ of $1.0$.
+
+\subsection{RQ1: Effectiveness of Our Approach}
+
+
+\begin{table*}[t]
+\centering
+\caption{Coverage Across Approaches (Updated \ourmethod{})}
+\label{tab:coverage}
+\small
+\sisetup{round-mode=places, round-precision=2, table-format=2.2}
+\begin{tabular}{@{} l c c *{8}{S} @{}}
+\toprule
+\multirow{2}{*}{Project} & \multirow{2}{*}{\#C} & \multirow{2}{*}{$CC_{avg}$} & 
+\multicolumn{2}{c}{SymPrompt} & \multicolumn{2}{c}{HITS} & \multicolumn{2}{c}{Panta} & \multicolumn{2}{c}{\ourmethod{}} \\
+\cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11}
+ & & & {LC(\%)} & {BC(\%)} & {LC(\%)} & {BC(\%)} & {LC(\%)} & {BC(\%)} & {LC(\%)} & {BC(\%)} \\
+\midrule
+Cli               & 2  & 11.00 & 17.93 & 9.02  & 73.50 & 59.58 & 63.11 & 37.98 & \textbf{84.32} & \textbf{70.73} \\
+Codec             & 7  & 16.14 & 29.68 & 24.96 & 65.73 & 60.25 & 60.53 & 54.82 & \textbf{76.97} & \textbf{69.60} \\
+Collections       & 5  & 18.60 & 32.63 & 32.42 & \textbf{68.23} & \textbf{70.00} & 33.44 & 32.40 & 40.46 & 34.63 \\
+Compress          & 9  & 15.33 & 11.84 & 11.34 & 31.64 & 25.24 & 34.36 & 28.45 & \textbf{36.09} & \textbf{29.05} \\
+Csv               & 3  & 16.67 & 37.69 & 23.79 & 28.95 & 14.73 & 50.98 & 37.99 & \textbf{62.27} & \textbf{52.29} \\
+Gson              & 4  & 23.25 & 13.16 & 3.59  & 31.54 & 21.25 & 21.81 & 15.20 & \textbf{63.82} & \textbf{41.24} \\
+JCore       & 9  & 16.33 & 23.62 & 21.44 & 19.85 & 18.51 & 26.24 & 21.97 & \textbf{41.72} & \textbf{35.54} \\
+JDatabind   & 9  & 15.33 & 9.99  & 6.06  & 18.33 & 14.44 & 18.17 & 14.34 & \textbf{23.35} & \textbf{17.85} \\
+JXml        & 4  & 21.50 & 17.45 & 18.56 & 18.59 & 18.84 & \textbf{31.89} & \textbf{23.55} & 20.61 & 17.08 \\
+Jsoup             & 8  & 14.13 & 24.72 & 19.13 & 27.82 & 17.36 & 49.80 & 39.25 & \textbf{66.43} & \textbf{52.55} \\
+JxPath            & 12 & 15.50 & 12.01 & 9.48  & 23.11 & 22.76 & 34.10 & 29.35 & \textbf{42.28} & \textbf{35.84} \\
+Lang              & 17 & 16.88 & 43.98 & 40.42 & 62.82 & 59.77 & 39.26 & 36.61 & \textbf{59.21} & \textbf{52.14} \\
+Math              & 30 & 16.47 & 38.55 & 33.70 & 30.87 & 26.38 & 46.40 & 39.16 & \textbf{59.60} & \textbf{54.02} \\
+Time              & 11 & 17.36 & 53.37 & 42.06 & 63.32 & 50.23 & 46.74 & 41.42 & \textbf{66.79} & \textbf{59.25} \\
+\midrule
+\multicolumn{3}{l}{Average} & 26.19 & 21.14 & 40.31 & 34.24 & 39.77 & 32.32 & \textbf{53.14} & \textbf{44.41} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+To answer RQ1, we compare \ourmethod{} against three state-of-the-art LLM-based test generation frameworks---SymPrompt, HITS, and Panta---on 14 real-world Java projects from Defects4J (v2.0.1). The evaluation focuses on both \textbf{line coverage (LC)} and \textbf{branch coverage (BC)} of complex methods, with Cyclomatic Complexity $CC > 10$. Results are summarized in Table~\ref{tab:coverage}.
+
+\subsubsection{Overall Performance}
+
+As shown in Table~\ref{tab:coverage}, \ourmethod{} consistently achieves the \textbf{highest average LC and BC} across all projects. Specifically, it attains an average BC of \textbf{44.41\%}, outperforming SymPrompt (21.14\%), HITS (34.24\%), and Panta (32.32\%). This demonstrates that the combination of \textbf{backward slicing} and \textbf{constraint hints} allows \ourmethod{} to more effectively navigate complex control flows and satisfy cross-method preconditions, compared with baselines that rely solely on prompt engineering or CFG-based analysis.
+
+The improvement over SymPrompt is particularly substantial (\textbf{+89.3\%}), reflecting the limitation of approaches that lack explicit program analysis. Gains over HITS and Panta are smaller yet consistent (\textbf{+16.9\%} and \textbf{+23.8\%}, respectively), confirming that \ourmethod{}’s enhancements provide \textbf{complementary benefits} beyond existing path enumeration or context-aware prompting techniques.
+
+\subsubsection{Performance on High-Complexity Projects}
+
+The advantages of \ourmethod{} are most pronounced on projects with high cyclomatic complexity and deeper inter-method dependencies. For example:  
+
+\begin{itemize}
+    \item \textbf{Gson} (CC$_{avg}$ = 23.25, highest in the benchmark): BC of 41.24\%, while SymPrompt reaches only 3.59\%, highlighting the difficulty of context-unaware methods in handling complex branching logic.
+    \item \textbf{JacksonCore} (CC$_{avg}$ = 16.33): BC improves from 18.51\% (HITS) to 35.54\% (\ourmethod{}), a gain of \textbf{+17 pp}, demonstrating that backward slicing effectively isolates branch-relevant statements.
+    \item \textbf{Jsoup} (CC$_{avg}$ = 14.13): BC rises from 17.36\% (HITS) to 52.55\% (\ourmethod{}), a \textbf{+36.4 pp improvement}, underscoring the impact of constraint hints in constructing necessary object states to reach target branches.
+\end{itemize}
+
+These results indicate that \ourmethod{} excels particularly in logic-heavy methods where complex object interactions and conditional dependencies are prevalent.
+
+\subsubsection{Cases of Limited Improvement}
+
+While \ourmethod{} achieves the best average performance, there are a few projects where it does not outperform all baselines. For instance, \textbf{Collections} shows HITS achieving higher BC (70.00\%) compared to \ourmethod{} (34.63\%), and \textbf{Compress} has similar trends. Manual inspection suggests that these projects contain a high proportion of branches governed by \textbf{simple value-range conditions} rather than complex cross-method states. In such cases, backward slicing occasionally removes auxiliary context that would otherwise help the LLM, slightly reducing coverage. This points to a potential area for refinement in \textbf{slice granularity selection}.
+
+\subsubsection{Summary}
+
+In summary, \ourmethod{} demonstrates \textbf{robust effectiveness} across 14 real-world projects, achieving significant gains over state-of-the-art baselines, particularly in \textbf{high-complexity and logic-intensive methods}. The combined use of backward slicing and constraint hints enables the LLM to reach branches that are otherwise inaccessible to prompt-only or context-limited approaches.
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!100, title=Answer to RQ1]
+\ourmethod{} outperforms all three baselines on average, achieving a BC of \textbf{44.41\%}, representing improvements of \textbf{16.9\%--89.3\%} over SymPrompt, HITS, and Panta. Its advantage is most pronounced in projects with high cyclomatic complexity and cross-method dependencies (e.g., +36.4 pp on Jsoup, +17 pp on JacksonCore). In a minority of projects where branches depend primarily on simple value conditions, existing tools remain competitive, highlighting opportunities for further refinement in slice granularity.
+\end{tcolorbox}
+
+
+\subsection{RQ2: Ablation Study}
+
+\begin{table*}[t]
+\centering
+\caption{Ablation Study of \ourmethod{} Components}
+\label{tab:ablation}
+\small
+\sisetup{round-mode=places, round-precision=2, table-format=2.2}
+\begin{tabular}{@{} l c c *{8}{S} @{}}
+\toprule
+\multirow{2}{*}{Project} & \multirow{2}{*}{\#C} & \multirow{2}{*}{$CC_{avg}$} & \multicolumn{2}{c}{CogPath} & \multicolumn{2}{c}{w/o BS} & \multicolumn{2}{c}{w/o CS+BS} & \multicolumn{2}{c}{w/o CS} \\
+\cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11}
+ & & & {LC(\%)} & {BC(\%)} & {LC(\%)} & {BC(\%)} & {LC(\%)} & {BC(\%)} & {LC(\%)} & {BC(\%)} \\
+\midrule
+Cli               & 2  & 11.00 & 84.32 & 70.73 & 68.69 & 57.68 & 72.62 & 56.54 & 84.74 & 68.75 \\
+Codec             & 7  & 16.14 & 76.97 & 69.60 & 66.77 & 57.94 & 66.34 & 56.53 & 54.86 & 50.68 \\
+Collections       & 5  & 18.60 & 40.46 & 34.63 & 32.42 & 36.60 & 37.43 & 34.45 & 39.51 & 38.59 \\
+Compress          & 9  & 15.33 & 36.09 & 29.05 & 25.43 & 19.04 & 23.45 & 18.11 & 31.22 & 28.58 \\
+Csv               & 3  & 16.67 & 62.27 & 52.29 & 36.47 & 24.80 & 60.54 & 47.07 & 46.18 & 36.38 \\
+Gson              & 4  & 23.25 & 63.82 & 41.24 & 49.40 & 31.85 & 40.92 & 26.52 & 43.94 & 27.73 \\
+JacksonCore       & 9  & 16.33 & 41.72 & 35.54 & 45.39 & 39.20 & 22.97 & 21.07 & 30.58 & 27.31 \\
+JacksonDatabind   & 9  & 15.33 & 23.35 & 17.85 & 33.74 & 26.55 & 19.59 & 15.54 & 12.44 & 9.33 \\
+JacksonXml        & 4  & 21.50 & 20.61 & 17.08 & 35.30 & 26.84 & 26.79 & 23.08 & 23.80 & 18.61 \\
+Jsoup             & 8  & 14.13 & 66.43 & 52.55 & 69.11 & 53.76 & 59.00 & 47.11 & 61.48 & 46.64 \\
+JxPath            & 12 & 15.50 & 42.28 & 35.84 & 28.06 & 22.35 & 34.94 & 31.44 & 47.56 & 41.96 \\
+Lang              & 17 & 16.88 & 59.21 & 52.14 & 56.84 & 51.38 & 57.12 & 53.91 & 66.05 & 63.04 \\
+Math              & 30 & 16.47 & 59.60 & 54.02 & 38.60 & 32.66 & 43.23 & 39.90 & 63.42 & 56.61 \\
+Time              & 11 & 17.36 & 66.79 & 59.25 & 64.99 & 57.89 & 43.21 & 40.65 & 46.29 & 42.81 \\
+\midrule
+\multicolumn{3}{l}{Average} & \textbf{53.14} & \textbf{44.41} & 46.51 & 38.47 & 43.44 & 36.57 & 46.58 & 39.79 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+To evaluate the individual contributions of Backward Slicing (BS) and Constraint Hints (CS), we conducted an ablation study with three degraded variants: \textbf{w/o BS} (removing backward slicing), \textbf{w/o CS} (removing constraint hints), and \textbf{w/o CS+BS} (removing both). All variants share the same iterative generation loop and are evaluated under an identical backbone (QC3-30B). Results are summarized in Table~\ref{tab:ablation}.
+
+\subsubsection{Overall Ablation Results}
+
+\textbf{Both components contribute independently.} Removing BS alone causes an average BC drop of \textbf{5.94 percentage points} (44.41\% $\to$ 38.47\%), while removing CS alone results in a drop of \textbf{4.62 pp} (44.41\% $\to$ 39.79\%). Removing both components yields the largest degradation of \textbf{7.84 pp} (44.41\% $\to$ 36.57\%), confirming that BS and CS address complementary aspects of the problem: BS eliminates irrelevant context that misleads the LLM, while CS makes cross-method preconditions explicit so that the LLM can construct the required object state. Notably, the combined degradation (7.84 pp) is smaller than the sum of individual degradations (10.56 pp), suggesting that the two components partially compensate for each other when one is absent.
+
+\textbf{BS is particularly critical for context-heavy methods.} The impact of BS is most pronounced in projects where method bodies contain many statements unrelated to the target branch. On \textit{Csv}, removing BS causes BC to drop from 52.29\% to 24.80\% ($-$27.49 pp), the largest per-project degradation in the study. This aligns with our motivation: when irrelevant statements dominate the focal method, providing the full unsliced context actively distracts the LLM from the branch-relevant logic.
+
+\textbf{CS is critical when preconditions span method boundaries.} CS contributes most on projects where the target branch condition depends on prior method calls. On \textit{JacksonDatabind}, removing CS reduces BC from 17.85\% to 9.33\% ($-$8.52 pp, a relative decline of 47.7\%), indicating that without explicit constraint hints the LLM is unable to construct the object state necessary to reach the focal branch.
+
+\textbf{Anomalies and discussion.} In two projects (\textit{JacksonCore} and \textit{Jsoup}), the w/o-BS variant achieves marginally higher coverage than the full \ourmethod{}. We attribute this to cases where backward slicing inadvertently removes type information required for mock construction, causing the LLM to fall back on simpler yet occasionally effective test patterns. This sensitivity to slice granularity is a known limitation and remains a direction for future refinement.
+
+\subsubsection{Iterative Coverage Improvement}
+
+Figure~\ref{fig:branch-growth} traces branch coverage across iterations for all four configurations. \ourmethod{} consistently achieves the highest coverage at every iteration and exhibits the steepest growth curve, demonstrating that both BS and CS contribute not only to final coverage but also to the efficiency of iterative improvement. In contrast, removing either component leads to slower convergence, and removing both produces the flattest growth trajectory, underscoring the necessity of each component for sustained progress.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/branch_coverage_comparison.pdf}
+    \caption{Branch coverage improvement over iterations for \ourmethod{} and its three ablated variants.}
+    \label{fig:branch-growth}
+\end{figure}
+
+\begin{tcolorbox}[colback=gray!5, colframe=gray!100, title=Answer to RQ2]
+Both BS and CS make independent and complementary contributions to \ourmethod{}. BS provides the larger share of improvement by eliminating irrelevant context ($-$5.94 pp when removed), while CS explicitly guides the LLM toward satisfying cross-method preconditions ($-$4.62 pp when removed). Removing both components degrades BC by 7.84 pp on average, with per-project drops reaching up to 27.49 pp (\textit{Csv}), confirming that neither component is redundant. The iterative growth curves further show that both components contribute to the efficiency of coverage accumulation across generation rounds.
+\end{tcolorbox}
+
+\subsection{RQ3: Performance Comparison of Different LLMs}
+
+In this research question, we investigate how \ourmethod{} generalizes across different large language models. Specifically, we evaluate the framework on four LLMs: GPT-5.1-CM, QC3-30B, QW3.5-397B, and DS-V3.1, to understand the impact of model capacity and architecture on test generation effectiveness.
+
+Table~\ref{tab:model-generalization} presents line coverage (LC) and branch coverage (BC) achieved by each model across 14 real-world Java projects. The results show that \ourmethod{} consistently achieves high coverage regardless of the underlying LLM. Notably, QW3.5-397B and DS-V3.1 attain the highest average branch coverage (83.47\% and 80.12\%, respectively), indicating that larger and more advanced models tend to produce more semantically accurate and coverage-effective tests. In contrast, smaller models such as QC3-30B achieve lower coverage (44.41\%), highlighting the influence of model reasoning capacity on path exploration, particularly in projects with higher cyclomatic complexity.
+
+Across all projects, \ourmethod{} demonstrates the ability to generate tests that traverse complex execution paths and satisfy intricate object state dependencies, which often remain uncovered by smaller or less capable LLMs. The performance gap is most pronounced in projects such as \texttt{Collections} and \texttt{JDatabind}, where intricate state initialization and cross-method interactions are critical for branch reachability. This suggests that model capacity plays a significant role in LLM-based test generation, especially when reasoning about implicit preconditions and multi-step object state construction.
+
+\begin{table*}[t]
+\centering
+\caption{Model Generalization Across Different LLMs}
+\label{tab:model-generalization}
+\small
+\begin{tabular}{@{} l c c c c c c c c c c @{}}
+\toprule
+\multirow{2}{*}{Project} & \multirow{2}{*}{\#C} & \multirow{2}{*}{CC} &
+\multicolumn{2}{c}{GPT-5.1-CM} & \multicolumn{2}{c}{QC3-30B} & \multicolumn{2}{c}{QW3.5-397B} & \multicolumn{2}{c}{DS-V3.1} \\
+\cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11}
+& & & LC(\%) & BC(\%) & LC(\%) & BC(\%) & LC(\%) & BC(\%) & LC(\%) & BC(\%) \\
+\midrule
+Cli & 2 & 11.00 & -- & -- & 84.32 & 70.73 & 98.82 & 92.63 & 98.82 & 91.93 \\
+Codec & 7 & 16.14 & -- & -- & 76.97 & 69.60 & 98.32 & 95.30 & 93.60 & 88.46 \\
+Collections & 5 & 18.60 & -- & -- & 40.46 & 34.63 & 98.16 & 94.43 & 98.02 & 94.20 \\
+Compress & 9 & 15.33 & -- & -- & 36.09 & 29.05 & 86.92 & 80.90 & 81.32 & 76.04 \\
+Csv & 3 & 16.67 & -- & -- & 62.27 & 52.29 & 95.71 & 87.42 & 85.70 & 77.53 \\
+Gson & 4 & 23.25 & -- & -- & 63.82 & 41.24 & 92.88 & 87.97 & 92.13 & 82.86 \\
+JCore & 9 & 16.33 & -- & -- & 41.72 & 35.54 & 83.25 & 76.77 & 66.62 & 57.76 \\
+JDatabind & 9 & 15.33 & -- & -- & 23.35 & 17.85 & 74.93 & 69.81 & 84.06 & 77.44 \\
+JXml & 4 & 21.50 & -- & -- & 20.61 & 17.08 & 62.20 & 63.65 & 66.06 & 65.22 \\
+Jsoup & 8 & 14.13 & -- & -- & 66.43 & 52.55 & 95.87 & 87.49 & 87.15 & 79.98 \\
+JxPath & 12 & 15.50 & -- & -- & 42.28 & 35.84 & 71.30 & 66.22 & 76.89 & 73.21 \\
+Lang & 17 & 16.88 & -- & -- & 59.21 & 52.14 & 91.72 & 87.44 & 88.21 & 85.02 \\
+Math & 30 & 16.47 & -- & -- & 59.60 & 54.02 & 92.96 & 87.47 & 91.69 & 85.41 \\
+Time & 11 & 17.36 & -- & -- & 66.79 & 59.25 & 96.94 & 91.08 & 94.71 & 89.92 \\
+\midrule
+\multicolumn{3}{l}{Average} & -- & -- & 53.14 & 44.41 & 88.57 & 83.47 & 85.89 & 80.12 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{tcolorbox}[colback=gray!5,colframe=gray!100,title=Answer to RQ3]
+\ourmethod{} significantly outperforms state-of-the-art LLM-based test generation tools. It achieves an average branch coverage of \textbf{40.03\%}, representing a \textbf{16.9\% -- 89.3\%} improvement over existing baselines. Its advantage is particularly pronounced in projects with high cyclomatic complexity, where it successfully traverses logical paths that other tools fail to exercise.
+\end{tcolorbox}

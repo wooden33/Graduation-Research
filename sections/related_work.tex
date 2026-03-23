@@ -1,0 +1,34 @@
+\section{RELATED WORK}
+
+\subsection{Unit Test Generation}
+
+Automated unit test generation has long been studied to reduce developer effort and improve software reliability. Existing techniques can be broadly categorized into search-based approaches and recent large language model (LLM)-based methods.
+
+Search-based software testing (SBST) techniques construct test inputs by optimizing coverage objectives. A representative system is EvoSuite~\cite{evosuite}, which employs evolutionary algorithms to generate JUnit test suites that maximize structural coverage metrics such as branch coverage. EvoSuite adopts whole-test-suite optimization and regression assertion generation to capture program behavior automatically. Although SBST techniques are effective at exploring input spaces, they often struggle with complex semantic dependencies and may produce tests that are difficult for developers to interpret~\cite{mcminn2011}.
+
+The emergence of large language models has enabled a new class of approaches that synthesize tests directly from source code. ChatUniTest~\cite{chen2024} leverages LLMs to generate unit tests using a focal-context mechanism that selectively exposes relevant program information to the model, combined with a generate–validate–repair workflow to improve compilation and execution success rates. SymPrompt~\cite{ryan2024} explores prompt engineering strategies that decompose test generation into structured reasoning steps aligned with program execution paths, enabling the model to better utilize type and dependency information.
+
+Several recent studies further investigate how structured prompting can guide LLMs toward generating more effective tests. HITS~\cite{wang2024c} introduces a hierarchical prompting strategy that organizes test generation into multiple reasoning stages, allowing the model to progressively reason about program structure and test construction. This design improves the model's ability to generate syntactically valid and semantically meaningful tests.
+
+Other approaches integrate execution feedback to improve test reliability. CoverUp~\cite{pizzorno2024} and Panta~\cite{gu2025a} adopt workflows that combine LLM-based generation with compilation and execution signals to refine generated tests and improve coverage. These studies show that incorporating program feedback can significantly enhance the executability and effectiveness of generated test suites.
+
+Another line of work focuses on practical tooling for developers. JUnitGenie~\cite{liao2025} leverages LLMs to automatically synthesize JUnit tests from source code and project context, providing an assistant that integrates test generation into development workflows.
+
+Despite these advances, existing approaches still exhibit important limitations. Search-based methods primarily focus on input exploration and often fail to capture semantic dependencies across methods~\cite{yang2024telpa}, while LLM-based approaches typically rely on static prompting strategies that lack explicit reasoning about program constraints. These limitations motivate approaches that more tightly integrate program analysis with LLM reasoning to guide test generation.
+
+% SymPrompt利用提取每个可能执行分支的条件，只收集“近似”约束，引导LLM生成合适单元测试。但是只有分支条件，缺少输入条件和上下文的约束
+% HITS将被测函数切片，简化被测函数的圈复杂度，降低LLM理解复杂代码的难度，以此提高分支覆盖率。但是函数切片缺少一个标准，有可能遗漏上下文生成错误代码
+% CoverUp将利用动态覆盖率报告反馈指导LLM生成高覆盖率的单元测试
+% Panta采用一种静态分析与动态报告结合的混合单测生成方法
+% JUnitGenie通过类型信息、控制流结构和数据依赖构建上下文
+
+
+\subsection{Program Slicing}
+
+Program slicing is a classical program analysis technique used to extract the subset of program statements that are relevant to a particular computation or variable~\cite{weiser1984}\cite{tip1995}. Traditional slicing techniques rely on static or dynamic dependency analysis to identify statements that influence the value of a program element at a specific program point~\cite{tip1995}. JavaSlicer~\cite{JavaSlicer}, for example, performs dynamic slicing for Java programs by tracking runtime data and control dependencies, enabling developers to isolate statements that contribute to specific execution behaviors. Such slicing techniques have been widely used in debugging, program comprehension, and software testing.
+
+Recent work has explored learning-based approaches to overcome the limitations of traditional slicing. NSSlicer~\cite{yadavally2024} introduces a neural slicing framework designed for incomplete or partial programs. By leveraging neural models to predict relevant dependencies, NSSlicer can generate meaningful slices even when static analysis is insufficient or when the code lacks full contextual information. This demonstrates the potential of integrating learning-based techniques with traditional program analysis.
+
+In the context of LLM-based unit test generation, some studies adopt simplified forms of program decomposition. For instance, HITS~\cite{wang2024c} divides complex programs into smaller code segments to reduce the cognitive load for the LLM during test generation. However, this process does not follow the traditional notion of program slicing based on data and control dependencies; instead, it primarily serves as a heuristic strategy to simplify the input context provided to the model.
+
+In contrast, \ourmethod{} leverages classical program analysis concepts more directly. Specifically, we perform backward slicing starting from uncovered branch conditions to identify the statements that influence the required program state. The resulting slice captures the dependencies necessary to satisfy the target branch. By providing this focused slice to the LLM, \ourmethod{} enables the model to reason about the required preconditions and generate tests that establish the necessary object state, thereby improving branch coverage.

@@ -1,0 +1,87 @@
+\section{MOTIVATION}
+
+Recent LLM-based unit test generation approaches, such as SymPrompt~\cite{ryan2024}, HITS~\cite{wang2024c}, Panta~\cite{gu2025a}, and JunitGenie~\cite{liao2025}, have achieved remarkable progress in automating test generation for complex methods, significantly reducing the manual effort required from developers. However, when the reachability of a target branch depends on \textit{object states established by prior method calls}, existing approaches still struggle to guide LLMs in constructing the appropriate external context, even when augmented with CFG-based path analysis.
+
+The fundamental limitation is that these approaches typically supply the \textit{entire method body} as the LLM's input context. In real-world projects, however, the conditions necessary to reach a target branch are often not visible within the method body itself—they are implicit in a sequence of initialization and state-setting operations that must occur \textit{before} the method is invoked~\cite{baldoni2018surveysymbolicexecutiontechniques}. The irrelevant statements in the method body not only consume the context window but also obscure these cross-method dependencies, leaving the LLM unable to infer the required preconditions.
+
+\textbf{A Motivating Example.}
+Consider the \texttt{addValue()} method from Apache Commons 
+Math~\cite{commonsMath}, shown in Listing~\ref{lst:motivation}.
+
+\begin{lstlisting}[language=Java, 
+                   caption={Target branch example from Apache Commons Math},
+                   label={lst:motivation}]
+// org.apache.commons.math3.stat.descriptive.SummaryStatistics
+public void addValue(double value) {
+    sumImpl.increment(value);
+    ...
+    
+    if (meanImpl != mean) {   // target branch
+        meanImpl.increment(value);
+    }
+    ...
+    n++;
+}
+\end{lstlisting}
+
+Suppose a test generation tool identifies that the branch at line~9 
+(\texttt{meanImpl != mean}) has not been covered and attempts to generate 
+a test to reach it. Existing approaches typically provide the entire method 
+body alongside CFG path information to the LLM. However, the LLM faces a 
+critical inferential barrier: the condition \texttt{meanImpl != mean} can 
+only be satisfied if \texttt{setMeanImpl()} was called \textit{prior} to 
+\texttt{addValue()}—a dependency that is entirely absent from the method 
+body. Consequently, the LLM tends to generate a test such as:
+
+\begin{lstlisting}[language=Java, caption={Typical LLM-generated test (target branch unreachable)}]
+// meanImpl == mean always holds; target branch is never triggered
+SummaryStatistics stats = new SummaryStatistics();
+stats.addValue(1.0);
+\end{lstlisting}
+
+This test compiles and executes without error, yet the target branch is 
+never triggered. The correct test requires establishing the necessary 
+precondition \textit{before} invoking \texttt{addValue()}:
+
+\begin{lstlisting}[language=Java, caption={Correct test (target branch reachable)}]
+// Establish precondition via setMeanImpl() before calling addValue()
+SummaryStatistics stats = new SummaryStatistics();
+stats.setMeanImpl(new CustomMeanImpl()); // makes meanImpl != mean
+stats.addValue(1.0);                     // target branch now reachable
+\end{lstlisting}
+
+This example illustrates two core challenges that existing approaches fail 
+to address: \textbf{(1)} the method body contains numerous statements 
+irrelevant to the target branch, which dilute the LLM's attention and 
+impede precise reasoning; and \textbf{(2)} the true precondition for 
+reaching the target branch is a cross-method dependency invisible within 
+the method body itself.
+
+\textbf{Our Approach.}
+To address these challenges, we propose two complementary mechanisms that 
+reduce LLM reasoning complexity from the perspectives of 
+\textit{information reduction} and \textit{condition explicitness}:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Backward Slicing.} Starting from the target branch condition
+    \texttt{meanImpl != mean}, we perform backward slicing to trace all
+    statements with data or control dependencies on \texttt{meanImpl} and
+    \texttt{mean}, including field declarations, default assignments in the
+    constructor, and the definition of \texttt{setMeanImpl()}. This eliminates
+    six irrelevant \texttt{increment} calls and other unrelated branches from
+    the context, allowing the LLM to focus on statements that govern branch
+    reachability.
+
+    \item \textbf{Constraint Hints.} Building on the slice, we explicitly
+    provide the LLM with the path condition and how it can be established,
+    e.g., \emph{``To trigger the target branch, \texttt{meanImpl != mean} must
+    hold; this can be achieved by calling \texttt{setMeanImpl(customImpl)}
+    before \texttt{addValue()}.''} Rather than requiring the LLM to infer
+    implicit cross-method dependencies from source code, this mechanism
+    directly guides the LLM toward constructing the correct initialization
+    sequence.
+\end{itemize}
+
+Together, these two mechanisms systematically reduce the difficulty of 
+reasoning about complex branch conditions, enabling LLMs to generate tests 
+that reach previously uncovered paths.

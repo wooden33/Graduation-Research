@@ -1,0 +1,9 @@
+\section{CONCLUSION}
+
+In this work, we presented \ourmethod{}, a novel framework for automated unit test generation that leverages Backward Slicing (BS) and Constraint Hints (CS) to address the challenges of context-heavy methods and cross-method preconditions. Through an extensive empirical evaluation on a diverse set of real-world Java projects, we demonstrated that both components contribute independently and complementarily to branch coverage improvement.
+
+Our ablation study confirmed that BS is particularly effective in eliminating irrelevant context, which can mislead LLM-based test generation in complex methods, while CS explicitly guides the LLM to satisfy necessary preconditions that span method boundaries. The combination of BS and CS consistently achieves the highest coverage growth, outperforming variants with one or both components removed, and illustrating that neither component is redundant.
+
+Beyond the immediate improvements in branch coverage, our analysis highlights practical insights for future research. In particular, slice granularity and context selection require careful tuning, and there are opportunities to further enhance constraint-guided LLM reasoning for complex initialization sequences.
+
+Overall, \ourmethod{} provides a promising direction for bridging symbolic analysis techniques with LLM-driven test generation, improving both the effectiveness and reliability of automated testing in real-world software projects. Future work includes extending the approach to handle even more complex object-oriented patterns and integrating additional dynamic program analysis to further refine constraint guidance.
