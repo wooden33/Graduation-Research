@@ -3,12 +3,41 @@
 Automated unit test generation plays a critical role in improving software reliability and reducing developer effort. Traditional techniques, such as symbolic execution and search-based software testing (SBST), have made substantial progress in systematically exploring input spaces and maximizing structural coverage~\cite{cadar2008klee, evosuite, mcminn2011}. However, these approaches often face fundamental limitations in scalability and in handling complex program semantics. In particular, they struggle to capture implicit preconditions that arise from intricate object states and inter-procedural interactions, where the conditions required to reach a target path are established outside the local method scope through sequences of prior method calls~\cite{baldoni2018surveysymbolicexecutiontechniques}.
 
 Recent advances in large language models (LLMs) have introduced a new paradigm for unit test generation. By leveraging their strong code understanding and reasoning capabilities, LLM-based approaches can directly synthesize executable test cases from source code, significantly lowering the barrier to automated testing~\cite{chen2024, ryan2024, wang2024c, gu2025a, liao2025}. Moreover, iterative workflows that incorporate compilation and execution feedback have further improved the validity and coverage of generated tests~\cite{pizzorno2024}.
+\xtz{lack detailed description of several representive related work.}
 
 Despite these promising results, existing LLM-based methods still exhibit a fundamental limitation: they lack precise reasoning about \emph{implicit program constraints}, particularly those that span across multiple methods. Most approaches rely on prompting the LLM with the entire method body, optionally augmented with control-flow or type information. However, in real-world object-oriented programs, the conditions required to execute a target branch are often not locally visible within the method under test. Instead, they depend on object states established through prior method calls or initialization sequences, which are external to the focal method. As a result, LLMs frequently generate tests that are syntactically correct but fail to satisfy the hidden preconditions necessary for reaching uncovered branches~\cite{ryan2024}.
+\xtz{
+Despite these promising results, a substantial coverage gap still remains, especially on complex branches whose reachability depends on non-local object states and long dependency chains. 
+This suggests that the remaining challenge is not simply a lack of feedback or prompting sophistication, but a deeper mismatch between the information exposed to the LLM and the information actually required to cover a target branch.
+\ding{172} One important dimension of this mismatch is \emph{what to satisfy}. 
+In many cases, branch reachability depends on implicit preconditions scattered across long dependency chains, requiring the model to infer hidden constraints through multiple variable assignments and state transitions before it can synthesize a valid test. 
+Existing approaches typically provide only the target branch structure and compress constraint inference and test synthesis into a single generation step, without any explicit intermediate output or independent verification of the inferred constraints. 
+As a result, the LLM can easily skip or compress critical reasoning steps, producing tests that appear plausible but fail to satisfy the actual conditions required to reach the target branch. 
+This problem becomes particularly severe when the underlying dependency chain is long or semantically complex.
+\ding{173} The second dimension concerns \emph{what to attend to}. 
+Existing methods usually expose the entire method body to the LLM, even though only a small subset of statements has real data or control dependence on the target branch. 
+The resulting context is therefore structurally misaligned with the branch-coverage objective: coverage-critical dependencies are diluted by irrelevant code, attention is spread across non-essential statements, and the model must reason under a representation that over-emphasizes what is visible rather than what is truly necessary. 
+This not only amplifies cognitive burden, but also makes precise state construction substantially less likely. 
+Even without explicit distractors, LLM performance can already degrade as context length grows~\cite{du2025contextlengthhurtsllm, wang2026intelligencedegradationlongcontextllms}; 
+in branch-oriented test generation, this effect is further magnified because the relevant context is often deeply buried inside much longer method bodies.
+Taken together, these two issues suggest a systematic form of \emph{cognitive misalignment} in LLM-based unit test generation: the information shown to the model is often misaligned with the information actually needed to cover a target branch. 
+This misalignment has two complementary dimensions, namely \emph{what to satisfy} and \emph{what to attend to}.
+}
 
 Furthermore, providing the full method body as context introduces substantial noise. Irrelevant statements consume the limited context window and obscure the critical dependencies that govern branch reachability. This not only increases the cognitive burden on the LLM but also reduces its ability to infer correct execution conditions. Consequently, even when guided by path information, existing approaches often fail to cover branches that require precise state construction, as LLM performance has been shown to degrade significantly as input context length increases, even in the absence of distracting information~\cite{du2025contextlengthhurtsllm, wang2026intelligencedegradationlongcontextllms}.
 
 To address these challenges, we propose \ourmethod{}, a novel LLM-driven framework for automated unit test generation that tightly integrates program analysis with language model reasoning. The key idea is to reduce the difficulty of test generation from two complementary perspectives: \emph{making hidden constraints explicit} and \emph{eliminating irrelevant context}.
+\xtz{
+To address this cognitive misalignment, we propose \ourmethod{}, an LLM-driven framework for automated unit test generation that explicitly tackles both dimensions of the gap, by making critical constraints explicit and concentrating the model's attention on branch-relevant program context.
+First, \textit{Constraints-Hints} addresses the \emph{what to satisfy} dimension. 
+It extracts path conditions from the control-flow graph and externalizes them as explicit, human-interpretable input requirements prior to test synthesis, turning implicit reachability constraints into a structured intermediate artifact that directly guides code generation. 
+This decoupling ensures that preconditions buried in long dependency chains are surfaced and reasoned about explicitly, rather than silently skipped in a single end-to-end generation step.
+Second, \textit{coverage-driven backward slicing} addresses the \emph{what to attend to} dimension. Rather than supplying the full method body, the slicer isolates the minimal set of statements that genuinely influence an uncovered branch, including cross-method dependencies such as field initializations and setter methods. 
+This restructures the prompt context around branch-relevant dependencies, preventing the model's attention from being diffused across irrelevant code. 
+The slicing is triggered selectively when coverage plateaus, targeting branches that resist standard generation.
+Both components are integrated into an iterative loop of generation, execution, and repair. Coverage feedback drives target selection each round, progressively exposing branches where the current context remains misaligned with their reachability requirements, until coverage converges or the budget is exhausted.
+}
+
 
 First, we introduce \textit{Constraints-Hints}, a mechanism that extracts path conditions from the control-flow graph and translates them into explicit, human-interpretable input requirements. Instead of requiring the LLM to infer complex branch predicates from raw source code, our approach directly exposes the necessary conditions for covering a target path, enabling more accurate and guided test generation.
 
@@ -17,7 +46,15 @@ Second, we propose a \textit{coverage-driven backward slicing} technique that id
 These two components are integrated into an iterative framework that combines test generation, execution, and automated repair. Starting from an initial test suite, the framework continuously identifies uncovered paths, derives constraint hints, and generates candidate tests. When coverage improvement stagnates, backward slicing is triggered to provide more precise guidance. This iterative feedback loop enables sustained coverage growth and effective exploration of hard-to-reach program paths.
 
 We evaluate \ourmethod{} on a set of real-world Java projects and compare it against state-of-the-art LLM-based and search-based baselines. The results show that our approach consistently achieves higher branch coverage and is particularly effective in scenarios involving complex object state dependencies. Further analysis demonstrates that both constraint hints and backward slicing are essential for guiding LLMs toward generating semantically correct and coverage-effective tests.
-
+\xtz{
+We evaluate \ourmethod{} on 14 Java projects from Defects4J v2.0.1, covering 130 classes and 2971 methods with cyclomatic complexity greater than 10. Baselines include SymPrompt, HITS, and Panta, representing complementary design philosophies.
+\ourmethod{} achieves 44.41\% average branch coverage, outperforming SymPrompt (21.14\%), HITS (34.24\%), and Panta (32.32\%). 
+Gains are most pronounced on logic-heavy subjects with rich cross-method dependencies: on Gson, \ourmethod{} reaches 41.24\% versus SymPrompt's 3.59\%; on Jsoup, it improves over HITS by 36.4\%.
+Ablation confirms the complementary roles of both components. 
+Removing \emph{Backward Slicing} drops coverage from 44.41\% to 38.47\%, with the largest degradation on context-heavy subjects (e.g., Csv: 52.29\%$\to$24.80\%). 
+Removing \emph{Constraint-Hints} drops coverage to 39.79\%, most severely on subjects with object-state dependencies (e.g., JacksonDatabind: 17.85\%$\to$9.33\%).
+Finally, \ourmethod{} generalizes across backbone LLMs, achieving 44.41\% (QC3-30B), 83.47\% (QW3.5-397B), and 80.12\% (DS-V3.1), confirming that its benefit derives from restructuring branch-relevant information rather than relying on any specific model.
+}
 In summary, this paper makes the following contributions:
 
 \begin{itemize}[leftmargin=*]
