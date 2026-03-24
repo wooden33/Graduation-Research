@@ -55,7 +55,7 @@ To evaluate the effectiveness and design of \ourmethod{}, we address the followi
 
 \textbf{Baselines.}
 To evaluate the performance of \ourmethod{}, we compare it against three state-of-the-art (SOTA) LLM-based unit test generation frameworks. These baselines represent diverse paradigms in the field:
-
+\xtz{only explain the method of baseline.}
 \begin{itemize}
     \item \textbf{SymPrompt \cite{ryan2024}:} A prominent prompt-engineering approach that integrates symbolic execution concepts with LLMs. It utilizes path-oriented prompts to guide models in generating test inputs. We include SymPrompt to assess the effectiveness of \ourmethod{} against methods relying solely on structured prompting without external constraint solving.
     \item \textbf{HITS \cite{wang2024c}:} A high-performance framework emphasizing self-healing and iterative refinement. As a strong baseline for generating compilable and high-coverage tests, HITS allows us to evaluate \ourmethod{}'s capability in navigating complex logical branches where iterative feedback is critical.
@@ -149,7 +149,7 @@ In summary, \ourmethod{} demonstrates \textbf{robust effectiveness} across 14 re
 
 \begin{table*}[t]
 \centering
-\caption{Ablation Study of \ourmethod{} Components}
+\caption{Ablation Study of \ourmethod{} Components \xtz{the column \#C can be removed and the column w/o CS should be moved before w/o CS+BS}}
 \label{tab:ablation}
 \small
 \sisetup{round-mode=places, round-precision=2, table-format=2.2}

@@ -60,6 +60,10 @@
 \usepackage[normalem]{ulem}
 \usepackage{soul}
 
+\usepackage[draft,commandnameprefix=ifneeded]{changes} % 'draft' for draft; 'final' for the final version
+\setaddedmarkup{\color{blue}#1}
+\setdeletedmarkup{\color{red}\sout{#1}}
+
 \lstset{
   basicstyle=\ttfamily\small,
   keywordstyle=\color{blue},

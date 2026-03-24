@@ -44,16 +44,20 @@ Second, we propose a \textit{coverage-driven backward slicing} technique that id
 
 These two components are integrated into an iterative framework that combines test generation, execution, and automated repair. Starting from an initial test suite, the framework continuously identifies uncovered paths, derives constraint hints, and generates candidate tests. When coverage improvement stagnates, backward slicing is triggered to provide more precise guidance. This iterative feedback loop enables sustained coverage growth and effective exploration of hard-to-reach program paths.
 
-We evaluate \ourmethod{} on a set of real-world Java projects and compare it against state-of-the-art LLM-based and search-based baselines. The results show that our approach consistently achieves higher branch coverage and is particularly effective in scenarios involving complex object state dependencies. Further analysis demonstrates that both constraint hints and backward slicing are essential for guiding LLMs toward generating semantically correct and coverage-effective tests.
-\xtz{
+\deleted{We evaluate \ourmethod{} on a set of real-world Java projects and compare it against state-of-the-art LLM-based and search-based baselines. The results show that our approach consistently achieves higher branch coverage and is particularly effective in scenarios involving complex object state dependencies. Further analysis demonstrates that both constraint hints and backward slicing are essential for guiding LLMs toward generating semantically correct and coverage-effective tests.}
+
+\added{
+\textbf{Evaluation.}
 We evaluate \ourmethod{} on 14 Java projects from Defects4J v2.0.1, covering 130 classes and 2971 methods with cyclomatic complexity greater than 10. Baselines include SymPrompt, HITS, and Panta, representing complementary design philosophies.
 \ourmethod{} achieves 44.41\% average branch coverage, outperforming SymPrompt (21.14\%), HITS (34.24\%), and Panta (32.32\%). 
-Gains are most pronounced on logic-heavy subjects with rich cross-method dependencies: on Gson, \ourmethod{} reaches 41.24\% versus SymPrompt's 3.59\%; on Jsoup, it improves over HITS by 36.4\%.
-Ablation confirms the complementary roles of both components. 
+Gains are most pronounced on logic-heavy subjects with rich cross-method dependencies: on Gson, \ourmethod{} reaches 41.24\% versus SymPrompt's 3.59\%; on Jsoup, it improves over HITS by 36.4\%.}
+
+\added{Ablation study confirms the complementary roles of both components. 
 Removing \emph{Backward Slicing} drops coverage from 44.41\% to 38.47\%, with the largest degradation on context-heavy subjects (e.g., Csv: 52.29\%$\to$24.80\%). 
 Removing \emph{Constraint-Hints} drops coverage to 39.79\%, most severely on subjects with object-state dependencies (e.g., JacksonDatabind: 17.85\%$\to$9.33\%).
 Finally, \ourmethod{} generalizes across backbone LLMs, achieving 44.41\% (QC3-30B), 83.47\% (QW3.5-397B), and 80.12\% (DS-V3.1), confirming that its benefit derives from restructuring branch-relevant information rather than relying on any specific model.
 }
+
 In summary, this paper makes the following contributions:
 
 \begin{itemize}[leftmargin=*]
