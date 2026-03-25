@@ -20,39 +20,6 @@ In contrast, \ourmethod{} applies backward slicing to identify the relevant stat
 The generated test consequently initializes the object correctly and triggers the target branch. 
 This example highlights that \ourmethod{} improves not only coverage, but also the LLM’s ability to reason about cross-method dependencies and implicit state requirements.
 
-\added{
-\textbf{Differentiation from Existing Approaches.}
-Several recent works incorporate program analysis or iterative feedback into LLM-based test generation, and \ourmethod{} shares surface-level similarities with some of them.
-We therefore clarify below precisely how \ourmethod{} differs from each line of prior work on the two dimensions that define its design: \emph{what to satisfy} and \emph{what to attend to}.
-
-\textit{Versus HITS.}
-HITS decomposes the focal method into smaller fragments to reduce LLM input size.
-However, its decomposition is driven by structural heuristics rather than data or control dependencies, and is applied uniformly regardless of the current coverage state.
-As a result, the fragments are not targeted at any specific uncovered branch, and for methods with high cyclomatic complexity the number of generated segments grows proportionally, incurring substantial token overhead even for already-covered regions.
-\ourmethod{} instead performs \emph{coverage-driven} backward slicing: the slicer is triggered only when coverage improvement stalls, and each slice is computed starting from the precise uncovered branch condition, tracing all data and control dependencies—including cross-method field initializations and setter definitions—that govern its reachability.
-This guarantees that every slice is both necessary and precisely targeted at the branch that resists generation.
-
-\textit{Versus SymPrompt.}
-SymPrompt extracts branch conditions from Control Flow Graphs and embeds them as structured prompts.
-Yet constraint inference and test synthesis remain compressed into a single LLM call: the model must simultaneously determine what conditions must hold \emph{and} write code that satisfies them, with no intermediate verification of the inferred constraints.
-This leaves the model free to silently skip or misinterpret complex dependency chains.
-\ourmethod{} explicitly decouples these two tasks: a dedicated Constraint-Hints step first derives the reachability conditions as interpretable statements and surfaces them to the generation prompt; only then does the test generation LLM synthesize code.
-This staged design eliminates the single-step reasoning bottleneck that causes SymPrompt to fail on branches with long or non-local dependency chains.
-
-\textit{Versus Panta.}
-Panta fuses static CFG analysis with dynamic coverage feedback to identify and prioritize uncovered paths, then passes the path information to the LLM for test generation.
-Like SymPrompt, however, Panta's path specification is fed into a unified generation step that conflates constraint reasoning with code synthesis.
-Moreover, Panta's path analysis operates strictly within the focal method body, leaving cross-method object-state dependencies invisible: if the condition required to reach a target branch can only be established by calling a setter defined in a different method, Panta has no mechanism to surface that dependency.
-\ourmethod{} addresses both gaps: Constraint-Hints explicitly models inter-procedural preconditions, and backward slicing traces dependencies across method boundaries to bring the necessary setter and initializer context into scope.
-
-\textit{Versus JUnitGenie.}
-JUnitGenie achieves strict path sensitivity by constructing minimal, path-specific contexts using type and data-dependency analysis within the focal method.
-This directly addresses the attention dilution problem on the \emph{what to attend to} dimension.
-However, JUnitGenie's context minimization is bounded by the focal method boundary: cross-method state-setting operations that must be invoked \emph{before} the method under test remain invisible.
-\ourmethod{}'s backward slicing explicitly extends dependency tracing beyond this boundary, incorporating setter calls, field initializers, and dependency class implementations from related classes into the sliced context.
-Furthermore, \ourmethod{} complements context reduction with the Constraint-Hints mechanism, which addresses the orthogonal \emph{what to satisfy} dimension by making implicit cross-method preconditions actionable—a gap that JUnitGenie does not target.
-}
-
 \textbf{Design Implications.}
 Our findings suggest that structural guidance (e.g., slicing and constraint hints) and model reasoning capabilities are complementary. 
 While \ourmethod{} effectively reduces irrelevant context and exposes execution constraints, its full potential is realized when paired with LLMs capable of multi-step reasoning and semantic inference. 
