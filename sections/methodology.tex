@@ -134,7 +134,7 @@ to invoking \texttt{addValue}. By making this requirement explicit, the test
 generation LLM can construct the correct setup sequence and cover the
 previously unreachable branch.
 
-\subsection{Backward Slicing for Coverage Plateaus}
+\subsection{Backward Slicing \deleted{for Coverage Plateaus}}
 
 \deleted{Despite coverage-guided iterative generation, certain branches may remain
 persistently uncovered, particularly in methods with high cyclomatic
@@ -147,9 +147,8 @@ coverage improvement stalls.}
 Coverage improvement does not always progress smoothly: certain branches remain persistently uncovered even after multiple iterations, typically because their reachability depends on subtle state dependencies that standard generation fails to capture. 
 When such a plateau is detected, \ourmethod{} triggers a backward slicing step targeted at these stubborn branches, replacing the full method body with the minimal context actually relevant to the uncovered path.}
 
-\paragraph{Relationship to prior work.} \xtz{move this paragraph to discussion}
-
-Program slicing has long been used to identify the subset of program statements relevant to a particular computation~\cite{weiser1984}. Recent work such as NS-Slicer~\cite{ryan2024} demonstrates that pre-trained language models can approximate static slices by learning variable–statement dependencies. In the context of LLM-based test generation, HITS~\cite{wang2024c} applies slicing to guide test synthesis; however, its decomposition is driven by structural heuristics rather than coverage feedback, meaning the resulting segments are not targeted toward any specific uncovered branch. Furthermore, for methods with high cyclomatic complexity, the number of generated segments can grow substantially, incurring significant token overhead regardless of whether the corresponding code has already been covered. In contrast, \ourmethod{} performs \emph{path-aware} backward slicing triggered only when coverage improvement stalls, ensuring that each slice is both necessary and focused on the precise dependencies of the uncovered branch.
+\deleted{\paragraph{Relationship to prior work.}
+Program slicing has long been used to identify the subset of program statements relevant to a particular computation~\cite{weiser1984}. Recent work such as NS-Slicer~\cite{ryan2024} demonstrates that pre-trained language models can approximate static slices by learning variable–statement dependencies. In the context of LLM-based test generation, HITS~\cite{wang2024c} applies slicing to guide test synthesis; however, its decomposition is driven by structural heuristics rather than coverage feedback, meaning the resulting segments are not targeted toward any specific uncovered branch. Furthermore, for methods with high cyclomatic complexity, the number of generated segments can grow substantially, incurring significant token overhead regardless of whether the corresponding code has already been covered. In contrast, \ourmethod{} performs \emph{path-aware} backward slicing triggered only when coverage improvement stalls, ensuring that each slice is both necessary and focused on the precise dependencies of the uncovered branch.}
 
 \paragraph{Slice extraction.}
 

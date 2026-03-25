@@ -5,6 +5,7 @@ Recent LLM-based unit test generation approaches, such as SymPrompt~\cite{ryan20
 The fundamental limitation is that these approaches typically supply the \textit{entire method body} as the LLM's input context. In real-world projects, however, the conditions necessary to reach a target branch are often not visible within the method body itself—they are implicit in a sequence of initialization and state-setting operations that must occur \textit{before} the method is invoked~\cite{baldoni2018surveysymbolicexecutiontechniques}. The irrelevant statements in the method body not only consume the context window but also obscure these cross-method dependencies, leaving the LLM unable to infer the required preconditions.
 
 \textbf{A Motivating Example.}
+\xtz{lack example fot backward slicing}
 Consider the \texttt{addValue()} method from Apache Commons 
 Math~\cite{commonsMath}, shown in Listing~\ref{lst:motivation}.
 

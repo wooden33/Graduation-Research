@@ -2,39 +2,19 @@
 
 \subsection{Experimental Setup}
 
-In this section, we first introduce the construction and statistics of the evaluation dataset
+In this section, we first introduce the construction and statistics of the evaluation dataset.
 
-\textbf{Dataset.} To evaluate the effectiveness of \ourmethod{} in generating unit tests for complex methods, we utilize real-world subjects from the Defects4J (v2.0.1) benchmark \cite{defects4j}. We selected the latest fixed version of each subject program to ensure compatibility with modern build environments. Following prior work \cite{gu2025a}, we excluded projects that do not use Maven or rely on deprecated dependencies (i.e., Chart, Mockito, and Closure). The remaining 14 subjects are compatible with Java 8+, Maven (v3.6.3), and JUnit (v4.13.2).To specifically assess performance on logic-heavy code, we focus on complex classes rather than entire projects. We identified non-abstract, public classes containing at least one method with Cyclomatic Complexity (CC) $> 10$ \cite{mccabe1976complexity}. Furthermore, we manually excluded outliers such as classes with extreme complexity ($CC > 40$) caused by massive switch-statement patterns and those with minimal explicit control flow due to deep inheritance.The statistics of our evaluation dataset are summarized in Table~\ref{tab:dataset};
+\textbf{Dataset.} To evaluate the effectiveness of \ourmethod{} in generating unit tests for complex methods, we utilize real-world subjects from the Defects4J (v2.0.1) benchmark \cite{defects4j}. 
+We selected the latest fixed version of each subject program to ensure compatibility with modern build environments. 
+Following prior work \cite{gu2025a}, we excluded projects that do not use Maven or rely on deprecated dependencies (i.e., Chart, Mockito, and Closure). 
+The remaining 14 subjects are compatible with Java 8+, Maven (v3.6.3), and JUnit (v4.13.2).
+To specifically assess performance on logic-heavy code, we focus on complex classes rather than entire projects. 
+We identified non-abstract, public classes containing at least one method with Cyclomatic Complexity (CC) $> 10$ \cite{mccabe1976complexity}. 
+Furthermore, we \deleted{manually }excluded outliers such as classes with extreme complexity ($CC > 40$) caused by massive switch-statement patterns and those with minimal explicit control flow due to deep inheritance.\xtz{why? Does the baseline do the same thing?}
+The statistics of our evaluation dataset are summarized in Table~\ref{tab:dataset}.
 
 
-
-\begin{table*}[htbp]
-\centering
-\caption{Dataset Metrics with \#MUTs}
-\label{tab:dataset}
-\begin{tabular}{l l l c c c c c}
-\toprule
-\textbf{Identifier} & \textbf{Project} & \textbf{Version} & \textbf{\#C} & \textbf{\#MUTs} & \textbf{$CC_{max}$} & \textbf{$CC_{min}$} & \textbf{$CC_{med}$} \\
-\midrule
-Cli & Cli-40f & 1.5-SNAP & 2 & 31 & 11 & 11 & 11 \\
-Codec & Codec-18f & 1.11-SNAP & 7 & 78 & 31 & 11 & 13 \\
-Collections & Collections-28f & 4.2-SNAP & 5 & 218 & 32 & 11 & 16 \\
-Compress & Compress-47f & 1.16-SNAP & 9 & 65 & 22 & 11 & 13 \\
-Csv & Csv-16f & 1.6-SNAP & 3 & 72 & 25 & 11 & 14 \\
-Gson & Gson-16f & 2.8.2-SNAP & 4 & 75 & 37 & 11 & 22 \\
-JCore & JacksonCore-26f & 2.10.0-SNAP & 9 & 161 & 30 & 11 & 14 \\
-JDatabind & JacksonDatabind-112f & 2.9.9 & 9 & 371 & 22 & 11 & 15 \\
-JXml & JacksonXml-5f & 2.9.6-SNAP & 4 & 118 & 29 & 12 & 22 \\
-Jsoup & Jsoup-93f & 1.12.2-SNAP & 8 & 171 & 22 & 11 & 12 \\
-JxPath & JxPath-22f & 1.4-SNAP & 12 & 115 & 32 & 11 & 13 \\
-Lang & Lang-4f & 3.2-SNAP & 17 & 586 & 30 & 11 & 16 \\
-Math & Math-2f & 3.3-SNAP & 30 & 452 & 31 & 11 & 14 \\
-Time & Time-13f & 2.1 & 11 & 458 & 30 & 11 & 17 \\
-\midrule
-Total/Avg & & & \textbf{130} & \textbf{2971}  & \textbf{27.4}  & \textbf{11.1}  & \textbf{15.1} \\
-\bottomrule
-\end{tabular}
-\end{table*}
+\input{tables/dataset.tex}
 
 \textbf{Evaluation Metrics.}
 To evaluate the effectiveness of the generated unit tests, we primarily focus on code coverage, which is the standard metric in automated test generation research \cite{randoop, evosuite}. We report two specific metrics:
@@ -62,55 +42,24 @@ To evaluate the performance of \ourmethod{}, we compare it against three state-o
     \item \textbf{Panta \cite{gu2025a}:} A SOTA tool that leverages advanced path analysis and context-aware prompting. Panta excels at capturing data dependencies within the Class Under Test (CUT). Comparing against Panta demonstrates the advantages of \ourmethod{}'s synergy between branch selection and logical constraint satisfaction.
 \end{itemize}
 
-Due to the absence of several critical components in the official HITS repository, we faithfully re-implemented its workflow by strictly following the prompt templates defined in the original paper and adhering to the procedural logic of the available open-source fragments. 
+Due to the absence of several critical components in the official HITS repository, we faithfully re-implemented its workflow by strictly following the prompt templates defined in the original paper and adhering to the procedural logic of the available open-source fragments. \added{To validate the fidelity of our re-implementation, we ran it using \textbf{GPT-3.5-turbo}---the backbone model adopted in the original HITS paper---on the Cli project; the resulting branch coverage deviates by less than 2\% from the figures reported in the original paper, confirming the reliability of our re-implementation.}
 
-For a fair comparison, all baselines were configured using the same backbone model as \ourmethod{} in each experiment. Specifically, RQ1 adopts \textbf{Qwen3-Coder-30B} (hereafter \textbf{QC3-30B}) as the backbone, while RQ2 adopts \textbf{Qwen3-Coder-30B} (hereafter \textbf{QC3-30B}). The use of different models across RQs reflects the distinct focuses of each evaluation: RQ1 prioritizes generation quality with a larger model, whereas RQ2 isolates the contribution of individual components under a more controlled, cost-efficient setting. Furthermore, all methods were provided with identical CUT information and dependency contexts to ensure that performance differences are attributable to the frameworks themselves rather than external information.
+For a fair comparison, all baselines were configured using the same backbone model as \ourmethod{} in each experiment. 
+\deleted{Specifically, RQ1 adopts \textbf{Qwen3-Coder-30B} (hereafter \textbf{QC3-30B}) as the backbone, while RQ2 adopts \textbf{Qwen3-Coder-30B} (hereafter \textbf{QC3-30B}). The use of different models across RQs reflects the distinct focuses of each evaluation: RQ1 prioritizes generation quality with a larger model, whereas RQ2 isolates the contribution of individual components under a more controlled, cost-efficient setting.}
+\added{Specifically, both RQ1 and RQ2 adopt Qwen3-Coder-30B (hereafter QC3-30B) as the unified backbone model, enabling a controlled and cost-efficient comparison across all experimental conditions.} 
+Furthermore, all methods were provided with identical CUT information and dependency contexts to ensure that performance differences are attributable to the frameworks themselves rather than external information.
 
 \textbf{Contextual Information.}
+\xtz{why?}
 To evaluate the inherent logic reasoning and code understanding capabilities of the models, we adopt a restricted context strategy for all test generation tasks. Specifically, for each method under test (MUT), the prompt only includes the source code of its declaring class and the names of the associated import packages. No additional project-level information, such as dependency class implementations or global configuration files, is provided. This setup ensures that the performance of \ourmethod{} and the baselines is assessed under a consistent and challenging information-constrained environment, reflecting a realistic scenario where cross-file dependencies may be complex or partially inaccessible.
 
 \textbf{Configurations.} 
 Our experiments employ two backbone LLMs depending on the research question. For RQ1 (effectiveness) and RQ2 (ablation study), we adopt \textbf{Qwen3-Coder-30B} (\textbf{QC3-30B}), deployed locally on a server equipped with an NVIDIA H800 GPU ($80$\,GB); this lighter model is chosen to enable a controlled, cost-efficient comparison. To assess model generalizability in RQ3, we evaluate four representative LLMs: \textbf{QC3-30B}, \textbf{Qwen3.5-397B-A17B} (\textbf{QW3.5-397B}), \textbf{GPT-5.4-Mini}, and \textbf{DeepSeek-V3.1} (\textbf{DS-V3.1}), ranging from medium-scale local deployment to large-scale models accessed via their respective official APIs. To ensure reproducibility and minimize stochastic variance, all models are configured with a temperature of $0.2$ and top-$p$ of $1.0$.
-
-To ensure reproducibility and minimize stochastic variance, all models are
-configured with a temperature of $0.2$ and top-$p$ of $1.0$.
+\added{The key hyperparameters of \ourmethod{} are configured as follows: the maximum number of iterations $\textit{maxIter}$ is set to \textbf{[\,]}, the no-improvement tolerance $\Lambda$ is set to \textbf{[\,]}, the backward slicing trigger threshold $\beta$ is set to \textbf{[\,]}, and the target coverage $\tau$ is set to \textbf{[\,]\%}. All experiments start from an empty initial test suite.}
 
 \subsection{RQ1: Effectiveness of Our Approach}
 
-
-\begin{table*}[t]
-\centering
-\caption{Coverage Across Approaches (Updated \ourmethod{})}
-\label{tab:coverage}
-\small
-\sisetup{round-mode=places, round-precision=2, table-format=2.2}
-\begin{tabular}{@{} l c c *{8}{S} @{}}
-\toprule
-\multirow{2}{*}{Project} & \multirow{2}{*}{\#C} & \multirow{2}{*}{$CC_{avg}$} & 
-\multicolumn{2}{c}{SymPrompt} & \multicolumn{2}{c}{HITS} & \multicolumn{2}{c}{Panta} & \multicolumn{2}{c}{\ourmethod{}} \\
-\cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11}
- & & & {LC(\%)} & {BC(\%)} & {LC(\%)} & {BC(\%)} & {LC(\%)} & {BC(\%)} & {LC(\%)} & {BC(\%)} \\
-\midrule
-Cli               & 2  & 11.00 & 17.93 & 9.02  & 73.50 & 59.58 & 63.11 & 37.98 & \ulbf{84.32} & \ulbf{70.73} \\
-Codec             & 7  & 16.14 & 29.68 & 24.96 & 65.73 & 60.25 & 60.53 & 54.82 & \ulbf{76.97} & \ulbf{69.60} \\
-Collections       & 5  & 18.60 & 32.63 & 32.42 & \ulbf{68.23} & \ulbf{70.00} & 33.44 & 32.40 & 40.46 & 34.63 \\
-Compress          & 9  & 15.33 & 11.84 & 11.34 & 31.64 & 25.24 & 34.36 & 28.45 & \ulbf{36.09} & \ulbf{29.05} \\
-Csv               & 3  & 16.67 & 37.69 & 23.79 & 28.95 & 14.73 & 50.98 & 37.99 & \ulbf{62.27} & \ulbf{52.29} \\
-Gson              & 4  & 23.25 & 13.16 & 3.59  & 31.54 & 21.25 & 21.81 & 15.20 & \ulbf{63.82} & \ulbf{41.24} \\
-JCore       & 9  & 16.33 & 23.62 & 21.44 & 19.85 & 18.51 & 26.24 & 21.97 & \ulbf{41.72} & \ulbf{35.54} \\
-JDatabind   & 9  & 15.33 & 9.99  & 6.06  & 18.33 & 14.44 & 18.17 & 14.34 & \ulbf{23.35} & \ulbf{17.85} \\
-JXml        & 4  & 21.50 & 17.45 & 18.56 & 18.59 & 18.84 & \ulbf{31.89} & \ulbf{23.55} & 20.61 & 17.08 \\
-Jsoup             & 8  & 14.13 & 24.72 & 19.13 & 27.82 & 17.36 & 49.80 & 39.25 & \ulbf{66.43} & \ulbf{52.55} \\
-JxPath            & 12 & 15.50 & 12.01 & 9.48  & 23.11 & 22.76 & 34.10 & 29.35 & \ulbf{42.28} & \ulbf{35.84} \\
-Lang              & 17 & 16.88 & 43.98 & 40.42 & 62.82 & 59.77 & 39.26 & 36.61 & \ulbf{59.21} & \ulbf{52.14} \\
-Math              & 30 & 16.47 & 38.55 & 33.70 & 30.87 & 26.38 & 46.40 & 39.16 & \ulbf{59.60} & \ulbf{54.02} \\
-Time              & 11 & 17.36 & 53.37 & 42.06 & 63.32 & 50.23 & 46.74 & 41.42 & \ulbf{66.79} & \ulbf{59.25} \\
-\midrule
-\multicolumn{3}{l}{Average} & 26.19 & 21.14 & 40.31 & 34.24 & 39.77 & 32.32 & \ulbf{53.14} & \ulbf{44.41} \\
-\bottomrule
-\end{tabular}
-\end{table*}
-
+\input{tables/rq1_main.tex}
 
 To answer RQ1, we compare \ourmethod{} against three state-of-the-art LLM-based test generation frameworks---SymPrompt, HITS, and Panta---on 14 real-world Java projects from Defects4J (v2.0.1). The evaluation focuses on both \textbf{line coverage (LC)} and \textbf{branch coverage (BC)} of complex methods, with Cyclomatic Complexity $CC > 10$. Results are summarized in Table~\ref{tab:coverage}.
 
@@ -147,41 +96,7 @@ In summary, \ourmethod{} demonstrates \textbf{robust effectiveness} across 14 re
 
 \subsection{RQ2: Ablation Study}
 
-\begin{table*}[t]
-\centering
-\caption{Ablation Study of \ourmethod{} Components}
-\label{tab:ablation}
-\small
-\sisetup{round-mode=places, round-precision=2, table-format=2.2}
-\begin{tabular}{@{} l c *{8}{S} @{}}
-\toprule
-\multirow{2}{*}{Project} & \multirow{2}{*}{$CC_{avg}$} 
-& \multicolumn{2}{c}{CogPath} 
-& \multicolumn{2}{c}{w/o CS} 
-& \multicolumn{2}{c}{w/o BS} 
-& \multicolumn{2}{c}{w/o CS+BS} \\
-\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8} \cmidrule(lr){9-10}
- & & {LC(\%)} & {BC(\%)} & {LC(\%)} & {BC(\%)} & {LC(\%)} & {BC(\%)} & {LC(\%)} & {BC(\%)} \\
-\midrule
-Cli               & 11.00 & 84.32 & 70.73 & 84.74 & 68.75 & 68.69 & 57.68 & 72.62 & 56.54 \\
-Codec             & 16.14 & 76.97 & 69.60 & 54.86 & 50.68 & 66.77 & 57.94 & 66.34 & 56.53 \\
-Collections       & 18.60 & 40.46 & 34.63 & 39.51 & 38.59 & 32.42 & 36.60 & 37.43 & 34.45 \\
-Compress          & 15.33 & 36.09 & 29.05 & 31.22 & 28.58 & 25.43 & 19.04 & 23.45 & 18.11 \\
-Csv               & 16.67 & 62.27 & 52.29 & 46.18 & 36.38 & 36.47 & 24.80 & 60.54 & 47.07 \\
-Gson              & 23.25 & 63.82 & 41.24 & 43.94 & 27.73 & 49.40 & 31.85 & 40.92 & 26.52 \\
-JacksonCore       & 16.33 & 41.72 & 35.54 & 30.58 & 27.31 & 45.39 & 39.20 & 22.97 & 21.07 \\
-JacksonDatabind   & 15.33 & 23.35 & 17.85 & 12.44 & 9.33  & 33.74 & 26.55 & 19.59 & 15.54 \\
-JacksonXml        & 21.50 & 20.61 & 17.08 & 23.80 & 18.61 & 35.30 & 26.84 & 26.79 & 23.08 \\
-Jsoup             & 14.13 & 66.43 & 52.55 & 61.48 & 46.64 & 69.11 & 53.76 & 59.00 & 47.11 \\
-JxPath            & 15.50 & 42.28 & 35.84 & 47.56 & 41.96 & 28.06 & 22.35 & 34.94 & 31.44 \\
-Lang              & 16.88 & 59.21 & 52.14 & 66.05 & 63.04 & 56.84 & 51.38 & 57.12 & 53.91 \\
-Math              & 16.47 & 59.60 & 54.02 & 63.42 & 56.61 & 38.60 & 32.66 & 43.23 & 39.90 \\
-Time              & 17.36 & 66.79 & 59.25 & 46.29 & 42.81 & 64.99 & 57.89 & 43.21 & 40.65 \\
-\midrule
-\multicolumn{2}{l}{Average} & \textbf{53.14} & \textbf{44.41} & 46.58 & 39.79 & 46.51 & 38.47 & 43.44 & 36.57 \\
-\bottomrule
-\end{tabular}
-\end{table*}
+\input{tables/rq2_ablation.tex}
 
 To evaluate the individual contributions of Backward Slicing (BS) and Constraint Hints (CS), we conducted an ablation study with three degraded variants: \textbf{w/o BS} (removing backward slicing), \textbf{w/o CS} (removing constraint hints), and \textbf{w/o CS+BS} (removing both). All variants share the same iterative generation loop and are evaluated under an identical backbone (QC3-30B). Results are summarized in Table~\ref{tab:ablation}.
 
@@ -197,8 +112,6 @@ To evaluate the individual contributions of Backward Slicing (BS) and Constraint
 
 \subsubsection{Iterative Coverage Improvement}
 
-Figure~\ref{fig:branch-growth} traces branch coverage across iterations for all four configurations. \ourmethod{} consistently achieves the highest coverage at every iteration and exhibits the steepest growth curve, demonstrating that both BS and CS contribute not only to final coverage but also to the efficiency of iterative improvement. In contrast, removing either component leads to slower convergence, and removing both produces the flattest growth trajectory, underscoring the necessity of each component for sustained progress.
-
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{figures/branch_coverage_comparison.pdf}
@@ -206,44 +119,15 @@ Figure~\ref{fig:branch-growth} traces branch coverage across iterations for all 
     \label{fig:branch-growth}
 \end{figure}
 
+Figure~\ref{fig:branch-growth} traces branch coverage across iterations for all four configurations. \ourmethod{} consistently achieves the highest coverage at every iteration and exhibits the steepest growth curve, demonstrating that both BS and CS contribute not only to final coverage but also to the efficiency of iterative improvement. In contrast, removing either component leads to slower convergence, and removing both produces the flattest growth trajectory, underscoring the necessity of each component for sustained progress.
+
 \begin{tcolorbox}[colback=gray!5, colframe=gray!100, title=Answer to RQ2]
 Both BS and CS make independent and complementary contributions to \ourmethod{}. BS provides the larger share of improvement by eliminating irrelevant context ($-$5.94 pp when removed), while CS explicitly guides the LLM toward satisfying cross-method preconditions ($-$4.62 pp when removed). Removing both components degrades BC by 7.84 pp on average, with per-project drops reaching up to 27.49 pp (\textit{Csv}), confirming that neither component is redundant. The iterative growth curves further show that both components contribute to the efficiency of coverage accumulation across generation rounds.
 \end{tcolorbox}
 
 \subsection{RQ3: Performance Comparison of Different LLMs}
 
-\begin{table*}[t]
-\centering
-\caption{Model Generalization Across Different LLMs}
-\label{tab:model-generalization}
-\small
-\begin{tabular}{@{} l c c c c c c c c c c @{}}
-\toprule
-\multirow{2}{*}{Project} & \multirow{2}{*}{\#C} & \multirow{2}{*}{CC} &
-\multicolumn{2}{c}{QC3-30B} & \multicolumn{2}{c}{GPT-5.1-Mini} & \multicolumn{2}{c}{QW3.5-397B} & \multicolumn{2}{c}{DS-V3.1} \\
-\cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11}
-& & & LC(\%) & BC(\%) & LC(\%) & BC(\%) & LC(\%) & BC(\%) & LC(\%) & BC(\%) \\
-\midrule
-Cli & 2 & 11.00 & 84.32 & 70.73 & 97.86 & 86.18 & 98.82 & 92.63 & 98.82 & 91.93 \\
-Codec & 7 & 16.14 & 76.97 & 69.60 & 89.78 & 82.61 & 98.32 & 95.30 & 93.60 & 88.46 \\
-Collections & 5 & 18.60 & 40.46 & 34.63 & 98.31 & 94.14 & 98.16 & 94.43 & 98.02 & 94.20 \\
-Compress & 9 & 15.33 & 36.09 & 29.05 & 87.15 & 80.29 & 86.92 & 80.90 & 81.32 & 76.04 \\
-Csv & 3 & 16.67 & 62.27 & 52.29 & 87.42 & 77.76 & 95.71 & 87.42 & 85.70 & 77.53 \\
-Gson & 4 & 23.25 & 63.82 & 41.24 & 90.26 & 83.06 & 92.88 & 87.97 & 92.13 & 82.86 \\
-JCore & 9 & 16.33 & 41.72 & 35.54 & 63.71 & 57.83 & 83.25 & 76.77 & 66.62 & 57.76 \\
-JDatabind & 9 & 15.33 & 23.35 & 17.85 & 76.16 & 68.78 & 74.93 & 69.81 & 84.06 & 77.44 \\
-JXml & 4 & 21.50 & 20.61 & 17.08 & 73.41 & 74.20 & 62.20 & 63.65 & 66.06 & 65.22 \\
-Jsoup & 8 & 14.13 & 66.43 & 52.55 & 93.37 & 82.96 & 95.87 & 87.49 & 87.15 & 79.98 \\
-JxPath & 12 & 15.50 & 42.28 & 35.84 & 81.72 & 75.11 & 71.30 & 66.22 & 76.89 & 73.21 \\
-Lang & 17 & 16.88 & 59.21 & 52.14 & 90.65 & 84.32 & 91.72 & 87.44 & 88.21 & 85.02 \\
-Math & 30 & 16.47 & 59.60 & 54.02 & 88.89 & 81.82 & 92.96 & 87.47 & 91.69 & 85.41 \\
-Time & 11 & 17.36 & 66.79 & 59.25 & 94.18 & 87.63 & 96.94 & 91.08 & 94.71 & 89.92 \\
-\midrule
-\multicolumn{3}{l}{Average} & 53.14 & 44.41 & 86.63 & 79.76 & 88.57 & 83.47 & 86.07 & 80.36 \\
-\bottomrule
-\end{tabular}
-\end{table*}
-
+\input{tables/rq3_different_llms.tex}
 
 In this research question, we evaluate how \ourmethod{} generalizes across different large language models (LLMs), and investigate the impact of model capacity on test generation effectiveness. Specifically, we conduct experiments on four representative LLMs, ranging from medium-scale (QC3-30B) to large-scale models (QW3.5-397B and DS-V3.1).
 

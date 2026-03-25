@@ -1,0 +1,32 @@
+\begin{table*}[t]
+\centering
+\caption{Coverage Across Approaches (Updated \ourmethod{})}
+\label{tab:coverage}
+\small
+\sisetup{round-mode=places, round-precision=2, table-format=2.2}
+\begin{tabular}{@{} l c c *{8}{S} @{}}
+\toprule
+\multirow{2}{*}{Project} & \multirow{2}{*}{\#C} & \multirow{2}{*}{$CC_{avg}$} & 
+\multicolumn{2}{c}{SymPrompt} & \multicolumn{2}{c}{HITS} & \multicolumn{2}{c}{Panta} & \multicolumn{2}{c}{\ourmethod{}} \\
+\cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9} \cmidrule(lr){10-11}
+ & & & {LC(\%)} & {BC(\%)} & {LC(\%)} & {BC(\%)} & {LC(\%)} & {BC(\%)} & {LC(\%)} & {BC(\%)} \\
+\midrule
+Cli               & 2  & 11.00 & 17.93 & 9.02  & 73.50 & 59.58 & 63.11 & 37.98 & \ulbf{84.32} & \ulbf{70.73} \\
+Codec             & 7  & 16.14 & 29.68 & 24.96 & 65.73 & 60.25 & 60.53 & 54.82 & \ulbf{76.97} & \ulbf{69.60} \\
+Collections       & 5  & 18.60 & 32.63 & 32.42 & \ulbf{68.23} & \ulbf{70.00} & 33.44 & 32.40 & 40.46 & 34.63 \\
+Compress          & 9  & 15.33 & 11.84 & 11.34 & 31.64 & 25.24 & 34.36 & 28.45 & \ulbf{36.09} & \ulbf{29.05} \\
+Csv               & 3  & 16.67 & 37.69 & 23.79 & 28.95 & 14.73 & 50.98 & 37.99 & \ulbf{62.27} & \ulbf{52.29} \\
+Gson              & 4  & 23.25 & 13.16 & 3.59  & 31.54 & 21.25 & 21.81 & 15.20 & \ulbf{63.82} & \ulbf{41.24} \\
+JCore       & 9  & 16.33 & 23.62 & 21.44 & 19.85 & 18.51 & 26.24 & 21.97 & \ulbf{41.72} & \ulbf{35.54} \\
+JDatabind   & 9  & 15.33 & 9.99  & 6.06  & 18.33 & 14.44 & 18.17 & 14.34 & \ulbf{23.35} & \ulbf{17.85} \\
+JXml        & 4  & 21.50 & 17.45 & 18.56 & 18.59 & 18.84 & \ulbf{31.89} & \ulbf{23.55} & 20.61 & 17.08 \\
+Jsoup             & 8  & 14.13 & 24.72 & 19.13 & 27.82 & 17.36 & 49.80 & 39.25 & \ulbf{66.43} & \ulbf{52.55} \\
+JxPath            & 12 & 15.50 & 12.01 & 9.48  & 23.11 & 22.76 & 34.10 & 29.35 & \ulbf{42.28} & \ulbf{35.84} \\
+Lang              & 17 & 16.88 & 43.98 & 40.42 & 62.82 & 59.77 & 39.26 & 36.61 & \ulbf{59.21} & \ulbf{52.14} \\
+Math              & 30 & 16.47 & 38.55 & 33.70 & 30.87 & 26.38 & 46.40 & 39.16 & \ulbf{59.60} & \ulbf{54.02} \\
+Time              & 11 & 17.36 & 53.37 & 42.06 & 63.32 & 50.23 & 46.74 & 41.42 & \ulbf{66.79} & \ulbf{59.25} \\
+\midrule
+\multicolumn{3}{l}{Average} & 26.19 & 21.14 & 40.31 & 34.24 & 39.77 & 32.32 & \ulbf{53.14} & \ulbf{44.41} \\
+\bottomrule
+\end{tabular}
+\end{table*}
