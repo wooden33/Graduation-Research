@@ -1,9 +1,32 @@
 \section{DISCUSSION}
 
-\ourmethod{} incurs additional prompting overhead due to backward slicing and constraint hint construction. On average, each focal method consumes approximately \textbf{43,000 tokens}, reflecting both the input code context and the appended constraints. Across all 3,576 requests in our evaluation, this corresponds to roughly \textbf{1.43 billion input tokens} and \textbf{12.5 million output tokens}, for a total of about \textbf{1.55 billion tokens}. The backward slicing step helps mitigate this cost by removing irrelevant statements, reducing the prompt length by roughly \textbf{25\%} before constraint hints are appended. In absolute terms, a project with 130 focal methods costs about \textbf{\$100}, which is reasonable considering the resulting coverage improvements.
+\textbf{Cost and Token Efficiency.} 
+\ourmethod{} introduces additional prompting overhead due to backward slicing and constraint hint construction. 
+Across all 3,576 requests, the total token consumption amounts to \textbf{221.8 million input tokens} and \textbf{6.1 million output tokens}. 
+However, a substantial portion of the input tokens (\textbf{181.5 million}) are served from cache due to repeated prompt structures, leaving only \textbf{40.3 million tokens} billed.
 
-\textbf{Token Efficiency.} Despite the large aggregate token consumption, \ourmethod{} achieves a favorable coverage-per-token ratio by focusing the LLM on relevant code slices and explicit constraints. This ensures that each token contributes meaningfully to exercising complex branches, improving the overall efficiency of test generation compared to naive full-context prompts.
+Using GPT-5.4-mini pricing, the total cost of our experiments is approximately \textbf{\$58}. 
+For a typical project with around 130 focal methods, this corresponds to a cost of approximately \textbf{\$2 per project}, demonstrating that \ourmethod{} is cost-effective for practical deployment.
 
-\textbf{Qualitative Insight.} To illustrate why \ourmethod{} outperforms baseline approaches, we examine a representative example from the \textit{Favicon for Alibaba} project. The method \texttt{generateFavicon} contains a target branch condition \texttt{if (icon != null \&\& icon.size() > 0)}, which can only be satisfied if the object is properly initialized beforehand. Baselines generate tests that invoke the focal method directly, failing to establish the required state and leaving the branch uncovered. \ourmethod{}, by applying backward slicing, identifies the relevant state-setting call \texttt{setIconState} and provides a constraint hint specifying the precondition. The resulting test correctly initializes the object state and triggers the target branch. This example demonstrates that \ourmethod{}’s benefits extend beyond quantitative gains: it enhances the LLM's capacity to reason about cross-method dependencies in realistic Java programs.
+The backward slicing step further improves efficiency by reducing prompt length by approximately \textbf{25\%}, ensuring that tokens are primarily allocated to semantically relevant context. 
+Together, slicing and caching significantly improve the coverage-per-token ratio compared to naive full-context prompting.
 
-\textbf{Limitations.} Despite its effectiveness, \ourmethod{} has notable constraints. \emph{Slice granularity.} For projects such as \textit{Collections} and \textit{Compress}, where branches depend on simple value-range conditions rather than cross-method state, the backward slice may remove auxiliary type or range information, reducing test quality. Conversely, overly coarse slices may retain irrelevant statements, introducing noise. Developing adaptive slicing strategies that adjust granularity based on branch type remains future work. \emph{Scalability.} Backward slicing and constraint extraction introduce preprocessing overhead proportional to the inter-procedural dependency graph. In our evaluation, average preprocessing time per focal method is \textbf{1.2\,s}, acceptable for medium-scale projects, though on-demand or incremental slicing may be required for industrial-scale codebases.
+\textbf{Qualitative Insight.} 
+To understand the source of performance gains, we examine a representative example from the \textit{Favicon for Alibaba} project. 
+The method \texttt{generateFavicon} contains a branch condition \texttt{if (icon != null \&\& icon.size() > 0)}, which requires proper object initialization prior to invocation. 
+Baseline approaches typically invoke the focal method directly, failing to satisfy the implicit precondition and leaving the branch uncovered. 
+
+In contrast, \ourmethod{} applies backward slicing to identify the relevant state-modifying call \texttt{setIconState}, and provides an explicit constraint hint describing the required precondition. 
+The generated test consequently initializes the object correctly and triggers the target branch. 
+This example highlights that \ourmethod{} improves not only coverage, but also the LLM’s ability to reason about cross-method dependencies and implicit state requirements.
+
+\textbf{Design Implications.} 
+Our findings suggest that structural guidance (e.g., slicing and constraint hints) and model reasoning capabilities are complementary. 
+While \ourmethod{} effectively reduces irrelevant context and exposes execution constraints, its full potential is realized when paired with LLMs capable of multi-step reasoning and semantic inference. 
+This indicates that future improvements in LLM reasoning ability can further amplify the effectiveness of structured test generation frameworks.
+
+\textbf{Limitations.} 
+Despite its effectiveness, \ourmethod{} has several limitations. 
+\emph{Slice granularity.} For projects such as \textit{Collections} and \textit{Compress}, where branch conditions depend primarily on value ranges rather than cross-method state, backward slicing may remove useful auxiliary information (e.g., boundary constraints), potentially reducing test quality. Conversely, overly coarse slices may introduce irrelevant context. Designing adaptive slicing strategies remains an important direction for future work. 
+
+\emph{Scalability.} Backward slicing and constraint extraction introduce preprocessing overhead proportional to the inter-procedural dependency graph. In our evaluation, the average preprocessing time per focal method is \textbf{1.2\,s}, which is acceptable for medium-scale projects. However, further optimizations such as incremental or on-demand slicing may be required for large-scale industrial systems.
