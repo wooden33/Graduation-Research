@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.27)  25 MAR 2026 20:21
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.27)  25 MAR 2026 21:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1819,8 +1819,7 @@ Package: balance 1999/02/23 4.3 (PWD)
 \oldvsize=\dimen340
 ) Excluding comment 'screenonly' Include comment 'printonly' Excluding comment 'anonsuppress' Excluding comment 'acks'
 Package translations Info: No language package found. I am going to use `english' as default language. on input line 138.
-
-No file main.aux.
+ (./main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 138.
@@ -1858,7 +1857,7 @@ LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(3)/m/n' will be
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(3)/m/n' will be
 (Font)              scaled to size 5.18944pt on input line 138.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 138.
-(/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 138.
@@ -1882,6 +1881,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 Package hyperref Info: Link coloring OFF on input line 138.
+ (./main.out) (./main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
@@ -1975,9 +1975,6 @@ LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/n' will be
 (Font)              scaled to size 8.0pt on input line 236.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/it' will be
 (Font)              scaled to size 8.0pt on input line 236.
-
-LaTeX Warning: Reference `TotPages' on page 1 undefined on input line 236.
-
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(1)/m/n' will be
 (Font)              scaled to size 8.30396pt on input line 236.
 Package microtype Info: Loading generic protrusion settings for font family
@@ -2003,21 +2000,15 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `latinmodern-math.otf' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- (./sections/intro.tex
 
-Package natbib Warning: Citation `cadar2008klee' on page 1 undefined on input line 3.
+Overfull \hbox (14.7419pt too wide) in paragraph at lines 236--236
+\TU/LinLibertine(0)/m/n/8 Anonymous Author(s). 2018. CogPath: A Constraint-Guided Context-Reduction
+ []
 
-
-Package natbib Warning: Citation `evosuite' on page 1 undefined on input line 3.
-
-
-Package natbib Warning: Citation `mcminn2011' on page 1 undefined on input line 3.
-
-
-Package natbib Warning: Citation `randoop' on page 1 undefined on input line 3.
-
-
-Package natbib Warning: Citation `baldoni2018surveysymbolicexecutiontechniques' on page 1 undefined on input line 3.
+(./sections/intro.tex
+Overfull \hbox (3.23627pt too wide) in paragraph at lines 3--4
+\TU/LinLibertine(0)/m/n/9 from intricate object states and inter-procedural interactions, where
+ []
 
 
 Package natbib Warning: Citation `yuan2024manualtest' on page 1 undefined on input line 5.
@@ -2026,22 +2017,7 @@ Package natbib Warning: Citation `yuan2024manualtest' on page 1 undefined on inp
 Package natbib Warning: Citation `chen2024chatunitest' on page 1 undefined on input line 5.
 
 
-Package natbib Warning: Citation `chen2024' on page 1 undefined on input line 5.
-
-
 Package natbib Warning: Citation `konstantinou2025yate' on page 1 undefined on input line 5.
-
-
-Package natbib Warning: Citation `wang2024c' on page 1 undefined on input line 5.
-
-
-Package natbib Warning: Citation `wang2024c' on page 1 undefined on input line 5.
-
-
-Package natbib Warning: Citation `gu2025a' on page 1 undefined on input line 5.
-
-
-Package natbib Warning: Citation `liao2025' on page 1 undefined on input line 5.
 
 
 Overfull \hbox (1.46353pt too wide) in paragraph at lines 5--6
@@ -2051,11 +2027,15 @@ Overfull \hbox (1.46353pt too wide) in paragraph at lines 5--6
 
 
 
-Package natbib Warning: Citation `du2025contextlengthhurtsllm' on page 1 undefined on input line 19.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Package natbib Warning: Citation `wang2026intelligencedegradationlongcontextllms' on page 1 undefined on input line 19.
 
+LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 23.
+[1.1
+
+]
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/it' will be
 (Font)              scaled to size 9.0pt on input line 26.
 
@@ -2069,15 +2049,6 @@ Overfull \hbox (2.6783pt too wide) in paragraph at lines 25--31
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 31.
-[1.1
-
-]
 Overfull \hbox (7.18353pt too wide) in paragraph at lines 32--36
 \TU/LinLibertine(0)/m/n/9 are most pronounced on logic-heavy subjects with rich cross-method
  []
@@ -2109,31 +2080,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 ) (./sections/motivation.tex
-
-Package natbib Warning: Citation `ryan2024' on page 2 undefined on input line 3.
-
-
-Package natbib Warning: Citation `wang2024c' on page 2 undefined on input line 3.
-
-
-Package natbib Warning: Citation `gu2025a' on page 2 undefined on input line 3.
-
-
-Package natbib Warning: Citation `liao2025' on page 2 undefined on input line 3.
-
-
-Package natbib Warning: Citation `baldoni2018surveysymbolicexecutiontechniques' on page 2 undefined on input line 5.
+Overfull \hbox (2.49155pt too wide) in paragraph at lines 3--4
+\TU/LinLibertine(0)/m/n/9 Prompt [[]], HITS [[]], Panta [[]], and JunitGenie [[]], have achieved
+ []
 
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `inconsolata' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-Package natbib Warning: Citation `commonsMath' on page 2 undefined on input line 10.
-
-
-LaTeX Warning: Reference `lst:motivation' on page 2 undefined on input line 10.
-
 (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
@@ -2143,9 +2097,9 @@ LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
 
 
 LaTeX Font Info:    Font shape `TU/LinBiolinum(0)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 41.
+(Font)              scaled to size 9.0pt on input line 37.
 LaTeX Font Info:    Font shape `TU/LinBiolinum(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 41.
+(Font)              scaled to size 7.0pt on input line 37.
 [2.2]
 Overfull \hbox (1.03706pt too wide) in paragraph at lines 69--77
 \TU/inconsolata(0)/m/n/9 mean\TU/LinLibertine(0)/m/n/9 , including field declarations, default assignments in the con-
@@ -2162,9 +2116,6 @@ File: figures/overview.pdf Graphic file (type pdf)
 
 Class acmart Warning: A possible image without description on input line 10.
 
-
-LaTeX Warning: Reference `fig:overview' on page 3 undefined on input line 20.
-
 Package hyperref Info: bookmark level for unknown added defaults to 0 on input line 20.
 
 Overfull \hbox (1.72353pt too wide) in paragraph at lines 20--21
@@ -2172,9 +2123,6 @@ Overfull \hbox (1.72353pt too wide) in paragraph at lines 20--21
  []
 
 
-
-
-LaTeX Warning: Reference `fig:overview' on page 3 undefined on input line 31.
 
 Package hyperref Info: bookmark level for unknown deleted defaults to 0 on input line 31.
 
@@ -2227,7 +2175,17 @@ Overfull \hbox (1.16629pt too wide) in paragraph at lines 52--53
 |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\deleted' on input line 54.
+
 Package hyperref Info: bookmark level for unknown replaced defaults to 0 on input line 69.
+
+Underfull \vbox (badness 3049) has occurred while \output is active []
+
+
+
+[3.3]
 LaTeX Font Info:    Font shape `TU/LinLibertine(1)/b/n' will be
 (Font)              scaled to size 9.0pt on input line 75.
 LaTeX Font Info:    Font shape `TU/LinLibertine(1)/b/n' will be
@@ -2239,17 +2197,15 @@ LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
 (Font)              scaled to size 5.4pt on input line 75.
 
-
-[3.3]
 Overfull \hbox (1.32527pt too wide) in paragraph at lines 108--115
 \TU/LinLibertine(0)/m/n/9 configurable template that incorporates the source code, the branch
  []
 
 
+
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\deleted' on input line 137.
-
-
 
 
 Overfull \hbox (2.51927pt too wide) in paragraph at lines 145--149
@@ -2262,13 +2218,9 @@ Overfull \hbox (14.86874pt too wide) in paragraph at lines 145--149
  []
 
 
-Package natbib Warning: Citation `weiser1984' on page 4 undefined on input line 151.
-
-
-Package natbib Warning: Citation `ryan2024' on page 4 undefined on input line 151.
-
-
-Package natbib Warning: Citation `wang2024c' on page 4 undefined on input line 151.
+Overfull \hbox (1.10399pt too wide) in paragraph at lines 151--152
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
 
 
 Overfull \hbox (16.53302pt too wide) in paragraph at lines 151--152
@@ -2313,10 +2265,6 @@ LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/it' will be
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/scit' will be
 (Font)              scaled to size 8.0pt on input line 237.
 
-
-LaTeX Warning: Reference `alg:main' on page 5 undefined on input line 241.
-
-
 Overfull \hbox (16.81502pt too wide) in paragraph at lines 251--252
 \TU/LinLibertine(0)/m/n/9 code segments. It returns structured prerequisite information—required
  []
@@ -2326,41 +2274,24 @@ Overfull \hbox (2.83954pt too wide) in paragraph at lines 254--255
  []\TU/LinLibertine(0)/m/it/9 Validation and repair.[] \TU/LinLibertine(0)/m/n/9 Each generated test is individually inserted
  []
 
+
+
 )
 Overfull \hbox (4.70502pt too wide) in paragraph at lines 257--243
  []\TU/LinLibertine(0)/m/it/9 Termination.[] \TU/LinLibertine(0)/m/n/9 The loop exits when the coverage target $[]$ is reached,
  []
 
 (./sections/experiments.tex
-
-Package natbib Warning: Citation `defects4j' on page 5 undefined on input line 7.
-
-
-Package natbib Warning: Citation `gu2025a' on page 5 undefined on input line 9.
+Underfull \vbox (badness 1577) has occurred while \output is active []
 
 
-Package natbib Warning: Citation `mccabe1976complexity' on page 5 undefined on input line 12.
 
-
-LaTeX Warning: Reference `tab:dataset' on page 5 undefined on input line 14.
-
-
-Overfull \hbox (12.8706pt too wide) in paragraph at lines 7--15
-\TU/LinLibertine(0)/m/n/9 with Cyclomatic Complexity (CC) $[] [][]$ [\TU/LinLibertine(1)/b/n/9 ? \TU/LinLibertine(0)/m/n/9 ]. Furthermore, we [][]|   []
+[5.5]
+Overfull \hbox (15.86687pt too wide) in paragraph at lines 7--15
+\TU/LinLibertine(0)/m/n/9 with Cyclomatic Complexity (CC) $[] [][]$ [[]]. Furthermore, we [][]|   []
  []
 
-
-
-
-
-[5.5] (./tables/dataset.tex)
-
-Package natbib Warning: Citation `randoop' on page 6 undefined on input line 20.
-
-
-Package natbib Warning: Citation `evosuite' on page 6 undefined on input line 20.
-
-
+(./tables/dataset.tex)
 Overfull \hbox (2.18324pt too wide) in paragraph at lines 33--34
 []\TU/LinLibertine(1)/b/n/9 RQ3: Model Generalizability. \TU/LinLibertine(0)/m/n/9 Is \TU/LinLibertine(0)/m/sc/9 CogPath\TU/LinLibertine(0)/m/n/9 ’s effectiveness
  []
@@ -2371,15 +2302,9 @@ Overfull \hbox (6.87001pt too wide) in paragraph at lines 36--40
  []
 
 
-Package natbib Warning: Citation `ryan2024' on page 6 undefined on input line 40.
+Underfull \vbox (badness 1231) has occurred while \output is active []
 
 
-Package natbib Warning: Citation `wang2024c' on page 6 undefined on input line 41.
-
-
-
-
-Package natbib Warning: Citation `gu2025a' on page 6 undefined on input line 42.
 
 
 Overfull \hbox (13.37701pt too wide) in paragraph at lines 47--51
@@ -2412,123 +2337,153 @@ Overfull \hbox (15.85953pt too wide) in paragraph at lines 52--55
  []
 
 
-Overfull \hbox (8.05878pt too wide) in paragraph at lines 56--59
-\TU/LinLibertine(0)/m/n/9 evaluate four representative LLMs: \TU/LinLibertine(1)/b/n/9 QC3-30B\TU/LinLibertine(0)/m/n/9 , \TU/LinLibertine(1)/b/n/9 Qwen3.5-397B-A17B
- []
-
-
-Overfull \hbox (3.612pt too wide) in paragraph at lines 56--59
-\TU/LinLibertine(0)/m/n/9 els accessed via their respective official APIs. To ensure reproducibil-
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 [6.6] (./tables/rq1_main.tex
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/sc' will be
 (Font)              scaled to size 9.0pt on input line 3.
 )
-
-LaTeX Warning: Reference `tab:coverage' on page 7 undefined on input line 64.
-
-
-Overfull \hbox (2.64528pt too wide) in paragraph at lines 64--65
-\TU/LinLibertine(0)/m/n/9 art LLM-based test generation frameworks—SymPrompt, HITS, and
+Overfull \hbox (3.44026pt too wide) in paragraph at lines 68--71
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 LaTeX Font Info:    Font shape `TU/LinBiolinum(0)/m/it' will be
-(Font)              scaled to size 9.0pt on input line 68.
+(Font)              scaled to size 9.0pt on input line 74.
 
-LaTeX Warning: Reference `tab:coverage' on page 7 undefined on input line 68.
-
-
-Overfull \hbox (9.50703pt too wide) in paragraph at lines 68--69
-\TU/LinLibertine(0)/m/n/9 sistently achieves the \TU/LinLibertine(1)/b/n/9 highest average LC and BC \TU/LinLibertine(0)/m/n/9 across all projects.
+Overfull \hbox (4.63026pt too wide) in paragraph at lines 74--82
+ \TU/LinBiolinum(0)/m/it/9 4.2.1 Overall Performance.[] \TU/LinLibertine(0)/m/n/9 As shown in Table []2[], \TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 achieves
  []
 
 
-Overfull \hbox (5.34377pt too wide) in paragraph at lines 68--69
-\TU/LinLibertine(0)/m/n/9 SymPrompt (21.14%), HITS (34.24%), and Panta (32.32%). This demon-
+Overfull \hbox (26.715pt too wide) in paragraph at lines 74--82
+\TU/LinLibertine(0)/m/n/9 HITS (34.24%), and Panta (32.32%). [][]|   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-
-Overfull \hbox (5.77457pt too wide) in paragraph at lines 79--80
-[]\TU/LinLibertine(1)/b/n/9 Jsoup \TU/LinLibertine(0)/m/n/9 (CC$[]$ = 14.13): BC rises from 17.36% (HITS) to 52.55%
+Overfull \hbox (2.51552pt too wide) in paragraph at lines 74--82
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (2.56276pt too wide) in paragraph at lines 86--87
-\TU/LinLibertine(0)/m/n/9 not outperform all baselines. For instance, \TU/LinLibertine(1)/b/n/9 Collections \TU/LinLibertine(0)/m/n/9 shows HITS
+Overfull \hbox (15.237pt too wide) in paragraph at lines 74--82
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (5.343pt too wide) in paragraph at lines 86--87
-\TU/LinLibertine(1)/b/n/9 Compress \TU/LinLibertine(0)/m/n/9 has similar trends. Manual inspection suggests that these
+Overfull \hbox (24.94128pt too wide) in paragraph at lines 74--82
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Overfull \hbox (12.42828pt too wide) in paragraph at lines 90--91
-\TU/LinLibertine(0)/m/n/9 gains over state-of-the-art baselines, particularly in \TU/LinLibertine(1)/b/n/9 high-complexity
+Overfull \hbox (5.73006pt too wide) in paragraph at lines 74--82
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
  []
 
 
-Underfull \hbox (badness 1158) in paragraph at lines 93--94
+Overfull \hbox (29.97452pt too wide) in paragraph at lines 74--82
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [][][][][]
+ []
+
+
+Overfull \hbox (1.64253pt too wide) in paragraph at lines 74--82
+\TU/LinLibertine(0)/m/n/9 (\TU/LinLibertine(1)/b/n/9 +12.1%\TU/LinLibertine(0)/m/n/9 )—confirm that jointly reducing irrelevant context and mak-
+ []
+
+
+Overfull \hbox (5.175pt too wide) in paragraph at lines 74--82
+\TU/LinLibertine(0)/m/n/9 close. The margin widens substantially against SymPrompt (\TU/LinLibertine(1)/b/n/9 +23.3%\TU/LinLibertine(0)/m/n/9 ),
+ []
+
+
+
+
+Overfull \hbox (13.91402pt too wide) in paragraph at lines 84--87
+\TU/LinLibertine(0)/m/n/9 matic complexity and deeper inter-method dependencies. [][]|   []   |   [][][][][] 
+ []
+
+
+Overfull \hbox (14.4015pt too wide) in paragraph at lines 87--88
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (20.15851pt too wide) in paragraph at lines 88--89
+|   []   |   []   |   []   |   []   |   []   |   [][][][][] 
+ []
+
+
+Overfull \hbox (3.56956pt too wide) in paragraph at lines 89--90
+[]|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (1.22255pt too wide) in paragraph at lines 94--95
+\TU/LinLibertine(0)/m/n/9 mark), \TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 achieves a BC of 41.24% while SymPrompt reaches
+ []
+
+
+
+[7.7]
+Overfull \hbox (7.26952pt too wide) in paragraph at lines 98--104
+ \TU/LinBiolinum(0)/m/it/9 4.2.3 Cases of Limited Improvement.[] []\TU/LinLibertine(0)/m/n/9 [xtz:move to discussion][] While
+ []
+
+
+Overfull \hbox (38.20926pt too wide) in paragraph at lines 106--107
+ \TU/LinBiolinum(0)/m/it/9 4.2.4 Summary.[] |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (36.99226pt too wide) in paragraph at lines 106--107
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (34.67628pt too wide) in paragraph at lines 106--107
+|   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (22.7558pt too wide) in paragraph at lines 106--107
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Underfull \hbox (badness 1158) in paragraph at lines 110--113
 []\TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 outperforms all three baselines on average,
  []
 
 
-Underfull \vbox (badness 5302) has occurred while \output is active []
+Underfull \hbox (badness 1248) in paragraph at lines 110--113
+\TU/LinLibertine(0)/m/n/9 on JCore). [][]|   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
 
-
-
-[7.7] (./tables/rq2_ablation.tex)
-
-LaTeX Warning: Reference `tab:ablation' on page 8 undefined on input line 101.
-
-
+(./tables/rq2_ablation.tex)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 
-Overfull \hbox (1.22876pt too wide) in paragraph at lines 109--110
+Overfull \hbox (1.22876pt too wide) in paragraph at lines 128--129
 []\TU/LinLibertine(1)/b/n/9 CS is critical when preconditions span method boundaries.
  []
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[8.8]
 File: figures/branch_coverage_comparison.pdf Graphic file (type pdf)
 <use figures/branch_coverage_comparison.pdf>
 
-Class acmart Warning: A possible image without description on input line 120.
 
-
-LaTeX Warning: Reference `fig:branch-growth' on page 8 undefined on input line 122.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Class acmart Warning: A possible image without description on input line 140.
 
 
 
-[8.8] (./tables/rq3_different_llms.tex)
-Underfull \vbox (badness 10000) has occurred while \output is active []
+(./tables/rq3_different_llms.tex)
 
-
-
-
-LaTeX Warning: Reference `tab:model-generalization' on page 9 undefined on input line 134.
-
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[9.9] (./sections/discussion.tex
+[9.9]) (./sections/discussion.tex
 Overfull \hbox (10.00801pt too wide) in paragraph at lines 3--7
 \TU/LinLibertine(1)/b/n/9 Cost and Token Efficiency. \TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 introduces additional prompt-
  []
@@ -2539,13 +2494,9 @@ Overfull \hbox (3.09978pt too wide) in paragraph at lines 3--7
  []
 
 
-Package natbib Warning: Citation `weiser1984' on page 10 undefined on input line 15.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Package natbib Warning: Citation `ryan2024' on page 10 undefined on input line 15.
-
-
-Package natbib Warning: Citation `wang2024c' on page 10 undefined on input line 15.
 
 
 Overfull \hbox (3.15701pt too wide) in paragraph at lines 14--16
@@ -2553,11 +2504,11 @@ Overfull \hbox (3.15701pt too wide) in paragraph at lines 14--16
  []
 
 
-Underfull \vbox (badness 1728) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-
+[10.10]
 Overfull \hbox (1.29701pt too wide) in paragraph at lines 27--31
 []\TU/LinLibertine(1)/b/n/9 Design Implications. \TU/LinLibertine(0)/m/n/9 Our findings suggest that structural guid-
  []
@@ -2567,20 +2518,10 @@ Overfull \hbox (1.42377pt too wide) in paragraph at lines 32--35
 []\TU/LinLibertine(1)/b/n/9 Limitations. \TU/LinLibertine(0)/m/n/9 Despite its effectiveness, \TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 has several lim-
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[10.10]) (./sections/related_work.tex
-
-Package natbib Warning: Citation `randoop' on page 11 undefined on input line 7.
-
-
-Package natbib Warning: Citation `evosuite' on page 11 undefined on input line 7.
-
-
-Package natbib Warning: Citation `mcminn2011' on page 11 undefined on input line 13.
+) (./sections/related_work.tex
+Overfull \hbox (3.16576pt too wide) in paragraph at lines 5--14
+\TU/LinLibertine(0)/m/n/9 cently, LLM-based synthesis. Early techniques such as Randoop [[]]
+ []
 
 
 Overfull \hbox (8.00702pt too wide) in paragraph at lines 5--14
@@ -2599,31 +2540,17 @@ Package natbib Warning: Citation `watson2020atalas' on page 11 undefined on inpu
 Package natbib Warning: Citation `Tufano2020UnitTC' on page 11 undefined on input line 20.
 
 
-Package natbib Warning: Citation `chen2024' on page 11 undefined on input line 30.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Package natbib Warning: Citation `pizzorno2024' on page 11 undefined on input line 39.
 
 
 Package natbib Warning: Citation `konstantinou2025yate' on page 11 undefined on input line 41.
 
 
-Package natbib Warning: Citation `ryan2024' on page 11 undefined on input line 48.
-
-
-Package natbib Warning: Citation `wang2024c' on page 11 undefined on input line 51.
-
-
-Package natbib Warning: Citation `gu2025a' on page 11 undefined on input line 53.
-
-
-Package natbib Warning: Citation `liao2025' on page 11 undefined on input line 55.
-
-
-Package natbib Warning: Citation `du2025contextlengthhurtsllm' on page 11 undefined on input line 66.
-
-
-Package natbib Warning: Citation `wang2026intelligencedegradationlongcontextllms' on page 11 undefined on input line 66.
+Overfull \hbox (3.04199pt too wide) in paragraph at lines 47--71
+\TU/LinLibertine(0)/m/n/9 gram information. SymPrompt [[]] extracts branch conditions from
+ []
 
 
 Overfull \hbox (7.71152pt too wide) in paragraph at lines 47--71
@@ -2636,33 +2563,21 @@ Overfull \hbox (10.74228pt too wide) in paragraph at lines 47--71
  []
 
 
+Overfull \hbox (3.74254pt too wide) in paragraph at lines 74--85
+\TU/LinLibertine(0)/m/n/9 hension, and regression testing. More recently, NSSlicer [[]] demon-
+ []
+
+)
+Overfull \hbox (4.11624pt too wide) in paragraph at lines 86--249
+[]\TU/LinLibertine(0)/m/n/9 In the test generation domain, HITS [[]] applies a form of method
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-
-Package natbib Warning: Citation `weiser1984' on page 11 undefined on input line 74.
-
-
-Package natbib Warning: Citation `tip1995' on page 11 undefined on input line 74.
-
-
-Package natbib Warning: Citation `JavaSlicer' on page 11 undefined on input line 77.
-
-
-Package natbib Warning: Citation `yadavally2024' on page 11 undefined on input line 81.
-
-
-Package natbib Warning: Citation `wang2024c' on page 11 undefined on input line 86.
-
-)
-Overfull \hbox (1.12372pt too wide) in paragraph at lines 86--249
-[]\TU/LinLibertine(0)/m/n/9 In the test generation domain, HITS [\TU/LinLibertine(1)/b/n/9 ? \TU/LinLibertine(0)/m/n/9 ] applies a form of method
- []
-
-(./sections/conclusion.tex
-
-[11.11]) (./main.bbl
+[11.11] (./sections/conclusion.tex) (./main.bbl
 LaTeX Font Info:    Font shape `TU/LinLibertine(1)/b/n' will be
 (Font)              scaled to size 7.0pt on input line 51.
 
@@ -2679,9 +2594,12 @@ LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/it' will be
 (Font)              scaled to size 7.0pt on input line 61.
 LaTeX Info: Redefining \tempurl on input line 77.
 LaTeX Info: Redefining \tempurl on input line 95.
+
+Underfull \vbox (badness 3428) has occurred while \output is active []
+
+
+
 LaTeX Info: Redefining \tempurl on input line 219.
-
-
 LaTeX Info: Redefining \tempurl on input line 261.
 LaTeX Info: Redefining \tempurl on input line 275.
 )
@@ -2696,6 +2614,9 @@ Class acmart Warning: Some images may lack descriptions.
 
 Class acmart Warning: \vspace should only be used to provide space above/below surrounding objects on input line 256.
 
+
+Class acmart Warning: CCS concepts are mandatory for papers over two pages.
+
 \Changes@OutFile=\write6
 \openout6 = `main.soc'.
 
@@ -2708,16 +2629,11 @@ Class acmart Warning: \vspace should only be used to provide space above/below s
 Package balance Warning: You have called \balance in second column
 (balance)                Columns might not be balanced.
 
-[12.12] (/usr/local/texlive/2025/texmf-dist/tex/generic/stringenc/se-pdfdoc.def
+(/usr/local/texlive/2025/texmf-dist/tex/generic/stringenc/se-pdfdoc.def
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/stringenc/se-utf32be.def
 File: se-utf32be.def 2019/11/29 v1.12 stringenc: UTF-32BE
-) [13.12] (./main.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
+) [12.12] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -2727,13 +2643,7 @@ L3 programming layer <2025-01-18>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
-LaTeX Warning: There were undefined references.
-
-
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-LaTeX Warning: Temporary extra page added at the end. Rerun to get it removed.
 
 
 Package rerunfilecheck Warning: File `main.out' has changed.
@@ -2741,16 +2651,16 @@ Package rerunfilecheck Warning: File `main.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  CB42A98C19CA5D74B0A2731A59F08586;3411.
+(rerunfilecheck)             Before: 019FF356563721DBB911C70AA502F2D0;3408
+(rerunfilecheck)             After:  5E687919C61AC07BD25C1522746D5402;3678.
  ) 
 Here is how much of TeX's memory you used:
- 55780 strings out of 473832
- 1199908 string characters out of 5729481
- 2025861 words of memory out of 5000000
- 77845 multiletter control sequences out of 15000+600000
+ 55793 strings out of 473832
+ 1200048 string characters out of 5729481
+ 2045450 words of memory out of 5000000
+ 77852 multiletter control sequences out of 15000+600000
  568841 words of font info for 177 fonts, out of 8000000 for 9000
  1509 hyphenation exceptions out of 8191
- 105i,19n,131p,1312b,32886s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 105i,19n,131p,1312b,32956s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (13 pages).
+Output written on main.pdf (12 pages).
