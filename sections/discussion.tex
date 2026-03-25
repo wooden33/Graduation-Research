@@ -11,6 +11,10 @@ For a typical project with around 130 focal methods, this corresponds to a cost 
 The backward slicing step further improves efficiency by reducing prompt length by approximately \textbf{25\%}, ensuring that tokens are primarily allocated to semantically relevant context. 
 Together, slicing and caching significantly improve the coverage-per-token ratio compared to naive full-context prompting.
 
+\textbf{Difference from HITS‘s Slicing.}
+Program slicing has long been used to identify the subset of program statements relevant to a particular computation~\cite{weiser1984}. Recent work such as NS-Slicer~\cite{ryan2024} demonstrates that pre-trained language models can approximate static slices by learning variable–statement dependencies. In the context of LLM-based test generation, HITS~\cite{wang2024c} applies slicing to guide test synthesis; however, its decomposition is driven by structural heuristics rather than coverage feedback, meaning the resulting segments are not targeted toward any specific uncovered branch. Furthermore, for methods with high cyclomatic complexity, the number of generated segments can grow substantially, incurring significant token overhead regardless of whether the corresponding code has already been covered. In contrast, \ourmethod{} performs \emph{path-aware} backward slicing triggered only when coverage improvement stalls, ensuring that each slice is both necessary and focused on the precise dependencies of the uncovered branch.
+
+
 \textbf{Qualitative Insight.} 
 To understand the source of performance gains, we examine a representative example from the \textit{Favicon for Alibaba} project. 
 The method \texttt{generateFavicon} contains a branch condition \texttt{if (icon != null \&\& icon.size() > 0)}, which requires proper object initialization prior to invocation. 

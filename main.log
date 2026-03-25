@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.27)  25 MAR 2026 18:53
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.27)  25 MAR 2026 20:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2392,6 +2392,26 @@ Overfull \hbox (15.93227pt too wide) in paragraph at lines 47--51
  []
 
 
+Overfull \hbox (4.323pt too wide) in paragraph at lines 52--55
+|   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (10.31477pt too wide) in paragraph at lines 52--55
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (4.12427pt too wide) in paragraph at lines 52--55
+|   []   |   []   |   []   |   []   |   []   |   []
+ []
+
+
+Overfull \hbox (15.85953pt too wide) in paragraph at lines 52--55
+|   []   |   []   |   []   |   []   |   []   |   []   |   []   |   []   |   [][][][][] 
+ []
+
+
 Overfull \hbox (8.05878pt too wide) in paragraph at lines 56--59
 \TU/LinLibertine(0)/m/n/9 evaluate four representative LLMs: \TU/LinLibertine(1)/b/n/9 QC3-30B\TU/LinLibertine(0)/m/n/9 , \TU/LinLibertine(1)/b/n/9 Qwen3.5-397B-A17B
  []
@@ -2434,7 +2454,7 @@ Overfull \hbox (5.34377pt too wide) in paragraph at lines 68--69
  []
 
 
-Underfull \vbox (badness 5217) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
@@ -2519,29 +2539,48 @@ Overfull \hbox (3.09978pt too wide) in paragraph at lines 3--7
  []
 
 
+Package natbib Warning: Citation `weiser1984' on page 10 undefined on input line 15.
+
+
+Package natbib Warning: Citation `ryan2024' on page 10 undefined on input line 15.
+
+
+Package natbib Warning: Citation `wang2024c' on page 10 undefined on input line 15.
+
+
+Overfull \hbox (3.15701pt too wide) in paragraph at lines 14--16
+[]\TU/LinLibertine(1)/b/n/9 Difference from HITS‘s Slicing. \TU/LinLibertine(0)/m/n/9 Program slicing has long been
+ []
+
+
 Underfull \vbox (badness 1728) has occurred while \output is active []
 
 
 
 
-Overfull \hbox (1.29701pt too wide) in paragraph at lines 23--27
+Overfull \hbox (1.29701pt too wide) in paragraph at lines 27--31
 []\TU/LinLibertine(1)/b/n/9 Design Implications. \TU/LinLibertine(0)/m/n/9 Our findings suggest that structural guid-
  []
 
 
-Overfull \hbox (1.42377pt too wide) in paragraph at lines 28--31
+Overfull \hbox (1.42377pt too wide) in paragraph at lines 32--35
 []\TU/LinLibertine(1)/b/n/9 Limitations. \TU/LinLibertine(0)/m/n/9 Despite its effectiveness, \TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 has several lim-
  []
 
-) (./sections/related_work.tex
 
-Package natbib Warning: Citation `randoop' on page 10 undefined on input line 7.
-
-
-Package natbib Warning: Citation `evosuite' on page 10 undefined on input line 7.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Package natbib Warning: Citation `mcminn2011' on page 10 undefined on input line 13.
+
+[10.10]) (./sections/related_work.tex
+
+Package natbib Warning: Citation `randoop' on page 11 undefined on input line 7.
+
+
+Package natbib Warning: Citation `evosuite' on page 11 undefined on input line 7.
+
+
+Package natbib Warning: Citation `mcminn2011' on page 11 undefined on input line 13.
 
 
 Overfull \hbox (8.00702pt too wide) in paragraph at lines 5--14
@@ -2553,12 +2592,6 @@ Overfull \hbox (4.57277pt too wide) in paragraph at lines 5--14
 \TU/LinLibertine(0)/m/n/9 SBST methods fundamentally operate on syntactic signals and strug-
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[10.10]
 
 Package natbib Warning: Citation `watson2020atalas' on page 11 undefined on input line 17.
 
@@ -2628,9 +2661,6 @@ Overfull \hbox (1.12372pt too wide) in paragraph at lines 86--249
  []
 
 (./sections/conclusion.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 [11.11]) (./main.bbl
 LaTeX Font Info:    Font shape `TU/LinLibertine(1)/b/n' will be
@@ -2650,13 +2680,10 @@ LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/it' will be
 LaTeX Info: Redefining \tempurl on input line 77.
 LaTeX Info: Redefining \tempurl on input line 95.
 LaTeX Info: Redefining \tempurl on input line 219.
+
+
 LaTeX Info: Redefining \tempurl on input line 261.
 LaTeX Info: Redefining \tempurl on input line 275.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
 )
 
 Package natbib Warning: There were undefined citations.
@@ -2715,12 +2742,12 @@ Package rerunfilecheck Warning: File `main.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `main.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  3861E001B457BB0A6E0492E7CC05965C;3411.
+(rerunfilecheck)             After:  CB42A98C19CA5D74B0A2731A59F08586;3411.
  ) 
 Here is how much of TeX's memory you used:
  55780 strings out of 473832
  1199908 string characters out of 5729481
- 2025862 words of memory out of 5000000
+ 2025861 words of memory out of 5000000
  77845 multiletter control sequences out of 15000+600000
  568841 words of font info for 177 fonts, out of 8000000 for 9000
  1509 hyphenation exceptions out of 8191

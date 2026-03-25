@@ -73,30 +73,34 @@
 \@writefile{loc}{\contentsline {added}{Added: \truncate {\Changestruncatewidth }{To validate the fidelity of our re-implementation, we ran it using \textbf  {GPT-3.5-turbo}---the backbone model adopted in the original HITS paper---on the Cli project; the resulting branch coverage deviates by less than 2\% from the figures reported in the original paper, confirming the reliability of our re-implementation.}}{6}{section*.29}\protected@file@percent }
 \@writefile{loc}{\contentsline {deleted}{Deleted: \truncate {\Changestruncatewidth }{Specifically, RQ1 adopts \textbf  {Qwen3-Coder-30B} (hereafter \textbf  {QC3-30B}) as the backbone, while RQ2 adopts \textbf  {Qwen3-Coder-30B} (hereafter \textbf  {QC3-30B}). The use of different models across RQs reflects the distinct focuses of each evaluation: RQ1 prioritizes generation quality with a larger model, whereas RQ2 isolates the contribution of individual components under a more controlled, cost-efficient setting.}}{6}{section*.30}\protected@file@percent }
 \@writefile{loc}{\contentsline {added}{Added: \truncate {\Changestruncatewidth }{Specifically, both RQ1 and RQ2 adopt Qwen3-Coder-30B (hereafter QC3-30B) as the unified backbone model, enabling a controlled and cost-efficient comparison across all experimental conditions.}}{6}{section*.31}\protected@file@percent }
+\@writefile{loc}{\contentsline {deleted}{Deleted: \truncate {\Changestruncatewidth }{To evaluate the inherent logic reasoning and code understanding capabilities of the models, we adopt a restricted context strategy for all test generation tasks. Specifically, for each method under test (MUT), the prompt only includes the source code of its declaring class and the names of the associated import packages. No additional project-level information, such as dependency class implementations or global configuration files, is provided. This setup ensures that the performance of \textsc  {CogPath}{} and the baselines is assessed under a consistent and challenging information-constrained environment, reflecting a realistic scenario where cross-file dependencies may be complex or partially inaccessible.}}{6}{section*.32}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Dataset Metrics with \#MUTs}}{7}{table.caption.28}\protected@file@percent }
 \newlabel{tab:dataset}{{1}{7}{Dataset Metrics with \#MUTs}{table.caption.28}{}}
-\@writefile{loc}{\contentsline {added}{Added: \truncate {\Changestruncatewidth }{The key hyperparameters of \textsc  {CogPath}{} are configured as follows: the maximum number of iterations $\textit  {maxIter}$ is set to \textbf  {[\,]}, the no-improvement tolerance $\mitLambda $ is set to \textbf  {[\,]}, the backward slicing trigger threshold $\mitbeta $ is set to \textbf  {[\,]}, and the target coverage $\mittau $ is set to \textbf  {[\,]\%}. All experiments start from an empty initial test suite.}}{7}{section*.32}\protected@file@percent }
+\@writefile{loc}{\contentsline {added}{Added: \truncate {\Changestruncatewidth }{The key hyperparameters of \textsc  {CogPath}{} are configured as follows: the maximum number of iterations $\textit  {maxIter}$ is set to \textbf  {[\,]}, the no-improvement tolerance $\mitLambda $ is set to \textbf  {[\,]}, the backward slicing trigger threshold $\mitbeta $ is set to \textbf  {[\,]}, and the target coverage $\mittau $ is set to \textbf  {[\,]\%}. All experiments start from an empty initial test suite.}}{7}{section*.33}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}RQ1: Effectiveness of Our Approach}{7}{subsection.4.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Overall Performance}{7}{subsubsection.4.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Performance on High-Complexity Projects}{7}{subsubsection.4.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Cases of Limited Improvement}{7}{subsubsection.4.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.4}Summary}{7}{subsubsection.4.2.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Coverage Across Approaches (Updated \textsc  {CogPath}{})}}{8}{table.caption.33}\protected@file@percent }
-\newlabel{tab:coverage}{{2}{8}{Coverage Across Approaches (Updated \ourmethod {})}{table.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Coverage Across Approaches (Updated \textsc  {CogPath}{})}}{8}{table.caption.34}\protected@file@percent }
+\newlabel{tab:coverage}{{2}{8}{Coverage Across Approaches (Updated \ourmethod {})}{table.caption.34}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}RQ2: Ablation Study}{8}{subsection.4.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Overall Ablation Results}{8}{subsubsection.4.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Iterative Coverage Improvement}{8}{figure.caption.35}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Ablation Study of \textsc  {CogPath}{} Components}}{9}{table.caption.34}\protected@file@percent }
-\newlabel{tab:ablation}{{3}{9}{Ablation Study of \ourmethod {} Components}{table.caption.34}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Branch coverage improvement over iterations for \textsc  {CogPath}{} and its three ablated variants.}}{9}{figure.caption.35}\protected@file@percent }
-\newlabel{fig:branch-growth}{{2}{9}{Branch coverage improvement over iterations for \ourmethod {} and its three ablated variants}{figure.caption.35}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Iterative Coverage Improvement}{8}{figure.caption.36}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Ablation Study of \textsc  {CogPath}{} Components}}{9}{table.caption.35}\protected@file@percent }
+\newlabel{tab:ablation}{{3}{9}{Ablation Study of \ourmethod {} Components}{table.caption.35}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Branch coverage improvement over iterations for \textsc  {CogPath}{} and its three ablated variants.}}{9}{figure.caption.36}\protected@file@percent }
+\newlabel{fig:branch-growth}{{2}{9}{Branch coverage improvement over iterations for \ourmethod {} and its three ablated variants}{figure.caption.36}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4}RQ3: Performance Comparison of Different LLMs}{9}{subsection.4.4}\protected@file@percent }
+\citation{weiser1984}
+\citation{ryan2024}
+\citation{wang2024c}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Model Generalization Across Different LLMs}}{10}{table.caption.37}\protected@file@percent }
+\newlabel{tab:model-generalization}{{4}{10}{Model Generalization Across Different LLMs}{table.caption.37}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}DISCUSSION}{10}{section.5}\protected@file@percent }
 \citation{randoop}
 \citation{evosuite}
 \citation{mcminn2011}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Model Generalization Across Different LLMs}}{10}{table.caption.36}\protected@file@percent }
-\newlabel{tab:model-generalization}{{4}{10}{Model Generalization Across Different LLMs}{table.caption.36}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}DISCUSSION}{10}{section.5}\protected@file@percent }
 \citation{watson2020atalas}
 \citation{Tufano2020UnitTC}
 \citation{chen2024}
@@ -145,6 +149,6 @@
 \newlabel{tocindent3}{18.198pt}
 \newlabel{tocindent4}{0pt}
 \newlabel{tocindent5}{0pt}
-\@writefile{toc}{\contentsline {section}{References}{12}{section*.38}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{References}{12}{section*.39}\protected@file@percent }
 \newlabel{TotPages}{{12}{12}{}{page.12}{}}
 \gdef \@abspage@last{12}
