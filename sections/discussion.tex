@@ -1,6 +1,6 @@
 \section{DISCUSSION}
 
-\textbf{Cost and Token Efficiency.} 
+\paragraph{Cost and Token Efficiency.} 
 \ourmethod{} introduces additional prompting overhead due to backward slicing and constraint hint construction. 
 Across all 3,576 requests, the total token consumption amounts to \textbf{221.8 million input tokens} and \textbf{6.1 million output tokens}. 
 However, a substantial portion of the input tokens (\textbf{181.5 million}) are served from cache due to repeated prompt structures, leaving only \textbf{40.3 million tokens} billed.
@@ -11,11 +11,29 @@ For a typical project with around 130 focal methods, this corresponds to a cost 
 The backward slicing step further improves efficiency by reducing prompt length by approximately \textbf{25\%}, ensuring that tokens are primarily allocated to semantically relevant context. 
 Together, slicing and caching significantly improve the coverage-per-token ratio compared to naive full-context prompting.
 
-\textbf{Difference from HITS‘s Slicing.}
+\paragraph{Difference from HITS‘s Slicing.}
 Program slicing has long been used to identify the subset of program statements relevant to a particular computation~\cite{weiser1984}. Recent work such as NS-Slicer~\cite{ryan2024} demonstrates that pre-trained language models can approximate static slices by learning variable–statement dependencies. In the context of LLM-based test generation, HITS~\cite{wang2024c} applies slicing to guide test synthesis; however, its decomposition is driven by structural heuristics rather than coverage feedback, meaning the resulting segments are not targeted toward any specific uncovered branch. Furthermore, for methods with high cyclomatic complexity, the number of generated segments can grow substantially, incurring significant token overhead regardless of whether the corresponding code has already been covered. In contrast, \ourmethod{} performs \emph{path-aware} backward slicing triggered only when coverage improvement stalls, ensuring that each slice is both necessary and focused on the precise dependencies of the uncovered branch.
 
+\paragraph{Cases of Limited Improvement.}
+Although \ourmethod{} achieves the best overall performance, it does not 
+consistently outperform all baselines across every project. For example, 
+on \textit{Collections}, HITS achieves higher branch coverage (70.00\%) 
+than \ourmethod{} (34.63\%), with similar trends observed on \textit{Compress}.
 
-\textbf{Qualitative Insight.} 
+A closer inspection reveals that these projects contain a large proportion 
+of branches governed by simple value-range conditions, rather than complex 
+inter-procedural dependencies. In such cases, the benefits of backward slicing 
+become less pronounced. In particular, aggressive slicing may remove auxiliary 
+context that, while not strictly necessary for reachability, can still provide 
+useful cues for the LLM.
+
+This observation highlights a key limitation of our current design: the lack 
+of adaptive control over slice granularity. A promising direction for future 
+work is to dynamically adjust slicing strategies based on branch complexity, 
+balancing conciseness and contextual completeness.
+
+
+\paragraph{Qualitative Insight.} 
 To understand the source of performance gains, we examine a representative example from the \textit{Favicon for Alibaba} project. 
 The method \texttt{generateFavicon} contains a branch condition \texttt{if (icon != null \&\& icon.size() > 0)}, which requires proper object initialization prior to invocation. 
 Baseline approaches typically invoke the focal method directly, failing to satisfy the implicit precondition and leaving the branch uncovered. 
@@ -24,12 +42,12 @@ In contrast, \ourmethod{} applies backward slicing to identify the relevant stat
 The generated test consequently initializes the object correctly and triggers the target branch. 
 This example highlights that \ourmethod{} improves not only coverage, but also the LLM’s ability to reason about cross-method dependencies and implicit state requirements.
 
-\textbf{Design Implications.}
+\paragraph{Design Implications.}
 Our findings suggest that structural guidance (e.g., slicing and constraint hints) and model reasoning capabilities are complementary. 
 While \ourmethod{} effectively reduces irrelevant context and exposes execution constraints, its full potential is realized when paired with LLMs capable of multi-step reasoning and semantic inference. 
 This indicates that future improvements in LLM reasoning ability can further amplify the effectiveness of structured test generation frameworks.
 
-\textbf{Limitations.} 
+\paragraph{Limitations.} 
 Despite its effectiveness, \ourmethod{} has several limitations. 
 \emph{Slice granularity.} For projects such as \textit{Collections} and \textit{Compress}, where branch conditions depend primarily on value ranges rather than cross-method state, backward slicing may remove useful auxiliary information (e.g., boundary constraints), potentially reducing test quality. Conversely, overly coarse slices may introduce irrelevant context. Designing adaptive slicing strategies remains an important direction for future work. 
 

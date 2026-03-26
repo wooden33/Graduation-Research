@@ -9,7 +9,6 @@
 \label{fig:overview}
 \end{figure*}
 
-\added{
 \ourmethod{} is a coverage-guided iterative framework for automated unit test generation, illustrated in Figure~\ref{fig:overview}. 
 Given a method under test and an initial test suite, \ourmethod{} builds the CFG, enumerates feasible paths, collects dynamic coverage feedback to identify uncovered branches, and then enters an iterative loop to systematically handle these branches.
 Each iteration proceeds in three steps. 
@@ -17,56 +16,33 @@ First, the framework selects an uncovered path and applies \textit{Constraints-H
 Second, if coverage has stagnated, \textit{Backward Slicing} replaces the full method body with the minimal set of branch-relevant statements. 
 Third, the LLM generates candidate tests, which are compiled and executed; passing tests are merged into the suite, and failing tests enter a repair phase. Coverage is then re-measured to guide the next iteration.
 The loop terminates when target coverage is reached, the iteration budget is exhausted, or coverage fails to improve for a configurable number of consecutive iterations.
-}
 
-\added{In the following sections, we will provide detailed introductions about \ourmethod{}.}
+In the following sections, we will provide detailed introductions about \ourmethod{}.
 
-\deleted{
-\ourmethod{} is a coverage-guided iterative framework for automated unit
-test generation. The overall workflow is illustrated in
-Figure~\ref{fig:overview}. Starting from the method under test (MUT) and an
-initial test suite (possibly empty), the framework performs static analysis
-to construct the control-flow graph and enumerate feasible execution paths.
-Dynamic execution feedback is then collected to identify uncovered lines and
-branches.}
+\subsection{Constraints-Hints}
 
-\deleted{
-To efficiently exercise uncovered paths, \ourmethod{} integrates two
-complementary mechanisms. First, a \textit{Constraints-Hints} module derives
-explicit branch conditions along a selected path and exposes them as
-structured hints in the test generation prompt, making hidden input
-requirements visible to the LLM. Second, a \textit{Backward Slicing} module
-is triggered when coverage improvement stagnates, extracting the minimal set
-of statements that influence a stubborn uncovered path and supplying them as
-targeted context.}
-
-\deleted{
-Each iteration proceeds as follows. The framework selects uncovered paths,
-optionally derives constraint hints, and invokes the test generation LLM to
-produce candidate tests. These candidates are compiled and executed to
-validate their correctness. Failing tests are optionally forwarded to a
-repair phase. Successfully validated tests are incorporated into the test
-suite and coverage is re-measured, closing the feedback loop. The process
-terminates when the target coverage is reached, the iteration budget is
-exhausted, or coverage ceases to improve for a configurable number of
-iterations.}
-
-\subsection{Constraints-Hints \deleted{for Path Solving}}
-
-\replaced{
 \textit{Constraints-Hints} addresses the implicit precondition problem by 
-decoupling constraint inference from test synthesis. Rather than asking the 
-LLM to simultaneously reason about reachability and generate code, we 
-introduce a dedicated constraint-solving step that makes branch preconditions 
-explicit before generation begins.
-}
-{For methods with complex branch logic, directly instructing an LLM to cover
-a specific execution path often fails because branch predicates are buried
-within nested conditionals, method calls, or arithmetic expressions.
-Consequently, the model cannot reliably infer the precise input conditions
-required to reach the desired path. To address this limitation, we introduce
-\textit{Constraints-Hints}, a mechanism that translates implicit branch
-conditions into explicit and structured input requirements.}
+decoupling constraint inference from test synthesis. Instead of requiring 
+the LLM to simultaneously infer branch reachability and generate tests, 
+we explicitly extract the conditions necessary to trigger a target branch 
+and provide them as structured guidance.
+
+While symbolic execution can derive precise path conditions, it often 
+struggles to scale to real-world programs due to path explosion, complex 
+heap interactions, and challenges in modeling external libraries and 
+reflection~\cite{baldoni2018, cadar2008klee}. 
+Rather than performing exact constraint solving, we aim to extract 
+\emph{sufficient} conditions that characterize branch reachability.
+
+Concretely, given an uncovered branch, we analyze its predicate and 
+derive a set of constraint hints that describe the required program state 
+(e.g., variable relations, nullness conditions, and key object properties). 
+These hints are then embedded into the generation prompt, guiding the LLM 
+to construct inputs and invocation sequences that satisfy the target condition.
+
+By transforming implicit dependencies into explicit guidance, 
+\textit{Constraints-Hints} reduces the reasoning burden on the LLM and 
+enables more reliable generation of tests that reach previously uncovered branches.
 
 \paragraph{Path formulation.}
 
@@ -134,26 +110,14 @@ to invoking \texttt{addValue}. By making this requirement explicit, the test
 generation LLM can construct the correct setup sequence and cover the
 previously unreachable branch.
 
-\subsection{Backward Slicing \deleted{for Coverage Plateaus}}
+\subsection{Backward Slicing}
 
-\deleted{Despite coverage-guided iterative generation, certain branches may remain
-persistently uncovered, particularly in methods with high cyclomatic
-complexity or deeply nested control flow. In such cases, generative
-exploration often fails to infer the precise conditions required to execute
-the target path. To address this challenge, \ourmethod{} incorporates a
-coverage-driven backward slicing mechanism that is activated only when
-coverage improvement stalls.}
-\added{
 Coverage improvement does not always progress smoothly: certain branches remain persistently uncovered even after multiple iterations, typically because their reachability depends on subtle state dependencies that standard generation fails to capture. 
-When such a plateau is detected, \ourmethod{} triggers a backward slicing step targeted at these stubborn branches, replacing the full method body with the minimal context actually relevant to the uncovered path.}
-
-\paragraph{Relationship to prior work.}
-\deleted{Program slicing has long been used to identify the subset of program statements relevant to a particular computation~\cite{weiser1984}. Recent work such as NS-Slicer~\cite{ryan2024} demonstrates that pre-trained language models can approximate static slices by learning variable–statement dependencies. In the context of LLM-based test generation, HITS~\cite{wang2024c} applies slicing to guide test synthesis; however, its decomposition is driven by structural heuristics rather than coverage feedback, meaning the resulting segments are not targeted toward any specific uncovered branch. Furthermore, for methods with high cyclomatic complexity, the number of generated segments can grow substantially, incurring significant token overhead regardless of whether the corresponding code has already been covered. In contrast, \ourmethod{} performs \emph{path-aware} backward slicing triggered only when coverage improvement stalls, ensuring that each slice is both necessary and focused on the precise dependencies of the uncovered branch.}
+When such a plateau is detected, \ourmethod{} triggers a backward slicing step targeted at these stubborn branches, replacing the full method body with the minimal context actually relevant to the uncovered path.
 
 \paragraph{Slice extraction.}
 
-Given an uncovered path $\pi$, the framework extracts the subset of
-statements that may influence the execution of that path:
+Given an uncovered path $\pi$, the framework extracts the subset of statements that may influence the execution of that path:
 
 \begin{equation}
 \textit{Slice}(P,\pi) =
@@ -162,22 +126,13 @@ s_i \in P \mid s_i \rightsquigarrow \pi
 \right\}.
 \end{equation}
 
-A dedicated LLM is then invoked with the uncovered code segment, the focal
-method source code, and dependency context from related classes. The model
-returns a structured response containing the relevant slice statements,
-required input values, necessary object states, and potential setup
-operations.
+A dedicated LLM is then invoked with the uncovered code segment, the focal method source code, and dependency context from related classes. The model returns a structured response containing the relevant slice statements, required input values, necessary object states, and potential setup operations.
 
 \paragraph{Test generation from slices.}
 
-The extracted slice information is supplied as additional context to the
-test generation prompt. The LLM then generates targeted unit tests that
-incorporate the identified prerequisites directly. These tests are compiled,
-executed, and measured using the same validation pipeline as regular test
-candidates, allowing the framework to recover from coverage plateaus while
-maintaining the overall iterative workflow.
+The extracted slice information is supplied as additional context to the test generation prompt. The LLM then generates targeted unit tests that incorporate the identified prerequisites directly. These tests are compiled, executed, and measured using the same validation pipeline as regular test candidates, allowing the framework to recover from coverage plateaus while maintaining the overall iterative workflow.
 
-\subsection{\xtz{Iterative Workflow of \ourmethod{}}LLM-based Test Generation and Repair}
+\subsection{Iterative Workflow of \ourmethod{}}
 
 \begin{algorithm}[t]
 \small

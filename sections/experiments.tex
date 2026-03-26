@@ -10,7 +10,7 @@ Following prior work \cite{gu2025a}, we excluded projects that do not use Maven 
 The remaining 14 subjects are compatible with Java 8+, Maven (v3.6.3), and JUnit (v4.13.2).
 To specifically assess performance on logic-heavy code, we focus on complex classes rather than entire projects. 
 We identified non-abstract, public classes containing at least one method with Cyclomatic Complexity (CC) $> 10$ \cite{mccabe1976complexity}. 
-Furthermore, we \deleted{manually }excluded outliers such as classes with extreme complexity ($CC > 40$) caused by massive switch-statement patterns and those with minimal explicit control flow due to deep inheritance.\xtz{why? Does the baseline do the same thing?}
+Furthermore, we excluded outliers such as classes with extreme complexity ($CC > 40$) caused by massive switch-statement patterns and those with minimal explicit control flow due to deep inheritance.\xtz{why? Does the baseline do the same thing?}
 The statistics of our evaluation dataset are summarized in Table~\ref{tab:dataset}.
 
 
@@ -42,11 +42,9 @@ To evaluate the performance of \ourmethod{}, we compare it against three state-o
     \item \textbf{Panta \cite{gu2025a}:} A SOTA tool that leverages advanced path analysis and context-aware prompting. Panta excels at capturing data dependencies within the Class Under Test (CUT). Comparing against Panta demonstrates the advantages of \ourmethod{}'s synergy between branch selection and logical constraint satisfaction.
 \end{itemize}
 
-Due to the absence of several critical components in the official HITS repository, we faithfully re-implemented its workflow by strictly following the prompt templates defined in the original paper and adhering to the procedural logic of the available open-source fragments. \added{To validate the fidelity of our re-implementation, we ran it using GPT-3.5-turbo---the backbone model adopted in the original HITS paper---on the Cli project; the resulting branch coverage deviates by less than 2\% from the figures reported in the original paper, confirming the reliability of our re-implementation.}
+Due to the absence of several critical components in the official HITS repository, we faithfully re-implemented its workflow by strictly following the prompt templates defined in the original paper and adhering to the procedural logic of the available open-source fragments. 
 
-For a fair comparison, all baselines were configured using the same backbone model as \ourmethod{} in each experiment. 
-\deleted{Specifically, RQ1 adopts \textbf{Qwen3-Coder-30B} (hereafter \textbf{QC3-30B}) as the backbone, while RQ2 adopts \textbf{Qwen3-Coder-30B} (hereafter \textbf{QC3-30B}). The use of different models across RQs reflects the distinct focuses of each evaluation: RQ1 prioritizes generation quality with a larger model, whereas RQ2 isolates the contribution of individual components under a more controlled, cost-efficient setting.}
-\added{Specifically, both RQ1 and RQ2 adopt Qwen3-Coder-30B (hereafter QC3-30B) as the unified backbone model, enabling a controlled and cost-efficient comparison across all experimental conditions.} 
+For a fair comparison, all baselines were configured using the same backbone model as \ourmethod{} in each experiment. Specifically, both RQ1 and RQ2 adopt Qwen3-Coder-30B (hereafter QC3-30B) as the unified backbone model, enabling a controlled and cost-efficient comparison across all experimental conditions. 
 Furthermore, all methods were provided with identical CUT information and dependency contexts to ensure that performance differences are attributable to the frameworks themselves rather than external information.
 
 \textbf{Contextual Information.}
@@ -64,21 +62,16 @@ To ensure reproducibility and minimize stochastic variance, all models are confi
 
 \input{tables/rq1_main.tex}
 
-\deleted{To answer RQ1, we compare \ourmethod{} against three state-of-the-art LLM-based test generation frameworks---SymPrompt, HITS, and Panta---on 14 real-world Java projects from Defects4J (v2.0.1). 
-The evaluation focuses on both line coverage (LC) and branch coverage (BC) of complex methods, with Cyclomatic Complexity $CC > 10$.}
-\added{To answer RQ1, we compare \ourmethod{} against three state-of-the-art baselines on the selected dataset.}
-Results are summarized in Table~\ref{tab:coverage}.
+To answer RQ1, we compare \ourmethod{} against three state-of-the-art baselines on the selected dataset. Results are summarized in Table~\ref{tab:coverage}.
 
 
 \subsubsection{Overall Performance}
 As shown in Table~\ref{tab:coverage}, \ourmethod{} achieves the highest average LC and BC across all projects. 
 Specifically, it attains an average BC of 44.41\%, outperforming SymPrompt (21.14\%), HITS (34.24\%), and Panta (32.32\%). 
-\deleted{This demonstrates that the combination of constraint hints and backward slicing allows \ourmethod{} to more effectively navigate complex control flows and satisfy cross-method preconditions, compared with baselines that rely solely on prompt engineering or CFG-based analysis.
-The improvement over SymPrompt is particularly substantial (\textbf{+89.3\%}), reflecting the limitation of approaches that lack explicit program analysis. Gains over HITS and Panta are smaller yet consistent (\textbf{+16.9\%} and \textbf{+23.8\%}, respectively), confirming that \ourmethod{}’s enhancements provide complementary benefits beyond existing path enumeration or context-aware prompting techniques.}
-\added{
+
 Gains over the two strongest baselines---HITS (\textbf{+10.2\%}) and Panta (\textbf{+12.1\%})---confirm that jointly reducing irrelevant context and making implicit preconditions explicit addresses coverage gaps that iterative refinement and context-aware prompting alone cannot close. 
 The margin widens substantially against SymPrompt (\textbf{+23.3\%}), underscoring the necessity of explicit program analysis when navigating logic-heavy control flows.
-}
+
 
 \subsubsection{Performance on High-Complexity Projects}
 The advantages of \ourmethod{} are most pronounced on projects with high cyclomatic complexity and deeper inter-method dependencies. 
@@ -95,21 +88,10 @@ These gains collectively demonstrate that reducing irrelevant context via backwa
 
 These results indicate that \ourmethod{} excels particularly in logic-heavy methods where complex object interactions and conditional dependencies are prevalent.
 
-\subsubsection{Cases of Limited Improvement}\xtz{move to discussion}
-While \ourmethod{} achieves the best average performance, there are a few projects where it does not outperform all baselines. 
-For instance, Collections shows HITS achieving higher BC (70.00\%) compared to \ourmethod{} (34.63\%), and Compress has similar trends. 
-Manual inspection suggests that these projects contain a high proportion of branches governed by simple value-range conditions rather than complex cross-method states. 
-In such cases, backward slicing occasionally removes auxiliary context that would otherwise help the LLM, slightly reducing coverage. 
-This points to a potential area for refinement in slice granularity selection.
-
-\subsubsection{Summary}
-\deleted{In summary, \ourmethod{} demonstrates \textbf{robust effectiveness} across 14 real-world projects, achieving significant gains over state-of-the-art baselines, particularly in \textbf{high-complexity and logic-intensive methods}. The combined use of backward slicing and constraint hints enables the LLM to reach branches that are otherwise inaccessible to prompt-only or context-limited approaches.}
-
 
 \begin{tcolorbox}[colback=gray!5, colframe=gray!100, title=Answer to RQ1]
 \ourmethod{} outperforms all three baselines on average, achieving a BC of 44.41\%, representing improvements of 10.2\%--23.3\% over baselines. 
-Its advantage is most pronounced in projects with high cyclomatic complexity and cross-method dependencies (e.g., +20\% on Gson, +14\% on JCore). 
-\deleted{In a minority of projects where branches depend primarily on simple value conditions, existing tools remain competitive, highlighting opportunities for further refinement in slice granularity.}
+Its advantage is most pronounced in projects with high cyclomatic complexity and cross-method dependencies (e.g., +20\% on Gson, +14\% on JCore).
 \end{tcolorbox}
 
 
@@ -130,7 +112,6 @@ To evaluate the individual contributions of Backward Slicing (BS) and Constraint
 \textbf{Anomalies and discussion.} In two projects (\textit{JacksonCore} and \textit{Jsoup}), the w/o-BS variant achieves marginally higher coverage than the full \ourmethod{}. We attribute this to cases where backward slicing inadvertently removes type information required for mock construction, causing the LLM to fall back on simpler yet occasionally effective test patterns. This sensitivity to slice granularity is a known limitation and remains a direction for future refinement.
 
 \subsubsection{Iterative Coverage Improvement}
-\xtz{add iteration curve of llm+constraint hints}
 
 \begin{figure}[htbp]
     \centering
