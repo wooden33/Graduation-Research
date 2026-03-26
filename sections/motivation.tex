@@ -61,11 +61,11 @@ _addMemberMethods(tc, mainType.getRawClass(), methods, primaryMixIn);
 for (...) { ... }  // superTypes iteration -- no dependence on target branch
 boolean checkJavaLangObject = false;
 if (_mixInResolver != null) {
-    Class<?> mixin = _mixInResolver.findMixInClassFor(Object.class);
-    if (mixin != null) {
-        _addMethodMixIns(...);
-        checkJavaLangObject = true;  // sole setter of guard variable
-    }
+  Class<?> mixin = _mixInResolver.findMixInClassFor(Object.class);
+  if (mixin != null) {
+    _addMethodMixIns(...);
+    checkJavaLangObject = true;  // sole setter of guard variable
+  }
 }
 if (checkJavaLangObject && (_intr != null) && !methods.isEmpty()) { ... }
 \end{lstlisting}
