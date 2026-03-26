@@ -1,63 +1,75 @@
 \section{Motivation}
 
-Recent LLM-based unit test generation approaches, such as SymPrompt~\cite{ryan2024}, HITS~\cite{wang2024c}, Panta~\cite{gu2025a}, and JUnitGenie~\cite{liao2025}, have significantly reduced the manual effort required for testing complex methods. However, they still struggle when branch reachability depends on implicit object states or is obscured by irrelevant context. We identify two key challenges.
+Recent LLM-based unit test generation approaches, such as SymPrompt~\cite{ryan2024}, HITS~\cite{wang2024c}, Panta~\cite{gu2025a}, and JUnitGenie~\cite{liao2025}, have significantly reduced the manual effort required for testing complex methods. However, even with path-aware prompting and iterative refinement, a substantial gap in branch coverage remains.
 
-\textbf{Challenge 1: Invisible Cross-Method Preconditions.}
-Existing approaches typically provide the full method body as input, assuming that branch conditions can be inferred locally. In practice, however, the conditions required to reach a target branch are often established \textit{outside} the method via prior state initialization~\cite{baldoni2018surveysymbolicexecutiontechniques}. 
+We argue that this limitation stems from a fundamental \emph{cognitive misalignment} between the information provided to the LLM and the information required to cover a target branch. Specifically, effective branch coverage requires (i) satisfying implicit execution constraints and (ii) focusing on the minimal relevant context. Existing approaches, however, expose raw method bodies and implicitly expect the model to solve both problems simultaneously, leading to systematic failures.
 
-Consider the \texttt{addValue()} method from Apache Commons Math (Listing~\ref{lst:motivation-cs}). The condition \texttt{meanImpl != mean} can only be satisfied if \texttt{setMeanImpl()} is invoked beforehand, a dependency absent from the method body. As a result, LLM-generated tests typically execute successfully but fail to cover the target branch:
+We characterize this misalignment along two complementary dimensions.
 
-\begin{lstlisting}[language=Java, caption={Target branch with cross-method precondition}, label={lst:motivation-cs}]
+\textbf{Challenge 1: Underspecified Constraints (What to Satisfy).}
+Branch reachability often depends on implicit object states established through inter-procedural interactions~\cite{baldoni2018}. These constraints are not explicitly represented in the input, forcing the LLM to infer them from incomplete information.
+
+Consider the \texttt{addValue()} method from Apache Commons Math (Listing~\ref{lst:motivation-cs}). The target branch depends on the condition \texttt{meanImpl != mean}, which can only be satisfied if a prior method modifies the internal state:
+
+\begin{lstlisting}[language=Java, label={lst:motivation-cs}, caption={Target branch with hidden cross-method dependency}]
 public void addValue(double value) {
-    ...
-    if (meanImpl != mean) {   // target branch
-        meanImpl.increment(value);
-    }
+...
+if (meanImpl != mean) {   // target branch
+meanImpl.increment(value);
+}
 }
 \end{lstlisting}
 
-\begin{lstlisting}[language=Java, caption={LLM-generated test (branch not covered)}]
+When provided only with the method body, the LLM typically generates:
+
+\begin{lstlisting}[language=Java, caption={LLM-generated test (constraint not satisfied)}]
 SummaryStatistics stats = new SummaryStatistics();
 stats.addValue(1.0);
 \end{lstlisting}
 
-The correct test must explicitly establish the hidden precondition:
+Although the test is executable, it fails to cover the branch because the required object-state constraint is never established. The correct test must explicitly satisfy the hidden precondition:
 
-\begin{lstlisting}[language=Java, caption={Correct test (branch covered)}]
+\begin{lstlisting}[language=Java, caption={Correct test (constraint satisfied)}]
 stats.setMeanImpl(new CustomMeanImpl());
 stats.addValue(1.0);
 \end{lstlisting}
 
-\textbf{Challenge 2: Attention Dilution from Irrelevant Context.}
-Even when branch conditions are locally visible, they are often embedded in large methods containing substantial unrelated logic. This dilutes the LLM’s attention and hinders precise reasoning.
+This example illustrates a general failure mode: when constraints are encoded as cross-method state transitions, they remain invisible unless explicitly surfaced, making them unlikely to be satisfied during generation.
 
-Consider the \texttt{collect()} method from JacksonDatabind, where the target block is guarded by a conjunctive condition:
+\textbf{Challenge 2: Misaligned Context (What to Attend To).}
+Even when all necessary conditions are locally available, they are often embedded within large methods containing substantial irrelevant logic. Providing the full method body introduces noise that is not aligned with the coverage objective.
 
-\begin{lstlisting}[language=Java, caption={Target branch with multi-variable condition}, label={lst:motivation-bs}]
+Consider the \texttt{collect()} method from JacksonDatabind, where the target branch is guarded by a conjunction of multiple conditions:
+
+\begin{lstlisting}[language=Java, caption={Target branch with multi-variable condition}]
 if (flag && intr != null && !methods.isEmpty()) { ... }
 \end{lstlisting}
 
-Each sub-condition depends on a different part of the method (e.g., constructor initialization, mix-in resolution, and method collection). When provided with the full method body, the LLM must reason over numerous irrelevant statements, making it difficult to identify and satisfy these dependencies:
+Each condition depends on a different part of the method. When exposed to the full context, the LLM must reason over many unrelated statements, leading to tests that fail to satisfy the guard:
 
-\begin{lstlisting}[language=Java, caption={LLM-generated test (branch missed)}]
+\begin{lstlisting}[language=Java, caption={LLM-generated test (branch not covered)}]
 collector.collect(...);  // guard conditions not satisfied
 \end{lstlisting}
 
-By contrast, backward slicing isolates only the statements relevant to the guard conditions:
+By contrast, isolating only the relevant dependencies yields a much clearer representation:
 
-\begin{lstlisting}[language=Java, caption={Slice focused on branch dependencies}]
+\begin{lstlisting}[language=Java, caption={Branch-relevant slice}]
 intr != null;
 flag = resolveMixIn(...);
 methods = collectMethods(...);
 if (flag && intr != null && !methods.isEmpty()) { ... }
 \end{lstlisting}
 
-This focused context enables the LLM to correctly construct inputs that satisfy all conditions:
+This focused context enables the LLM to construct valid inputs:
 
-\begin{lstlisting}[language=Java, caption={LLM-generated test with slicing}]
+\begin{lstlisting}[language=Java, caption={LLM-generated test with aligned context}]
 collector = new Collector(intr, resolver);
 collector.collect(...);  // branch covered
 \end{lstlisting}
 
-\textbf{Our Approach.}
-We address these challenges with \ourmethod{}, a constraint-guided context-reduction framework. \emph{Constraint-Hints} explicitly extract and encode path conditions to expose hidden cross-method preconditions, while \emph{coverage-driven backward slicing} removes irrelevant context and retains only branch-relevant dependencies. Together, these mechanisms reduce the reasoning burden on LLMs and enable effective coverage of complex branches.
+This reflects a second failure mode: even when constraints are present, they are not structurally aligned with the model’s attention, making precise reasoning difficult.
+
+\textbf{Our Insight.}
+These two challenges are complementary manifestations of the same underlying issue: the model is neither given the right constraints to satisfy nor the right context to attend to.
+
+We address this problem with \ourmethod{}, a constraint-guided context-reduction framework. \emph{Constraint-Hints} explicitly surface hidden path conditions, enabling the model to reason about what must be satisfied, while \emph{coverage-driven backward slicing} removes irrelevant context and retains only branch-relevant dependencies. Together, these mechanisms realign the input representation with the coverage objective, transforming test generation into a more structured and tractable reasoning process.

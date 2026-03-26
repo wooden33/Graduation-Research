@@ -2,7 +2,8 @@
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-Automated unit test generation is essential for software reliability, yet existing approaches struggle with complex program semantics, especially when branch reachability depends on implicit object states and inter-procedural interactions. While large language model (LLM)-based methods can generate executable tests, they often fail to satisfy hidden preconditions and are distracted by irrelevant context, resulting in limited coverage. We propose \ourmethod{}, a constraint-guided context-reduction framework that addresses this issue as a cognitive misalignment between provided inputs and coverage requirements. Our approach improves test generation along two dimensions: (\emph{i}) \emph{Constraint-Hints} that expose implicit path conditions, and (\emph{ii}) a coverage-driven backward slicing technique that retains only branch-relevant context. Integrated into an iterative generate–execute–repair loop, \ourmethod{} achieves 44.41\% average branch coverage on 14 Defects4J projects (2,971 methods), outperforming prior approaches by 10.2\%–23.3\%. Results highlight the importance of modeling hidden constraints and focusing attention on coverage-critical context.
+Large language models (LLMs) have shown promise in automated unit test generation, yet achieving high branch coverage for complex methods remains challenging. We argue that these failures stem not from limited model capability, but from a fundamental \emph{cognitive misalignment} between the information provided to the model and what is required to reach target branches. In particular, effective branch coverage requires both satisfying implicit execution constraints—often spanning multiple methods—and focusing on branch-relevant context, while existing approaches expose raw method bodies and rely on the LLM to handle both simultaneously. We propose \textsc{CogPath}, a constraint-guided context-reduction framework that addresses this issue by externalizing hidden path conditions as \emph{Constraint-Hints} and isolating branch-relevant dependencies via coverage-driven backward slicing, within an iterative generate–execute–repair loop. Evaluated on 14 Defects4J projects (2,971 methods), CogPath achieves 44.41\% average branch coverage, outperforming prior approaches by 10.2\%–23.3\%, demonstrating that aligning constraints and context with coverage objectives is critical for effective LLM-based test generation.
+
 \end{abstract}
 
 %%
@@ -42,4 +43,4 @@ Automated unit test generation is essential for software reliability, yet existi
 %%
 %% Keywords. The author(s) should pick words that accurately describe
 %% the work being presented. Separate the keywords with commas.
-\keywords{Automated Unit Test Generation, Large Language Models, Software Testing, Program Analysis, Branch Coverage, Constraint-Guided Testing, Program Slicing}
+\keywords{Unit Test Generation, Large Language Models, Software Testing, Program Slicing}
