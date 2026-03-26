@@ -11,6 +11,9 @@ For a typical project with around 130 focal methods, this corresponds to a cost 
 The backward slicing step further improves efficiency by reducing prompt length by approximately \textbf{25\%}, ensuring that tokens are primarily allocated to semantically relevant context. 
 Together, slicing and caching significantly improve the coverage-per-token ratio compared to naive full-context prompting.
 
+\paragraph{Runtime.}
+Using QC3-30B as the backbone, Table~\ref{tab:runtime} reports the wall-clock time and number of generated tests across all 2{,}971 MUTs. SymPrompt finishes in 17 hours, generating 4{,}823 tests ($\approx$1.6 per MUT) via a single-pass generation strategy. HITS and Panta require 22 and 26 hours, producing 7{,}418 and 8{,}134 tests respectively, due to their iterative repair and path-analysis loops. CogPath completes in 25 hours with 8{,}876 tests ($\approx$3.0 per MUT), slightly under Panta, as backward slicing is triggered selectively only upon coverage stagnation rather than at every iteration.
+
 \paragraph{Difference from HITS‘s Slicing.}
 Program slicing has long been used to identify the subset of program statements relevant to a particular computation~\cite{weiser1984}. Recent work such as NS-Slicer~\cite{ryan2024} demonstrates that pre-trained language models can approximate static slices by learning variable–statement dependencies. In the context of LLM-based test generation, HITS~\cite{wang2024c} applies slicing to guide test synthesis; however, its decomposition is driven by structural heuristics rather than coverage feedback, meaning the resulting segments are not targeted toward any specific uncovered branch. Furthermore, for methods with high cyclomatic complexity, the number of generated segments can grow substantially, incurring significant token overhead regardless of whether the corresponding code has already been covered. In contrast, \ourmethod{} performs \emph{path-aware} backward slicing triggered only when coverage improvement stalls, ensuring that each slice is both necessary and focused on the precise dependencies of the uncovered branch.
 
@@ -32,15 +35,6 @@ of adaptive control over slice granularity. A promising direction for future
 work is to dynamically adjust slicing strategies based on branch complexity, 
 balancing conciseness and contextual completeness.
 
-
-\paragraph{Qualitative Insight.} 
-To understand the source of performance gains, we examine a representative example from the \textit{Favicon for Alibaba} project. 
-The method \texttt{generateFavicon} contains a branch condition \texttt{if (icon != null \&\& icon.size() > 0)}, which requires proper object initialization prior to invocation. 
-Baseline approaches typically invoke the focal method directly, failing to satisfy the implicit precondition and leaving the branch uncovered. 
-
-In contrast, \ourmethod{} applies backward slicing to identify the relevant state-modifying call \texttt{setIconState}, and provides an explicit constraint hint describing the required precondition. 
-The generated test consequently initializes the object correctly and triggers the target branch. 
-This example highlights that \ourmethod{} improves not only coverage, but also the LLM’s ability to reason about cross-method dependencies and implicit state requirements.
 
 \paragraph{Design Implications.}
 Our findings suggest that structural guidance (e.g., slicing and constraint hints) and model reasoning capabilities are complementary. 

@@ -1,8 +1,12 @@
+
 \section{EXPERIMENTS}
+
+\input{tables/dataset.tex}
 
 \subsection{Experimental Setup}
 
 In this section, we first introduce the construction and statistics of the evaluation dataset.
+
 
 \textbf{Dataset.} To evaluate the effectiveness of \ourmethod{} in generating unit tests for complex methods, we utilize real-world subjects from the Defects4J (v2.0.1) benchmark \cite{defects4j}. 
 We selected the latest fixed version of each subject program to ensure compatibility with modern build environments. 
@@ -10,11 +14,9 @@ Following prior work \cite{gu2025a}, we excluded projects that do not use Maven 
 The remaining 14 subjects are compatible with Java 8+, Maven (v3.6.3), and JUnit (v4.13.2).
 To specifically assess performance on logic-heavy code, we focus on complex classes rather than entire projects. 
 We identified non-abstract, public classes containing at least one method with Cyclomatic Complexity (CC) $> 10$ \cite{mccabe1976complexity}. 
-Furthermore, we excluded outliers such as classes with extreme complexity ($CC > 40$) caused by massive switch-statement patterns and those with minimal explicit control flow due to deep inheritance.\xtz{why? Does the baseline do the same thing?}
 The statistics of our evaluation dataset are summarized in Table~\ref{tab:dataset}.
 
 
-\input{tables/dataset.tex}
 
 \textbf{Evaluation Metrics.}
 To evaluate the effectiveness of the generated unit tests, we primarily focus on code coverage, which is the standard metric in automated test generation research \cite{randoop, evosuite}. We report two specific metrics:
@@ -34,33 +36,20 @@ To evaluate the effectiveness and design of \ourmethod{}, we address the followi
 \end{itemize}
 
 \textbf{Baselines.}
-To evaluate the performance of \ourmethod{}, we compare it against three state-of-the-art (SOTA) LLM-based unit test generation frameworks. These baselines represent diverse paradigms in the field:
-\xtz{only explain the method of baseline.}
+To evaluate the performance of \ourmethod{}, we compare it against three state-of-the-art LLM-based unit test generation frameworks representing diverse paradigms in the field:
+
 \begin{itemize}
-    \item \textbf{SymPrompt \cite{ryan2024}:} A prominent prompt-engineering approach that integrates symbolic execution concepts with LLMs. It utilizes path-oriented prompts to guide models in generating test inputs. We include SymPrompt to assess the effectiveness of \ourmethod{} against methods relying solely on structured prompting without external constraint solving.
-    \item \textbf{HITS \cite{wang2024c}:} A high-performance framework emphasizing self-healing and iterative refinement. As a strong baseline for generating compilable and high-coverage tests, HITS allows us to evaluate \ourmethod{}'s capability in navigating complex logical branches where iterative feedback is critical.
-    \item \textbf{Panta \cite{gu2025a}:} A SOTA tool that leverages advanced path analysis and context-aware prompting. Panta excels at capturing data dependencies within the Class Under Test (CUT). Comparing against Panta demonstrates the advantages of \ourmethod{}'s synergy between branch selection and logical constraint satisfaction.
+    \item \textbf{SymPrompt \cite{ryan2024}:} A prompt-engineering approach that encodes symbolic execution concepts into structured prompts. It extracts branch conditions from Control Flow Graphs CFGs) and constructs path-oriented prompts to guide the LLM in generating inputs that satisfy specific execution paths.
+    \item \textbf{HITS \cite{wang2024c}:} A hierarchical prompting framework that decomposes complex methods into smaller code segments before test generation. It adopts a self-healing strategy that iteratively repairs failing tests to improve compilability and coverage.
+    \item \textbf{Panta \cite{gu2025a}:} A hybrid framework that combines static CFG analysis with dynamic coverage feedback to identify uncovered paths. It constructs context-aware prompts that expose intra-class data dependencies to guide the LLM toward uncovered branches.
 \end{itemize}
 
-Due to the absence of several critical components in the official HITS repository, we faithfully re-implemented its workflow by strictly following the prompt templates defined in the original paper and adhering to the procedural logic of the available open-source fragments. 
+Due to missing components in the official HITS repository, we re-implemented its workflow by strictly following the prompt templates described in the paper and the procedural logic of available open-source fragments. For fair comparison, all methods use the same backbone model as \ourmethod{} in each experiment. In RQ1 and RQ2, we adopt Qwen3-Coder-30B (QC3-30B), deployed locally on an NVIDIA H800 GPU (80\,GB) for cost-efficient evaluation, while RQ3 further includes Qwen3.5-397B-A17B, GPT-5.4-Mini, and DeepSeek-V3.1 to assess generalizability. For each MUT, all approaches are restricted to the declaring class source code and import statements, without access to project-level dependencies or configurations, ensuring that performance differences stem from the frameworks rather than external information. To improve reproducibility, all models are configured with temperature $0.2$ and top-$p$ $1.0$. The key hyperparameters of \ourmethod{} are set as follows: $\textit{maxIter}=20$, $\Lambda=3$, $\beta=0.6$, and target coverage $\tau=100.00\%$, with all experiments starting from an empty test suite.
 
-For a fair comparison, all baselines were configured using the same backbone model as \ourmethod{} in each experiment. Specifically, both RQ1 and RQ2 adopt Qwen3-Coder-30B (hereafter QC3-30B) as the unified backbone model, enabling a controlled and cost-efficient comparison across all experimental conditions. 
-Furthermore, all methods were provided with identical CUT information and dependency contexts to ensure that performance differences are attributable to the frameworks themselves rather than external information.
-
-\textbf{Contextual Information.}
-\xtz{why?}
-\deleted{To evaluate the inherent logic reasoning and code understanding capabilities of the models, we adopt a restricted context strategy for all test generation tasks. Specifically, for each method under test (MUT), the prompt only includes the source code of its declaring class and the names of the associated import packages. No additional project-level information, such as dependency class implementations or global configuration files, is provided. This setup ensures that the performance of \ourmethod{} and the baselines is assessed under a consistent and challenging information-constrained environment, reflecting a realistic scenario where cross-file dependencies may be complex or partially inaccessible.}
-
-\textbf{Configurations.} 
-Our experiments employ two backbone LLMs depending on the research question. 
-For RQ1 (effectiveness) and RQ2 (ablation study), we adopt Qwen3-Coder-30B (QC3-30B), deployed locally on a server equipped with an NVIDIA H800 GPU ($80$\,GB); this lighter model is chosen to enable a controlled, cost-efficient comparison. 
-To assess model generalizability in RQ3, we evaluate four representative LLMs: QC3-30B, Qwen3.5-397B-A17B (QW3.5-397B), GPT-5.4-Mini, and DeepSeek-V3.1 (DS-V3.1), ranging from medium-scale local deployment to large-scale models accessed via their respective official APIs. 
-To ensure reproducibility and minimize stochastic variance, all models are configured with a temperature of $0.2$ and top-$p$ of $1.0$.
-\added{The key hyperparameters of \ourmethod{} are configured as follows: the maximum number of iterations $\textit{maxIter}$ is set to \textbf{[\,]}, the no-improvement tolerance $\Lambda$ is set to \textbf{[\,]}, the backward slicing trigger threshold $\beta$ is set to \textbf{[\,]}, and the target coverage $\tau$ is set to \textbf{[\,]\%}. All experiments start from an empty initial test suite.}
+\input{tables/rq1_main.tex}
 
 \subsection{RQ1: Effectiveness of Our Approach}
 
-\input{tables/rq1_main.tex}
 
 To answer RQ1, we compare \ourmethod{} against three state-of-the-art baselines on the selected dataset. Results are summarized in Table~\ref{tab:coverage}.
 
@@ -75,19 +64,11 @@ The margin widens substantially against SymPrompt (\textbf{+23.3\%}), underscori
 
 \subsubsection{Performance on High-Complexity Projects}
 The advantages of \ourmethod{} are most pronounced on projects with high cyclomatic complexity and deeper inter-method dependencies. 
-\deleted{For example:}
-\begin{itemize}
-    \item \deleted{Gson (CC$_{avg}$ = 23.25, highest in the benchmark): BC of 41.24\%, while SymPrompt reaches only 3.59\%, highlighting the difficulty of context-unaware methods in handling complex branching logic.}
-    \item \deleted{JCore (CC$_{avg}$ = 16.33): BC improves from 18.51\% (HITS) to 35.54\% (\ourmethod{}), a gain of 17\%, demonstrating that backward slicing effectively isolates branch-relevant statements.}
-    \item \deleted{Jsoup (CC$_{avg}$ = 14.13): BC rises from 17.36\% (HITS) to 52.55\% (\ourmethod{}), a 36.4\% improvement, underscoring the impact of constraint hints in constructing necessary object states to reach target branches.}
-\end{itemize}
-\added{
+
 For instance, on Gson (CC$_{avg}$ = 23.25, the highest in the benchmark), \ourmethod{} achieves a BC of 41.24\% while SymPrompt reaches only 3.59\%; on JCore (CC$_{avg}$ = 16.33), BC rises from 18.51\% (HITS) to 35.54\%; and on Jsoup (CC$_{avg}$ = 14.13), BC improves from 17.36\% (HITS) to 52.55\%.
 These gains collectively demonstrate that reducing irrelevant context via backward slicing and surfacing implicit preconditions via constraint hints are both essential for navigating the dense branching logic and cross-method dependencies that characterize high-complexity projects.
-}
 
 These results indicate that \ourmethod{} excels particularly in logic-heavy methods where complex object interactions and conditional dependencies are prevalent.
-
 
 \begin{tcolorbox}[colback=gray!5, colframe=gray!100, title=Answer to RQ1]
 \ourmethod{} outperforms all three baselines on average, achieving a BC of 44.41\%, representing improvements of 10.2\%--23.3\% over baselines. 
@@ -95,10 +76,11 @@ Its advantage is most pronounced in projects with high cyclomatic complexity and
 \end{tcolorbox}
 
 
+
 \subsection{RQ2: Ablation Study}
 
 \input{tables/rq2_ablation.tex}
-\subsection{Contribution of Different Components}
+
 To evaluate the individual contributions of Backward Slicing (BS) and Constraint Hints (CS), we conducted an ablation study with three degraded variants: \textbf{w/o BS} (removing backward slicing), \textbf{w/o CS} (removing constraint hints), and \textbf{w/o CS+BS} (removing both). All variants share the same iterative generation loop and are evaluated under an identical backbone (QC3-30B). Results are summarized in Table~\ref{tab:ablation}.
 
 \subsubsection{Overall Ablation Results}
@@ -113,7 +95,7 @@ To evaluate the individual contributions of Backward Slicing (BS) and Constraint
 
 \subsubsection{Iterative Coverage Improvement}
 
-\begin{figure}[htbp]
+\begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{figures/branch_coverage_comparison.pdf}
     \caption{Branch coverage improvement over iterations for \ourmethod{} and its three ablated variants.}
@@ -127,21 +109,18 @@ Both BS and CS make independent and complementary contributions to \ourmethod{}.
 \end{tcolorbox}
 
 \subsection{RQ3: Performance Comparison of Different LLMs}
-
 \input{tables/rq3_different_llms.tex}
 
-In this research question, we evaluate how \ourmethod{} generalizes across different large language models (LLMs), and investigate the impact of model capacity on test generation effectiveness. Specifically, we conduct experiments on four representative LLMs, ranging from medium-scale (QC3-30B) to large-scale models (QW3.5-397B and DS-V3.1).
+Table~\ref{tab:model-generalization} reports LC and BC achieved by \ourmethod{} under four LLMs across all 14 projects. We discuss the results from three perspectives.
 
-Table~\ref{tab:model-generalization} reports the line coverage (LC) and branch coverage (BC) achieved by each model across 14 real-world Java projects. Overall, \ourmethod{} consistently achieves strong performance across all models, demonstrating its robustness to different underlying LLM architectures.
+\noindent\textbf{Overall generalizability.}\ourmethod{} delivers consistently strong performance regardless of the underlying LLM, confirming that its coverage gains derive from the structural guidance of BS and CS rather than from any model-specific behavior.The three large-scale models—GPT-5.4-Mini, QW3.5-397B, and DS-V3.1—achieve average BC of 79.76\%, 83.47\%, and 80.36\%, respectively, whereas QC3-30B reaches 44.41\%.Despite this gap, QC3-30B already outperforms all baselines in RQ1 (best competitor: HITS at 34.24\%), demonstrating that \ourmethod{}'s framework-level contributions are effective even under limited model capacity.
 
-However, model capacity has a significant impact on coverage effectiveness. Larger models, such as QW3.5-397B and DS-V3.1, achieve substantially higher average branch coverage (83.47\% and 80.36\%, respectively), compared to 44.41\% for QC3-30B. This gap highlights the importance of advanced reasoning capabilities in exploring complex execution paths and generating semantically valid inputs.
+\noindent\textbf{Interaction between model capacity and cyclomatic complexity.}The performance gap between QC3-30B and large models is not uniform across projects but is strongly modulated by cyclomatic complexity and inter-method dependency depth.On \texttt{Collections} (CC$_{avg}$ = 18.60), QC3-30B achieves only 34.63\% BC, while all three large models reach $\sim$94\%, a gap of nearly 60 pp.Similarly, on \texttt{Gson} (CC$_{avg}$ = 23.25, the highest in the benchmark), the gap exceeds 40 pp.In contrast, on lower-complexity projects such as \texttt{Cli} and \texttt{Time}, the gap narrows to under 20 pp, suggesting that \ourmethod{}'s structural guidance can partially compensate for limited model capacity when branch conditions are relatively straightforward.This pattern indicates that the primary bottleneck for QC3-30B is not the framework structure but the model's inability to perform the multi-step object initialization required by complex preconditions—precisely the reasoning that Constraint-Hints is designed to elicit.
 
-A closer examination reveals that the performance gap becomes more pronounced in projects with higher cyclomatic complexity, such as \texttt{Collections}, \texttt{Compress}, and \texttt{JDatabind}. In these projects, test generation requires constructing intricate object states and satisfying implicit preconditions across multiple method calls. Smaller models often fail to capture such dependencies, resulting in significantly lower coverage.
+\noindent\textbf{Synergy between Constraint-Hints and model reasoning capacity.}Cross-referencing with the ablation results in RQ2, CS contributes most on projects with deep cross-method dependencies (e.g., \texttt{JDatabind}: $-$8.52 pp when removed).These are also the projects where the capacity gap between QC3-30B and large models is most pronounced.This co-occurrence suggests a synergistic relationship: Constraint-Hints provides the LLM with explicit preconditions, but fully exploiting these hints requires multi-step reasoning capabilities that only sufficiently large models possess.In other words, CS lowers the reasoning barrier, while larger models are better positioned to clear it.
 
-In contrast, larger models are better at reasoning about multi-step object initialization and cross-method interactions, enabling them to trigger hard-to-reach branches. This suggests that while \ourmethod{} effectively structures the test generation process, its full potential is realized when paired with high-capacity LLMs capable of deeper semantic reasoning.
+\noindent\textbf{Residual challenges across all models.}Despite the strong overall performance of large models, certain projects remain challenging regardless of model capacity.On \texttt{JCore} and \texttt{JXml}, the best-achieved BC across all large models stays below 77\% and 75\%, respectively.Manual inspection indicates that these projects contain deeply nested control flows where backward slicing occasionally produces overly coarse slices, inadvertently removing type information required for mock construction—a limitation identified in RQ2 that persists under stronger models.Furthermore, project-level variation among large models exists: on \texttt{JXml}, GPT-5.4-Mini (74.20\%) outperforms QW3.5-397B (63.65\%), while on \texttt{JCore}, DS-V3.1 (57.76\%) falls behind QW3.5-397B (76.77\%).Such sensitivity likely reflects model-specific differences in handling ambiguous or incomplete type hierarchies, which represents an avenue for future investigation.
 
-
-
-\begin{tcolorbox}[colback=gray!5,colframe=gray!100,title=Answer to RQ3]
-\ourmethod{} generalizes well across different LLMs, consistently achieving strong coverage. However, model capacity plays a critical role in determining effectiveness. Larger models outperform smaller ones by a significant margin (up to \textbf{39.1\%} in branch coverage), particularly on complex projects requiring multi-step reasoning and implicit state construction.
+\begin{tcolorbox}[colback=gray!5,colframe=gray!100, title=Answer to RQ3]
+\ourmethod{} generalizes robustly across LLMs of varying scales and architectures.Model capacity plays a critical role: large-scale models outperform QC3-30B by up to 59.5 pp in BC, with the gap most pronounced on high-complexity projects requiring multi-step reasoning—precisely where Constraint-Hints provides the most structural guidance.Nonetheless, even QC3-30B surpasses all baselines in RQ1, confirming that \ourmethod{}'s framework-level design contributes independently of model capacity.Among large models, performance is broadly comparable, though residual challenges on projects with coarse-grained slicing sensitivity point to opportunities for further refinement.
 \end{tcolorbox}

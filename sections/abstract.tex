@@ -2,13 +2,7 @@
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-Automated unit test generation is essential for improving software reliability, yet existing techniques struggle to handle complex program semantics, especially when path reachability depends on implicit object states and inter-procedural interactions. 
-Recent large language model (LLM)-based approaches can directly generate executable tests, but often fail to satisfy hidden preconditions that are not locally visible, resulting in low coverage. 
-In this paper, we propose \ourmethod{}, an LLM-driven framework that improves test generation by making implicit constraints explicit and reducing irrelevant context. 
-Specifically, we introduce \textit{Constraints-Hints} to expose path conditions as structured input requirements, and a coverage-driven backward slicing technique to retain only statements relevant to target branches. 
-These components are integrated into an iterative pipeline that combines generation, execution, and repair.
-Experimental results on real-world Java projects show that \ourmethod{} consistently achieves higher branch coverage, particularly for paths requiring precise object state construction.
-\xtz{need refine}
+Automated unit test generation is essential for software reliability, yet existing approaches struggle with complex program semantics, especially when branch reachability depends on implicit object states and inter-procedural interactions. While large language model (LLM)-based methods can generate executable tests, they often fail to satisfy hidden preconditions and are distracted by irrelevant context, resulting in limited coverage. We propose \ourmethod{}, a constraint-guided context-reduction framework that addresses this issue as a cognitive misalignment between provided inputs and coverage requirements. Our approach improves test generation along two dimensions: (\emph{i}) \emph{Constraint-Hints} that expose implicit path conditions, and (\emph{ii}) a coverage-driven backward slicing technique that retains only branch-relevant context. Integrated into an iterative generate–execute–repair loop, \ourmethod{} achieves 44.41\% average branch coverage on 14 Defects4J projects (2,971 methods), outperforming prior approaches by 10.2\%–23.3\%. Results highlight the importance of modeling hidden constraints and focusing attention on coverage-critical context.
 \end{abstract}
 
 %%

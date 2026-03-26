@@ -1,87 +1,63 @@
 \section{Motivation}
 
-Recent LLM-based unit test generation approaches, such as SymPrompt~\cite{ryan2024}, HITS~\cite{wang2024c}, Panta~\cite{gu2025a}, and JUnitGenie~\cite{liao2025}, have achieved remarkable progress in automating test generation for complex methods, significantly reducing the manual effort required from developers. However, two fundamental challenges remain when the reachability of a target branch depends on implicit object states or is obscured by irrelevant context.
+Recent LLM-based unit test generation approaches, such as SymPrompt~\cite{ryan2024}, HITS~\cite{wang2024c}, Panta~\cite{gu2025a}, and JUnitGenie~\cite{liao2025}, have significantly reduced the manual effort required for testing complex methods. However, they still struggle when branch reachability depends on implicit object states or is obscured by irrelevant context. We identify two key challenges.
 
-\textbf{Challenge 1: Invisible Cross-Method Preconditions.} Existing approaches typically supply the entire method body as the LLM's input context. In real-world projects, however, the conditions necessary to reach a target branch are often not visible within the method body itself---they are implicit in a sequence of initialization and state-setting operations that must occur \textit{before} the method is invoked~\cite{baldoni2018surveysymbolicexecutiontechniques}. Consider the \texttt{addValue()} method from Apache Commons Math~\cite{commonsMath}, shown in Listing~\ref{lst:motivation-cs}.
+\textbf{Challenge 1: Invisible Cross-Method Preconditions.}
+Existing approaches typically provide the full method body as input, assuming that branch conditions can be inferred locally. In practice, however, the conditions required to reach a target branch are often established \textit{outside} the method via prior state initialization~\cite{baldoni2018surveysymbolicexecutiontechniques}. 
 
-\begin{lstlisting}[language=Java, caption={Target branch with invisible cross-method precondition}, label={lst:motivation-cs}]
+Consider the \texttt{addValue()} method from Apache Commons Math (Listing~\ref{lst:motivation-cs}). The condition \texttt{meanImpl != mean} can only be satisfied if \texttt{setMeanImpl()} is invoked beforehand, a dependency absent from the method body. As a result, LLM-generated tests typically execute successfully but fail to cover the target branch:
+
+\begin{lstlisting}[language=Java, caption={Target branch with cross-method precondition}, label={lst:motivation-cs}]
 public void addValue(double value) {
-    sumImpl.increment(value);
     ...
     if (meanImpl != mean) {   // target branch
         meanImpl.increment(value);
     }
-    n++;
 }
 \end{lstlisting}
 
-The condition \texttt{meanImpl != mean} can only be satisfied if \texttt{setMeanImpl()} was called \textit{prior} to \texttt{addValue()}---a dependency entirely absent from the method body. Consequently, the LLM generates a test that compiles and executes without error, yet never triggers the target branch:
-
-\begin{lstlisting}[language=Java, caption={Typical LLM-generated test (target branch unreachable)}]
+\begin{lstlisting}[language=Java, caption={LLM-generated test (branch not covered)}]
 SummaryStatistics stats = new SummaryStatistics();
-stats.addValue(1.0);    // meanImpl == mean always holds
-\end{lstlisting}
-
-The correct test must establish the precondition explicitly before invoking \texttt{addValue()}:
-
-\begin{lstlisting}[language=Java, caption={Correct test (target branch reachable)}]
-SummaryStatistics stats = new SummaryStatistics();
-stats.setMeanImpl(new CustomMeanImpl()); // makes meanImpl != mean
 stats.addValue(1.0);
 \end{lstlisting}
 
-\textbf{Challenge 2: Attention Dilution from Irrelevant Context.} Even when the target branch is locally visible, the full method body often contains numerous statements unrelated to it, diluting the LLM's attention and impeding precise reasoning. Consider the \texttt{collect()} method from JacksonDatabind, which spans over 90 lines handling member method collection, super-type augmentation, mix-in resolution, and final map construction. The target block is guarded by a three-way conjunctive condition:
+The correct test must explicitly establish the hidden precondition:
 
-\begin{lstlisting}[language=Java, caption={Target branch guarded by multi-variable condition}, label={lst:motivation-bs}]
-if (checkJavaLangObject && (_intr != null) && !methods.isEmpty()) {
-    for (Map.Entry<MemberKey,MethodBuilder> entry : methods.entrySet()) {
-        MemberKey k = entry.getKey();
-        if (!"hashCode".equals(k.getName()) || (0 != k.argCount())) {
-            continue;
-        }
-        try {
-            Method m = Object.class.getDeclaredMethod(k.getName());
-            if (m != null) {
-                MethodBuilder b = entry.getValue();
-                b.annotations = collectDefaultAnnotations(b.annotations,
-                        m.getDeclaredAnnotations());
-                b.method = m;
-            }
-        } catch (Exception e) { }
-    }
-}
+\begin{lstlisting}[language=Java, caption={Correct test (branch covered)}]
+stats.setMeanImpl(new CustomMeanImpl());
+stats.addValue(1.0);
 \end{lstlisting}
 
-To enter this block, three conditions must hold simultaneously, each originating from a different part of the 90-line body:\newline
-\texttt{checkJavaLangObject} is flipped to \texttt{true} only through a specific mix-in resolver path; \texttt{\_intr} is a constructor-injected field that must be non-null; and \texttt{methods} must be populated by a prior method collection call. Overwhelmed by the surrounding loop and map construction logic, the LLM fails to trace these chains and generates a test that never satisfies the guard:
+\textbf{Challenge 2: Attention Dilution from Irrelevant Context.}
+Even when branch conditions are locally visible, they are often embedded in large methods containing substantial unrelated logic. This dilutes the LLM’s attention and hinders precise reasoning.
 
-\begin{lstlisting}[language=Java, caption={LLM-generated test without slicing (target branch missed)}]
-// checkJavaLangObject remains false; target block never entered
-collector.collect(typeFactory, tc, mainType, superTypes, null);
+Consider the \texttt{collect()} method from JacksonDatabind, where the target block is guarded by a conjunctive condition:
+
+\begin{lstlisting}[language=Java, caption={Target branch with multi-variable condition}, label={lst:motivation-bs}]
+if (flag && intr != null && !methods.isEmpty()) { ... }
 \end{lstlisting}
 
-\ourmethod{} performs backward slicing from the three sub-conditions of the guard, discarding all super-type traversal, map construction, and other unrelated logic, and retaining only the three dependency chains:
+Each sub-condition depends on a different part of the method (e.g., constructor initialization, mix-in resolution, and method collection). When provided with the full method body, the LLM must reason over numerous irrelevant statements, making it difficult to identify and satisfy these dependencies:
 
-\begin{lstlisting}[language=Java, caption={Backward slice focused on target branch}]
-private final AnnotationIntrospector _intr;      // must be non-null
-private final MixInResolver _mixInResolver;
-boolean checkJavaLangObject = false;
-if (_mixInResolver != null) {
-    Class<?> mixin = _mixInResolver.findMixInClassFor(Object.class);
-    if (mixin != null) { checkJavaLangObject = true; }
-}
-_addMemberMethods(tc, mainType.getRawClass(), methods, primaryMixIn);
-if (checkJavaLangObject && (_intr != null) && !methods.isEmpty()) { ... }
+\begin{lstlisting}[language=Java, caption={LLM-generated test (branch missed)}]
+collector.collect(...);  // guard conditions not satisfied
 \end{lstlisting}
 
-Supplied with this focused context, the LLM correctly constructs a \texttt{MixInResolver} that returns a non-null mixin for \texttt{Object.class}, injects a non-null \texttt{\_intr}, and ensures \texttt{methods} is populated, thereby covering the target block:
+By contrast, backward slicing isolates only the statements relevant to the guard conditions:
 
-\begin{lstlisting}[language=Java, caption={LLM-generated test with slicing (target branch covered)}]
-MixInResolver resolver = cls -> cls == Object.class ? MyMixin.class : null;
-AnnotationCollector collector = new AnnotationCollector(intr, resolver);
-collector.collect(typeFactory, tc, mainType, superTypes, primaryMixIn);
+\begin{lstlisting}[language=Java, caption={Slice focused on branch dependencies}]
+intr != null;
+flag = resolveMixIn(...);
+methods = collectMethods(...);
+if (flag && intr != null && !methods.isEmpty()) { ... }
 \end{lstlisting}
 
-By retaining only the three dependency chains, the slice reduces the effective cyclomatic complexity from~11 to~4, allowing the LLM to concentrate its reasoning on the precise setup sequence required to reach the target block.
+This focused context enables the LLM to correctly construct inputs that satisfy all conditions:
 
-\textbf{Our Approach.} To address these two challenges, \ourmethod{} proposes two complementary mechanisms. \textit{Constraint-Hints} decouples constraint inference from test synthesis: it extracts path conditions and translates them into explicit, actionable guidance, directly surfacing cross-method preconditions such as the required \texttt{setMeanImpl()} call. \textit{Coverage-driven Backward Slicing} eliminates irrelevant context by isolating the minimal set of statements that influence an uncovered branch, reducing cognitive load and concentrating the LLM's reasoning on branch-relevant dependencies. Together, these two mechanisms systematically reduce the difficulty of reasoning about complex branch conditions, enabling LLMs to generate tests that reach previously uncovered paths.
+\begin{lstlisting}[language=Java, caption={LLM-generated test with slicing}]
+collector = new Collector(intr, resolver);
+collector.collect(...);  // branch covered
+\end{lstlisting}
+
+\textbf{Our Approach.}
+We address these challenges with \ourmethod{}, a constraint-guided context-reduction framework. \emph{Constraint-Hints} explicitly extract and encode path conditions to expose hidden cross-method preconditions, while \emph{coverage-driven backward slicing} removes irrelevant context and retains only branch-relevant dependencies. Together, these mechanisms reduce the reasoning burden on LLMs and enable effective coverage of complex branches.
