@@ -1,48 +1,25 @@
 \section{DISCUSSION}
 
-\paragraph{Cost and Token Efficiency.} 
-\ourmethod{} introduces additional prompting overhead due to backward slicing and constraint hint construction. 
-Across all 3,576 requests, the total token consumption amounts to \textbf{221.8 million input tokens} and \textbf{6.1 million output tokens}. 
-However, a substantial portion of the input tokens (\textbf{181.5 million}) are served from cache due to repeated prompt structures, leaving only \textbf{40.3 million tokens} billed.
-
-Using GPT-5.4-mini pricing, the total cost of our experiments is approximately \textbf{\$58}. 
-For a typical project with around 130 focal methods, this corresponds to a cost of approximately \textbf{\$2 per project}, demonstrating that \ourmethod{} is cost-effective for practical deployment.
-
-The backward slicing step further improves efficiency by reducing prompt length by approximately \textbf{25\%}, ensuring that tokens are primarily allocated to semantically relevant context. 
-Together, slicing and caching significantly improve the coverage-per-token ratio compared to naive full-context prompting.
+\paragraph{Cost and Token Efficiency.}
+\ourmethod{} introduces additional prompting overhead from backward slicing and constraint hint construction. Across all 3,576 requests, total token consumption reaches 221.8M input and 6.1M output tokens; however, 181.5M input tokens are served from cache due to repeated prompt structures, leaving only 40.3M tokens billed. At GPT-5.4-mini pricing, the full experimental cost is approximately \$58 (\$2 per project), confirming practical cost-effectiveness. Backward slicing further reduces prompt length by $\approx$25\%, concentrating tokens on branch-relevant context and improving the coverage-per-token ratio over naive full-context prompting.
 
 \paragraph{Runtime.}
-Using QC3-30B as the backbone, Table~\ref{tab:runtime} reports the wall-clock time and number of generated tests across all 2{,}971 MUTs. SymPrompt finishes in 17 hours, generating 4{,}823 tests ($\approx$1.6 per MUT) via a single-pass generation strategy. HITS and Panta require 22 and 26 hours, producing 7{,}418 and 8{,}134 tests respectively, due to their iterative repair and path-analysis loops. CogPath completes in 25 hours with 8{,}876 tests ($\approx$3.0 per MUT), slightly under Panta, as backward slicing is triggered selectively only upon coverage stagnation rather than at every iteration.
+Using QC3-30B as the backbone, SymPrompt finishes in 17 hours generating 4,823 tests ($\approx$1.6 per MUT) via a single-pass strategy. HITS and Panta require 22 and 26 hours, producing 7,418 and 8,134 tests respectively. \ourmethod{} completes in 25 hours with 8,876 tests ($\approx$3.0 per MUT), as backward slicing is triggered selectively only upon coverage stagnation rather than at every iteration.
 
-\paragraph{Difference from HITS‘s Slicing.}
-Program slicing has long been used to identify the subset of program statements relevant to a particular computation~\cite{weiser1984}. Recent work such as NS-Slicer~\cite{ryan2024} demonstrates that pre-trained language models can approximate static slices by learning variable–statement dependencies. In the context of LLM-based test generation, HITS~\cite{wang2024c} applies slicing to guide test synthesis; however, its decomposition is driven by structural heuristics rather than coverage feedback, meaning the resulting segments are not targeted toward any specific uncovered branch. Furthermore, for methods with high cyclomatic complexity, the number of generated segments can grow substantially, incurring significant token overhead regardless of whether the corresponding code has already been covered. In contrast, \ourmethod{} performs \emph{path-aware} backward slicing triggered only when coverage improvement stalls, ensuring that each slice is both necessary and focused on the precise dependencies of the uncovered branch.
+\paragraph{Ablation Anomalies.}
+While both BS and CS yield consistent average gains, Table~\ref{tab:ablation} 
+reveals two classes of per-project anomalies worth discussion.
 
-\paragraph{Cases of Limited Improvement.}
-Although \ourmethod{} achieves the best overall performance, it does not 
-consistently outperform all baselines across every project. For example, 
-on \textit{Collections}, HITS achieves higher branch coverage (70.00\%) 
-than \ourmethod{} (34.63\%), with similar trends observed on \textit{Compress}.
+\emph{Cases where w/o BS outperforms \ourmethod{}.}
+On JXml ($-$9.76\,pp) and JDatabind ($-$8.70\,pp), removing backward slicing improves coverage. Manual inspection indicates that in these projects, slices occasionally remove type declarations needed for mock construction, causing the LLM to fall back on simpler test patterns that happen to cover more branches. This is consistent with the coarser control flows noted for JXml in RQ3. On Collections and Compress, where branches are governed primarily by value-range conditions rather than cross-method state, aggressive slicing removes auxiliary boundary context that—while not strictly necessary for reachability—provides useful cues for the LLM.
 
-A closer inspection reveals that these projects contain a large proportion 
-of branches governed by simple value-range conditions, rather than complex 
-inter-procedural dependencies. In such cases, the benefits of backward slicing 
-become less pronounced. In particular, aggressive slicing may remove auxiliary 
-context that, while not strictly necessary for reachability, can still provide 
-useful cues for the LLM.
+\emph{Cases where w/o CS outperforms \ourmethod{}.}
+On Lang ($-$10.90\,pp) and JxPath ($-$6.12\,pp), removing constraint hints improves coverage. We attribute this to over-specification: when branch conditions are relatively straightforward, injecting explicit constraint hints introduces unnecessary prior assumptions that bias the LLM away from simpler, effective test patterns it would otherwise discover autonomously.
 
-This observation highlights a key limitation of our current design: the lack 
-of adaptive control over slice granularity. A promising direction for future 
-work is to dynamically adjust slicing strategies based on branch complexity, 
-balancing conciseness and contextual completeness.
-
+Both anomaly classes point to the same root cause: the current design applies BS and CS uniformly, without adapting to branch complexity. Designing \emph{adaptive} strategies—activating each component selectively based on dependency depth and condition complexity—remains the primary direction for future work.
 
 \paragraph{Design Implications.}
-Our findings suggest that structural guidance (e.g., slicing and constraint hints) and model reasoning capabilities are complementary. 
-While \ourmethod{} effectively reduces irrelevant context and exposes execution constraints, its full potential is realized when paired with LLMs capable of multi-step reasoning and semantic inference. 
-This indicates that future improvements in LLM reasoning ability can further amplify the effectiveness of structured test generation frameworks.
+Our results suggest a synergistic relationship between structural guidance and model reasoning capacity: CS lowers the reasoning barrier for cross-method preconditions, while larger models are better positioned to exploit that guidance. This implies that future improvements in LLM reasoning ability will further amplify the value of structured test generation frameworks such as \ourmethod{}.
 
-\paragraph{Limitations.} 
-Despite its effectiveness, \ourmethod{} has several limitations. 
-\emph{Slice granularity.} For projects such as \textit{Collections} and \textit{Compress}, where branch conditions depend primarily on value ranges rather than cross-method state, backward slicing may remove useful auxiliary information (e.g., boundary constraints), potentially reducing test quality. Conversely, overly coarse slices may introduce irrelevant context. Designing adaptive slicing strategies remains an important direction for future work. 
-
-\emph{Scalability.} Backward slicing and constraint extraction introduce preprocessing overhead proportional to the inter-procedural dependency graph. In our evaluation, the average preprocessing time per focal method is \textbf{1.2\,s}, which is acceptable for medium-scale projects. However, further optimizations such as incremental or on-demand slicing may be required for large-scale industrial systems.
+\paragraph{Scalability.}
+Backward slicing and constraint extraction introduce preprocessing overhead proportional to the inter-procedural dependency graph. The average preprocessing time per focal method is 1.2\,s in our evaluation, which is acceptable for medium-scale projects. Incremental or on-demand slicing may be required for large-scale industrial systems.
