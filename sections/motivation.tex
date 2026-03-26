@@ -13,10 +13,10 @@ Consider the \texttt{addValue()} method from Apache Commons Math (Listing~\ref{l
 
 \begin{lstlisting}[language=Java, label={lst:motivation-cs}, caption={Target branch with hidden cross-method dependency}]
 public void addValue(double value) {
-...
-if (meanImpl != mean) {   // target branch
-meanImpl.increment(value);
-}
+ ...
+ if (meanImpl != mean) {   // target branch
+  meanImpl.increment(value);
+ }
 }
 \end{lstlisting}
 
@@ -39,37 +39,45 @@ This example illustrates a general failure mode: when constraints are encoded as
 \textbf{Challenge 2: Misaligned Context (What to Attend To).}
 Even when all necessary conditions are locally available, they are often embedded within large methods containing substantial irrelevant logic. Providing the full method body introduces noise that is not aligned with the coverage objective.
 
-Consider the \texttt{collect()} method from JacksonDatabind, where the target branch is guarded by a conjunction of multiple conditions:
+Consider the \texttt{collect()} method from JacksonDatabind, where the target branch is guarded by a conjunction of three conditions:
 
 \begin{lstlisting}[language=Java, caption={Target branch with multi-variable condition}]
-if (flag && intr != null && !methods.isEmpty()) { ... }
+if (checkJavaLangObject && (_intr != null) && !methods.isEmpty()) { ... }
 \end{lstlisting}
 
-Each condition depends on a different part of the method. When exposed to the full context, the LLM must reason over many unrelated statements, leading to tests that fail to satisfy the guard:
+Each condition originates from a different part of the method body. The full method interleaves the initialization of \texttt{methods}, the resolution of \texttt{checkJavaLangObject}, and several loops and nested branches entirely unrelated to the target guard. When exposed to the complete implementation, the LLM fails to identify that \texttt{\_mixInResolver} is the critical dependency, and generates a test that leaves \texttt{checkJavaLangObject} permanently false:
 
 \begin{lstlisting}[language=Java, caption={LLM-generated test (branch not covered)}]
-collector.collect(...);  // guard conditions not satisfied
+Collector collector = new Collector(intr, null); // _mixInResolver is null
+collector.collect(typeFactory, tc, mainType, superTypes, primaryMixIn);
+// checkJavaLangObject remains false; target branch never reached
 \end{lstlisting}
 
-By contrast, isolating only the relevant dependencies yields a much clearer representation:
+By contrast, applying coverage-driven backward slicing retains only the statements that bear data or control dependence on the target branch, and folds the rest into abstract pseudocode:
 
 \begin{lstlisting}[language=Java, caption={Branch-relevant slice}]
-intr != null;
-flag = resolveMixIn(...);
-methods = collectMethods(...);
-if (flag && intr != null && !methods.isEmpty()) { ... }
+Map<MemberKey,MethodBuilder> methods = new LinkedHashMap<>();
+_addMemberMethods(tc, mainType.getRawClass(), methods, primaryMixIn);
+for (...) { ... }  // superTypes iteration -- no dependence on target branch
+boolean checkJavaLangObject = false;
+if (_mixInResolver != null) {
+    Class<?> mixin = _mixInResolver.findMixInClassFor(Object.class);
+    if (mixin != null) {
+        _addMethodMixIns(...);
+        checkJavaLangObject = true;  // sole setter of guard variable
+    }
+}
+if (checkJavaLangObject && (_intr != null) && !methods.isEmpty()) { ... }
 \end{lstlisting}
 
-This focused context enables the LLM to construct valid inputs:
+This focused representation makes the three guard dependencies structurally visible: \texttt{checkJavaLangObject} requires a non-null mixin for \texttt{Object.class}, \texttt{\_intr} is a constructor-injected field, and \texttt{methods} is populated by \texttt{\_addMemberMethods}. The aligned context enables the LLM to correctly configure the resolver and construct a valid initialization sequence:
 
 \begin{lstlisting}[language=Java, caption={LLM-generated test with aligned context}]
-collector = new Collector(intr, resolver);
-collector.collect(...);  // branch covered
+Collector collector = new Collector(intr, resolver);
+// resolver returns non-null mixin -> checkJavaLangObject = true
+// _addMemberMethods populates methods -> !methods.isEmpty()
+collector.collect(typeFactory, tc, mainType, superTypes, primaryMixIn);
+// target branch covered
 \end{lstlisting}
 
-This reflects a second failure mode: even when constraints are present, they are not structurally aligned with the model’s attention, making precise reasoning difficult.
-
-\textbf{Our Insight.}
-These two challenges are complementary manifestations of the same underlying issue: the model is neither given the right constraints to satisfy nor the right context to attend to.
-
-We address this problem with \ourmethod{}, a constraint-guided context-reduction framework. \emph{Constraint-Hints} explicitly surface hidden path conditions, enabling the model to reason about what must be satisfied, while \emph{coverage-driven backward slicing} removes irrelevant context and retains only branch-relevant dependencies. Together, these mechanisms realign the input representation with the coverage objective, transforming test generation into a more structured and tractable reasoning process.
+This reflects a second failure mode: even when constraints are present in the source, they are not structurally aligned with the model's attention, making precise reasoning difficult.
