@@ -1,13 +1,16 @@
-\section{Methodology}
-
-\subsection{Overview}
-
-\begin{figure*}[t]
+\begin{figure*}[htbp]
 \centering
 \includegraphics[width=\linewidth]{figures/overview.pdf}
 \caption{Overview of the coverage-guided test generation framework.}
 \label{fig:overview}
 \end{figure*}
+
+\section{Methodology}
+
+\subsection{Overview}
+
+
+
 
 \ourmethod{} is a coverage-guided iterative framework for automated unit test generation, illustrated in Figure~\ref{fig:overview}.Given a method under test, \ourmethod{} first performs an initialization step that extracts project-level dependencies, resolves the required JUnit imports, and seeds the suite with a syntactically valid scaffolding test containing a trivial \texttt{assertTrue(true)} assertion, ensuring a compilable starting point for all subsequent iterations.It then constructs the CFG, enumerates feasible paths, and collects dynamic coverage feedback to identify uncovered branches before entering an iterative refinement loop.
 
