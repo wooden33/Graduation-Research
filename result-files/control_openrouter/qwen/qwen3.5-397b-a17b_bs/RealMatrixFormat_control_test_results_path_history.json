@@ -1,0 +1,183 @@
+{
+  "final_line_coverage": 98.11,
+  "final_branch_coverage": 93.18,
+  "final_lines_missed": [
+    359,
+    360,
+    326,
+    342,
+    354
+  ],
+  "final_branches_missed": [
+    326,
+    342,
+    354
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 92.45,
+      "branch_coverage": 79.55,
+      "path_history": {},
+      "lines_missed": [
+        328,
+        354,
+        355,
+        359,
+        360,
+        374,
+        379,
+        380,
+        326,
+        327,
+        342,
+        351,
+        367,
+        373,
+        378
+      ],
+      "branches_missed": [
+        354,
+        326,
+        327,
+        342,
+        351,
+        367,
+        373,
+        378
+      ],
+      "timestamp": 1773712074.091682
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 96.23,
+      "branch_coverage": 88.64,
+      "path_history": {
+        "parse_618_5": 1,
+        "parse_618_6": 1
+      },
+      "lines_missed": [
+        328,
+        359,
+        360,
+        374,
+        326,
+        327,
+        342,
+        354,
+        373
+      ],
+      "branches_missed": [
+        326,
+        327,
+        342,
+        354,
+        373
+      ],
+      "timestamp": 1773712197.270208
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 98.11,
+      "branch_coverage": 93.18,
+      "path_history": {
+        "parse_618_5": 1,
+        "parse_618_6": 1,
+        "parse_618_11": 1,
+        "parse_618_14": 1
+      },
+      "lines_missed": [
+        359,
+        360,
+        326,
+        342,
+        354
+      ],
+      "branches_missed": [
+        326,
+        342,
+        354
+      ],
+      "timestamp": 1773712326.7140267
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 98.11,
+      "branch_coverage": 93.18,
+      "path_history": {
+        "parse_618_5": 1,
+        "parse_618_6": 1,
+        "parse_618_11": 1,
+        "parse_618_14": 2,
+        "parse_618_8": 1
+      },
+      "lines_missed": [
+        359,
+        360,
+        326,
+        342,
+        354
+      ],
+      "branches_missed": [
+        326,
+        342,
+        354
+      ],
+      "timestamp": 1773712450.7834494
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 98.11,
+      "branch_coverage": 93.18,
+      "path_history": {
+        "parse_618_5": 1,
+        "parse_618_6": 1,
+        "parse_618_11": 2,
+        "parse_618_14": 2,
+        "parse_618_8": 1,
+        "parse_618_7": 1
+      },
+      "lines_missed": [
+        359,
+        360,
+        326,
+        342,
+        354
+      ],
+      "branches_missed": [
+        326,
+        342,
+        354
+      ],
+      "timestamp": 1773712520.8817751
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 98.11,
+      "branch_coverage": 93.18,
+      "path_history": {
+        "parse_618_5": 1,
+        "parse_618_6": 1,
+        "parse_618_11": 2,
+        "parse_618_14": 2,
+        "parse_618_8": 1,
+        "parse_618_7": 1,
+        "parse_618_9": 1,
+        "parse_618_12": 1
+      },
+      "lines_missed": [
+        359,
+        360,
+        326,
+        342,
+        354
+      ],
+      "branches_missed": [
+        326,
+        342,
+        354
+      ],
+      "timestamp": 1773712777.1474822
+    }
+  ]
+}

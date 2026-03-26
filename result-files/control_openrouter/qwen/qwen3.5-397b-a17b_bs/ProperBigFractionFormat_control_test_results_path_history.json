@@ -1,0 +1,399 @@
+{
+  "final_line_coverage": 98.51,
+  "final_branch_coverage": 96.3,
+  "final_lines_missed": [
+    183,
+    179
+  ],
+  "final_branches_missed": [
+    179
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 40.3,
+      "branch_coverage": 22.22,
+      "path_history": {},
+      "lines_missed": [
+        137,
+        138,
+        139,
+        142,
+        145,
+        148,
+        149,
+        153,
+        154,
+        158,
+        161,
+        162,
+        166,
+        167,
+        170,
+        172,
+        173,
+        177,
+        178,
+        179,
+        183,
+        186,
+        191,
+        192,
+        193,
+        197,
+        200,
+        201,
+        205,
+        206,
+        209,
+        211,
+        212,
+        215,
+        216,
+        217,
+        219,
+        220,
+        221,
+        224
+      ],
+      "branches_missed": [
+        138,
+        149,
+        162,
+        170,
+        179,
+        201,
+        209,
+        215,
+        216,
+        220
+      ],
+      "timestamp": 1773721329.2684855
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 77.61,
+      "branch_coverage": 62.96,
+      "path_history": {
+        "parse_294_10": 1,
+        "parse_294_7": 1
+      },
+      "lines_missed": [
+        139,
+        153,
+        154,
+        166,
+        167,
+        172,
+        173,
+        183,
+        191,
+        192,
+        193,
+        205,
+        206,
+        217,
+        221,
+        138,
+        149,
+        162,
+        170,
+        179,
+        201,
+        215,
+        216,
+        220
+      ],
+      "branches_missed": [
+        138,
+        149,
+        162,
+        170,
+        179,
+        201,
+        215,
+        216,
+        220
+      ],
+      "timestamp": 1773721384.3305008
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 82.09,
+      "branch_coverage": 77.78,
+      "path_history": {
+        "parse_294_10": 1,
+        "parse_294_7": 1,
+        "parse_294_9": 1,
+        "parse_294_0": 1
+      },
+      "lines_missed": [
+        153,
+        154,
+        166,
+        167,
+        172,
+        173,
+        183,
+        191,
+        192,
+        193,
+        205,
+        206,
+        149,
+        162,
+        170,
+        179,
+        201
+      ],
+      "branches_missed": [
+        149,
+        162,
+        170,
+        179,
+        201
+      ],
+      "timestamp": 1773721440.3343177
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 85.07,
+      "branch_coverage": 81.48,
+      "path_history": {
+        "parse_294_10": 1,
+        "parse_294_7": 1,
+        "parse_294_9": 1,
+        "parse_294_0": 1,
+        "parse_294_6": 1,
+        "parse_294_3": 1
+      },
+      "lines_missed": [
+        153,
+        154,
+        166,
+        167,
+        183,
+        191,
+        192,
+        193,
+        205,
+        206,
+        149,
+        162,
+        179,
+        201
+      ],
+      "branches_missed": [
+        149,
+        162,
+        179,
+        201
+      ],
+      "timestamp": 1773721646.9361575
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 85.07,
+      "branch_coverage": 81.48,
+      "path_history": {
+        "parse_294_10": 1,
+        "parse_294_7": 1,
+        "parse_294_9": 1,
+        "parse_294_0": 1,
+        "parse_294_6": 2,
+        "parse_294_3": 1,
+        "parse_294_4": 1
+      },
+      "lines_missed": [
+        153,
+        154,
+        166,
+        167,
+        183,
+        191,
+        192,
+        193,
+        205,
+        206,
+        149,
+        162,
+        179,
+        201
+      ],
+      "branches_missed": [
+        149,
+        162,
+        179,
+        201
+      ],
+      "timestamp": 1773722032.7050931
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 88.06,
+      "branch_coverage": 85.19,
+      "path_history": {
+        "parse_294_10": 1,
+        "parse_294_7": 1,
+        "parse_294_9": 1,
+        "parse_294_0": 1,
+        "parse_294_6": 3,
+        "parse_294_3": 1,
+        "parse_294_4": 1,
+        "parse_294_8": 1
+      },
+      "lines_missed": [
+        153,
+        154,
+        166,
+        167,
+        183,
+        191,
+        192,
+        193,
+        149,
+        162,
+        179
+      ],
+      "branches_missed": [
+        149,
+        162,
+        179
+      ],
+      "timestamp": 1773722154.4701931
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 95.52,
+      "branch_coverage": 92.59,
+      "path_history": {
+        "parse_294_10": 1,
+        "parse_294_7": 1,
+        "parse_294_9": 1,
+        "parse_294_0": 1,
+        "parse_294_6": 3,
+        "parse_294_3": 1,
+        "parse_294_4": 1,
+        "parse_294_8": 1,
+        "parse_294_5": 1,
+        "parse_294_2": 1
+      },
+      "lines_missed": [
+        153,
+        154,
+        183,
+        149,
+        179
+      ],
+      "branches_missed": [
+        149,
+        179
+      ],
+      "timestamp": 1773722254.0103428
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 98.51,
+      "branch_coverage": 96.3,
+      "path_history": {
+        "parse_294_10": 1,
+        "parse_294_7": 1,
+        "parse_294_9": 1,
+        "parse_294_0": 1,
+        "parse_294_6": 3,
+        "parse_294_3": 1,
+        "parse_294_4": 2,
+        "parse_294_8": 1,
+        "parse_294_5": 1,
+        "parse_294_2": 1,
+        "parse_294_1": 1
+      },
+      "lines_missed": [
+        183,
+        179
+      ],
+      "branches_missed": [
+        179
+      ],
+      "timestamp": 1773722437.714579
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 98.51,
+      "branch_coverage": 96.3,
+      "path_history": {
+        "parse_294_10": 1,
+        "parse_294_7": 1,
+        "parse_294_9": 2,
+        "parse_294_0": 1,
+        "parse_294_6": 3,
+        "parse_294_3": 1,
+        "parse_294_4": 3,
+        "parse_294_8": 1,
+        "parse_294_5": 1,
+        "parse_294_2": 1,
+        "parse_294_1": 1
+      },
+      "lines_missed": [
+        183,
+        179
+      ],
+      "branches_missed": [
+        179
+      ],
+      "timestamp": 1773722638.9340944
+    },
+    {
+      "iteration": 9,
+      "line_coverage": 98.51,
+      "branch_coverage": 96.3,
+      "path_history": {
+        "parse_294_10": 1,
+        "parse_294_7": 1,
+        "parse_294_9": 2,
+        "parse_294_0": 1,
+        "parse_294_6": 3,
+        "parse_294_3": 1,
+        "parse_294_4": 4,
+        "parse_294_8": 2,
+        "parse_294_5": 1,
+        "parse_294_2": 1,
+        "parse_294_1": 1
+      },
+      "lines_missed": [
+        183,
+        179
+      ],
+      "branches_missed": [
+        179
+      ],
+      "timestamp": 1773722846.896213
+    },
+    {
+      "iteration": 10,
+      "line_coverage": 98.51,
+      "branch_coverage": 96.3,
+      "path_history": {
+        "parse_294_10": 1,
+        "parse_294_7": 2,
+        "parse_294_9": 2,
+        "parse_294_0": 1,
+        "parse_294_6": 3,
+        "parse_294_3": 1,
+        "parse_294_4": 5,
+        "parse_294_8": 2,
+        "parse_294_5": 1,
+        "parse_294_2": 1,
+        "parse_294_1": 1
+      },
+      "lines_missed": [
+        183,
+        179
+      ],
+      "branches_missed": [
+        179
+      ],
+      "timestamp": 1773723030.1403394
+    }
+  ]
+}

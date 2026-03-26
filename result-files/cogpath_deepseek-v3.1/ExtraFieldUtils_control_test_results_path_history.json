@@ -1,0 +1,303 @@
+{
+  "final_line_coverage": 93.2,
+  "final_branch_coverage": 100.0,
+  "final_lines_missed": [
+    31,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74
+  ],
+  "final_branches_missed": [],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 68.93,
+      "branch_coverage": 56.52,
+      "path_history": {},
+      "lines_missed": [
+        31,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        161,
+        172,
+        173,
+        185,
+        186,
+        240,
+        242,
+        245,
+        246,
+        247,
+        249,
+        250,
+        251,
+        252,
+        254,
+        256,
+        257,
+        258,
+        259,
+        260,
+        263,
+        264,
+        265,
+        266,
+        269,
+        146,
+        157,
+        220,
+        227
+      ],
+      "branches_missed": [
+        240,
+        242,
+        246,
+        251,
+        258,
+        263,
+        265,
+        146,
+        157,
+        220,
+        227
+      ],
+      "timestamp": 1766958103.6133142
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 89.32,
+      "branch_coverage": 86.96,
+      "path_history": {
+        "parse_355_12": 1,
+        "parse_355_7": 1,
+        "mergeLocalFileDataData_641_4": 1,
+        "mergeCentralDirectoryData_861_5": 1,
+        "mergeCentralDirectoryData_861_3": 1
+      },
+      "lines_missed": [
+        31,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        172,
+        173,
+        185,
+        186,
+        146,
+        220,
+        227,
+        240,
+        258,
+        265
+      ],
+      "branches_missed": [
+        146,
+        220,
+        227,
+        240,
+        258,
+        265
+      ],
+      "timestamp": 1766958435.1095634
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 91.26,
+      "branch_coverage": 97.83,
+      "path_history": {
+        "parse_355_12": 1,
+        "parse_355_7": 1,
+        "mergeLocalFileDataData_641_4": 2,
+        "mergeCentralDirectoryData_861_5": 1,
+        "mergeCentralDirectoryData_861_3": 1,
+        "parse_355_2": 1,
+        "parse_355_4": 1,
+        "mergeLocalFileDataData_641_2": 1,
+        "mergeCentralDirectoryData_861_2": 1,
+        "mergeCentralDirectoryData_861_1": 1
+      },
+      "lines_missed": [
+        31,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        185,
+        186,
+        258
+      ],
+      "branches_missed": [
+        258
+      ],
+      "timestamp": 1766958591.482318
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 91.26,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "parse_355_12": 1,
+        "parse_355_7": 2,
+        "mergeLocalFileDataData_641_4": 2,
+        "mergeCentralDirectoryData_861_5": 2,
+        "mergeCentralDirectoryData_861_3": 1,
+        "parse_355_2": 1,
+        "parse_355_4": 1,
+        "mergeLocalFileDataData_641_2": 1,
+        "mergeCentralDirectoryData_861_2": 1,
+        "mergeCentralDirectoryData_861_1": 1,
+        "parse_355_6": 1,
+        "mergeCentralDirectoryData_861_4": 1
+      },
+      "lines_missed": [
+        31,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        185,
+        186
+      ],
+      "branches_missed": [],
+      "timestamp": 1766958727.260072
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 93.2,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "parse_355_12": 1,
+        "parse_355_7": 2,
+        "mergeLocalFileDataData_641_4": 2,
+        "mergeCentralDirectoryData_861_5": 2,
+        "mergeCentralDirectoryData_861_3": 1,
+        "parse_355_2": 1,
+        "parse_355_4": 1,
+        "mergeLocalFileDataData_641_2": 1,
+        "mergeCentralDirectoryData_861_2": 1,
+        "mergeCentralDirectoryData_861_1": 1,
+        "parse_355_6": 1,
+        "mergeCentralDirectoryData_861_4": 1,
+        "parse_355_3": 1
+      },
+      "lines_missed": [
+        31,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74
+      ],
+      "branches_missed": [],
+      "timestamp": 1766958882.976313
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 93.2,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "parse_355_12": 1,
+        "parse_355_7": 2,
+        "mergeLocalFileDataData_641_4": 2,
+        "mergeCentralDirectoryData_861_5": 2,
+        "mergeCentralDirectoryData_861_3": 1,
+        "parse_355_2": 1,
+        "parse_355_4": 1,
+        "mergeLocalFileDataData_641_2": 1,
+        "mergeCentralDirectoryData_861_2": 1,
+        "mergeCentralDirectoryData_861_1": 1,
+        "parse_355_6": 1,
+        "mergeCentralDirectoryData_861_4": 1,
+        "parse_355_3": 1
+      },
+      "lines_missed": [
+        31,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74
+      ],
+      "branches_missed": [],
+      "timestamp": 1766959332.66691
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 93.2,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "parse_355_12": 1,
+        "parse_355_7": 2,
+        "mergeLocalFileDataData_641_4": 2,
+        "mergeCentralDirectoryData_861_5": 2,
+        "mergeCentralDirectoryData_861_3": 1,
+        "parse_355_2": 1,
+        "parse_355_4": 1,
+        "mergeLocalFileDataData_641_2": 1,
+        "mergeCentralDirectoryData_861_2": 1,
+        "mergeCentralDirectoryData_861_1": 1,
+        "parse_355_6": 1,
+        "mergeCentralDirectoryData_861_4": 1,
+        "parse_355_3": 1
+      },
+      "lines_missed": [
+        31,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74
+      ],
+      "branches_missed": [],
+      "timestamp": 1766959687.2504153
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 93.2,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "parse_355_12": 1,
+        "parse_355_7": 2,
+        "mergeLocalFileDataData_641_4": 2,
+        "mergeCentralDirectoryData_861_5": 2,
+        "mergeCentralDirectoryData_861_3": 1,
+        "parse_355_2": 1,
+        "parse_355_4": 1,
+        "mergeLocalFileDataData_641_2": 1,
+        "mergeCentralDirectoryData_861_2": 1,
+        "mergeCentralDirectoryData_861_1": 1,
+        "parse_355_6": 1,
+        "mergeCentralDirectoryData_861_4": 1,
+        "parse_355_3": 1
+      },
+      "lines_missed": [
+        31,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74
+      ],
+      "branches_missed": [],
+      "timestamp": 1766960054.6319675
+    }
+  ]
+}

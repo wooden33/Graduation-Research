@@ -1,0 +1,208 @@
+{
+  "final_line_coverage": 91.38,
+  "final_branch_coverage": 84.62,
+  "final_lines_missed": [
+    124,
+    125,
+    222,
+    351,
+    352,
+    353,
+    354,
+    356,
+    357,
+    440,
+    221,
+    264,
+    347,
+    439
+  ],
+  "final_branches_missed": [
+    351,
+    353,
+    221,
+    264,
+    347,
+    439
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 90.52,
+      "branch_coverage": 78.85,
+      "path_history": {},
+      "lines_missed": [
+        124,
+        125,
+        222,
+        323,
+        351,
+        352,
+        353,
+        354,
+        356,
+        357,
+        440,
+        221,
+        264,
+        320,
+        347,
+        422,
+        439
+      ],
+      "branches_missed": [
+        351,
+        353,
+        221,
+        264,
+        320,
+        347,
+        422,
+        439
+      ],
+      "timestamp": 1774384730.7239964
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 91.38,
+      "branch_coverage": 84.62,
+      "path_history": {
+        "smooth_371_10": 1,
+        "smooth_371_13": 1
+      },
+      "lines_missed": [
+        124,
+        125,
+        222,
+        351,
+        352,
+        353,
+        354,
+        356,
+        357,
+        440,
+        221,
+        264,
+        347,
+        439
+      ],
+      "branches_missed": [
+        351,
+        353,
+        221,
+        264,
+        347,
+        439
+      ],
+      "timestamp": 1774384787.0643582
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 91.38,
+      "branch_coverage": 84.62,
+      "path_history": {
+        "smooth_371_10": 2,
+        "smooth_371_13": 1,
+        "smooth_371_15": 1
+      },
+      "lines_missed": [
+        124,
+        125,
+        222,
+        351,
+        352,
+        353,
+        354,
+        356,
+        357,
+        440,
+        221,
+        264,
+        347,
+        439
+      ],
+      "branches_missed": [
+        351,
+        353,
+        221,
+        264,
+        347,
+        439
+      ],
+      "timestamp": 1774384832.0527396
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 91.38,
+      "branch_coverage": 84.62,
+      "path_history": {
+        "smooth_371_10": 3,
+        "smooth_371_13": 1,
+        "smooth_371_15": 1,
+        "smooth_371_6": 1
+      },
+      "lines_missed": [
+        124,
+        125,
+        222,
+        351,
+        352,
+        353,
+        354,
+        356,
+        357,
+        440,
+        221,
+        264,
+        347,
+        439
+      ],
+      "branches_missed": [
+        351,
+        353,
+        221,
+        264,
+        347,
+        439
+      ],
+      "timestamp": 1774384874.9838457
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 91.38,
+      "branch_coverage": 84.62,
+      "path_history": {
+        "smooth_371_10": 4,
+        "smooth_371_13": 1,
+        "smooth_371_15": 1,
+        "smooth_371_6": 1,
+        "smooth_371_12": 1
+      },
+      "lines_missed": [
+        124,
+        125,
+        222,
+        351,
+        352,
+        353,
+        354,
+        356,
+        357,
+        440,
+        221,
+        264,
+        347,
+        439
+      ],
+      "branches_missed": [
+        351,
+        353,
+        221,
+        264,
+        347,
+        439
+      ],
+      "timestamp": 1774385008.959849
+    }
+  ]
+}

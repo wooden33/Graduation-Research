@@ -1,0 +1,116 @@
+{
+  "final_line_coverage": 98.0,
+  "final_branch_coverage": 90.62,
+  "final_lines_missed": [
+    79,
+    78,
+    101
+  ],
+  "final_branches_missed": [
+    78,
+    101
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 96.0,
+      "branch_coverage": 87.5,
+      "path_history": {},
+      "lines_missed": [
+        79,
+        113,
+        78,
+        101,
+        112
+      ],
+      "branches_missed": [
+        78,
+        101,
+        112
+      ],
+      "timestamp": 1768969058.0796146
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 98.0,
+      "branch_coverage": 90.62,
+      "path_history": {
+        "interpolate_301_3": 1,
+        "interpolate_301_5": 1
+      },
+      "lines_missed": [
+        79,
+        78,
+        101
+      ],
+      "branches_missed": [
+        78,
+        101
+      ],
+      "timestamp": 1768969112.9747224
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 98.0,
+      "branch_coverage": 90.62,
+      "path_history": {
+        "interpolate_301_3": 1,
+        "interpolate_301_5": 1,
+        "interpolate_301_11": 1
+      },
+      "lines_missed": [
+        79,
+        78,
+        101
+      ],
+      "branches_missed": [
+        78,
+        101
+      ],
+      "timestamp": 1768969155.3875926
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 98.0,
+      "branch_coverage": 90.62,
+      "path_history": {
+        "interpolate_301_3": 1,
+        "interpolate_301_5": 1,
+        "interpolate_301_11": 1,
+        "interpolate_301_4": 1
+      },
+      "lines_missed": [
+        79,
+        78,
+        101
+      ],
+      "branches_missed": [
+        78,
+        101
+      ],
+      "timestamp": 1768969212.145006
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 98.0,
+      "branch_coverage": 90.62,
+      "path_history": {
+        "interpolate_301_3": 1,
+        "interpolate_301_5": 1,
+        "interpolate_301_11": 1,
+        "interpolate_301_4": 1,
+        "interpolate_301_7": 1
+      },
+      "lines_missed": [
+        79,
+        78,
+        101
+      ],
+      "branches_missed": [
+        78,
+        101
+      ],
+      "timestamp": 1768969330.1091075
+    }
+  ]
+}

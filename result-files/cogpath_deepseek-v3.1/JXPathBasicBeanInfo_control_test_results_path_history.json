@@ -1,0 +1,73 @@
+{
+  "final_line_coverage": 95.0,
+  "final_branch_coverage": 100.0,
+  "final_lines_missed": [
+    121,
+    122,
+    123
+  ],
+  "final_branches_missed": [],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 95.0,
+      "branch_coverage": 100.0,
+      "path_history": {},
+      "lines_missed": [
+        121,
+        122,
+        123
+      ],
+      "branches_missed": [],
+      "timestamp": 1766649820.4125962
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 95.0,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "getPropertyDescriptors_221_4": 1
+      },
+      "lines_missed": [
+        121,
+        122,
+        123
+      ],
+      "branches_missed": [],
+      "timestamp": 1766649966.1413357
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 95.0,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "getPropertyDescriptors_221_4": 1,
+        "getPropertyDescriptors_221_13": 1
+      },
+      "lines_missed": [
+        121,
+        122,
+        123
+      ],
+      "branches_missed": [],
+      "timestamp": 1766650102.7723987
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 95.0,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "getPropertyDescriptors_221_4": 1,
+        "getPropertyDescriptors_221_13": 1,
+        "getPropertyDescriptors_221_9": 1
+      },
+      "lines_missed": [
+        121,
+        122,
+        123
+      ],
+      "branches_missed": [],
+      "timestamp": 1766650251.3107002
+    }
+  ]
+}

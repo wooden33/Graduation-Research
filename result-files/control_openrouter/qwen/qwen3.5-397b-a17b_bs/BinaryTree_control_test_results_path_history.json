@@ -1,0 +1,55 @@
+{
+  "final_line_coverage": 100.0,
+  "final_branch_coverage": 96.88,
+  "final_lines_missed": [
+    182
+  ],
+  "final_branches_missed": [
+    182
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 89.23,
+      "branch_coverage": 87.5,
+      "path_history": {},
+      "lines_missed": [
+        97,
+        103,
+        151,
+        154,
+        156,
+        171,
+        172,
+        95,
+        149,
+        170,
+        182
+      ],
+      "branches_missed": [
+        95,
+        149,
+        170,
+        182
+      ],
+      "timestamp": 1773635065.4933352
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 100.0,
+      "branch_coverage": 96.88,
+      "path_history": {
+        "decode_281_11": 1,
+        "decode_281_9": 1,
+        "read_189_2": 1
+      },
+      "lines_missed": [
+        182
+      ],
+      "branches_missed": [
+        182
+      ],
+      "timestamp": 1773635211.5487604
+    }
+  ]
+}

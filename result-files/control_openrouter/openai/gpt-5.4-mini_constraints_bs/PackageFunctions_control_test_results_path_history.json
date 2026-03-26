@@ -1,0 +1,442 @@
+{
+  "final_line_coverage": 96.67,
+  "final_branch_coverage": 90.0,
+  "final_lines_missed": [
+    141,
+    150,
+    119,
+    140,
+    149,
+    192
+  ],
+  "final_branches_missed": [
+    119,
+    140,
+    149,
+    192
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 90.0,
+      "branch_coverage": 77.5,
+      "path_history": {},
+      "lines_missed": [
+        125,
+        141,
+        150,
+        158,
+        204,
+        215,
+        119,
+        124,
+        130,
+        140,
+        149,
+        157,
+        192,
+        201,
+        211
+      ],
+      "branches_missed": [
+        119,
+        124,
+        130,
+        140,
+        149,
+        157,
+        192,
+        201,
+        211
+      ],
+      "timestamp": 1774285824.7893167
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 90.0,
+      "branch_coverage": 77.5,
+      "path_history": {
+        "getFunction_177_17": 1,
+        "getFunction_177_4": 1
+      },
+      "lines_missed": [
+        125,
+        141,
+        150,
+        158,
+        204,
+        215,
+        119,
+        124,
+        130,
+        140,
+        149,
+        157,
+        192,
+        201,
+        211
+      ],
+      "branches_missed": [
+        119,
+        124,
+        130,
+        140,
+        149,
+        157,
+        192,
+        201,
+        211
+      ],
+      "timestamp": 1774285859.3046844
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 90.0,
+      "branch_coverage": 77.5,
+      "path_history": {
+        "getFunction_177_17": 2,
+        "getFunction_177_4": 1,
+        "getFunction_177_0": 1
+      },
+      "lines_missed": [
+        125,
+        141,
+        150,
+        158,
+        204,
+        215,
+        119,
+        124,
+        130,
+        140,
+        149,
+        157,
+        192,
+        201,
+        211
+      ],
+      "branches_missed": [
+        119,
+        124,
+        130,
+        140,
+        149,
+        157,
+        192,
+        201,
+        211
+      ],
+      "timestamp": 1774285909.4591074
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 91.67,
+      "branch_coverage": 80.0,
+      "path_history": {
+        "getFunction_177_17": 3,
+        "getFunction_177_4": 1,
+        "getFunction_177_0": 1,
+        "getFunction_177_10": 1
+      },
+      "lines_missed": [
+        141,
+        150,
+        158,
+        204,
+        215,
+        119,
+        130,
+        140,
+        149,
+        157,
+        192,
+        201,
+        211
+      ],
+      "branches_missed": [
+        119,
+        130,
+        140,
+        149,
+        157,
+        192,
+        201,
+        211
+      ],
+      "timestamp": 1774285976.593675
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 91.67,
+      "branch_coverage": 80.0,
+      "path_history": {
+        "getFunction_177_17": 4,
+        "getFunction_177_4": 1,
+        "getFunction_177_0": 1,
+        "getFunction_177_10": 1,
+        "getFunction_177_6": 1
+      },
+      "lines_missed": [
+        141,
+        150,
+        158,
+        204,
+        215,
+        119,
+        130,
+        140,
+        149,
+        157,
+        192,
+        201,
+        211
+      ],
+      "branches_missed": [
+        119,
+        130,
+        140,
+        149,
+        157,
+        192,
+        201,
+        211
+      ],
+      "timestamp": 1774286032.2169013
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 95.0,
+      "branch_coverage": 82.5,
+      "path_history": {
+        "getFunction_177_17": 5,
+        "getFunction_177_4": 1,
+        "getFunction_177_0": 1,
+        "getFunction_177_10": 1,
+        "getFunction_177_6": 1,
+        "getFunction_177_12": 1
+      },
+      "lines_missed": [
+        141,
+        150,
+        158,
+        119,
+        130,
+        140,
+        149,
+        157,
+        192,
+        211
+      ],
+      "branches_missed": [
+        119,
+        130,
+        140,
+        149,
+        157,
+        192,
+        211
+      ],
+      "timestamp": 1774286090.8983748
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 95.0,
+      "branch_coverage": 85.0,
+      "path_history": {
+        "getFunction_177_17": 6,
+        "getFunction_177_4": 1,
+        "getFunction_177_0": 1,
+        "getFunction_177_10": 1,
+        "getFunction_177_6": 1,
+        "getFunction_177_12": 1,
+        "getFunction_177_5": 1
+      },
+      "lines_missed": [
+        141,
+        150,
+        158,
+        119,
+        140,
+        149,
+        157,
+        192,
+        211
+      ],
+      "branches_missed": [
+        119,
+        140,
+        149,
+        157,
+        192,
+        211
+      ],
+      "timestamp": 1774286149.206648
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 96.67,
+      "branch_coverage": 87.5,
+      "path_history": {
+        "getFunction_177_17": 7,
+        "getFunction_177_4": 1,
+        "getFunction_177_0": 1,
+        "getFunction_177_10": 1,
+        "getFunction_177_6": 1,
+        "getFunction_177_12": 1,
+        "getFunction_177_5": 1,
+        "getFunction_177_9": 1
+      },
+      "lines_missed": [
+        141,
+        150,
+        119,
+        140,
+        149,
+        192,
+        211
+      ],
+      "branches_missed": [
+        119,
+        140,
+        149,
+        192,
+        211
+      ],
+      "timestamp": 1774286190.725978
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 96.67,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "getFunction_177_17": 7,
+        "getFunction_177_4": 1,
+        "getFunction_177_0": 1,
+        "getFunction_177_10": 1,
+        "getFunction_177_6": 1,
+        "getFunction_177_12": 1,
+        "getFunction_177_5": 1,
+        "getFunction_177_9": 1,
+        "getFunction_177_7": 1,
+        "getFunction_177_14": 1
+      },
+      "lines_missed": [
+        141,
+        150,
+        119,
+        140,
+        149,
+        192
+      ],
+      "branches_missed": [
+        119,
+        140,
+        149,
+        192
+      ],
+      "timestamp": 1774286227.1709268
+    },
+    {
+      "iteration": 9,
+      "line_coverage": 96.67,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "getFunction_177_17": 7,
+        "getFunction_177_4": 1,
+        "getFunction_177_0": 1,
+        "getFunction_177_10": 1,
+        "getFunction_177_6": 1,
+        "getFunction_177_12": 1,
+        "getFunction_177_5": 1,
+        "getFunction_177_9": 1,
+        "getFunction_177_7": 2,
+        "getFunction_177_14": 1,
+        "getFunction_177_1": 1
+      },
+      "lines_missed": [
+        141,
+        150,
+        119,
+        140,
+        149,
+        192
+      ],
+      "branches_missed": [
+        119,
+        140,
+        149,
+        192
+      ],
+      "timestamp": 1774286261.3207495
+    },
+    {
+      "iteration": 10,
+      "line_coverage": 96.67,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "getFunction_177_17": 7,
+        "getFunction_177_4": 1,
+        "getFunction_177_0": 1,
+        "getFunction_177_10": 1,
+        "getFunction_177_6": 1,
+        "getFunction_177_12": 1,
+        "getFunction_177_5": 1,
+        "getFunction_177_9": 1,
+        "getFunction_177_7": 3,
+        "getFunction_177_14": 1,
+        "getFunction_177_1": 1,
+        "getFunction_177_11": 1
+      },
+      "lines_missed": [
+        141,
+        150,
+        119,
+        140,
+        149,
+        192
+      ],
+      "branches_missed": [
+        119,
+        140,
+        149,
+        192
+      ],
+      "timestamp": 1774286294.3962228
+    },
+    {
+      "iteration": 11,
+      "line_coverage": 96.67,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "getFunction_177_17": 7,
+        "getFunction_177_4": 1,
+        "getFunction_177_0": 1,
+        "getFunction_177_10": 1,
+        "getFunction_177_6": 1,
+        "getFunction_177_12": 1,
+        "getFunction_177_5": 1,
+        "getFunction_177_9": 1,
+        "getFunction_177_7": 4,
+        "getFunction_177_14": 1,
+        "getFunction_177_1": 1,
+        "getFunction_177_11": 1,
+        "getFunction_177_15": 1
+      },
+      "lines_missed": [
+        141,
+        150,
+        119,
+        140,
+        149,
+        192
+      ],
+      "branches_missed": [
+        119,
+        140,
+        149,
+        192
+      ],
+      "timestamp": 1774286338.3617275
+    }
+  ]
+}

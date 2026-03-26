@@ -1,0 +1,433 @@
+{
+  "final_line_coverage": 98.21,
+  "final_branch_coverage": 92.11,
+  "final_lines_missed": [
+    59,
+    63,
+    105,
+    149
+  ],
+  "final_branches_missed": [
+    63,
+    105,
+    149
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 39.29,
+      "branch_coverage": 23.68,
+      "path_history": {},
+      "lines_missed": [
+        59,
+        64,
+        70,
+        71,
+        72,
+        75,
+        76,
+        79,
+        80,
+        81,
+        84,
+        94,
+        99,
+        100,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        124,
+        125,
+        126,
+        133,
+        135,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        152,
+        153,
+        63,
+        90,
+        97,
+        98,
+        105,
+        112
+      ],
+      "branches_missed": [
+        75,
+        79,
+        80,
+        114,
+        116,
+        117,
+        124,
+        146,
+        149,
+        63,
+        90,
+        97,
+        98,
+        105,
+        112
+      ],
+      "timestamp": 1766678203.1792846
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 82.14,
+      "branch_coverage": 68.42,
+      "path_history": {
+        "nextNode_274_10": 1,
+        "nextNode_274_6": 1,
+        "setPosition_234_2": 1,
+        "getCurrentNodePointer_197_0": 1,
+        "getCurrentNodePointer_197_1": 1
+      },
+      "lines_missed": [
+        59,
+        64,
+        70,
+        71,
+        72,
+        76,
+        94,
+        133,
+        135,
+        150,
+        63,
+        75,
+        90,
+        97,
+        105,
+        114,
+        116,
+        124,
+        149
+      ],
+      "branches_missed": [
+        63,
+        75,
+        90,
+        97,
+        105,
+        114,
+        116,
+        124,
+        149
+      ],
+      "timestamp": 1766678393.384547
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 94.64,
+      "branch_coverage": 76.32,
+      "path_history": {
+        "nextNode_274_10": 2,
+        "nextNode_274_6": 1,
+        "setPosition_234_2": 1,
+        "getCurrentNodePointer_197_0": 2,
+        "getCurrentNodePointer_197_1": 1,
+        "nextNode_274_1": 1,
+        "setPosition_234_1": 1,
+        "setPosition_234_3": 1
+      },
+      "lines_missed": [
+        59,
+        64,
+        150,
+        63,
+        97,
+        105,
+        116,
+        124,
+        149
+      ],
+      "branches_missed": [
+        63,
+        97,
+        105,
+        116,
+        124,
+        149
+      ],
+      "timestamp": 1766678661.499903
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 96.43,
+      "branch_coverage": 84.21,
+      "path_history": {
+        "nextNode_274_10": 2,
+        "nextNode_274_6": 2,
+        "setPosition_234_2": 1,
+        "getCurrentNodePointer_197_0": 3,
+        "getCurrentNodePointer_197_1": 2,
+        "nextNode_274_1": 1,
+        "setPosition_234_1": 1,
+        "setPosition_234_3": 1,
+        "nextNode_274_8": 1
+      },
+      "lines_missed": [
+        59,
+        150,
+        63,
+        105,
+        116,
+        124,
+        149
+      ],
+      "branches_missed": [
+        63,
+        105,
+        116,
+        124,
+        149
+      ],
+      "timestamp": 1766679059.5205
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 96.43,
+      "branch_coverage": 84.21,
+      "path_history": {
+        "nextNode_274_10": 3,
+        "nextNode_274_6": 2,
+        "setPosition_234_2": 1,
+        "getCurrentNodePointer_197_0": 4,
+        "getCurrentNodePointer_197_1": 3,
+        "nextNode_274_1": 1,
+        "setPosition_234_1": 1,
+        "setPosition_234_3": 1,
+        "nextNode_274_8": 1,
+        "nextNode_274_4": 1
+      },
+      "lines_missed": [
+        59,
+        150,
+        63,
+        105,
+        116,
+        124,
+        149
+      ],
+      "branches_missed": [
+        63,
+        105,
+        116,
+        124,
+        149
+      ],
+      "timestamp": 1766679487.3862872
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 96.43,
+      "branch_coverage": 84.21,
+      "path_history": {
+        "nextNode_274_10": 4,
+        "nextNode_274_6": 2,
+        "setPosition_234_2": 1,
+        "getCurrentNodePointer_197_0": 5,
+        "getCurrentNodePointer_197_1": 4,
+        "nextNode_274_1": 1,
+        "setPosition_234_1": 1,
+        "setPosition_234_3": 1,
+        "nextNode_274_8": 1,
+        "nextNode_274_4": 1,
+        "nextNode_274_5": 1
+      },
+      "lines_missed": [
+        59,
+        150,
+        63,
+        105,
+        116,
+        124,
+        149
+      ],
+      "branches_missed": [
+        63,
+        105,
+        116,
+        124,
+        149
+      ],
+      "timestamp": 1766679780.161864
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 96.43,
+      "branch_coverage": 86.84,
+      "path_history": {
+        "nextNode_274_10": 4,
+        "nextNode_274_6": 2,
+        "setPosition_234_2": 1,
+        "getCurrentNodePointer_197_0": 5,
+        "getCurrentNodePointer_197_1": 5,
+        "nextNode_274_1": 1,
+        "setPosition_234_1": 1,
+        "setPosition_234_3": 1,
+        "nextNode_274_8": 2,
+        "nextNode_274_4": 1,
+        "nextNode_274_5": 1,
+        "nextNode_274_9": 1
+      },
+      "lines_missed": [
+        59,
+        150,
+        63,
+        105,
+        116,
+        149
+      ],
+      "branches_missed": [
+        63,
+        105,
+        116,
+        149
+      ],
+      "timestamp": 1766679915.023257
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 96.43,
+      "branch_coverage": 86.84,
+      "path_history": {
+        "nextNode_274_10": 4,
+        "nextNode_274_6": 3,
+        "setPosition_234_2": 1,
+        "getCurrentNodePointer_197_0": 6,
+        "getCurrentNodePointer_197_1": 5,
+        "nextNode_274_1": 1,
+        "setPosition_234_1": 1,
+        "setPosition_234_3": 1,
+        "nextNode_274_8": 2,
+        "nextNode_274_4": 1,
+        "nextNode_274_5": 1,
+        "nextNode_274_9": 1,
+        "nextNode_274_7": 1
+      },
+      "lines_missed": [
+        59,
+        150,
+        63,
+        105,
+        116,
+        149
+      ],
+      "branches_missed": [
+        63,
+        105,
+        116,
+        149
+      ],
+      "timestamp": 1766680035.6955264
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 96.43,
+      "branch_coverage": 86.84,
+      "path_history": {
+        "nextNode_274_10": 4,
+        "nextNode_274_6": 3,
+        "setPosition_234_2": 1,
+        "getCurrentNodePointer_197_0": 6,
+        "getCurrentNodePointer_197_1": 6,
+        "nextNode_274_1": 1,
+        "setPosition_234_1": 1,
+        "setPosition_234_3": 1,
+        "nextNode_274_8": 2,
+        "nextNode_274_4": 1,
+        "nextNode_274_5": 1,
+        "nextNode_274_9": 1,
+        "nextNode_274_7": 2
+      },
+      "lines_missed": [
+        59,
+        150,
+        63,
+        105,
+        116,
+        149
+      ],
+      "branches_missed": [
+        63,
+        105,
+        116,
+        149
+      ],
+      "timestamp": 1766680266.4723315
+    },
+    {
+      "iteration": 9,
+      "line_coverage": 98.21,
+      "branch_coverage": 92.11,
+      "path_history": {
+        "nextNode_274_10": 4,
+        "nextNode_274_6": 3,
+        "setPosition_234_2": 1,
+        "getCurrentNodePointer_197_0": 6,
+        "getCurrentNodePointer_197_1": 7,
+        "nextNode_274_1": 1,
+        "setPosition_234_1": 1,
+        "setPosition_234_3": 1,
+        "nextNode_274_8": 2,
+        "nextNode_274_4": 2,
+        "nextNode_274_5": 1,
+        "nextNode_274_9": 1,
+        "nextNode_274_7": 2
+      },
+      "lines_missed": [
+        59,
+        63,
+        105,
+        149
+      ],
+      "branches_missed": [
+        63,
+        105,
+        149
+      ],
+      "timestamp": 1766680404.0748727
+    },
+    {
+      "iteration": 10,
+      "line_coverage": 98.21,
+      "branch_coverage": 92.11,
+      "path_history": {
+        "nextNode_274_10": 4,
+        "nextNode_274_6": 4,
+        "setPosition_234_2": 1,
+        "getCurrentNodePointer_197_0": 7,
+        "getCurrentNodePointer_197_1": 7,
+        "nextNode_274_1": 1,
+        "setPosition_234_1": 1,
+        "setPosition_234_3": 1,
+        "nextNode_274_8": 2,
+        "nextNode_274_4": 2,
+        "nextNode_274_5": 1,
+        "nextNode_274_9": 2,
+        "nextNode_274_7": 2
+      },
+      "lines_missed": [
+        59,
+        63,
+        105,
+        149
+      ],
+      "branches_missed": [
+        63,
+        105,
+        149
+      ],
+      "timestamp": 1766680596.0813918
+    }
+  ]
+}

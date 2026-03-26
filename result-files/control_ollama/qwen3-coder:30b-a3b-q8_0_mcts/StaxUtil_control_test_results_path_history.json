@@ -1,0 +1,411 @@
+{
+  "final_line_coverage": 87.5,
+  "final_branch_coverage": 87.5,
+  "final_lines_missed": [
+    12,
+    26,
+    27,
+    52,
+    62,
+    51,
+    54,
+    55,
+    61,
+    95
+  ],
+  "final_branches_missed": [
+    51,
+    54,
+    55,
+    61,
+    95
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 70.0,
+      "branch_coverage": 47.5,
+      "path_history": {},
+      "lines_missed": [
+        12,
+        26,
+        27,
+        52,
+        62,
+        85,
+        97,
+        98,
+        100,
+        101,
+        102,
+        104,
+        51,
+        54,
+        55,
+        61,
+        84,
+        94,
+        95,
+        96
+      ],
+      "branches_missed": [
+        97,
+        98,
+        101,
+        51,
+        54,
+        55,
+        61,
+        84,
+        94,
+        95,
+        96
+      ],
+      "timestamp": 1768902946.9490368
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 72.5,
+      "branch_coverage": 55.0,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 1,
+        "sanitizeXmlTypeName_256_5": 1
+      },
+      "lines_missed": [
+        12,
+        26,
+        27,
+        52,
+        62,
+        85,
+        98,
+        100,
+        101,
+        102,
+        104,
+        51,
+        54,
+        55,
+        61,
+        84,
+        94,
+        95,
+        96,
+        97
+      ],
+      "branches_missed": [
+        98,
+        101,
+        51,
+        54,
+        55,
+        61,
+        84,
+        94,
+        95,
+        96,
+        97
+      ],
+      "timestamp": 1768903050.4522102
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 82.5,
+      "branch_coverage": 67.5,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 2,
+        "sanitizeXmlTypeName_256_5": 1,
+        "sanitizeXmlTypeName_256_7": 1
+      },
+      "lines_missed": [
+        12,
+        26,
+        27,
+        52,
+        62,
+        85,
+        104,
+        51,
+        54,
+        55,
+        61,
+        84,
+        94,
+        95,
+        96,
+        97,
+        98,
+        101
+      ],
+      "branches_missed": [
+        51,
+        54,
+        55,
+        61,
+        84,
+        94,
+        95,
+        96,
+        97,
+        98,
+        101
+      ],
+      "timestamp": 1768903145.4582272
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 85.0,
+      "branch_coverage": 82.5,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 2,
+        "sanitizeXmlTypeName_256_5": 1,
+        "sanitizeXmlTypeName_256_7": 1,
+        "sanitizeXmlTypeName_256_11": 1,
+        "sanitizeXmlTypeName_256_8": 1
+      },
+      "lines_missed": [
+        12,
+        26,
+        27,
+        52,
+        62,
+        85,
+        51,
+        54,
+        55,
+        61,
+        84,
+        94,
+        95
+      ],
+      "branches_missed": [
+        51,
+        54,
+        55,
+        61,
+        84,
+        94,
+        95
+      ],
+      "timestamp": 1768903270.8774972
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 85.0,
+      "branch_coverage": 82.5,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 2,
+        "sanitizeXmlTypeName_256_5": 1,
+        "sanitizeXmlTypeName_256_7": 1,
+        "sanitizeXmlTypeName_256_11": 1,
+        "sanitizeXmlTypeName_256_8": 1,
+        "sanitizeXmlTypeName_256_6": 1
+      },
+      "lines_missed": [
+        12,
+        26,
+        27,
+        52,
+        62,
+        85,
+        51,
+        54,
+        55,
+        61,
+        84,
+        94,
+        95
+      ],
+      "branches_missed": [
+        51,
+        54,
+        55,
+        61,
+        84,
+        94,
+        95
+      ],
+      "timestamp": 1768903323.0927596
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 85.0,
+      "branch_coverage": 85.0,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 2,
+        "sanitizeXmlTypeName_256_5": 1,
+        "sanitizeXmlTypeName_256_7": 2,
+        "sanitizeXmlTypeName_256_11": 1,
+        "sanitizeXmlTypeName_256_8": 1,
+        "sanitizeXmlTypeName_256_6": 1,
+        "sanitizeXmlTypeName_256_2": 1
+      },
+      "lines_missed": [
+        12,
+        26,
+        27,
+        52,
+        62,
+        85,
+        51,
+        54,
+        55,
+        61,
+        84,
+        95
+      ],
+      "branches_missed": [
+        51,
+        54,
+        55,
+        61,
+        84,
+        95
+      ],
+      "timestamp": 1768903384.5352337
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 87.5,
+      "branch_coverage": 87.5,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 2,
+        "sanitizeXmlTypeName_256_5": 1,
+        "sanitizeXmlTypeName_256_7": 2,
+        "sanitizeXmlTypeName_256_11": 1,
+        "sanitizeXmlTypeName_256_8": 1,
+        "sanitizeXmlTypeName_256_6": 1,
+        "sanitizeXmlTypeName_256_2": 1,
+        "sanitizeXmlTypeName_256_9": 1
+      },
+      "lines_missed": [
+        12,
+        26,
+        27,
+        52,
+        62,
+        51,
+        54,
+        55,
+        61,
+        95
+      ],
+      "branches_missed": [
+        51,
+        54,
+        55,
+        61,
+        95
+      ],
+      "timestamp": 1768903441.610153
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 87.5,
+      "branch_coverage": 87.5,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 3,
+        "sanitizeXmlTypeName_256_5": 1,
+        "sanitizeXmlTypeName_256_7": 2,
+        "sanitizeXmlTypeName_256_11": 1,
+        "sanitizeXmlTypeName_256_8": 1,
+        "sanitizeXmlTypeName_256_6": 1,
+        "sanitizeXmlTypeName_256_2": 1,
+        "sanitizeXmlTypeName_256_9": 1,
+        "sanitizeXmlTypeName_256_3": 1
+      },
+      "lines_missed": [
+        12,
+        26,
+        27,
+        52,
+        62,
+        51,
+        54,
+        55,
+        61,
+        95
+      ],
+      "branches_missed": [
+        51,
+        54,
+        55,
+        61,
+        95
+      ],
+      "timestamp": 1768903498.309949
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 87.5,
+      "branch_coverage": 87.5,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 3,
+        "sanitizeXmlTypeName_256_5": 1,
+        "sanitizeXmlTypeName_256_7": 2,
+        "sanitizeXmlTypeName_256_11": 1,
+        "sanitizeXmlTypeName_256_8": 1,
+        "sanitizeXmlTypeName_256_6": 2,
+        "sanitizeXmlTypeName_256_2": 1,
+        "sanitizeXmlTypeName_256_9": 1,
+        "sanitizeXmlTypeName_256_3": 1
+      },
+      "lines_missed": [
+        12,
+        26,
+        27,
+        52,
+        62,
+        51,
+        54,
+        55,
+        61,
+        95
+      ],
+      "branches_missed": [
+        51,
+        54,
+        55,
+        61,
+        95
+      ],
+      "timestamp": 1768903550.0548947
+    },
+    {
+      "iteration": 9,
+      "line_coverage": 87.5,
+      "branch_coverage": 87.5,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 3,
+        "sanitizeXmlTypeName_256_5": 1,
+        "sanitizeXmlTypeName_256_7": 2,
+        "sanitizeXmlTypeName_256_11": 1,
+        "sanitizeXmlTypeName_256_8": 2,
+        "sanitizeXmlTypeName_256_6": 3,
+        "sanitizeXmlTypeName_256_2": 1,
+        "sanitizeXmlTypeName_256_9": 1,
+        "sanitizeXmlTypeName_256_3": 1
+      },
+      "lines_missed": [
+        12,
+        26,
+        27,
+        52,
+        62,
+        51,
+        54,
+        55,
+        61,
+        95
+      ],
+      "branches_missed": [
+        51,
+        54,
+        55,
+        61,
+        95
+      ],
+      "timestamp": 1768903622.5510736
+    }
+  ]
+}

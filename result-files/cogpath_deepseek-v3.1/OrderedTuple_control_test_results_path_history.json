@@ -1,0 +1,215 @@
+{
+  "final_line_coverage": 97.6,
+  "final_branch_coverage": 90.43,
+  "final_lines_missed": [
+    147,
+    189,
+    252,
+    146,
+    187,
+    251,
+    315,
+    316,
+    317,
+    417
+  ],
+  "final_branches_missed": [
+    146,
+    187,
+    251,
+    315,
+    316,
+    317,
+    417
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 96.8,
+      "branch_coverage": 88.3,
+      "path_history": {},
+      "lines_missed": [
+        147,
+        189,
+        252,
+        256,
+        146,
+        187,
+        251,
+        255,
+        315,
+        316,
+        317,
+        417
+      ],
+      "branches_missed": [
+        146,
+        187,
+        251,
+        255,
+        315,
+        316,
+        317,
+        417
+      ],
+      "timestamp": 1766874923.9828126
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 96.8,
+      "branch_coverage": 88.3,
+      "path_history": {
+        "compareTo_472_9": 1
+      },
+      "lines_missed": [
+        147,
+        189,
+        252,
+        256,
+        146,
+        187,
+        251,
+        255,
+        315,
+        316,
+        317,
+        417
+      ],
+      "branches_missed": [
+        146,
+        187,
+        251,
+        255,
+        315,
+        316,
+        317,
+        417
+      ],
+      "timestamp": 1766875068.2026873
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 97.6,
+      "branch_coverage": 90.43,
+      "path_history": {
+        "compareTo_472_9": 1,
+        "compareTo_472_4": 1
+      },
+      "lines_missed": [
+        147,
+        189,
+        252,
+        146,
+        187,
+        251,
+        315,
+        316,
+        317,
+        417
+      ],
+      "branches_missed": [
+        146,
+        187,
+        251,
+        315,
+        316,
+        317,
+        417
+      ],
+      "timestamp": 1766875152.2324803
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 97.6,
+      "branch_coverage": 90.43,
+      "path_history": {
+        "compareTo_472_9": 1,
+        "compareTo_472_4": 2
+      },
+      "lines_missed": [
+        147,
+        189,
+        252,
+        146,
+        187,
+        251,
+        315,
+        316,
+        317,
+        417
+      ],
+      "branches_missed": [
+        146,
+        187,
+        251,
+        315,
+        316,
+        317,
+        417
+      ],
+      "timestamp": 1766875229.7606
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 97.6,
+      "branch_coverage": 90.43,
+      "path_history": {
+        "compareTo_472_9": 1,
+        "compareTo_472_4": 3
+      },
+      "lines_missed": [
+        147,
+        189,
+        252,
+        146,
+        187,
+        251,
+        315,
+        316,
+        317,
+        417
+      ],
+      "branches_missed": [
+        146,
+        187,
+        251,
+        315,
+        316,
+        317,
+        417
+      ],
+      "timestamp": 1766875312.5274541
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 97.6,
+      "branch_coverage": 90.43,
+      "path_history": {
+        "compareTo_472_9": 1,
+        "compareTo_472_4": 4
+      },
+      "lines_missed": [
+        147,
+        189,
+        252,
+        146,
+        187,
+        251,
+        315,
+        316,
+        317,
+        417
+      ],
+      "branches_missed": [
+        146,
+        187,
+        251,
+        315,
+        316,
+        317,
+        417
+      ],
+      "timestamp": 1766875375.641594
+    }
+  ]
+}

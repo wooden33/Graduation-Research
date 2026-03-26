@@ -1,0 +1,92 @@
+[failed_test_prompt]
+system="""\
+You are an expert Java test-driven developer.
+"""
+
+user="""\
+## Overview
+You are an expert software engineer code assistant tasked with fixing the failed test cases based on the failure messages, Java source file and its corresponding test file.
+Your objective is to make the test case  execuable without any error in its corresponding test file.
+
+## Source File
+Here is the source file that the test cases targeted, called `{{ source_file_name }}`.
+We have manually added line numbers to assist in understanding. These line numbers are not part of the original code.
+
+=========
+{{ source_file|trim }}
+=========
+
+## Test File
+Here is the file that contains the existing tests, called `{{ test_file_name }}`.
+=========
+{{ test_file| trim }}
+=========
+
+## Third-party dependencies for test generation
+Please use the following dependencies to generation tests
+=========
+{{ test_dependencies }}
+=========
+
+## Failed Tests
+Below is a list of failed tests and their error messages.
+Please fix the failed tests based on the error message one by one. The fixed test cases should be executable in the above test file.
+======
+{{ failed_test_runs }}
+======
+
+## Response
+The output must be a YAML object equivalent to type `NewTests`, according to the following definitions:
+=====
+class SingleTest {
+    String test_behavior; // Short description of the behavior the test covers
+    String test_name; // A short test name, in camel case, that reflects the behavior to test
+    String test_code; // A single test function, that tests the behavior described in 'test_behavior'. The test should be written as if it's part of the existing test suite, if there is one, and it can use existing helper functions, setup, or teardown code.
+    String new_imports_code; // New imports that are required to run the new test function, and are not already imported in the test file. Give an empty string if no new imports are required. If relevant, add new imports as 'import ...' lines.
+}
+
+class NewTests {
+    String language; // The programming language of the source code
+    String existing_test_function_signature; // A single line repeating a signature header of one of the existing test functions
+    List<SingleTest> new_tests; //The list contains the fixed test cases.
+}
+=====
+
+Response:
+```yaml
+language: Java
+existing_test_function_signature: |
+  @Test
+  public void testExample() {
+    // existing test code
+  }
+new_tests:
+- test_behavior: |
+    Test that the function returns the correct output for a specific scenario
+  test_name: |
+    testSpecificScenario
+  test_code: |
+    @Test
+    public void testSpecificScenario() {
+        // test implementation
+    }
+  new_imports_code: |
+    import static org.junit.jupiter.api.Assertions.*;
+    import org.junit.jupiter.api.Test;
+- test_behavior: |
+    Test that the function handles a specific edge case correctly
+  test_name: |
+    testEdgeCase
+  test_code: |
+    @Test
+    public void testEdgeCase() {
+        // test implementation
+    }
+  new_imports_code: |
+    import static org.junit.jupiter.api.Assertions.*;
+    import org.junit.jupiter.api.Test;
+```
+
+Use block scalar('|') to format each YAML output.
+
+Response:"""

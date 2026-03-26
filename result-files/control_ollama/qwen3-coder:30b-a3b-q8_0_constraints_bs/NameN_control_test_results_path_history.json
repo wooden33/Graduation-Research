@@ -1,0 +1,215 @@
+{
+  "final_line_coverage": 97.44,
+  "final_branch_coverage": 81.25,
+  "final_lines_missed": [
+    95,
+    69,
+    70,
+    71,
+    80,
+    82,
+    94
+  ],
+  "final_branches_missed": [
+    69,
+    70,
+    71,
+    80,
+    82,
+    94
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 76.92,
+      "branch_coverage": 65.62,
+      "path_history": {},
+      "lines_missed": [
+        54,
+        58,
+        62,
+        76,
+        92,
+        93,
+        94,
+        95,
+        98,
+        69,
+        70,
+        71,
+        74,
+        80,
+        82,
+        84
+      ],
+      "branches_missed": [
+        93,
+        94,
+        69,
+        70,
+        71,
+        74,
+        80,
+        82,
+        84
+      ],
+      "timestamp": 1772536929.5621986
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 84.62,
+      "branch_coverage": 65.62,
+      "path_history": {
+        "equals_270_14": 1,
+        "equals_270_6": 1
+      },
+      "lines_missed": [
+        76,
+        92,
+        93,
+        94,
+        95,
+        98,
+        69,
+        70,
+        71,
+        74,
+        80,
+        82,
+        84
+      ],
+      "branches_missed": [
+        93,
+        94,
+        69,
+        70,
+        71,
+        74,
+        80,
+        82,
+        84
+      ],
+      "timestamp": 1772537038.278617
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 97.44,
+      "branch_coverage": 81.25,
+      "path_history": {
+        "equals_270_14": 2,
+        "equals_270_6": 1,
+        "equals_270_5": 1
+      },
+      "lines_missed": [
+        95,
+        69,
+        70,
+        71,
+        80,
+        82,
+        94
+      ],
+      "branches_missed": [
+        69,
+        70,
+        71,
+        80,
+        82,
+        94
+      ],
+      "timestamp": 1772537083.419424
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 97.44,
+      "branch_coverage": 81.25,
+      "path_history": {
+        "equals_270_14": 2,
+        "equals_270_6": 1,
+        "equals_270_5": 1,
+        "equals_270_13": 1,
+        "equals_270_4": 1
+      },
+      "lines_missed": [
+        95,
+        69,
+        70,
+        71,
+        80,
+        82,
+        94
+      ],
+      "branches_missed": [
+        69,
+        70,
+        71,
+        80,
+        82,
+        94
+      ],
+      "timestamp": 1772537150.9814117
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 97.44,
+      "branch_coverage": 81.25,
+      "path_history": {
+        "equals_270_14": 2,
+        "equals_270_6": 1,
+        "equals_270_5": 1,
+        "equals_270_13": 2,
+        "equals_270_4": 1,
+        "equals_270_10": 1
+      },
+      "lines_missed": [
+        95,
+        69,
+        70,
+        71,
+        80,
+        82,
+        94
+      ],
+      "branches_missed": [
+        69,
+        70,
+        71,
+        80,
+        82,
+        94
+      ],
+      "timestamp": 1772537173.5873432
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 97.44,
+      "branch_coverage": 81.25,
+      "path_history": {
+        "equals_270_14": 2,
+        "equals_270_6": 1,
+        "equals_270_5": 1,
+        "equals_270_13": 2,
+        "equals_270_4": 1,
+        "equals_270_10": 1
+      },
+      "lines_missed": [
+        95,
+        69,
+        70,
+        71,
+        80,
+        82,
+        94
+      ],
+      "branches_missed": [
+        69,
+        70,
+        71,
+        80,
+        82,
+        94
+      ],
+      "timestamp": 1772537216.8498447
+    }
+  ]
+}

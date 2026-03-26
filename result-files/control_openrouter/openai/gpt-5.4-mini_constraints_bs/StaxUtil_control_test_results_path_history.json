@@ -1,0 +1,151 @@
+{
+  "final_line_coverage": 95.0,
+  "final_branch_coverage": 90.0,
+  "final_lines_missed": [
+    12,
+    62,
+    54,
+    55,
+    61,
+    95
+  ],
+  "final_branches_missed": [
+    54,
+    55,
+    61,
+    95
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 60.0,
+      "branch_coverage": 77.5,
+      "path_history": {},
+      "lines_missed": [
+        12,
+        26,
+        27,
+        36,
+        37,
+        46,
+        47,
+        51,
+        52,
+        54,
+        55,
+        56,
+        60,
+        61,
+        62,
+        64,
+        95
+      ],
+      "branches_missed": [
+        51,
+        54,
+        55,
+        61,
+        95
+      ],
+      "timestamp": 1774272563.229511
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 95.0,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 1
+      },
+      "lines_missed": [
+        12,
+        62,
+        54,
+        55,
+        61,
+        95
+      ],
+      "branches_missed": [
+        54,
+        55,
+        61,
+        95
+      ],
+      "timestamp": 1774272619.0982974
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 95.0,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 1,
+        "sanitizeXmlTypeName_256_3": 1
+      },
+      "lines_missed": [
+        12,
+        62,
+        54,
+        55,
+        61,
+        95
+      ],
+      "branches_missed": [
+        54,
+        55,
+        61,
+        95
+      ],
+      "timestamp": 1774272638.108592
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 95.0,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 1,
+        "sanitizeXmlTypeName_256_3": 1,
+        "sanitizeXmlTypeName_256_11": 1
+      },
+      "lines_missed": [
+        12,
+        62,
+        54,
+        55,
+        61,
+        95
+      ],
+      "branches_missed": [
+        54,
+        55,
+        61,
+        95
+      ],
+      "timestamp": 1774272657.2282166
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 95.0,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 1,
+        "sanitizeXmlTypeName_256_3": 1,
+        "sanitizeXmlTypeName_256_11": 1,
+        "sanitizeXmlTypeName_256_7": 1
+      },
+      "lines_missed": [
+        12,
+        62,
+        54,
+        55,
+        61,
+        95
+      ],
+      "branches_missed": [
+        54,
+        55,
+        61,
+        95
+      ],
+      "timestamp": 1774272691.437521
+    }
+  ]
+}

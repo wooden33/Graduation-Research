@@ -1,0 +1,50 @@
+[backward_slice_prompt]
+system="""
+You are a senior code analysis expert. Your specialty is **Backward Slicing**, specifically identifying and extracting the minimal subset of program statements (data and control dependencies) that directly influence the execution of a specific target point.
+"""
+
+user="""
+## Task
+Analyze the provided uncovered code and extract its **Backward Slice**. 
+The slice must contain only the statements (variable declarations, assignments, control structures, and method calls) that are **strictly necessary** to reach and execute the target point. Exclude any code with no impact on this specific execution path (e.g., logging, unrelated side effects).
+
+## Context
+- **Point of Interest (Target)**: 
+  `{{ uncovered_code }}`
+- **Focal Method Source**:
+=========
+{{ full_fm }}
+=========
+- **Dependency Context**: 
+{{ c_deps }}
+
+## Requirements
+Extract the slice by tracing backward from the target point to the method entry. 
+
+### Output Format (JSON)
+Return the analysis strictly in the following JSON format:
+
+```json
+{
+    "backward_slice_code": [
+        "// Sequential statements forming the logical path to the target",
+        "Type variable = initialValue;",
+        "if (condition derived from inputs) {",
+        "    // ... only statements leading to the target"
+    ],
+    "prerequisites": {
+        "input_values": [
+            {"name": "...", "type": "...", "required_value": "...", "reason": "..."}
+        ],
+        "object_states": [
+            {"object": "...", "field": "...", "required_value": "...", "reason": "..."}
+        ],
+        "method_mocks": [
+            {"method": "...", "expected_return": "...", "reason": "Impact on control flow"}
+        ],
+        "control_flow_logic": "A concise summary of the logical path required to trigger this slice."
+    },
+    "test_hint": "Guidance on how to construct a test case (inputs/mocks) based on this slice."
+}
+
+## Response:"""

@@ -1,0 +1,128 @@
+{
+  "final_line_coverage": 95.0,
+  "final_branch_coverage": 100.0,
+  "final_lines_missed": [
+    121,
+    122,
+    123
+  ],
+  "final_branches_missed": [],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 91.67,
+      "branch_coverage": 85.0,
+      "path_history": {},
+      "lines_missed": [
+        110,
+        121,
+        122,
+        123,
+        160,
+        109,
+        159,
+        162
+      ],
+      "branches_missed": [
+        109,
+        159,
+        162
+      ],
+      "timestamp": 1774263349.4617474
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 93.33,
+      "branch_coverage": 95.0,
+      "path_history": {
+        "getPropertyDescriptors_221_13": 1,
+        "toString_454_1": 1
+      },
+      "lines_missed": [
+        110,
+        121,
+        122,
+        123,
+        109
+      ],
+      "branches_missed": [
+        109
+      ],
+      "timestamp": 1774263420.413211
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 95.0,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "getPropertyDescriptors_221_13": 2,
+        "toString_454_1": 1,
+        "getPropertyDescriptors_221_3": 1
+      },
+      "lines_missed": [
+        121,
+        122,
+        123
+      ],
+      "branches_missed": [],
+      "timestamp": 1774263473.1917984
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 95.0,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "getPropertyDescriptors_221_13": 2,
+        "toString_454_1": 1,
+        "getPropertyDescriptors_221_3": 1,
+        "getPropertyDescriptors_221_8": 1
+      },
+      "lines_missed": [
+        121,
+        122,
+        123
+      ],
+      "branches_missed": [],
+      "timestamp": 1774263509.9715066
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 95.0,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "getPropertyDescriptors_221_13": 2,
+        "toString_454_1": 1,
+        "getPropertyDescriptors_221_3": 1,
+        "getPropertyDescriptors_221_8": 1,
+        "getPropertyDescriptors_221_7": 1
+      },
+      "lines_missed": [
+        121,
+        122,
+        123
+      ],
+      "branches_missed": [],
+      "timestamp": 1774263536.2940364
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 95.0,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "getPropertyDescriptors_221_13": 2,
+        "toString_454_1": 1,
+        "getPropertyDescriptors_221_3": 1,
+        "getPropertyDescriptors_221_8": 1,
+        "getPropertyDescriptors_221_7": 1,
+        "getPropertyDescriptors_221_12": 1
+      },
+      "lines_missed": [
+        121,
+        122,
+        123
+      ],
+      "branches_missed": [],
+      "timestamp": 1774263603.7948964
+    }
+  ]
+}

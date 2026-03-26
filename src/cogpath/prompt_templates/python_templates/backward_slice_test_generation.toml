@@ -1,0 +1,88 @@
+[backward_slice_test_generation_prompt]
+system="""
+You are an expert test generation engineer. Based on the backward slice analysis,
+your task is to generate comprehensive unit tests that cover the specific code paths identified
+by backward slicing. The backward slice analysis reveals the precise conditions, inputs, and
+object states required to reach uncovered code branches.
+"""
+
+user="""
+## Task
+Generate unit tests to cover the code paths identified by backward slice analysis.
+These tests are specifically designed to reach branches that have been repeatedly missed
+in previous test generation iterations.
+
+## Backward Slice Analysis Results:
+{% for slice in slice_info %}
+### Slice {{ slice.index }}
+**Backward Slice Code:** The sequence of statements leading to the target:
+```python
+{{ slice.slice_code | join('\n') }}
+```
+
+**Required Input Values:**
+{% for input in slice.input_values %}
+- `{{ input.type }} {{ input.name }}`: Must be `{{ input.required_value }}`
+  - Reason: {{ input.reason }}
+{% endfor %}
+
+**Required Object States:**
+{% for state in slice.object_states %}
+- `{{ state.object }}.{{ state.field }}`: Must be `{{ state.required_value }}`
+  - Reason: {{ state.reason }}
+{% endfor %}
+
+**Required Method Mocks:**
+{% for mock in slice.method_mocks %}
+- `{{ mock.method }}`: Return `{{ mock.expected_return }}`
+  - Reason: {{ mock.reason }}
+{% endfor %}
+
+**Control Flow Logic:** {{ slice.control_flow_logic }}
+
+**Test Hint:** {{ slice.test_hint }}
+
+---
+{% endfor %}
+
+## Source Code Under Test
+```python
+{{ processed_source_code }}
+```
+
+## Existing Test File
+```python
+{{ test_file_numbered }}
+```
+
+## Test Dependencies
+{{ test_dependencies }}
+
+## Requirements
+1. Generate tests that specifically target the conditions and inputs identified in the backward slices
+2. Cover all the branches and conditions mentioned in the slice analysis
+3. Include necessary imports for testing (use unittest framework)
+4. Follow the existing test file structure and conventions
+5. Tests should be self-contained and executable
+6. Focus on the specific prerequisites identified: inputs, object states, and method calls
+
+## Output Format
+Provide the test code in YAML format with:
+- `test_code`: The complete test method code (without imports - those are handled separately)
+- `test_name`: A descriptive name for the test starting with `test_`
+- `test_behavior`: Brief description of what the test verifies
+- `new_imports_code`: Any additional imports needed (in import statement format, one per line)
+
+## Example Output Format
+```yaml
+test_code: |
+    def test_branch_coverage_input_negative(self):
+        obj = MyClass()
+        result = obj.process(-1)
+        self.assertEqual(-1, result)
+test_name: test_branch_coverage_input_negative
+test_behavior: Tests that process method handles negative input correctly
+new_imports_code: |
+    import unittest.mock
+```
+"""

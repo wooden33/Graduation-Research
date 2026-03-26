@@ -1,0 +1,142 @@
+{
+  "final_line_coverage": 90.91,
+  "final_branch_coverage": 92.31,
+  "final_lines_missed": [
+    48,
+    72,
+    90,
+    105,
+    126,
+    141,
+    89,
+    223
+  ],
+  "final_branches_missed": [
+    89,
+    223
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 87.88,
+      "branch_coverage": 80.77,
+      "path_history": {},
+      "lines_missed": [
+        48,
+        72,
+        89,
+        90,
+        92,
+        105,
+        126,
+        141,
+        223
+      ],
+      "branches_missed": [
+        89,
+        223
+      ],
+      "timestamp": 1767979344.0227077
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 90.91,
+      "branch_coverage": 92.31,
+      "path_history": {
+        "md5Crypt_242_2": 1,
+        "apr1Crypt_106_1": 1,
+        "apr1Crypt_106_0": 1
+      },
+      "lines_missed": [
+        48,
+        72,
+        90,
+        105,
+        126,
+        141,
+        89,
+        223
+      ],
+      "branches_missed": [
+        89,
+        223
+      ],
+      "timestamp": 1767979530.7840948
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 90.91,
+      "branch_coverage": 92.31,
+      "path_history": {
+        "md5Crypt_242_2": 2,
+        "apr1Crypt_106_1": 2,
+        "apr1Crypt_106_0": 1
+      },
+      "lines_missed": [
+        48,
+        72,
+        90,
+        105,
+        126,
+        141,
+        89,
+        223
+      ],
+      "branches_missed": [
+        89,
+        223
+      ],
+      "timestamp": 1767979645.0477867
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 90.91,
+      "branch_coverage": 92.31,
+      "path_history": {
+        "md5Crypt_242_2": 3,
+        "apr1Crypt_106_1": 3,
+        "apr1Crypt_106_0": 2
+      },
+      "lines_missed": [
+        48,
+        72,
+        90,
+        105,
+        126,
+        141,
+        89,
+        223
+      ],
+      "branches_missed": [
+        89,
+        223
+      ],
+      "timestamp": 1767979767.3981779
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 90.91,
+      "branch_coverage": 92.31,
+      "path_history": {
+        "md5Crypt_242_2": 4,
+        "apr1Crypt_106_1": 4,
+        "apr1Crypt_106_0": 3
+      },
+      "lines_missed": [
+        48,
+        72,
+        90,
+        105,
+        126,
+        141,
+        89,
+        223
+      ],
+      "branches_missed": [
+        89,
+        223
+      ],
+      "timestamp": 1767979908.5951154
+    }
+  ]
+}

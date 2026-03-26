@@ -1,0 +1,164 @@
+{
+  "final_line_coverage": 97.56,
+  "final_branch_coverage": 83.33,
+  "final_lines_missed": [
+    137,
+    71,
+    81,
+    98,
+    99,
+    100,
+    105
+  ],
+  "final_branches_missed": [
+    71,
+    81,
+    98,
+    99,
+    100,
+    105
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 95.12,
+      "branch_coverage": 81.25,
+      "path_history": {},
+      "lines_missed": [
+        92,
+        137,
+        71,
+        81,
+        91,
+        98,
+        99,
+        100,
+        105
+      ],
+      "branches_missed": [
+        71,
+        81,
+        91,
+        98,
+        99,
+        100,
+        105
+      ],
+      "timestamp": 1773458379.5894759
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 97.56,
+      "branch_coverage": 83.33,
+      "path_history": {
+        "translate_140_5": 1,
+        "translate_140_7": 1
+      },
+      "lines_missed": [
+        137,
+        71,
+        81,
+        98,
+        99,
+        100,
+        105
+      ],
+      "branches_missed": [
+        71,
+        81,
+        98,
+        99,
+        100,
+        105
+      ],
+      "timestamp": 1773458420.6415129
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 97.56,
+      "branch_coverage": 83.33,
+      "path_history": {
+        "translate_140_5": 1,
+        "translate_140_7": 1,
+        "translate_140_9": 1
+      },
+      "lines_missed": [
+        137,
+        71,
+        81,
+        98,
+        99,
+        100,
+        105
+      ],
+      "branches_missed": [
+        71,
+        81,
+        98,
+        99,
+        100,
+        105
+      ],
+      "timestamp": 1773458490.717726
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 97.56,
+      "branch_coverage": 83.33,
+      "path_history": {
+        "translate_140_5": 1,
+        "translate_140_7": 1,
+        "translate_140_9": 1,
+        "translate_140_3": 1
+      },
+      "lines_missed": [
+        137,
+        71,
+        81,
+        98,
+        99,
+        100,
+        105
+      ],
+      "branches_missed": [
+        71,
+        81,
+        98,
+        99,
+        100,
+        105
+      ],
+      "timestamp": 1773458581.8409295
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 97.56,
+      "branch_coverage": 83.33,
+      "path_history": {
+        "translate_140_5": 1,
+        "translate_140_7": 1,
+        "translate_140_9": 1,
+        "translate_140_3": 1,
+        "translate_140_6": 1
+      },
+      "lines_missed": [
+        137,
+        71,
+        81,
+        98,
+        99,
+        100,
+        105
+      ],
+      "branches_missed": [
+        71,
+        81,
+        98,
+        99,
+        100,
+        105
+      ],
+      "timestamp": 1773458707.747145
+    }
+  ]
+}

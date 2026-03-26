@@ -1,0 +1,102 @@
+{
+  "final_line_coverage": 98.68,
+  "final_branch_coverage": 97.44,
+  "final_lines_missed": [
+    225,
+    135
+  ],
+  "final_branches_missed": [
+    135
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 96.05,
+      "branch_coverage": 92.31,
+      "path_history": {},
+      "lines_missed": [
+        141,
+        142,
+        225,
+        135,
+        473
+      ],
+      "branches_missed": [
+        135,
+        473
+      ],
+      "timestamp": 1773635700.6282537
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 98.68,
+      "branch_coverage": 97.44,
+      "path_history": {
+        "daysBetween_296_0": 1,
+        "isLessThan_845_0": 1
+      },
+      "lines_missed": [
+        225,
+        135
+      ],
+      "branches_missed": [
+        135
+      ],
+      "timestamp": 1773635789.6015584
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 98.68,
+      "branch_coverage": 97.44,
+      "path_history": {
+        "daysBetween_296_0": 1,
+        "isLessThan_845_0": 1,
+        "daysBetween_296_1": 1
+      },
+      "lines_missed": [
+        225,
+        135
+      ],
+      "branches_missed": [
+        135
+      ],
+      "timestamp": 1773635939.8295417
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 98.68,
+      "branch_coverage": 97.44,
+      "path_history": {
+        "daysBetween_296_0": 2,
+        "isLessThan_845_0": 1,
+        "daysBetween_296_1": 1
+      },
+      "lines_missed": [
+        225,
+        135
+      ],
+      "branches_missed": [
+        135
+      ],
+      "timestamp": 1773636015.4691129
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 98.68,
+      "branch_coverage": 97.44,
+      "path_history": {
+        "daysBetween_296_0": 3,
+        "isLessThan_845_0": 1,
+        "daysBetween_296_1": 2
+      },
+      "lines_missed": [
+        225,
+        135
+      ],
+      "branches_missed": [
+        135
+      ],
+      "timestamp": 1773636147.6504042
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "final_line_coverage": 98.72,
+  "final_branch_coverage": 97.5,
+  "final_lines_missed": [
+    227,
+    138
+  ],
+  "final_branches_missed": [
+    138
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 74.36,
+      "branch_coverage": 65.0,
+      "path_history": {},
+      "lines_missed": [
+        121,
+        122,
+        138,
+        139,
+        140,
+        141,
+        142,
+        144,
+        145,
+        157,
+        158,
+        160,
+        161,
+        185,
+        186,
+        227,
+        375,
+        405,
+        461,
+        474,
+        372,
+        402,
+        458,
+        471
+      ],
+      "branches_missed": [
+        138,
+        157,
+        461,
+        474,
+        372,
+        402,
+        458,
+        471
+      ],
+      "timestamp": 1774258766.7321193
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 97.44,
+      "branch_coverage": 95.0,
+      "path_history": {
+        "hoursBetween_310_1": 1,
+        "hoursBetween_310_0": 1,
+        "hoursIn_392_1": 1,
+        "plus_691_1": 1,
+        "minus_734_1": 1,
+        "minus_734_0": 1,
+        "isGreaterThan_826_1": 1,
+        "isGreaterThan_826_0": 1,
+        "isLessThan_856_1": 1
+      },
+      "lines_missed": [
+        158,
+        227,
+        138,
+        157
+      ],
+      "branches_missed": [
+        138,
+        157
+      ],
+      "timestamp": 1774259223.5346482
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 98.72,
+      "branch_coverage": 97.5,
+      "path_history": {
+        "hoursBetween_310_1": 2,
+        "hoursBetween_310_0": 1,
+        "hoursIn_392_1": 1,
+        "plus_691_1": 1,
+        "minus_734_1": 1,
+        "minus_734_0": 1,
+        "isGreaterThan_826_1": 1,
+        "isGreaterThan_826_0": 1,
+        "isLessThan_856_1": 1,
+        "hoursIn_392_0": 1
+      },
+      "lines_missed": [
+        227,
+        138
+      ],
+      "branches_missed": [
+        138
+      ],
+      "timestamp": 1774259379.1372159
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 98.72,
+      "branch_coverage": 97.5,
+      "path_history": {
+        "hoursBetween_310_1": 2,
+        "hoursBetween_310_0": 2,
+        "hoursIn_392_1": 1,
+        "plus_691_1": 1,
+        "minus_734_1": 1,
+        "minus_734_0": 1,
+        "isGreaterThan_826_1": 1,
+        "isGreaterThan_826_0": 1,
+        "isLessThan_856_1": 1,
+        "hoursIn_392_0": 1
+      },
+      "lines_missed": [
+        227,
+        138
+      ],
+      "branches_missed": [
+        138
+      ],
+      "timestamp": 1774259499.3649
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 98.72,
+      "branch_coverage": 97.5,
+      "path_history": {
+        "hoursBetween_310_1": 3,
+        "hoursBetween_310_0": 2,
+        "hoursIn_392_1": 1,
+        "plus_691_1": 1,
+        "minus_734_1": 1,
+        "minus_734_0": 1,
+        "isGreaterThan_826_1": 1,
+        "isGreaterThan_826_0": 1,
+        "isLessThan_856_1": 1,
+        "hoursIn_392_0": 1
+      },
+      "lines_missed": [
+        227,
+        138
+      ],
+      "branches_missed": [
+        138
+      ],
+      "timestamp": 1774259610.3773487
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 98.72,
+      "branch_coverage": 97.5,
+      "path_history": {
+        "hoursBetween_310_1": 3,
+        "hoursBetween_310_0": 3,
+        "hoursIn_392_1": 1,
+        "plus_691_1": 1,
+        "minus_734_1": 1,
+        "minus_734_0": 1,
+        "isGreaterThan_826_1": 1,
+        "isGreaterThan_826_0": 1,
+        "isLessThan_856_1": 1,
+        "hoursIn_392_0": 1
+      },
+      "lines_missed": [
+        227,
+        138
+      ],
+      "branches_missed": [
+        138
+      ],
+      "timestamp": 1774259725.1663406
+    }
+  ]
+}

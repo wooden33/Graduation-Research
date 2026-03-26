@@ -1,0 +1,96 @@
+{
+  "final_line_coverage": 100.0,
+  "final_branch_coverage": 100.0,
+  "final_lines_missed": [],
+  "final_branches_missed": [],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 84.48,
+      "branch_coverage": 89.29,
+      "path_history": {},
+      "lines_missed": [
+        187,
+        236,
+        265,
+        266,
+        269,
+        270,
+        271,
+        275,
+        284,
+        235,
+        264,
+        274,
+        282
+      ],
+      "branches_missed": [
+        265,
+        235,
+        264,
+        274,
+        282
+      ],
+      "timestamp": 1773671654.9419038
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 93.1,
+      "branch_coverage": 92.86,
+      "path_history": {
+        "random_233_14": 1,
+        "random_233_6": 1
+      },
+      "lines_missed": [
+        236,
+        266,
+        275,
+        284,
+        235,
+        265,
+        274,
+        282
+      ],
+      "branches_missed": [
+        235,
+        265,
+        274,
+        282
+      ],
+      "timestamp": 1773671945.6738105
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 98.28,
+      "branch_coverage": 98.21,
+      "path_history": {
+        "random_233_14": 1,
+        "random_233_6": 1,
+        "random_233_10": 1
+      },
+      "lines_missed": [
+        236,
+        235
+      ],
+      "branches_missed": [
+        235
+      ],
+      "timestamp": 1773672025.6788785
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 100.0,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "random_233_14": 1,
+        "random_233_6": 1,
+        "random_233_10": 1,
+        "random_233_5": 1,
+        "random_233_7": 1
+      },
+      "lines_missed": [],
+      "branches_missed": [],
+      "timestamp": 1773672070.4743693
+    }
+  ]
+}

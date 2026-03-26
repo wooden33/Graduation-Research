@@ -1,0 +1,136 @@
+{
+  "final_line_coverage": 98.72,
+  "final_branch_coverage": 97.5,
+  "final_lines_missed": [
+    227,
+    138
+  ],
+  "final_branches_missed": [
+    138
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 91.03,
+      "branch_coverage": 80.0,
+      "path_history": {},
+      "lines_missed": [
+        144,
+        145,
+        227,
+        471,
+        472,
+        474,
+        487,
+        138
+      ],
+      "branches_missed": [
+        471,
+        472,
+        474,
+        138
+      ],
+      "timestamp": 1773630568.4419134
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 94.87,
+      "branch_coverage": 87.5,
+      "path_history": {
+        "hoursBetween_310_0": 1,
+        "hoursBetween_310_1": 1,
+        "isLessThan_856_0": 1
+      },
+      "lines_missed": [
+        144,
+        145,
+        227,
+        474,
+        138,
+        471
+      ],
+      "branches_missed": [
+        474,
+        138,
+        471
+      ],
+      "timestamp": 1773630819.7534242
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 98.72,
+      "branch_coverage": 97.5,
+      "path_history": {
+        "hoursBetween_310_0": 2,
+        "hoursBetween_310_1": 2,
+        "isLessThan_856_0": 1,
+        "isLessThan_856_1": 1
+      },
+      "lines_missed": [
+        227,
+        138
+      ],
+      "branches_missed": [
+        138
+      ],
+      "timestamp": 1773631051.4165888
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 98.72,
+      "branch_coverage": 97.5,
+      "path_history": {
+        "hoursBetween_310_0": 3,
+        "hoursBetween_310_1": 2,
+        "isLessThan_856_0": 1,
+        "isLessThan_856_1": 1
+      },
+      "lines_missed": [
+        227,
+        138
+      ],
+      "branches_missed": [
+        138
+      ],
+      "timestamp": 1773631214.523196
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 98.72,
+      "branch_coverage": 97.5,
+      "path_history": {
+        "hoursBetween_310_0": 3,
+        "hoursBetween_310_1": 3,
+        "isLessThan_856_0": 1,
+        "isLessThan_856_1": 1
+      },
+      "lines_missed": [
+        227,
+        138
+      ],
+      "branches_missed": [
+        138
+      ],
+      "timestamp": 1773631455.248929
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 98.72,
+      "branch_coverage": 97.5,
+      "path_history": {
+        "hoursBetween_310_0": 3,
+        "hoursBetween_310_1": 4,
+        "isLessThan_856_0": 1,
+        "isLessThan_856_1": 1
+      },
+      "lines_missed": [
+        227,
+        138
+      ],
+      "branches_missed": [
+        138
+      ],
+      "timestamp": 1773631650.0243971
+    }
+  ]
+}

@@ -1,0 +1,376 @@
+{
+  "final_line_coverage": 100.0,
+  "final_branch_coverage": 94.29,
+  "final_lines_missed": [
+    309,
+    103,
+    118,
+    263,
+    296
+  ],
+  "final_branches_missed": [
+    103,
+    118,
+    263,
+    296
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 95.6,
+      "branch_coverage": 84.29,
+      "path_history": {},
+      "lines_missed": [
+        104,
+        113,
+        128,
+        142,
+        309,
+        103,
+        112,
+        118,
+        127,
+        135,
+        141,
+        257,
+        263,
+        289,
+        296
+      ],
+      "branches_missed": [
+        103,
+        112,
+        118,
+        127,
+        135,
+        141,
+        257,
+        263,
+        289,
+        296
+      ],
+      "timestamp": 1773665991.8428442
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 96.7,
+      "branch_coverage": 87.14,
+      "path_history": {
+        "toLocale_128_16": 1,
+        "toLocale_128_18": 1,
+        "languagesByCountry_698_3": 1,
+        "languagesByCountry_698_1": 1,
+        "countriesByLanguage_835_3": 1
+      },
+      "lines_missed": [
+        104,
+        113,
+        128,
+        309,
+        103,
+        112,
+        118,
+        127,
+        135,
+        263,
+        289,
+        296
+      ],
+      "branches_missed": [
+        103,
+        112,
+        118,
+        127,
+        135,
+        263,
+        289,
+        296
+      ],
+      "timestamp": 1773666072.0949345
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 96.7,
+      "branch_coverage": 87.14,
+      "path_history": {
+        "toLocale_128_16": 1,
+        "toLocale_128_18": 2,
+        "languagesByCountry_698_3": 1,
+        "languagesByCountry_698_1": 1,
+        "countriesByLanguage_835_3": 2,
+        "toLocale_128_12": 1,
+        "languagesByCountry_698_4": 1,
+        "countriesByLanguage_835_4": 1
+      },
+      "lines_missed": [
+        104,
+        113,
+        128,
+        309,
+        103,
+        112,
+        118,
+        127,
+        135,
+        263,
+        289,
+        296
+      ],
+      "branches_missed": [
+        103,
+        112,
+        118,
+        127,
+        135,
+        263,
+        289,
+        296
+      ],
+      "timestamp": 1773666161.094111
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 96.7,
+      "branch_coverage": 88.57,
+      "path_history": {
+        "toLocale_128_16": 1,
+        "toLocale_128_18": 2,
+        "languagesByCountry_698_3": 2,
+        "languagesByCountry_698_1": 1,
+        "countriesByLanguage_835_3": 3,
+        "toLocale_128_12": 1,
+        "languagesByCountry_698_4": 1,
+        "countriesByLanguage_835_4": 1,
+        "toLocale_128_14": 1,
+        "toLocale_128_4": 1,
+        "countriesByLanguage_835_2": 1
+      },
+      "lines_missed": [
+        104,
+        113,
+        128,
+        309,
+        103,
+        112,
+        118,
+        127,
+        135,
+        263,
+        296
+      ],
+      "branches_missed": [
+        103,
+        112,
+        118,
+        127,
+        135,
+        263,
+        296
+      ],
+      "timestamp": 1773666254.5426757
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 96.7,
+      "branch_coverage": 88.57,
+      "path_history": {
+        "toLocale_128_16": 1,
+        "toLocale_128_18": 2,
+        "languagesByCountry_698_3": 3,
+        "languagesByCountry_698_1": 1,
+        "countriesByLanguage_835_3": 3,
+        "toLocale_128_12": 1,
+        "languagesByCountry_698_4": 2,
+        "countriesByLanguage_835_4": 2,
+        "toLocale_128_14": 2,
+        "toLocale_128_4": 1,
+        "countriesByLanguage_835_2": 1,
+        "toLocale_128_8": 1
+      },
+      "lines_missed": [
+        104,
+        113,
+        128,
+        309,
+        103,
+        112,
+        118,
+        127,
+        135,
+        263,
+        296
+      ],
+      "branches_missed": [
+        103,
+        112,
+        118,
+        127,
+        135,
+        263,
+        296
+      ],
+      "timestamp": 1773666345.6142967
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 96.7,
+      "branch_coverage": 88.57,
+      "path_history": {
+        "toLocale_128_16": 2,
+        "toLocale_128_18": 2,
+        "languagesByCountry_698_3": 4,
+        "languagesByCountry_698_1": 1,
+        "countriesByLanguage_835_3": 3,
+        "toLocale_128_12": 1,
+        "languagesByCountry_698_4": 3,
+        "countriesByLanguage_835_4": 3,
+        "toLocale_128_14": 2,
+        "toLocale_128_4": 1,
+        "countriesByLanguage_835_2": 1,
+        "toLocale_128_8": 1,
+        "toLocale_128_5": 1
+      },
+      "lines_missed": [
+        104,
+        113,
+        128,
+        309,
+        103,
+        112,
+        118,
+        127,
+        135,
+        263,
+        296
+      ],
+      "branches_missed": [
+        103,
+        112,
+        118,
+        127,
+        135,
+        263,
+        296
+      ],
+      "timestamp": 1773666528.566424
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 97.8,
+      "branch_coverage": 91.43,
+      "path_history": {
+        "toLocale_128_16": 2,
+        "toLocale_128_18": 2,
+        "languagesByCountry_698_3": 5,
+        "languagesByCountry_698_1": 1,
+        "countriesByLanguage_835_3": 4,
+        "toLocale_128_12": 1,
+        "languagesByCountry_698_4": 4,
+        "countriesByLanguage_835_4": 3,
+        "toLocale_128_14": 3,
+        "toLocale_128_4": 1,
+        "countriesByLanguage_835_2": 1,
+        "toLocale_128_8": 1,
+        "toLocale_128_5": 1,
+        "toLocale_128_13": 1
+      },
+      "lines_missed": [
+        113,
+        128,
+        309,
+        103,
+        112,
+        118,
+        127,
+        263,
+        296
+      ],
+      "branches_missed": [
+        103,
+        112,
+        118,
+        127,
+        263,
+        296
+      ],
+      "timestamp": 1773666697.2888553
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 98.9,
+      "branch_coverage": 92.86,
+      "path_history": {
+        "toLocale_128_16": 2,
+        "toLocale_128_18": 2,
+        "languagesByCountry_698_3": 6,
+        "languagesByCountry_698_1": 1,
+        "countriesByLanguage_835_3": 4,
+        "toLocale_128_12": 1,
+        "languagesByCountry_698_4": 5,
+        "countriesByLanguage_835_4": 4,
+        "toLocale_128_14": 3,
+        "toLocale_128_4": 1,
+        "countriesByLanguage_835_2": 1,
+        "toLocale_128_8": 1,
+        "toLocale_128_5": 1,
+        "toLocale_128_13": 1,
+        "toLocale_128_11": 1
+      },
+      "lines_missed": [
+        128,
+        309,
+        103,
+        118,
+        127,
+        263,
+        296
+      ],
+      "branches_missed": [
+        103,
+        118,
+        127,
+        263,
+        296
+      ],
+      "timestamp": 1773666768.3797033
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 100.0,
+      "branch_coverage": 94.29,
+      "path_history": {
+        "toLocale_128_16": 2,
+        "toLocale_128_18": 2,
+        "languagesByCountry_698_3": 6,
+        "languagesByCountry_698_1": 1,
+        "countriesByLanguage_835_3": 4,
+        "toLocale_128_12": 1,
+        "languagesByCountry_698_4": 6,
+        "countriesByLanguage_835_4": 5,
+        "toLocale_128_14": 3,
+        "toLocale_128_4": 1,
+        "countriesByLanguage_835_2": 1,
+        "toLocale_128_8": 1,
+        "toLocale_128_5": 1,
+        "toLocale_128_13": 1,
+        "toLocale_128_11": 1,
+        "toLocale_128_9": 1,
+        "toLocale_128_10": 1
+      },
+      "lines_missed": [
+        309,
+        103,
+        118,
+        263,
+        296
+      ],
+      "branches_missed": [
+        103,
+        118,
+        263,
+        296
+      ],
+      "timestamp": 1773666849.501634
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "final_line_coverage": 97.5,
+  "final_branch_coverage": 97.5,
+  "final_lines_missed": [
+    12,
+    95
+  ],
+  "final_branches_missed": [
+    95
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 97.5,
+      "branch_coverage": 97.5,
+      "path_history": {},
+      "lines_missed": [
+        12,
+        95
+      ],
+      "branches_missed": [
+        95
+      ],
+      "timestamp": 1766657186.0464869
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 97.5,
+      "branch_coverage": 97.5,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 1
+      },
+      "lines_missed": [
+        12,
+        95
+      ],
+      "branches_missed": [
+        95
+      ],
+      "timestamp": 1766657251.7495341
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 97.5,
+      "branch_coverage": 97.5,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 1,
+        "sanitizeXmlTypeName_256_6": 1
+      },
+      "lines_missed": [
+        12,
+        95
+      ],
+      "branches_missed": [
+        95
+      ],
+      "timestamp": 1766657287.0461242
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 97.5,
+      "branch_coverage": 97.5,
+      "path_history": {
+        "sanitizeXmlTypeName_256_10": 1,
+        "sanitizeXmlTypeName_256_6": 1,
+        "sanitizeXmlTypeName_256_8": 1
+      },
+      "lines_missed": [
+        12,
+        95
+      ],
+      "branches_missed": [
+        95
+      ],
+      "timestamp": 1766657333.2074988
+    }
+  ]
+}

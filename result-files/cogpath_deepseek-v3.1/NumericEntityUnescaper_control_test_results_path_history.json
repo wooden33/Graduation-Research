@@ -1,0 +1,415 @@
+{
+  "final_line_coverage": 97.56,
+  "final_branch_coverage": 89.58,
+  "final_lines_missed": [
+    119,
+    86,
+    98,
+    100,
+    135
+  ],
+  "final_branches_missed": [
+    86,
+    98,
+    100,
+    135
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 85.37,
+      "branch_coverage": 72.92,
+      "path_history": {},
+      "lines_missed": [
+        92,
+        119,
+        128,
+        129,
+        130,
+        131,
+        71,
+        81,
+        86,
+        91,
+        98,
+        99,
+        100,
+        111,
+        127,
+        135
+      ],
+      "branches_missed": [
+        71,
+        81,
+        86,
+        91,
+        98,
+        99,
+        100,
+        111,
+        127,
+        135
+      ],
+      "timestamp": 1766734799.1221983
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 95.12,
+      "branch_coverage": 77.08,
+      "path_history": {
+        "translate_140_11": 1
+      },
+      "lines_missed": [
+        92,
+        119,
+        81,
+        86,
+        91,
+        98,
+        99,
+        100,
+        111,
+        135
+      ],
+      "branches_missed": [
+        81,
+        86,
+        91,
+        98,
+        99,
+        100,
+        111,
+        135
+      ],
+      "timestamp": 1766734875.3845735
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 95.12,
+      "branch_coverage": 77.08,
+      "path_history": {
+        "translate_140_11": 2,
+        "translate_140_9": 1
+      },
+      "lines_missed": [
+        92,
+        119,
+        81,
+        86,
+        91,
+        98,
+        99,
+        100,
+        111,
+        135
+      ],
+      "branches_missed": [
+        81,
+        86,
+        91,
+        98,
+        99,
+        100,
+        111,
+        135
+      ],
+      "timestamp": 1766734972.0535898
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 95.12,
+      "branch_coverage": 83.33,
+      "path_history": {
+        "translate_140_11": 2,
+        "translate_140_9": 1,
+        "translate_140_5": 1,
+        "translate_140_2": 1
+      },
+      "lines_missed": [
+        92,
+        119,
+        81,
+        86,
+        91,
+        98,
+        100,
+        111,
+        135
+      ],
+      "branches_missed": [
+        81,
+        86,
+        91,
+        98,
+        100,
+        111,
+        135
+      ],
+      "timestamp": 1766735040.6102166
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 95.12,
+      "branch_coverage": 83.33,
+      "path_history": {
+        "translate_140_11": 2,
+        "translate_140_9": 1,
+        "translate_140_5": 1,
+        "translate_140_2": 1,
+        "translate_140_3": 1
+      },
+      "lines_missed": [
+        92,
+        119,
+        81,
+        86,
+        91,
+        98,
+        100,
+        111,
+        135
+      ],
+      "branches_missed": [
+        81,
+        86,
+        91,
+        98,
+        100,
+        111,
+        135
+      ],
+      "timestamp": 1766735092.7975485
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 95.12,
+      "branch_coverage": 83.33,
+      "path_history": {
+        "translate_140_11": 2,
+        "translate_140_9": 1,
+        "translate_140_5": 1,
+        "translate_140_2": 1,
+        "translate_140_3": 1,
+        "translate_140_7": 1,
+        "translate_140_6": 1
+      },
+      "lines_missed": [
+        92,
+        119,
+        81,
+        86,
+        91,
+        98,
+        100,
+        111,
+        135
+      ],
+      "branches_missed": [
+        81,
+        86,
+        91,
+        98,
+        100,
+        111,
+        135
+      ],
+      "timestamp": 1766735236.5812683
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 97.56,
+      "branch_coverage": 85.42,
+      "path_history": {
+        "translate_140_11": 2,
+        "translate_140_9": 1,
+        "translate_140_5": 1,
+        "translate_140_2": 1,
+        "translate_140_3": 1,
+        "translate_140_7": 2,
+        "translate_140_6": 1,
+        "translate_140_1": 1
+      },
+      "lines_missed": [
+        119,
+        81,
+        86,
+        98,
+        100,
+        111,
+        135
+      ],
+      "branches_missed": [
+        81,
+        86,
+        98,
+        100,
+        111,
+        135
+      ],
+      "timestamp": 1766735301.196738
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 97.56,
+      "branch_coverage": 87.5,
+      "path_history": {
+        "translate_140_11": 3,
+        "translate_140_9": 1,
+        "translate_140_5": 1,
+        "translate_140_2": 1,
+        "translate_140_3": 1,
+        "translate_140_7": 2,
+        "translate_140_6": 1,
+        "translate_140_1": 1,
+        "translate_140_10": 1
+      },
+      "lines_missed": [
+        119,
+        81,
+        86,
+        98,
+        100,
+        135
+      ],
+      "branches_missed": [
+        81,
+        86,
+        98,
+        100,
+        135
+      ],
+      "timestamp": 1766735401.694256
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 97.56,
+      "branch_coverage": 87.5,
+      "path_history": {
+        "translate_140_11": 3,
+        "translate_140_9": 1,
+        "translate_140_5": 1,
+        "translate_140_2": 1,
+        "translate_140_3": 1,
+        "translate_140_7": 3,
+        "translate_140_6": 1,
+        "translate_140_1": 1,
+        "translate_140_10": 1,
+        "translate_140_4": 1
+      },
+      "lines_missed": [
+        119,
+        81,
+        86,
+        98,
+        100,
+        135
+      ],
+      "branches_missed": [
+        81,
+        86,
+        98,
+        100,
+        135
+      ],
+      "timestamp": 1766735484.1646285
+    },
+    {
+      "iteration": 9,
+      "line_coverage": 97.56,
+      "branch_coverage": 89.58,
+      "path_history": {
+        "translate_140_11": 4,
+        "translate_140_9": 1,
+        "translate_140_5": 1,
+        "translate_140_2": 1,
+        "translate_140_3": 1,
+        "translate_140_7": 3,
+        "translate_140_6": 1,
+        "translate_140_1": 1,
+        "translate_140_10": 1,
+        "translate_140_4": 1,
+        "translate_140_0": 1
+      },
+      "lines_missed": [
+        119,
+        86,
+        98,
+        100,
+        135
+      ],
+      "branches_missed": [
+        86,
+        98,
+        100,
+        135
+      ],
+      "timestamp": 1766735555.1470952
+    },
+    {
+      "iteration": 10,
+      "line_coverage": 97.56,
+      "branch_coverage": 89.58,
+      "path_history": {
+        "translate_140_11": 5,
+        "translate_140_9": 1,
+        "translate_140_5": 1,
+        "translate_140_2": 1,
+        "translate_140_3": 1,
+        "translate_140_7": 3,
+        "translate_140_6": 1,
+        "translate_140_1": 1,
+        "translate_140_10": 1,
+        "translate_140_4": 1,
+        "translate_140_0": 1,
+        "translate_140_8": 1
+      },
+      "lines_missed": [
+        119,
+        86,
+        98,
+        100,
+        135
+      ],
+      "branches_missed": [
+        86,
+        98,
+        100,
+        135
+      ],
+      "timestamp": 1766735655.1447344
+    },
+    {
+      "iteration": 11,
+      "line_coverage": 97.56,
+      "branch_coverage": 89.58,
+      "path_history": {
+        "translate_140_11": 5,
+        "translate_140_9": 2,
+        "translate_140_5": 1,
+        "translate_140_2": 1,
+        "translate_140_3": 1,
+        "translate_140_7": 4,
+        "translate_140_6": 1,
+        "translate_140_1": 1,
+        "translate_140_10": 1,
+        "translate_140_4": 1,
+        "translate_140_0": 1,
+        "translate_140_8": 1
+      },
+      "lines_missed": [
+        119,
+        86,
+        98,
+        100,
+        135
+      ],
+      "branches_missed": [
+        86,
+        98,
+        100,
+        135
+      ],
+      "timestamp": 1766735746.1108494
+    }
+  ]
+}

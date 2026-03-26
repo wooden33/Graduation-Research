@@ -1,0 +1,307 @@
+{
+  "final_line_coverage": 93.2,
+  "final_branch_coverage": 100.0,
+  "final_lines_missed": [
+    31,
+    71,
+    72,
+    73,
+    74,
+    185,
+    186
+  ],
+  "final_branches_missed": [],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 86.41,
+      "branch_coverage": 80.43,
+      "path_history": {},
+      "lines_missed": [
+        31,
+        71,
+        72,
+        73,
+        74,
+        120,
+        161,
+        172,
+        173,
+        181,
+        185,
+        186,
+        228,
+        266,
+        146,
+        157,
+        178,
+        201,
+        220,
+        227,
+        240,
+        258,
+        265
+      ],
+      "branches_missed": [
+        146,
+        157,
+        178,
+        201,
+        220,
+        227,
+        240,
+        258,
+        265
+      ],
+      "timestamp": 1773657290.0618284
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 90.29,
+      "branch_coverage": 86.96,
+      "path_history": {
+        "parse_355_12": 1,
+        "parse_355_2": 1,
+        "mergeLocalFileDataData_641_3": 1,
+        "mergeCentralDirectoryData_861_3": 1,
+        "mergeCentralDirectoryData_861_2": 1
+      },
+      "lines_missed": [
+        31,
+        71,
+        72,
+        73,
+        74,
+        172,
+        173,
+        181,
+        185,
+        186,
+        146,
+        178,
+        201,
+        220,
+        240,
+        258
+      ],
+      "branches_missed": [
+        146,
+        178,
+        201,
+        220,
+        240,
+        258
+      ],
+      "timestamp": 1773657457.1442373
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 91.26,
+      "branch_coverage": 93.48,
+      "path_history": {
+        "parse_355_12": 1,
+        "parse_355_2": 1,
+        "mergeLocalFileDataData_641_3": 1,
+        "mergeCentralDirectoryData_861_3": 1,
+        "mergeCentralDirectoryData_861_2": 1,
+        "parse_355_9": 1,
+        "parse_355_8": 1,
+        "mergeLocalFileDataData_641_4": 1,
+        "mergeLocalFileDataData_641_0": 1,
+        "mergeCentralDirectoryData_861_5": 1,
+        "mergeCentralDirectoryData_861_1": 1
+      },
+      "lines_missed": [
+        31,
+        71,
+        72,
+        73,
+        74,
+        172,
+        173,
+        185,
+        186,
+        146,
+        240,
+        258
+      ],
+      "branches_missed": [
+        146,
+        240,
+        258
+      ],
+      "timestamp": 1773657679.3711433
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 93.2,
+      "branch_coverage": 97.83,
+      "path_history": {
+        "parse_355_12": 1,
+        "parse_355_2": 2,
+        "mergeLocalFileDataData_641_3": 1,
+        "mergeCentralDirectoryData_861_3": 1,
+        "mergeCentralDirectoryData_861_2": 1,
+        "parse_355_9": 1,
+        "parse_355_8": 1,
+        "mergeLocalFileDataData_641_4": 1,
+        "mergeLocalFileDataData_641_0": 1,
+        "mergeCentralDirectoryData_861_5": 2,
+        "mergeCentralDirectoryData_861_1": 1,
+        "parse_355_7": 1,
+        "mergeCentralDirectoryData_861_4": 1
+      },
+      "lines_missed": [
+        31,
+        71,
+        72,
+        73,
+        74,
+        185,
+        186,
+        240
+      ],
+      "branches_missed": [
+        240
+      ],
+      "timestamp": 1773657836.160882
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 93.2,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "parse_355_12": 1,
+        "parse_355_2": 2,
+        "mergeLocalFileDataData_641_3": 1,
+        "mergeCentralDirectoryData_861_3": 1,
+        "mergeCentralDirectoryData_861_2": 1,
+        "parse_355_9": 1,
+        "parse_355_8": 1,
+        "mergeLocalFileDataData_641_4": 1,
+        "mergeLocalFileDataData_641_0": 1,
+        "mergeCentralDirectoryData_861_5": 3,
+        "mergeCentralDirectoryData_861_1": 1,
+        "parse_355_7": 1,
+        "mergeCentralDirectoryData_861_4": 1,
+        "parse_355_5": 1,
+        "mergeCentralDirectoryData_861_0": 1
+      },
+      "lines_missed": [
+        31,
+        71,
+        72,
+        73,
+        74,
+        185,
+        186
+      ],
+      "branches_missed": [],
+      "timestamp": 1773658163.3429453
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 93.2,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "parse_355_12": 1,
+        "parse_355_2": 2,
+        "mergeLocalFileDataData_641_3": 1,
+        "mergeCentralDirectoryData_861_3": 1,
+        "mergeCentralDirectoryData_861_2": 1,
+        "parse_355_9": 1,
+        "parse_355_8": 1,
+        "mergeLocalFileDataData_641_4": 1,
+        "mergeLocalFileDataData_641_0": 1,
+        "mergeCentralDirectoryData_861_5": 3,
+        "mergeCentralDirectoryData_861_1": 1,
+        "parse_355_7": 1,
+        "mergeCentralDirectoryData_861_4": 1,
+        "parse_355_5": 2,
+        "mergeCentralDirectoryData_861_0": 1,
+        "parse_355_6": 1
+      },
+      "lines_missed": [
+        31,
+        71,
+        72,
+        73,
+        74,
+        185,
+        186
+      ],
+      "branches_missed": [],
+      "timestamp": 1773658274.99277
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 93.2,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "parse_355_12": 1,
+        "parse_355_2": 2,
+        "mergeLocalFileDataData_641_3": 1,
+        "mergeCentralDirectoryData_861_3": 1,
+        "mergeCentralDirectoryData_861_2": 1,
+        "parse_355_9": 1,
+        "parse_355_8": 1,
+        "mergeLocalFileDataData_641_4": 1,
+        "mergeLocalFileDataData_641_0": 1,
+        "mergeCentralDirectoryData_861_5": 3,
+        "mergeCentralDirectoryData_861_1": 1,
+        "parse_355_7": 1,
+        "mergeCentralDirectoryData_861_4": 1,
+        "parse_355_5": 2,
+        "mergeCentralDirectoryData_861_0": 1,
+        "parse_355_6": 2,
+        "parse_355_3": 1
+      },
+      "lines_missed": [
+        31,
+        71,
+        72,
+        73,
+        74,
+        185,
+        186
+      ],
+      "branches_missed": [],
+      "timestamp": 1773658329.051111
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 93.2,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "parse_355_12": 1,
+        "parse_355_2": 2,
+        "mergeLocalFileDataData_641_3": 1,
+        "mergeCentralDirectoryData_861_3": 1,
+        "mergeCentralDirectoryData_861_2": 1,
+        "parse_355_9": 1,
+        "parse_355_8": 1,
+        "mergeLocalFileDataData_641_4": 1,
+        "mergeLocalFileDataData_641_0": 1,
+        "mergeCentralDirectoryData_861_5": 3,
+        "mergeCentralDirectoryData_861_1": 1,
+        "parse_355_7": 2,
+        "mergeCentralDirectoryData_861_4": 1,
+        "parse_355_5": 2,
+        "mergeCentralDirectoryData_861_0": 1,
+        "parse_355_6": 3,
+        "parse_355_3": 1
+      },
+      "lines_missed": [
+        31,
+        71,
+        72,
+        73,
+        74,
+        185,
+        186
+      ],
+      "branches_missed": [],
+      "timestamp": 1773658694.8228688
+    }
+  ]
+}

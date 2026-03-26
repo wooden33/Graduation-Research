@@ -1,0 +1,101 @@
+{
+  "final_line_coverage": 98.36,
+  "final_branch_coverage": 88.46,
+  "final_lines_missed": [
+    167,
+    106,
+    145,
+    176
+  ],
+  "final_branches_missed": [
+    106,
+    145,
+    176
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 98.36,
+      "branch_coverage": 88.46,
+      "path_history": {},
+      "lines_missed": [
+        167,
+        106,
+        145,
+        176
+      ],
+      "branches_missed": [
+        106,
+        145,
+        176
+      ],
+      "timestamp": 1774319526.858686
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 98.36,
+      "branch_coverage": 88.46,
+      "path_history": {
+        "doOptimize_244_13": 1
+      },
+      "lines_missed": [
+        167,
+        106,
+        145,
+        176
+      ],
+      "branches_missed": [
+        106,
+        145,
+        176
+      ],
+      "timestamp": 1774319577.1971216
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 98.36,
+      "branch_coverage": 88.46,
+      "path_history": {
+        "doOptimize_244_13": 1,
+        "doOptimize_244_15": 1,
+        "doOptimize_244_2": 1
+      },
+      "lines_missed": [
+        167,
+        106,
+        145,
+        176
+      ],
+      "branches_missed": [
+        106,
+        145,
+        176
+      ],
+      "timestamp": 1774319663.1923618
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 98.36,
+      "branch_coverage": 88.46,
+      "path_history": {
+        "doOptimize_244_13": 1,
+        "doOptimize_244_15": 1,
+        "doOptimize_244_2": 1,
+        "doOptimize_244_6": 1,
+        "doOptimize_244_9": 1
+      },
+      "lines_missed": [
+        167,
+        106,
+        145,
+        176
+      ],
+      "branches_missed": [
+        106,
+        145,
+        176
+      ],
+      "timestamp": 1774319756.5364275
+    }
+  ]
+}

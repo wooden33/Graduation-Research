@@ -1,0 +1,383 @@
+{
+  "final_line_coverage": 99.19,
+  "final_branch_coverage": 93.9,
+  "final_lines_missed": [
+    204,
+    203,
+    237,
+    305
+  ],
+  "final_branches_missed": [
+    203,
+    237,
+    305
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 93.5,
+      "branch_coverage": 80.49,
+      "path_history": {},
+      "lines_missed": [
+        204,
+        312,
+        313,
+        314,
+        468,
+        502,
+        528,
+        597,
+        203,
+        237,
+        289,
+        292,
+        305,
+        311,
+        319,
+        370,
+        467,
+        501,
+        527,
+        596
+      ],
+      "branches_missed": [
+        203,
+        237,
+        289,
+        292,
+        305,
+        311,
+        319,
+        370,
+        467,
+        501,
+        527,
+        596
+      ],
+      "timestamp": 1766674836.583553
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 96.75,
+      "branch_coverage": 87.8,
+      "path_history": {
+        "encodeQuotedPrintable_531_7": 1,
+        "encodeQuotedPrintable_531_8": 1,
+        "decodeQuotedPrintable_849_2": 1,
+        "encode_1163_1": 1,
+        "encode_1163_3": 1,
+        "decode_1231_1": 1,
+        "decode_1231_3": 1,
+        "decode_1101_0": 1,
+        "decode_1101_1": 1,
+        "encode_1358_0": 1
+      },
+      "lines_missed": [
+        204,
+        312,
+        313,
+        314,
+        203,
+        237,
+        289,
+        292,
+        305,
+        311,
+        319
+      ],
+      "branches_missed": [
+        203,
+        237,
+        289,
+        292,
+        305,
+        311,
+        319
+      ],
+      "timestamp": 1766675211.4863799
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 96.75,
+      "branch_coverage": 87.8,
+      "path_history": {
+        "encodeQuotedPrintable_531_7": 2,
+        "encodeQuotedPrintable_531_8": 1,
+        "decodeQuotedPrintable_849_2": 1,
+        "encode_1163_1": 1,
+        "encode_1163_3": 1,
+        "decode_1231_1": 1,
+        "decode_1231_3": 1,
+        "decode_1101_0": 1,
+        "decode_1101_1": 1,
+        "encode_1358_0": 1,
+        "encodeQuotedPrintable_531_10": 1
+      },
+      "lines_missed": [
+        204,
+        312,
+        313,
+        314,
+        203,
+        237,
+        289,
+        292,
+        305,
+        311,
+        319
+      ],
+      "branches_missed": [
+        203,
+        237,
+        289,
+        292,
+        305,
+        311,
+        319
+      ],
+      "timestamp": 1766675451.1190336
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 96.75,
+      "branch_coverage": 87.8,
+      "path_history": {
+        "encodeQuotedPrintable_531_7": 3,
+        "encodeQuotedPrintable_531_8": 1,
+        "decodeQuotedPrintable_849_2": 1,
+        "encode_1163_1": 1,
+        "encode_1163_3": 1,
+        "decode_1231_1": 1,
+        "decode_1231_3": 1,
+        "decode_1101_0": 1,
+        "decode_1101_1": 1,
+        "encode_1358_0": 1,
+        "encodeQuotedPrintable_531_10": 1,
+        "encodeQuotedPrintable_531_9": 1
+      },
+      "lines_missed": [
+        204,
+        312,
+        313,
+        314,
+        203,
+        237,
+        289,
+        292,
+        305,
+        311,
+        319
+      ],
+      "branches_missed": [
+        203,
+        237,
+        289,
+        292,
+        305,
+        311,
+        319
+      ],
+      "timestamp": 1766675570.939168
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 99.19,
+      "branch_coverage": 89.02,
+      "path_history": {
+        "encodeQuotedPrintable_531_7": 4,
+        "encodeQuotedPrintable_531_8": 1,
+        "decodeQuotedPrintable_849_2": 1,
+        "encode_1163_1": 1,
+        "encode_1163_3": 1,
+        "decode_1231_1": 1,
+        "decode_1231_3": 1,
+        "decode_1101_0": 1,
+        "decode_1101_1": 1,
+        "encode_1358_0": 1,
+        "encodeQuotedPrintable_531_10": 1,
+        "encodeQuotedPrintable_531_9": 1,
+        "encodeQuotedPrintable_531_5": 1
+      },
+      "lines_missed": [
+        204,
+        203,
+        237,
+        289,
+        292,
+        305,
+        319
+      ],
+      "branches_missed": [
+        203,
+        237,
+        289,
+        292,
+        305,
+        319
+      ],
+      "timestamp": 1766675710.672048
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 99.19,
+      "branch_coverage": 92.68,
+      "path_history": {
+        "encodeQuotedPrintable_531_7": 4,
+        "encodeQuotedPrintable_531_8": 1,
+        "decodeQuotedPrintable_849_2": 1,
+        "encode_1163_1": 1,
+        "encode_1163_3": 1,
+        "decode_1231_1": 1,
+        "decode_1231_3": 1,
+        "decode_1101_0": 1,
+        "decode_1101_1": 1,
+        "encode_1358_0": 1,
+        "encodeQuotedPrintable_531_10": 2,
+        "encodeQuotedPrintable_531_9": 1,
+        "encodeQuotedPrintable_531_5": 1
+      },
+      "lines_missed": [
+        204,
+        203,
+        237,
+        292,
+        305
+      ],
+      "branches_missed": [
+        203,
+        237,
+        292,
+        305
+      ],
+      "timestamp": 1766675782.0127692
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 99.19,
+      "branch_coverage": 93.9,
+      "path_history": {
+        "encodeQuotedPrintable_531_7": 4,
+        "encodeQuotedPrintable_531_8": 1,
+        "decodeQuotedPrintable_849_2": 1,
+        "encode_1163_1": 1,
+        "encode_1163_3": 1,
+        "decode_1231_1": 1,
+        "decode_1231_3": 1,
+        "decode_1101_0": 1,
+        "decode_1101_1": 1,
+        "encode_1358_0": 1,
+        "encodeQuotedPrintable_531_10": 3,
+        "encodeQuotedPrintable_531_9": 1,
+        "encodeQuotedPrintable_531_5": 2
+      },
+      "lines_missed": [
+        204,
+        203,
+        237,
+        305
+      ],
+      "branches_missed": [
+        203,
+        237,
+        305
+      ],
+      "timestamp": 1766675907.4719157
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 99.19,
+      "branch_coverage": 93.9,
+      "path_history": {
+        "encodeQuotedPrintable_531_7": 4,
+        "encodeQuotedPrintable_531_8": 1,
+        "decodeQuotedPrintable_849_2": 1,
+        "encode_1163_1": 1,
+        "encode_1163_3": 1,
+        "decode_1231_1": 1,
+        "decode_1231_3": 1,
+        "decode_1101_0": 1,
+        "decode_1101_1": 1,
+        "encode_1358_0": 1,
+        "encodeQuotedPrintable_531_10": 3,
+        "encodeQuotedPrintable_531_9": 2,
+        "encodeQuotedPrintable_531_5": 2
+      },
+      "lines_missed": [
+        204,
+        203,
+        237,
+        305
+      ],
+      "branches_missed": [
+        203,
+        237,
+        305
+      ],
+      "timestamp": 1766675956.2833266
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 99.19,
+      "branch_coverage": 93.9,
+      "path_history": {
+        "encodeQuotedPrintable_531_7": 4,
+        "encodeQuotedPrintable_531_8": 2,
+        "decodeQuotedPrintable_849_2": 1,
+        "encode_1163_1": 1,
+        "encode_1163_3": 1,
+        "decode_1231_1": 1,
+        "decode_1231_3": 1,
+        "decode_1101_0": 1,
+        "decode_1101_1": 1,
+        "encode_1358_0": 1,
+        "encodeQuotedPrintable_531_10": 3,
+        "encodeQuotedPrintable_531_9": 2,
+        "encodeQuotedPrintable_531_5": 3
+      },
+      "lines_missed": [
+        204,
+        203,
+        237,
+        305
+      ],
+      "branches_missed": [
+        203,
+        237,
+        305
+      ],
+      "timestamp": 1766676150.508248
+    },
+    {
+      "iteration": 9,
+      "line_coverage": 99.19,
+      "branch_coverage": 93.9,
+      "path_history": {
+        "encodeQuotedPrintable_531_7": 4,
+        "encodeQuotedPrintable_531_8": 3,
+        "decodeQuotedPrintable_849_2": 1,
+        "encode_1163_1": 1,
+        "encode_1163_3": 1,
+        "decode_1231_1": 1,
+        "decode_1231_3": 1,
+        "decode_1101_0": 1,
+        "decode_1101_1": 1,
+        "encode_1358_0": 1,
+        "encodeQuotedPrintable_531_10": 3,
+        "encodeQuotedPrintable_531_9": 2,
+        "encodeQuotedPrintable_531_5": 3
+      },
+      "lines_missed": [
+        204,
+        203,
+        237,
+        305
+      ],
+      "branches_missed": [
+        203,
+        237,
+        305
+      ],
+      "timestamp": 1766676210.5189085
+    }
+  ]
+}

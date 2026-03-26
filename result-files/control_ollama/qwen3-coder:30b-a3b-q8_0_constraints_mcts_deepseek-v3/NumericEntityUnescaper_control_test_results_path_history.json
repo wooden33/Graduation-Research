@@ -1,0 +1,72 @@
+{
+  "final_line_coverage": 100.0,
+  "final_branch_coverage": 85.42,
+  "final_lines_missed": [
+    71,
+    81,
+    98,
+    99,
+    100,
+    105
+  ],
+  "final_branches_missed": [
+    71,
+    81,
+    98,
+    99,
+    100,
+    105
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 97.56,
+      "branch_coverage": 83.33,
+      "path_history": {},
+      "lines_missed": [
+        137,
+        71,
+        81,
+        98,
+        99,
+        100,
+        105
+      ],
+      "branches_missed": [
+        71,
+        81,
+        98,
+        99,
+        100,
+        105
+      ],
+      "timestamp": 1768204413.032686
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 100.0,
+      "branch_coverage": 85.42,
+      "path_history": {
+        "translate_140_10": 1,
+        "translate_140_0": 1
+      },
+      "lines_missed": [
+        71,
+        81,
+        98,
+        99,
+        100,
+        105
+      ],
+      "branches_missed": [
+        71,
+        81,
+        98,
+        99,
+        100,
+        105
+      ],
+      "timestamp": 1768204491.1929922
+    }
+  ]
+}

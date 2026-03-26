@@ -1,0 +1,145 @@
+{
+  "final_line_coverage": 97.78,
+  "final_branch_coverage": 91.18,
+  "final_lines_missed": [
+    47,
+    43,
+    46
+  ],
+  "final_branches_missed": [
+    43,
+    46
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 93.33,
+      "branch_coverage": 85.29,
+      "path_history": {},
+      "lines_missed": [
+        44,
+        47,
+        63,
+        43,
+        46,
+        62
+      ],
+      "branches_missed": [
+        43,
+        46,
+        62
+      ],
+      "timestamp": 1768976429.5619807
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 95.56,
+      "branch_coverage": 88.24,
+      "path_history": {
+        "interpolate_111_4": 1,
+        "interpolate_111_13": 1
+      },
+      "lines_missed": [
+        44,
+        47,
+        43,
+        46
+      ],
+      "branches_missed": [
+        43,
+        46
+      ],
+      "timestamp": 1768976478.7699664
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 97.78,
+      "branch_coverage": 91.18,
+      "path_history": {
+        "interpolate_111_4": 1,
+        "interpolate_111_13": 1,
+        "interpolate_111_1": 1,
+        "interpolate_111_8": 1
+      },
+      "lines_missed": [
+        47,
+        43,
+        46
+      ],
+      "branches_missed": [
+        43,
+        46
+      ],
+      "timestamp": 1768976554.2714047
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 97.78,
+      "branch_coverage": 91.18,
+      "path_history": {
+        "interpolate_111_4": 1,
+        "interpolate_111_13": 1,
+        "interpolate_111_1": 2,
+        "interpolate_111_8": 1,
+        "interpolate_111_5": 1
+      },
+      "lines_missed": [
+        47,
+        43,
+        46
+      ],
+      "branches_missed": [
+        43,
+        46
+      ],
+      "timestamp": 1768976665.13126
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 97.78,
+      "branch_coverage": 91.18,
+      "path_history": {
+        "interpolate_111_4": 1,
+        "interpolate_111_13": 1,
+        "interpolate_111_1": 3,
+        "interpolate_111_8": 1,
+        "interpolate_111_5": 1,
+        "interpolate_111_12": 1
+      },
+      "lines_missed": [
+        47,
+        43,
+        46
+      ],
+      "branches_missed": [
+        43,
+        46
+      ],
+      "timestamp": 1768976763.8982255
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 97.78,
+      "branch_coverage": 91.18,
+      "path_history": {
+        "interpolate_111_4": 1,
+        "interpolate_111_13": 1,
+        "interpolate_111_1": 4,
+        "interpolate_111_8": 1,
+        "interpolate_111_5": 1,
+        "interpolate_111_12": 1,
+        "interpolate_111_11": 1
+      },
+      "lines_missed": [
+        47,
+        43,
+        46
+      ],
+      "branches_missed": [
+        43,
+        46
+      ],
+      "timestamp": 1768976866.2913156
+    }
+  ]
+}

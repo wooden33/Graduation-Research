@@ -1,0 +1,413 @@
+{
+  "final_line_coverage": 96.72,
+  "final_branch_coverage": 88.46,
+  "final_lines_missed": [
+    167,
+    177,
+    106,
+    175,
+    176
+  ],
+  "final_branches_missed": [
+    106,
+    175,
+    176
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 21.31,
+      "branch_coverage": 11.54,
+      "path_history": {},
+      "lines_missed": [
+        91,
+        92,
+        94,
+        96,
+        97,
+        98,
+        101,
+        102,
+        105,
+        106,
+        107,
+        110,
+        112,
+        113,
+        114,
+        115,
+        118,
+        119,
+        120,
+        122,
+        123,
+        124,
+        127,
+        128,
+        129,
+        133,
+        134,
+        135,
+        136,
+        137,
+        143,
+        144,
+        145,
+        146,
+        147,
+        153,
+        154,
+        155,
+        156,
+        157,
+        159,
+        160,
+        162,
+        163,
+        164,
+        165,
+        167,
+        177,
+        87,
+        175,
+        176
+      ],
+      "branches_missed": [
+        97,
+        106,
+        120,
+        128,
+        133,
+        136,
+        143,
+        145,
+        154,
+        159,
+        87,
+        175,
+        176
+      ],
+      "timestamp": 1766783258.075611
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 21.31,
+      "branch_coverage": 11.54,
+      "path_history": {
+        "doOptimize_244_15": 1,
+        "doOptimize_244_0": 1
+      },
+      "lines_missed": [
+        91,
+        92,
+        94,
+        96,
+        97,
+        98,
+        101,
+        102,
+        105,
+        106,
+        107,
+        110,
+        112,
+        113,
+        114,
+        115,
+        118,
+        119,
+        120,
+        122,
+        123,
+        124,
+        127,
+        128,
+        129,
+        133,
+        134,
+        135,
+        136,
+        137,
+        143,
+        144,
+        145,
+        146,
+        147,
+        153,
+        154,
+        155,
+        156,
+        157,
+        159,
+        160,
+        162,
+        163,
+        164,
+        165,
+        167,
+        177,
+        87,
+        175,
+        176
+      ],
+      "branches_missed": [
+        97,
+        106,
+        120,
+        128,
+        133,
+        136,
+        143,
+        145,
+        154,
+        159,
+        87,
+        175,
+        176
+      ],
+      "timestamp": 1766783590.742743
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 96.72,
+      "branch_coverage": 80.77,
+      "path_history": {
+        "doOptimize_244_15": 2,
+        "doOptimize_244_0": 1,
+        "doOptimize_244_11": 1
+      },
+      "lines_missed": [
+        167,
+        177,
+        106,
+        145,
+        154,
+        156,
+        175,
+        176
+      ],
+      "branches_missed": [
+        106,
+        145,
+        154,
+        175,
+        176
+      ],
+      "timestamp": 1766783831.685532
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 96.72,
+      "branch_coverage": 80.77,
+      "path_history": {
+        "doOptimize_244_15": 2,
+        "doOptimize_244_0": 1,
+        "doOptimize_244_11": 1,
+        "doOptimize_244_9": 1,
+        "doOptimize_244_4": 1
+      },
+      "lines_missed": [
+        167,
+        177,
+        106,
+        145,
+        154,
+        156,
+        175,
+        176
+      ],
+      "branches_missed": [
+        106,
+        145,
+        154,
+        175,
+        176
+      ],
+      "timestamp": 1766784102.3674307
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 96.72,
+      "branch_coverage": 80.77,
+      "path_history": {
+        "doOptimize_244_15": 2,
+        "doOptimize_244_0": 1,
+        "doOptimize_244_11": 1,
+        "doOptimize_244_9": 2,
+        "doOptimize_244_4": 1,
+        "doOptimize_244_13": 1
+      },
+      "lines_missed": [
+        167,
+        177,
+        106,
+        145,
+        154,
+        156,
+        175,
+        176
+      ],
+      "branches_missed": [
+        106,
+        145,
+        154,
+        175,
+        176
+      ],
+      "timestamp": 1766784440.0518575
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 96.72,
+      "branch_coverage": 84.62,
+      "path_history": {
+        "doOptimize_244_15": 2,
+        "doOptimize_244_0": 1,
+        "doOptimize_244_11": 1,
+        "doOptimize_244_9": 3,
+        "doOptimize_244_4": 1,
+        "doOptimize_244_13": 1,
+        "doOptimize_244_6": 1
+      },
+      "lines_missed": [
+        167,
+        177,
+        106,
+        145,
+        175,
+        176
+      ],
+      "branches_missed": [
+        106,
+        145,
+        175,
+        176
+      ],
+      "timestamp": 1766784675.3551736
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 96.72,
+      "branch_coverage": 88.46,
+      "path_history": {
+        "doOptimize_244_15": 2,
+        "doOptimize_244_0": 1,
+        "doOptimize_244_11": 1,
+        "doOptimize_244_9": 3,
+        "doOptimize_244_4": 1,
+        "doOptimize_244_13": 1,
+        "doOptimize_244_6": 1,
+        "doOptimize_244_14": 1,
+        "doOptimize_244_5": 1
+      },
+      "lines_missed": [
+        167,
+        177,
+        106,
+        175,
+        176
+      ],
+      "branches_missed": [
+        106,
+        175,
+        176
+      ],
+      "timestamp": 1766784829.108172
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 96.72,
+      "branch_coverage": 88.46,
+      "path_history": {
+        "doOptimize_244_15": 2,
+        "doOptimize_244_0": 1,
+        "doOptimize_244_11": 1,
+        "doOptimize_244_9": 3,
+        "doOptimize_244_4": 1,
+        "doOptimize_244_13": 1,
+        "doOptimize_244_6": 1,
+        "doOptimize_244_14": 1,
+        "doOptimize_244_5": 1,
+        "doOptimize_244_2": 1
+      },
+      "lines_missed": [
+        167,
+        177,
+        106,
+        175,
+        176
+      ],
+      "branches_missed": [
+        106,
+        175,
+        176
+      ],
+      "timestamp": 1766784923.6444802
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 96.72,
+      "branch_coverage": 88.46,
+      "path_history": {
+        "doOptimize_244_15": 2,
+        "doOptimize_244_0": 1,
+        "doOptimize_244_11": 1,
+        "doOptimize_244_9": 3,
+        "doOptimize_244_4": 1,
+        "doOptimize_244_13": 1,
+        "doOptimize_244_6": 1,
+        "doOptimize_244_14": 1,
+        "doOptimize_244_5": 1,
+        "doOptimize_244_2": 1,
+        "doOptimize_244_1": 1,
+        "doOptimize_244_7": 1
+      },
+      "lines_missed": [
+        167,
+        177,
+        106,
+        175,
+        176
+      ],
+      "branches_missed": [
+        106,
+        175,
+        176
+      ],
+      "timestamp": 1766785073.3335047
+    },
+    {
+      "iteration": 9,
+      "line_coverage": 96.72,
+      "branch_coverage": 88.46,
+      "path_history": {
+        "doOptimize_244_15": 2,
+        "doOptimize_244_0": 1,
+        "doOptimize_244_11": 1,
+        "doOptimize_244_9": 4,
+        "doOptimize_244_4": 1,
+        "doOptimize_244_13": 1,
+        "doOptimize_244_6": 1,
+        "doOptimize_244_14": 1,
+        "doOptimize_244_5": 1,
+        "doOptimize_244_2": 1,
+        "doOptimize_244_1": 1,
+        "doOptimize_244_7": 1,
+        "doOptimize_244_12": 1
+      },
+      "lines_missed": [
+        167,
+        177,
+        106,
+        175,
+        176
+      ],
+      "branches_missed": [
+        106,
+        175,
+        176
+      ],
+      "timestamp": 1766785348.7743194
+    }
+  ]
+}
