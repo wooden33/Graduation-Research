@@ -2,86 +2,18 @@
 
 \subsection{Automated Unit Test Generation}
 
-Automated unit test generation has been studied through two major paradigms:
-search-based software testing (SBST) and, more recently, LLM-based synthesis.
-Early techniques such as Randoop~\cite{randoop} and EvoSuite~\cite{evosuite}
-drive test generation by optimizing structural coverage objectives.
-EvoSuite applies evolutionary algorithms over whole test suites to maximize
-branch coverage and automatically infers regression assertions.
-While effective at exploring input spaces, SBST methods fundamentally operate
-on syntactic signals and struggle with semantic preconditions that require
-understanding object states or inter-procedural call sequences~\cite{mcminn2011}.
+Automated unit test generation has been studied through two major paradigms:search-based software testing (SBST) and, more recently, LLM-based synthesis.Early techniques such as Randoop~\cite{randoop} and EvoSuite~\cite{evosuite}drive test generation by optimizing structural coverage objectives.EvoSuite applies evolutionary algorithms over whole test suites to maximizebranch coverage and automatically infers regression assertions.While effective at exploring input spaces, SBST methods fundamentally operateon syntactic signals and struggle with semantic preconditions that requireunderstanding object states or inter-procedural call sequences~\cite{mcminn2011}.
 
-Before the rise of large language models, neural sequence-to-sequence models
-offered a first bridge between code understanding and test synthesis.
-ATLAS~\cite{watson2020atalas} frames test generation as a translation task,
-training an encoder--decoder network to predict assert statements from focal
-methods.
-AthenaTest~\cite{Tufano2020UnitTC} extends this direction by fine-tuning
-pre-trained models on large method--test corpora to automate full JUnit test
-synthesis.
-These deep learning approaches demonstrate that neural models can capture
-surface-level code patterns, but their capacity is fundamentally bounded by
-training distribution: they cannot reliably generalize to the combinatorial
-space of runtime behaviors or reason about execution semantics.
+Before the rise of large language models, neural sequence-to-sequence modelsoffered a first bridge between code understanding and test synthesis.ATLAS~\cite{watson2020atalas} frames test generation as a translation task,training an encoder--decoder network to predict assert statements from focalmethods.AthenaTest~\cite{Tufano2020UnitTC} extends this direction by fine-tuningpre-trained models on large method--test corpora to automate full JUnit testsynthesis.These deep learning approaches demonstrate that neural models can capturesurface-level code patterns, but their capacity is fundamentally bounded bytraining distribution: they cannot reliably generalize to the combinatorialspace of runtime behaviors or reason about execution semantics.
 
-The advent of large language models overcomes this boundary by enabling
-open-ended test synthesis grounded in broad code understanding.
-ChatUniTest~\cite{chen2024} introduces a focal-context mechanism that
-selectively exposes program information to the model and adopts a
-generate--validate--repair loop to improve compilation rates.
-These early LLM-based approaches demonstrate the potential of neural generation
-but expose a new challenge: without structured guidance, models tend to produce
-superficially plausible tests that fail to reach complex branches.
+The advent of large language models overcomes this boundary by enablingopen-ended test synthesis grounded in broad code understanding.ChatUniTest~\cite{chen2024} introduces a focal-context mechanism thatselectively exposes program information to the model and adopts agenerate--validate--repair loop to improve compilation rates.These early LLM-based approaches demonstrate the potential of neural generationbut expose a new challenge: without structured guidance, models tend to producesuperficially plausible tests that fail to reach complex branches.
 
-A first wave of follow-up work addresses this gap by incorporating execution
-signals into the generation loop.
-CoverUp~\cite{pizzorno2024} iteratively targets untested code regions using
-dynamic coverage reports, directing the model's attention toward uncovered lines,
-and YATE~\cite{konstantinou2025yate} further repairs failing tests to improve
-validity.
-These methods raise coverage by closing the generation–execution loop, but still
-rely on what the model can observe locally in the method body, leaving
-cross-method dependencies implicit.
+A first wave of follow-up work addresses this gap by incorporating executionsignals into the generation loop.CoverUp~\cite{pizzorno2024} iteratively targets untested code regions usingdynamic coverage reports, directing the model's attention toward uncovered lines,and YATE~\cite{konstantinou2025yate} further repairs failing tests to improvevalidity.These methods raise coverage by closing the generation–execution loop, but stillrely on what the model can observe locally in the method body, leavingcross-method dependencies implicit.
 
-A second wave enriches the model's input with structural program information.
-SymPrompt~\cite{ryan2024} extracts branch conditions from Control Flow Graphs
-(CFGs) and embeds them as structured prompts, helping the model reason about
-execution paths.
-HITS~\cite{wang2024c} decomposes complex methods into smaller slices to reduce
-cognitive load, improving syntactic validity.
-Panta~\cite{gu2025a} combines static CFG analysis with dynamic coverage feedback
-to identify and target uncovered paths.
-JUnitGenie~\cite{liao2025} further achieves strict path sensitivity by
-constructing minimal, path-specific contexts using type and data-dependency
-information.
-These advances substantially reduce the structural mismatch between model input
-and coverage objective, yet a fundamental gap persists on branches whose
-reachability depends on cross-method object states---preconditions established by
-prior setter or initializer calls that are invisible within the focal method body.
-Existing approaches conflate constraint inference with test synthesis in a single
-generation step, leaving the model to silently skip complex dependency chains.
-Furthermore, even when path information is provided, the full method body dilutes
-the model's attention with statements irrelevant to the target branch, amplifying
-context noise as complexity grows~\cite{du2025contextlengthhurtsllm,wang2026intelligencedegradationlongcontextllms}.
-\ourmethod{} directly addresses both dimensions: Constraint-Hints makes implicit
-cross-method preconditions explicit before generation begins, while
-coverage-driven Backward Slicing restructures the prompt around branch-relevant
-dependencies.
+A second wave enriches the model's input with structural program information. SymPrompt~\cite{ryan2024} extracts branch conditions from Control Flow Graphs (CFGs) and embeds them as structured prompts, helping the model reason about execution paths. HITS~\cite{wang2024c} decomposes complex methods into smaller slices to reduce cognitive load, improving syntactic validity. Panta~\cite{gu2025a} combines static CFG analysis with dynamic coverage feedback to identify and target uncovered paths. JUnitGenie~\cite{liao2025} further achieves strict path sensitivity by constructing minimal, path-specific contexts using type and data-dependency information. These advances substantially reduce the structural mismatch between model input and coverage objective, yet a fundamental gap persists on branches whose reachability depends on cross-method object states---preconditions established by prior setter or initializer calls that are invisible within the focal method body. Existing approaches conflate constraint inference with test synthesis in a single generation step, leaving the model to silently skip complex dependency chains. Furthermore, even when path information is provided, the full method body dilutes the model's attention with statements irrelevant to the target branch, amplifying context noise as complexity grows~\cite{du2025contextlengthhurtsllm,wang2026intelligencedegradationlongcontextllms}. \ourmethod{} directly addresses both dimensions: Constraint-Hints makes implicit cross-method preconditions explicit before generation begins, while coverage-driven Backward Slicing restructures the prompt around branch-relevant dependencies.
 
 \subsection{Program Slicing}
-
-Program slicing~\cite{weiser1984,tip1995} extracts the subset of statements
-that influence a particular variable or program point.
-Classical static slicers identify data and control dependencies via program
-dependence graphs, while dynamic variants such as JavaSlicer~\cite{JavaSlicer}
-track runtime dependencies to produce execution-specific slices.
-These techniques have been widely applied in debugging, program comprehension,
-and regression testing.
-More recently, NSSlicer~\cite{yadavally2024} demonstrates that neural models can
-approximate static slices even for incomplete programs by learning
-variable–statement dependency patterns, extending applicability to contexts where
-traditional analysis is brittle. Shahandashti~\cite{shahandashti2024programslicingeralarge}
+Program slicing~\cite{weiser1984,tip1995} extracts the subset of statements that influence a particular variable or program point.Classical static slicers identify data and control dependencies via program dependence graphs, while dynamic variants such as JavaSlicer~\cite{JavaSlicer} track runtime dependencies to produce execution-specific slices.These techniques have been widely applied in debugging, program comprehension, and regression testing.More recently, NSSlicer~\cite{yadavally2024} demonstrates that neural models can approximate static slices even for incomplete programs by learning variable–statement dependency patterns, extending applicability to contexts where traditional analysis is brittle. Shahandashti et al.~\cite{shahandashti2024programslicingeralarge} evaluate LLMs on both static and dynamic slicing of Java programs, finding that even GPT-4o achieves only 60.84\% slicing accuracy, with complex control flow as the dominant failure cause—indicating that precise dependency reasoning remains a fundamental challenge for LLM-based slicing.
 
 In the test generation domain, HITS~\cite{wang2024c} applies a form of method
 decomposition to reduce LLM input complexity.
