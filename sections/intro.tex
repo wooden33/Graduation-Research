@@ -8,14 +8,14 @@ HITS~\cite{wang2024c} prompts LLMs to decompose methods into fragments. Advancin
 Despite these promising results, a substantial coverage gap remains, rooted not in a lack of feedback or prompting sophistication, but in a deeper mismatch, i.e., \emph{cognitive misalignment}, between the information exposed to the LLM and what is actually required to cover complex target branches.
 
 \ding{172} One important dimension of this misalignment is \emph{What to Satisfy}. 
-In many cases, branch reachability depends on implicit preconditions scattered across long dependency chains, requiring the model to infer hidden constraints through multiple variable assignments and state transitions before it can synthesize a valid test. 
+In many cases, branch reachability depends on implicit preconditions scattered across long dependency chains~\cite{godefroid2025dart}, requiring the model to infer hidden constraints through multiple variable assignments and state transitions before it can synthesize a valid test. 
 Existing approaches typically provide only the target branch structure and compress constraint inference and test synthesis into a single generation step, without any explicit intermediate output or independent verification of the inferred constraints. 
 As a result, the LLM can easily skip or compress critical reasoning steps, producing tests that appear plausible but fail to satisfy the actual conditions required to reach the target branch. 
 This problem becomes particularly severe when the underlying dependency chain is long or semantically complex.
 
 \ding{173} The second dimension concerns \emph{What to Attend To}. 
-Existing methods usually expose the entire method body to the LLM, even though only a small subset of statements has real data or control dependence on the target branch. 
-The resulting context is therefore structurally misaligned with the branch-coverage objective: coverage-critical dependencies are diluted by irrelevant code, attention is spread across non-essential statements, and the model must reason under a representation that over-emphasizes what is visible rather than what is truly necessary. 
+Existing methods usually expose the entire method body to the LLM, even though only a small subset of statements has real data or control dependency on the target branch. 
+The resulting context is therefore structurally misaligned with the branch-coverage objective: coverage-critical dependencies are diluted by irrelevant code, attention is spread across non-essential statements, and the model must reason under a representation that over-emphasizes what is visible rather than what is truly necessary~\cite{liu2024lost}. 
 This not only amplifies cognitive burden, but also makes precise state construction substantially less likely. 
 Even without explicit distractors, LLM performance can already degrade as context length grows~\cite{du2025contextlengthhurtsllm, wang2026intelligencedegradationlongcontextllms}; 
 in branch-oriented test generation, this effect is further magnified because the relevant context is often deeply buried inside much longer method bodies.
@@ -32,7 +32,7 @@ The slicing is triggered selectively when coverage plateaus, targeting branches 
 Both components are integrated into an iterative loop of generation, execution, and repair. 
 
 \textbf{Evaluation.}
-We evaluate \ourmethod{} on 14 Java projects from Defects4J v2.0.1, covering 130 classes and 2971 methods with cyclomatic complexity greater than 10. Baselines include SymPrompt, HITS, and Panta, representing complementary design philosophies.
+We evaluate \ourmethod{} on 14 Java projects from Defects4J v2.0.1~\cite{defects4j2014}, covering 130 classes and 2971 methods with cyclomatic complexity greater than 10. Baselines include SymPrompt, HITS, and Panta, representing complementary design philosophies.
 \ourmethod{} achieves 44.41\% average branch coverage, outperforming SymPrompt (21.14\%), HITS (34.24\%), and Panta (32.32\%). 
 Gains are most pronounced on logic-heavy subjects with rich cross-method dependencies: on Gson, \ourmethod{} reaches 41.24\% versus SymPrompt's 3.59\%; on Jsoup, it improves over HITS by 36.4\%.
 

@@ -34,7 +34,7 @@ The statistics of our evaluation dataset are summarized in Table~\ref{tab:datase
 To evaluate the effectiveness of the generated unit tests, we primarily focus on code coverage, which is the standard metric in automated test generation research \cite{randoop, evosuite}. We report two specific metrics:
 \begin{itemize}
 \item \textbf{Line Coverage (LC):} The ratio of executable lines in the target class that are exercised by the generated test suite. It provides a baseline measure of how much of the implementation has been reached.
-\item \textbf{Branch Coverage (BC):} The ratio of executed decision outcomes (e.g., the true and false paths of an \textit{if} statement) to the total number of possible branches. Given our focus on methods with high Cyclomatic Complexity ($CC > 10$), branch coverage is our primary metric, as it more accurately reflects the tool's ability to navigate complex logical structures and boundary conditions.
+\item \textbf{Branch Coverage (BC):} The ratio of executed decision outcomes (e.g., the true and false paths of an \textit{if} statement) to the total number of possible branches. Given our focus on methods with high Cyclomatic Complexity ($CC > 10$), branch coverage is our primary metric.
 \end{itemize}
 All coverage data in our experiments are collected using the JaCoCo library, ensuring consistent and reproducible measurements across all subjects and baselines.
 
