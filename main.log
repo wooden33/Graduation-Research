@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.27)  27 MAR 2026 14:00
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.27)  27 MAR 2026 17:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1992,6 +1992,12 @@ Overfull \hbox (5.20876pt too wide) in paragraph at lines 5--7
 
 
 
+Package natbib Warning: Citation `godefroid2025dart' on page 1 undefined on input line 11.
+
+
+Package natbib Warning: Citation `liu2024lost' on page 1 undefined on input line 18.
+
+
 Overfull \hbox (8.30853pt too wide) in paragraph at lines 26--33
 \TU/LinLibertine(0)/m/n/9 ing complex dependencies are properly addressed rather than silently
  []
@@ -2011,6 +2017,10 @@ LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
 [1.1
 
 ]
+
+Package natbib Warning: Citation `defects4j2014' on page 2 undefined on input line 35.
+
+
 Overfull \hbox (7.18353pt too wide) in paragraph at lines 34--38
 \TU/LinLibertine(0)/m/n/9 are most pronounced on logic-heavy subjects with rich cross-method
  []
@@ -2020,26 +2030,31 @@ Overfull \hbox (11.88754pt too wide) in paragraph at lines 34--38
 \TU/LinLibertine(0)/m/n/9 dependencies: on Gson, \TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 reaches 41.24% versus SymPrompt’s
  []
 
+
+Overfull \hbox (1.6523pt too wide) in paragraph at lines 39--42
+\TU/LinLibertine(0)/m/n/9 44.41% (QC3-30B), 83.47% (QW3.5-397B), and 80.12% (DS-V3.1), con-
+ []
+
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `LibertinusMath-Regular.otf' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(1)/m/n' will be
-(Font)              scaled to size 7.47354pt on input line 40.
+(Font)              scaled to size 7.47354pt on input line 45.
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(1)/m/n' will be
-(Font)              scaled to size 5.60515pt on input line 40.
+(Font)              scaled to size 5.60515pt on input line 45.
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 9.34277pt on input line 40.
+(Font)              scaled to size 9.34277pt on input line 45.
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 7.47421pt on input line 40.
+(Font)              scaled to size 7.47421pt on input line 45.
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 5.60565pt on input line 40.
+(Font)              scaled to size 5.60565pt on input line 45.
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 9.34099pt on input line 40.
+(Font)              scaled to size 9.34099pt on input line 45.
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 7.47278pt on input line 40.
+(Font)              scaled to size 7.47278pt on input line 45.
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 5.60458pt on input line 40.
+(Font)              scaled to size 5.60458pt on input line 45.
 (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -2049,11 +2064,14 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `latinmodern-math.otf' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
+
+Overfull \hbox (1.46303pt too wide) in paragraph at lines 50--51
+[]\TU/LinLibertine(0)/m/it/9 Open-Source Tool. \TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 is publicly available with all prompts,
+ []
+
 ) (./sections/motivation.tex
 
-Package natbib Warning: Citation `baldoni2018' on page 2 undefined on input line 9.
-
-
+Package natbib Warning: Citation `baldoni2018' on page 2 undefined on input line 3.
 
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `inconsolata' (encoding: TU).
@@ -2062,33 +2080,40 @@ Package microtype Info: Loading generic protrusion settings for font family
 (/usr/local/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 13.
-LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 14.
-LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 14.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 11.
 
-Overfull \hbox (1.85878pt too wide) in paragraph at lines 36--37
+
+LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 12.
+LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 12.
+
+Overfull \hbox (1.85878pt too wide) in paragraph at lines 34--35
 []\TU/LinLibertine(0)/m/n/9 This example illustrates a general failure mode: when constraints
  []
 
 
-Overfull \hbox (2.11526pt too wide) in paragraph at lines 38--40
-[]\TU/LinLibertine(0)/b/n/9 Challenge 2: Misaligned Context (What to Attend To). \TU/LinLibertine(0)/m/n/9 Even
+Overfull \hbox (4.55428pt too wide) in paragraph at lines 37--39
+[]\TU/LinLibertine(0)/b/n/9 Challenge 2: Misaligned Context (What to Attend To). Prob-
+ []
+
+
+Overfull \hbox (9.71053pt too wide) in paragraph at lines 40--41
+[]\TU/LinLibertine(0)/b/n/9 Example\TU/LinLibertine(0)/m/n/9 : Consider the \TU/inconsolata(0)/m/n/9 collect() \TU/LinLibertine(0)/m/n/9 method from JDatabind, where
+ []
+
+
+Overfull \hbox (3.04951pt too wide) in paragraph at lines 54--57
+\TU/LinLibertine(0)/m/n/9 model fails to trace this data-flow chain and leaves \TU/inconsolata(0)/m/n/9 _mixInResolver
  []
 
 
 
 LaTeX Font Info:    Font shape `TU/LinBiolinum(0)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 51.
+(Font)              scaled to size 9.0pt on input line 58.
 LaTeX Font Info:    Font shape `TU/LinBiolinum(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 51.
-[2.2]
-Overfull \hbox (1.57578pt too wide) in paragraph at lines 72--73
-\TU/LinLibertine(0)/m/n/9 cies structurally visible: \TU/inconsolata(0)/m/n/9 checkJavaLangObject \TU/LinLibertine(0)/m/n/9 requires a non-null
- []
-
-) (./sections/methodology.tex
+(Font)              scaled to size 7.0pt on input line 58.
+[2.2]) (./sections/methodology.tex
 File: figures/overview.pdf Graphic file (type pdf)
 <use figures/overview.pdf>
 
@@ -2096,99 +2121,103 @@ File: figures/overview.pdf Graphic file (type pdf)
 Class acmart Warning: A possible image without description on input line 6.
 
 
-Overfull \hbox (2.15704pt too wide) in paragraph at lines 15--16
+Overfull \hbox (2.15704pt too wide) in paragraph at lines 12--13
 \TU/LinLibertine(0)/m/n/9 project-level dependencies, resolves the required JUnit imports, and
  []
 
 
-
-
-Overfull \hbox (3.0483pt too wide) in paragraph at lines 17--18
+Overfull \hbox (3.0483pt too wide) in paragraph at lines 14--15
 []\TU/LinLibertine(0)/m/n/9 Each iteration begins with path selection, where \TU/LinLibertine(0)/m/it/9 Constraint-Hints
  []
 
 
-Overfull \hbox (5.33401pt too wide) in paragraph at lines 17--18
+Overfull \hbox (5.33401pt too wide) in paragraph at lines 14--15
 \TU/LinLibertine(0)/m/n/9 conditions as structured guidance into the generation prompt. When
  []
 
 
-Overfull \hbox (7.53455pt too wide) in paragraph at lines 17--18
+Overfull \hbox (7.53455pt too wide) in paragraph at lines 14--15
 \TU/LinLibertine(0)/m/n/9 locate and correct the offending statements rather than re-generating
  []
 
 
-Package natbib Warning: Citation `baldoni2018' on page 3 undefined on input line 30.
+
+
+Package natbib Warning: Citation `baldoni2018' on page 3 undefined on input line 27.
 
 LaTeX Font Info:    Font shape `TU/LinLibertine(1)/b/n' will be
-(Font)              scaled to size 9.0pt on input line 48.
+(Font)              scaled to size 9.0pt on input line 44.
 LaTeX Font Info:    Font shape `TU/LinLibertine(1)/b/n' will be
-(Font)              scaled to size 7.2pt on input line 48.
+(Font)              scaled to size 7.2pt on input line 44.
 LaTeX Font Info:    Font shape `TU/LinLibertine(1)/b/n' will be
-(Font)              scaled to size 5.4pt on input line 48.
+(Font)              scaled to size 5.4pt on input line 44.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
-(Font)              scaled to size 7.2pt on input line 48.
+(Font)              scaled to size 7.2pt on input line 44.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
-(Font)              scaled to size 5.4pt on input line 48.
+(Font)              scaled to size 5.4pt on input line 44.
 
-
-[3.3]
-Overfull \hbox (1.32527pt too wide) in paragraph at lines 79--86
+Overfull \hbox (1.32527pt too wide) in paragraph at lines 65--73
 \TU/LinLibertine(0)/m/n/9 configurable template that incorporates the source code, the branch
  []
 
 
 
+[3.3]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/sc' will be
-(Font)              scaled to size 10.95pt on input line 129.
+(Font)              scaled to size 10.95pt on input line 100.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/n' will be
-(Font)              scaled to size 8.0pt on input line 136.
+(Font)              scaled to size 8.0pt on input line 107.
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(1)/m/n' will be
-(Font)              scaled to size 8.30396pt on input line 136.
+(Font)              scaled to size 8.30396pt on input line 107.
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(1)/m/n' will be
-(Font)              scaled to size 6.22797pt on input line 136.
+(Font)              scaled to size 6.22797pt on input line 107.
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 8.30469pt on input line 136.
+(Font)              scaled to size 8.30469pt on input line 107.
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(2)/m/n' will be
-(Font)              scaled to size 6.22852pt on input line 136.
+(Font)              scaled to size 6.22852pt on input line 107.
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 8.3031pt on input line 136.
+(Font)              scaled to size 8.3031pt on input line 107.
 LaTeX Font Info:    Font shape `TU/LibertinusMath-Regular.otf(3)/m/n' will be
-(Font)              scaled to size 6.22733pt on input line 136.
+(Font)              scaled to size 6.22733pt on input line 107.
 LaTeX Font Info:    Font shape `TU/LinLibertine(1)/b/n' will be
-(Font)              scaled to size 8.0pt on input line 136.
+(Font)              scaled to size 8.0pt on input line 107.
 LaTeX Font Info:    Font shape `TU/LinLibertine(1)/b/n' will be
-(Font)              scaled to size 6.0pt on input line 136.
+(Font)              scaled to size 6.0pt on input line 107.
 LaTeX Font Info:    Font shape `TU/LinLibertine(1)/b/n' will be
-(Font)              scaled to size 5.0pt on input line 136.
+(Font)              scaled to size 5.0pt on input line 107.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/it' will be
-(Font)              scaled to size 8.0pt on input line 136.
+(Font)              scaled to size 8.0pt on input line 107.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/sc' will be
-(Font)              scaled to size 8.0pt on input line 139.
+(Font)              scaled to size 8.0pt on input line 110.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/it' will be
-(Font)              scaled to size 8.0pt on input line 186.
+(Font)              scaled to size 8.0pt on input line 157.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/scit' will be
-(Font)              scaled to size 8.0pt on input line 186.
+(Font)              scaled to size 8.0pt on input line 157.
 
-
-[4.4]
-Overfull \hbox (16.81502pt too wide) in paragraph at lines 199--201
+Overfull \hbox (16.81502pt too wide) in paragraph at lines 170--172
 \TU/LinLibertine(0)/m/n/9 code segments. It returns structured prerequisite information—required
  []
 
 
-Underfull \vbox (badness 1466) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-)
-Overfull \hbox (2.7095pt too wide) in paragraph at lines 205--125
+[4.4])
+Overfull \hbox (2.7095pt too wide) in paragraph at lines 176--125
 []\TU/LinLibertine(0)/m/it/9 Termination. \TU/LinLibertine(0)/m/n/9 The loop exits when the coverage target $[]$ is reached,
  []
 
-(./sections/experiments.tex (./tables/dataset.tex)
+(./sections/experiments.tex
+Underfull \vbox (badness 5592) has occurred while \output is active []
 
-[5.5]
+
+
+(./tables/dataset.tex)
 Overfull \hbox (5.63774pt too wide) in paragraph at lines 49--52
 \TU/LinLibertine(0)/m/n/9 branch-coverage benchmark infeasible. Therefore, we compare \TU/LinLibertine(0)/m/sc/9 Cog-
  []
@@ -2198,14 +2227,13 @@ Overfull \hbox (10.74152pt too wide) in paragraph at lines 52--53
 \TU/LinLibertine(0)/m/n/9 encodes symbolic execution concepts into structured prompts.
  []
 
+
+
+[5.5]
 LaTeX Font Info:    Font shape `TU/LinLibertine(1)/b/n' will be
 (Font)              scaled to size 7.0pt on input line 53.
+ (./tables/rq1_main.tex)
 
-Underfull \vbox (badness 1342) has occurred while \output is active []
-
-
-
-(./tables/rq1_main.tex)
 LaTeX Font Info:    Font shape `TU/LinBiolinum(0)/m/it' will be
 (Font)              scaled to size 9.0pt on input line 64.
 
@@ -2234,11 +2262,6 @@ Overfull \hbox (5.175pt too wide) in paragraph at lines 68--70
  []
 
 
-Underfull \vbox (badness 7576) has occurred while \output is active []
-
-
-
-[6.6]
 Overfull \hbox (1.22255pt too wide) in paragraph at lines 75--77
 \TU/LinLibertine(0)/m/n/9 mark), \TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 achieves a BC of 41.24% while SymPrompt reaches
  []
@@ -2248,7 +2271,12 @@ Underfull \hbox (badness 1158) in paragraph at lines 81--83
 []\TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 outperforms all three baselines on average,
  []
 
-(./tables/rq2_ablation.tex
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[6.6] (./tables/rq2_ablation.tex
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/sc' will be
 (Font)              scaled to size 9.0pt on input line 3.
 )
@@ -2262,11 +2290,6 @@ Overfull \hbox (5.01231pt too wide) in paragraph at lines 94--97
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-
 Overfull \hbox (12.15526pt too wide) in paragraph at lines 98--107
 \TU/LinLibertine(0)/m/n/9 plementary rather than redundant. BS contributes most where method
  []
@@ -2277,9 +2300,22 @@ Overfull \hbox (7.15204pt too wide) in paragraph at lines 98--107
  []
 
 
+Underfull \vbox (badness 2027) has occurred while \output is active []
+
+
+
+
 Overfull \hbox (8.7203pt too wide) in paragraph at lines 108--112
 \TU/LinLibertine(0)/m/n/9 First, many branch predicates in these projects are feature-flag checks
  []
+
+File: figures/branch_coverage_comparison.pdf Graphic file (type pdf)
+<use figures/branch_coverage_comparison.pdf>
+
+Class acmart Warning: A possible image without description on input line 119.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2287,34 +2323,27 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [7.7]
-File: figures/branch_coverage_comparison.pdf Graphic file (type pdf)
-<use figures/branch_coverage_comparison.pdf>
-
-
-Class acmart Warning: A possible image without description on input line 119.
-
-
-
-
 Underfull \hbox (badness 1565) in paragraph at lines 129--132
 []\TU/LinLibertine(0)/m/n/9 Both backward slicing (BS) and constraint-hints (CS)
  []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 (./tables/rq3_different_llms.tex)
 
 Package natbib Warning: Citation `qwen35' on page 8 undefined on input line 141.
 
 
-Underfull \vbox (badness 1810) has occurred while \output is active []
-
-
-
-[8.8]
 Overfull \hbox (3.32854pt too wide) in paragraph at lines 145--151
 \TU/LinLibertine(0)/m/n/9 following capability—translating structured hints into correct multi-
  []
 
 
+
+[8.8]
 Overfull \hbox (5.75829pt too wide) in paragraph at lines 153--158
  \TU/LinBiolinum(0)/m/it/9 4.4.3 Structural bottlenecks.[] \TU/LinLibertine(0)/m/n/9 Despite the strong overall gains, \TU/inconsolata(0)/m/n/9 JCore
  []
@@ -2324,12 +2353,15 @@ Underfull \hbox (badness 1102) in paragraph at lines 160--162
 []\TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 performs robustly across all four backbone
  []
 
-)
-
-(./sections/discussion.tex
+) (./sections/discussion.tex
 Overfull \hbox (1.05602pt too wide) in paragraph at lines 4--7
 \TU/LinLibertine(0)/m/it/9 Inference Token Cost. \TU/LinLibertine(0)/m/n/9 To present cost in a deployment-relevant form,
  []
+
+
+Underfull \vbox (badness 3078) has occurred while \output is active []
+
+
 
 
 Overfull \hbox (7.44815pt too wide) in paragraph at lines 8--12
@@ -2351,12 +2383,12 @@ Overfull \hbox (5.2313pt too wide) in paragraph at lines 13--129
 \TU/LinLibertine(0)/m/n/9 may affect generalizability to other languages or ecosystems, though
  []
 
-
+(./sections/related_work.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[9.9] (./sections/related_work.tex
+[9.9]
 
 Package natbib Warning: Citation `watson2020atalas' on page 10 undefined on input line 7.
 
@@ -2365,6 +2397,12 @@ Package natbib Warning: Citation `Tufano2020UnitTC' on page 10 undefined on inpu
 
 
 Package natbib Warning: Citation `allamanis2018ml4code' on page 10 undefined on input line 7.
+
+
+Package natbib Warning: Citation `lemieux2023codamosa' on page 10 undefined on input line 9.
+
+
+Package natbib Warning: Citation `pizzorno2025' on page 10 undefined on input line 11.
 
 
 Package natbib Warning: Citation `konstantinou2025yate' on page 10 undefined on input line 11.
@@ -2417,34 +2455,37 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-Overfull \hbox (7.93799pt too wide) in paragraph at lines 17--18
-\TU/LinLibertine(0)/m/n/9 ing precise inter-procedural dependence graphs over bytecode. These
+Package natbib Warning: Citation `ferrante1987' on page 10 undefined on input line 17.
+
+
+Overfull \hbox (8.17876pt too wide) in paragraph at lines 17--18
+\TU/LinLibertine(0)/m/n/9 unresolved imports, and references to external libraries. NSSlicer [[]]
  []
 
 
-Overfull \hbox (3.24228pt too wide) in paragraph at lines 17--18
-\TU/LinLibertine(0)/m/n/9 fine-grained variable–statement dependency patterns, enabling slic-
+Overfull \hbox (4.51952pt too wide) in paragraph at lines 17--18
+\TU/LinLibertine(0)/m/n/9 addresses this limitation by leveraging a pre-trained language model
  []
 
 
 Package natbib Warning: Citation `shahandashti2024programslicingeralarge' on page 10 undefined on input line 19.
 
 
+Package natbib Warning: Citation `feng2020codebert' on page 10 undefined on input line 19.
+
+
 Overfull \hbox (5.12929pt too wide) in paragraph at lines 19--20
 \TU/LinLibertine(0)/m/n/9 dedicated analysis infrastructure, achieving results competitive with
  []
 
-) (./sections/conclusion.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[10.10])
+) (./sections/conclusion.tex)
 Overfull \hbox (5.96329pt too wide) in paragraph at lines 2--133
 \TU/LinLibertine(0)/m/sc/9 Path \TU/LinLibertine(0)/m/n/9 achieves 44.41% average branch coverage, outperforming state-
  []
 
-(./sections/data_availability_statement.tex) (./main.bbl
+(./sections/data_availability_statement.tex
+
+[10.10]) (./main.bbl
 Underfull \hbox (badness 1603) in paragraph at lines 43--52
 []\TU/LinLibertine(0)/m/n/7 Roberto Baldoni, Emilio Coppa, Daniele Cono D’Elia, Camil Demetrescu,
  []
@@ -2459,10 +2500,10 @@ LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/it' will be
 LaTeX Info: Redefining \tempurl on input line 77.
 LaTeX Info: Redefining \tempurl on input line 95.
 LaTeX Info: Redefining \tempurl on input line 219.
-
-
 LaTeX Info: Redefining \tempurl on input line 261.
 LaTeX Info: Redefining \tempurl on input line 275.
+
+
 )
 
 Package natbib Warning: There were undefined citations.
@@ -2503,13 +2544,13 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D15B8F33243906A03935591FD6845257;3078.
+(rerunfilecheck)             Checksum: 96941EC0919DF7CEE05E5D433CBBE903;3078.
  ) 
 Here is how much of TeX's memory you used:
- 55816 strings out of 473832
- 1200577 string characters out of 5729481
- 2117915 words of memory out of 5000000
- 77873 multiletter control sequences out of 15000+600000
+ 55814 strings out of 473832
+ 1200515 string characters out of 5729481
+ 2084327 words of memory out of 5000000
+ 77871 multiletter control sequences out of 15000+600000
  568833 words of font info for 176 fonts, out of 8000000 for 9000
  1509 hyphenation exceptions out of 8191
  105i,19n,131p,1861b,32948s stack positions out of 10000i,1000n,20000p,200000b,200000s

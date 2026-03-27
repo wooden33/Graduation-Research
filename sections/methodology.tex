@@ -9,9 +9,6 @@
 
 \subsection{Overview}
 
-
-
-
 \ourmethod{} is a coverage-guided iterative framework for automated unit test generation, illustrated in Figure~\ref{fig:overview}. Given a method under test, \ourmethod{} first performs an initialization step that extracts project-level dependencies, resolves the required JUnit imports, and seeds the suite with a syntactically valid scaffolding test containing a trivial \texttt{assertTrue(true)} assertion, ensuring a compilable starting point for all subsequent iterations. It then constructs the CFG, enumerates feasible paths, and collects dynamic coverage feedback to identify uncovered branches before entering an iterative refinement loop.
 
 Each iteration begins with path selection, where \textit{Constraint-Hints} analyzes the selected uncovered path and injects explicit branch conditions as structured guidance into the generation prompt. When coverage improvement stagnates, \textit{Backward Slicing} is activated, replacing the full method body with the minimal set of statements that bear data or control dependence on the target branch. The LLM then generates candidate tests against this focused context; passing tests are merged into the suite while failing ones are forwarded to the repair phase. During repair, compiler diagnostics—including error messages and their associated line numbers—are incorporated into the repair prompt, allowing the LLM to precisely locate and correct the offending statements rather than re-generating the test from scratch. Coverage is re-measured at the end of each iteration to drive target selection in the next round. The loop terminates when the coverage target is reached, the iteration budget is exhausted, or coverage fails to improve for a configurable number of consecutive iterations.
@@ -41,8 +38,7 @@ By transforming implicit dependencies into explicit guidance,
 \textit{Constraints-Hints} reduces the reasoning burden on the LLM and 
 enables more reliable generation of tests that reach previously uncovered branches.
 
-\paragraph{Path formulation.}
-
+\textit{Path formulation.}
 Let $P = \langle b_1, b_2, \ldots, b_k \rangle$ denote the sequence of branch
 decisions along a target execution path $\pi$, where each predicate
 $b_i(\mathbf{x}) \in \{\texttt{true}, \texttt{false}\}$ is evaluated over the
@@ -60,22 +56,13 @@ b_1(\mathbf{x}) \wedge b_2(\mathbf{x}) \wedge \cdots \wedge b_k(\mathbf{x})
 Rather than solving this constraint system symbolically—which can be
 computationally expensive and brittle under complex object states or
 indirect method calls—\ourmethod{} employs an LLM-based constraint solver to
-approximate the feasible input space as a lightweight set of interpretable conditions:
-\begin{equation}
-\mathcal{C}(\pi) =
-\left\{
-c_j \mid
-c_j \text{ is a necessary condition on } \mathbf{x}
-\right\}.
-\end{equation}
-
+approximate the feasible input space as a lightweight set of interpretable conditions $\mathcal{C}(\pi)$.
 The first uncovered branch along the path, denoted as $b^*$, is identified
 from the coverage report and provided to the solver as additional context,
 guiding the model toward the most immediate obstacle preventing the path
 from being executed.
 
-\paragraph{Integration.}
-
+\textit{Integration.}
 The constraint-solving prompt is generated from a configurable template that
 incorporates the source code, the branch sequence of $\pi$, and the uncovered
 branch $b^*$. The solver produces $\mathcal{C}(\pi)$ as a list of conditions
@@ -84,8 +71,7 @@ conditions are appended to the test generation prompt, transforming an
 opaque path coverage objective into a concrete specification of required
 inputs.
 
-\paragraph{Example.}
-
+\textit{Example.}
 Consider the \texttt{addValue} method, which contains three conditional
 branches dispatching to overridable statistical implementations. An
 existing test suite covers only the false branches of all three predicates,
@@ -94,12 +80,7 @@ all refer to their default implementations. The first uncovered branch is
 \texttt{(meanImpl != mean)}. The constraint solver identifies that
 satisfying this predicate requires replacing the default implementation
 before invoking \texttt{addValue}. This object-state precondition is
-expressed as a constraint in $\mathcal{C}(\pi)$:
-\[
-c : \texttt{meanImpl} \neq \texttt{mean}
-\]
-
-which implies that a call such as \texttt{setMeanImpl(...)} must occur prior
+expressed as a constraint in $\mathcal{C}(\pi)$, i.e., $c : \texttt{meanImpl} \neq \texttt{mean}$, which implies that a call such as \texttt{setMeanImpl(...)} must occur prior
 to invoking \texttt{addValue}. By making this requirement explicit, the test
 generation LLM can construct the correct setup sequence and cover the
 previously unreachable branch.
@@ -110,20 +91,10 @@ Coverage improvement does not always progress smoothly: certain branches remain 
 When such a plateau is detected, \ourmethod{} triggers a backward slicing step, %targeted at these stubborn branches, 
 replacing the full method body with the minimal context actually relevant to the uncovered path.
 
-\paragraph{Slice extraction.}
+\textit{Slice extraction.}
+Given an uncovered path $\pi$, the framework extracts the subset of statements that may influence its execution. A dedicated LLM is then invoked with the uncovered code segment, the focal method source code, and dependency context from related classes. The model returns a structured response containing the relevant slice statements, required input values, necessary object states, and potential setup operations.
 
-Given an uncovered path $\pi$, the framework extracts the subset of statements that may influence the execution of that path:
-\begin{equation}
-\textit{Slice}(P,\pi) =
-\left\{
-s_i \in P \mid s_i \rightsquigarrow \pi
-\right\}.
-\end{equation}
-
-A dedicated LLM is then invoked with the uncovered code segment, the focal method source code, and dependency context from related classes. The model returns a structured response containing the relevant slice statements, required input values, necessary object states, and potential setup operations.
-
-\paragraph{Test generation from slices.}
-
+\textit{Test generation from slices.}
 The extracted slice information is supplied as additional context to the test generation prompt. The LLM then generates targeted unit tests that incorporate the identified prerequisites directly. These tests are compiled, executed, and measured using the same validation pipeline as regular test candidates, allowing the framework to recover from coverage plateaus while maintaining the overall iterative workflow.
 
 \subsection{Iterative Workflow of \ourmethod{}}

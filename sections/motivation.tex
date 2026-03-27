@@ -1,14 +1,12 @@
 \section{Motivation}
-
-Recent LLM-based unit test generation approaches, such as SymPrompt~\cite{ryan2024}, HITS~\cite{wang2024c}, and Panta~\cite{gu2025a} have significantly reduced the manual effort required for testing complex methods. However, even with path-aware prompting and iterative refinement, a substantial gap in branch coverage remains.
-
-We argue that this limitation stems from a fundamental \emph{cognitive misalignment} between the information provided to the LLM and the information required to cover a target branch. Specifically, effective branch coverage requires (i) satisfying implicit execution constraints and (ii) focusing on the minimal relevant context. Existing approaches, however, expose raw method bodies and implicitly expect the model to solve both problems simultaneously, leading to failures.
-We characterize this misalignment along two complementary dimensions.
-
 \textbf{Challenge 1: Underspecified Constraints (What to Satisfy).}
 \textbf{Problem}: Branch reachability often depends on implicit object states established through inter-procedural interactions~\cite{baldoni2018}. These constraints are not explicitly represented in the input, forcing the LLM to infer them from incomplete information.
 
 \textbf{Example}: Consider the \texttt{addValue()} method from Apache Commons Math (Listing~\ref{lst:motivation-cs}). The target branch depends on the condition \texttt{meanImpl != mean}, which can only be satisfied if a prior method modifies the internal state:
+
+To reach this branch, \texttt{meanImpl} must be explicitly set to a non-null, non-default value before \texttt{addValue()} is called. An LLM provided only with the \texttt{addValue()} method body might generate:
+
+This test is executable but fails to cover the branch because the critical precondition of \texttt{meanImpl} being initialized is unmet. The LLM lacks the context to "see" this inter-procedural requirement.
 
 \begin{lstlisting}[language=Java, label={lst:motivation-cs}, caption={Target branch with hidden cross-method dependency}]
 public void addValue(double value) {
@@ -19,17 +17,13 @@ public void addValue(double value) {
 }
 \end{lstlisting}
 
-To reach this branch, \texttt{meanImpl} must be explicitly set to a non-null, non-default value before \texttt{addValue()} is called. An LLM provided only with the \texttt{addValue()} method body might generate:
-
 \begin{lstlisting}[language=Java, caption={LLM-generated test (constraint not satisfied)}]
 SummaryStatistics stats = new SummaryStatistics();
 stats.addValue(1.0);
 \end{lstlisting}
 
-This test is executable but fails to cover the branch because the critical precondition of \texttt{meanImpl} being initialized is unmet. The LLM lacks the context to "see" this inter-procedural requirement.
 
-Our approach addresses this by extracting implicit object-state constraints through cross-method dependency analysis and explicitly surfacing them in the prompt.
-With the constraint that \texttt{meanImpl} must differ from the default \texttt{mean}, the LLM generates:
+By supplying the explicit constraint that \texttt{meanImpl} must differ from the default \texttt{mean}, the LLM successfully identifies the required precondition and generates a correct initialization sequence:
 
 \begin{lstlisting}[language=Java, caption={Correct test (constraint satisfied)}]
 // Assume CustomMeanImpl is a valid implementation
@@ -61,7 +55,7 @@ The bottleneck is that the LLM's attention is diluted across the full method bod
 The critical dependency---that \texttt{checkJavaLangObject} is set to \texttt{true} only when \texttt{\_mixInResolver} returns a non-null mixin---is buried among dozens of unrelated statements.
 The model fails to trace this data-flow chain and leaves \texttt{\_mixInResolver} as \texttt{null}.
 
-Our approach addresses this by applying coverage-driven backward slicing, retaining only statements with data or control dependence on the target branch:
+By retaining only statements with data or control dependence on the target branch, the three guard dependencies become structurally visible, enabling the LLM to correctly configure the resolver and construct a valid test:
 
 \begin{lstlisting}[language=Java, caption={Branch-relevant slice}]
 Map<MemberKey,MethodBuilder> methods = new LinkedHashMap<>();

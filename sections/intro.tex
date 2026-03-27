@@ -3,7 +3,7 @@
 Automated unit test generation plays a critical role in improving software reliability and reducing developer effort. Traditional techniques, such as symbolic execution and search-based software testing (SBST), have made substantial progress in systematically exploring input spaces and maximizing structural coverage~\cite{cadar2008klee, evosuite, mcminn2011, randoop}. However, these approaches often face fundamental limitations in scalability and in handling complex program semantics: They struggle to capture implicit preconditions that arise from intricate object states and inter-procedural interactions, where the conditions required to reach a target path are established outside the local method scope through sequences of prior method calls~\cite{baldoni2018}.
 
 Recent advances demonstrate that large language models (LLMs) can directly synthesize executable unit tests, significantly alleviating manual effort~\cite{yuan2024manualtest, chen2024, chu2025}. To handle complex methods and improve coverage, subsequent research mainly pursues two directions. The first is \textit{feedback-driven refinement}: CoverUp~\cite{chen2024} iteratively targets untested regions using dynamic coverage analysis, while YATE~\cite{konstantinou2025yate} repairs failing tests to enhance validity. The second direction emphasizes \textit{structural decomposition and path sensitivity}. %To simplify complex logic, 
-HITS~\cite{wang2024c} prompts LLMs to decompose methods into fragments. Advancing this using program analysis, SymPrompt~\cite{wang2024c} extracts branch constraints from Control Flow Graphs (CFGs), whereas Panta~\cite{gu2025a} fuses static CFG analysis with dynamic coverage feedback to identify uncovered paths. Building upon this trajectory, JUnitGenie~\cite{liao2025} achieves strict path sensitivity by isolating the minimal, path-specific context required for targeted generation.
+HITS~\cite{wang2024c} prompts LLMs to decompose methods into fragments. Advancing this using program analysis, SymPrompt~\cite{ryan2024} extracts branch constraints from Control Flow Graphs (CFGs), whereas Panta~\cite{gu2025a} fuses static CFG analysis with dynamic coverage feedback to identify uncovered paths. Building upon this trajectory, JUnitGenie~\cite{liao2025} achieves strict path sensitivity by isolating the minimal, path-specific context required for targeted generation.
 
 Despite these promising results, a substantial coverage gap remains, rooted not in a lack of feedback or prompting sophistication, but in a deeper mismatch, i.e., \emph{cognitive misalignment}, between the information exposed to the LLM and what is actually required to cover complex target branches.
 
@@ -34,19 +34,18 @@ Both components are integrated into an iterative loop of generation, execution, 
 \textbf{Evaluation.}
 We evaluate \ourmethod{} on 14 Java projects from Defects4J v2.0.1~\cite{defects4j2014}, covering 130 classes and 2971 methods with cyclomatic complexity greater than 10. Baselines include SymPrompt, HITS, and Panta, representing complementary design philosophies.
 \ourmethod{} achieves 44.41\% average branch coverage, outperforming SymPrompt (21.14\%), HITS (34.24\%), and Panta (32.32\%). 
-Gains are most pronounced on logic-heavy subjects with rich cross-method dependencies: on Gson, \ourmethod{} reaches 41.24\% versus SymPrompt's 3.59\%; on Jsoup, it improves over HITS by 36.4\%.
+Gains are most pronounced on logic-heavy subjects with rich cross-method dependencies: on Gson, \ourmethod{} reaches 41.24\% versus SymPrompt's 3.59\%; on Jsoup, it improves over HITS by 35.2\%.
 
 Ablation study confirms the complementary roles of both components. 
-Removing \emph{Backward Slicing} drops coverage from 44.41\% to 38.47\%, with the largest degradation on context-heavy subjects (e.g., Csv: 52.29\%$\to$24.80\%). 
-Removing \emph{Constraint-Hints} drops coverage to 39.79\%, most severely on subjects with object-state dependencies (e.g., JDatabind: 17.85\%$\to$9.33\%).
+Removing \emph{Backward Slicing} drops coverage from 44.41\% to 38.47\%, and removing \emph{Constraint-Hints} drops coverage to 39.79\%.
 Finally, \ourmethod{} generalizes across backbone LLMs, achieving 44.41\% (QC3-30B), 83.47\% (QW3.5-397B), and 80.12\% (DS-V3.1), confirming that its benefit derives from restructuring branch-relevant information rather than relying on any specific model.
 
 \textbf{Contribution.}
 In summary, this paper makes the following contributions:
 \begin{itemize}[leftmargin=*]
-\item We identify a key limitation of existing LLM-based test generation approaches in handling implicit, cross-method constraints.
-We propose \textit{Constraints-Hints}, a mechanism that makes path conditions explicit and guides LLM reasoning.
-\item We introduce a coverage-driven backward slicing technique to eliminate irrelevant context and expose critical dependencies.
-\item We design an iterative framework that integrates generation, execution feedback, and repair for sustained coverage improvement.
-We empirically demonstrate the effectiveness of our approach on real-world software systems.
+\item \textit{Novel Workflow.} We present \ourmethod{}, an unit test generation framework that integrates \textit{Constraint Hints} and \textit{Backward Slicing} to jointly address implicit preconditions and context noise in branch-targeted generation.
+
+\item \textit{Thorough Evaluation.} We evaluate \ourmethod{} on complex methods from 14 real-world Java projects, outperforming state-of-the-art baselines in both branch and line coverage. Ablation studies confirm the independent contribution of each component.
+
+\item \textit{Open-Source Tool.} \ourmethod{} is publicly available with all prompts, analysis components, and evaluation scripts to support replication and future research. All prompt templates are additionally provided in the supplementary material for direct inspection.
 \end{itemize}
