@@ -3,7 +3,6 @@
 Recent LLM-based unit test generation approaches, such as SymPrompt~\cite{ryan2024}, HITS~\cite{wang2024c}, Panta~\cite{gu2025a}, and JUnitGenie~\cite{liao2025}, have significantly reduced the manual effort required for testing complex methods. However, even with path-aware prompting and iterative refinement, a substantial gap in branch coverage remains.
 
 We argue that this limitation stems from a fundamental \emph{cognitive misalignment} between the information provided to the LLM and the information required to cover a target branch. Specifically, effective branch coverage requires (i) satisfying implicit execution constraints and (ii) focusing on the minimal relevant context. Existing approaches, however, expose raw method bodies and implicitly expect the model to solve both problems simultaneously, leading to systematic failures.
-
 We characterize this misalignment along two complementary dimensions.
 
 \textbf{Challenge 1: Underspecified Constraints (What to Satisfy).}

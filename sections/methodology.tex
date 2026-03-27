@@ -12,9 +12,9 @@
 
 
 
-\ourmethod{} is a coverage-guided iterative framework for automated unit test generation, illustrated in Figure~\ref{fig:overview}.Given a method under test, \ourmethod{} first performs an initialization step that extracts project-level dependencies, resolves the required JUnit imports, and seeds the suite with a syntactically valid scaffolding test containing a trivial \texttt{assertTrue(true)} assertion, ensuring a compilable starting point for all subsequent iterations.It then constructs the CFG, enumerates feasible paths, and collects dynamic coverage feedback to identify uncovered branches before entering an iterative refinement loop.
+\ourmethod{} is a coverage-guided iterative framework for automated unit test generation, illustrated in Figure~\ref{fig:overview}. Given a method under test, \ourmethod{} first performs an initialization step that extracts project-level dependencies, resolves the required JUnit imports, and seeds the suite with a syntactically valid scaffolding test containing a trivial \texttt{assertTrue(true)} assertion, ensuring a compilable starting point for all subsequent iterations. It then constructs the CFG, enumerates feasible paths, and collects dynamic coverage feedback to identify uncovered branches before entering an iterative refinement loop.
 
-Each iteration begins with path selection, where \textit{Constraint-Hints} analyzes the selected uncovered path and injects explicit branch conditions as structured guidance into the generation prompt.When coverage improvement stagnates, \textit{Backward Slicing} is activated, replacing the full method body with the minimal set of statements that bear data or control dependence on the target branch.The LLM then generates candidate tests against this focused context; passing tests are merged into the suite while failing ones are forwarded to the repair phase.During repair, compiler diagnostics—including error messages and their associated line numbers—are incorporated into the repair prompt, allowing the LLM to precisely locate and correct the offending statements rather than re-generating the test from scratch.Coverage is re-measured at the end of each iteration to drive target selection in the next round.The loop terminates when the coverage target is reached, the iteration budget is exhausted, or coverage fails to improve for a configurable number of consecutive iterations.
+Each iteration begins with path selection, where \textit{Constraint-Hints} analyzes the selected uncovered path and injects explicit branch conditions as structured guidance into the generation prompt. When coverage improvement stagnates, \textit{Backward Slicing} is activated, replacing the full method body with the minimal set of statements that bear data or control dependence on the target branch. The LLM then generates candidate tests against this focused context; passing tests are merged into the suite while failing ones are forwarded to the repair phase. During repair, compiler diagnostics—including error messages and their associated line numbers—are incorporated into the repair prompt, allowing the LLM to precisely locate and correct the offending statements rather than re-generating the test from scratch. Coverage is re-measured at the end of each iteration to drive target selection in the next round. The loop terminates when the coverage target is reached, the iteration budget is exhausted, or coverage fails to improve for a configurable number of consecutive iterations.
 
 \subsection{Constraints-Hints}
 
@@ -49,7 +49,6 @@ $b_i(\mathbf{x}) \in \{\texttt{true}, \texttt{false}\}$ is evaluated over the
 program input vector $\mathbf{x}$. Covering the path requires an input
 assignment $\mathbf{x}^*$ that satisfies all branch predicates along the
 path:
-
 \begin{equation}
 \mathbf{x}^* \in \mathcal{F}(\pi) =
 \left\{
@@ -62,7 +61,6 @@ Rather than solving this constraint system symbolically—which can be
 computationally expensive and brittle under complex object states or
 indirect method calls—\ourmethod{} employs an LLM-based constraint solver to
 approximate the feasible input space as a lightweight set of interpretable conditions:
-
 \begin{equation}
 \mathcal{C}(\pi) =
 \left\{
@@ -97,7 +95,6 @@ all refer to their default implementations. The first uncovered branch is
 satisfying this predicate requires replacing the default implementation
 before invoking \texttt{addValue}. This object-state precondition is
 expressed as a constraint in $\mathcal{C}(\pi)$:
-
 \[
 c : \texttt{meanImpl} \neq \texttt{mean}
 \]
@@ -110,12 +107,12 @@ previously unreachable branch.
 \subsection{Backward Slicing}
 
 Coverage improvement does not always progress smoothly: certain branches remain persistently uncovered even after multiple iterations, typically because their reachability depends on subtle state dependencies that standard generation fails to capture. 
-When such a plateau is detected, \ourmethod{} triggers a backward slicing step targeted at these stubborn branches, replacing the full method body with the minimal context actually relevant to the uncovered path.
+When such a plateau is detected, \ourmethod{} triggers a backward slicing step, %targeted at these stubborn branches, 
+replacing the full method body with the minimal context actually relevant to the uncovered path.
 
 \paragraph{Slice extraction.}
 
 Given an uncovered path $\pi$, the framework extracts the subset of statements that may influence the execution of that path:
-
 \begin{equation}
 \textit{Slice}(P,\pi) =
 \left\{
@@ -193,17 +190,17 @@ $\textit{cov}, \textit{missed} \leftarrow \textsc{RunCoverage}(\textit{suite})$\
 The complete workflow of \ourmethod{} is formalized in Algorithm~\ref{alg:main}. The framework accepts the source file and an initial test suite as input, and iteratively generates, validates, and repairs tests until a coverage target is met or a termination condition is triggered.
 
 
-\paragraph{Initialization.}
+{\em Initialization.}
 The framework extracts test-scope dependencies, constructs the CFG and method dictionary from the source file, and measures baseline coverage on the initial suite (lines 1--4).
 
-\paragraph{Path selection with Constraints-Hints.}
+{\em Path selection with Constraints-Hints.}
 At each non-initial iteration, \textsc{SelectUncoveredPaths} identifies candidate paths from the CFG that intersect with missed lines or branches, weighted by both coverage impact and visit history $\textit{pathHistory}$ (line 8). For each selected path $\pi$, the constraint solver derives $\mathcal{C}(\pi)$ by analyzing the branch sequence up to the first uncovered predicate $b^*$, and these conditions are embedded into the generation prompt (lines 9--13).
 
-\paragraph{Backward slicing.}
+{\em Backward slicing.}
 When $\textit{noIncr} \geq \beta \cdot \Lambda$, indicating a coverage plateau, the backward slicer is invoked on the remaining missed code segments. It returns structured prerequisite information---required inputs, object states, and method mocks---which is used to construct an additional batch of targeted tests $\mathcal{T}_s$ (lines 16--19).
 
-\paragraph{Validation and repair.}
+{\em Validation and repair.}
 Each generated test is individually inserted into the suite and executed. Failing tests are collected with their error messages and forwarded to the repair phase, which re-invokes the LLM with failure feedback to produce corrected versions. Successfully validated repaired tests are also incorporated into the suite (lines 21--32).
 
-\paragraph{Termination.}
+{\em Termination.}
 The loop exits when the coverage target $\tau$ is reached, the maximum iteration count $\textit{maxIter}$ is exhausted, or coverage fails to improve for $\Lambda$ consecutive iterations.

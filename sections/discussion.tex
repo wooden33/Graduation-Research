@@ -1,15 +1,15 @@
 \section{DISCUSSION}
 
-\paragraph{Inference Token Cost.}
+{\em Inference Token Cost.}
 To present cost in a deployment-relevant form, we report per-MUT cost under the four backbones used in RQ3: QC3-30B (0.003\$/MUT), GPT-5.4-Mini (0.019\$/MUT), QW3.5-397B (0.03\$/MUT), and DS-V3.1 (0.008\$/MUT). 
 Across all four settings, the per-MUT cost remains low in absolute terms, indicating that the framework-level overhead of \ourmethod{} is operationally affordable. 
 
-\paragraph{Runtime Overhead.}
+{\em Runtime Overhead.}
 Across all 2,971 MUTs using QC3-30B as the backbone, \ourmethod{} averages 30.3\,s/MUT, incurring +47\% overhead over SymPrompt (20.6\,s/MUT) and +13\% over HITS (26.7\,s/MUT), while running 4\% faster than Panta (31.5\,s/MUT). 
 Against these time differentials, \ourmethod{} achieves a BC of 44.41\% versus 21.14\%, 34.24\%, and 32.32\% for the three baselines---relative improvements of +110\%, +30\%, and +37\% respectively. The overhead is thus proportionate to the coverage gains in every comparison.
 Of the 30.3\,s, $\approx$1.2\,s is attributable to static preprocessing, which scales with the inter-procedural dependency graph and is already included in the figures above; the remainder is LLM inference time. 
 
-\paragraph{Limitations}
+{\em Limitations.}
 
 
 \paragraph{Threats to Validity.}
