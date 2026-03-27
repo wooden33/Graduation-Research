@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.27)  27 MAR 2026 12:02
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.3.27)  27 MAR 2026 14:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1992,12 +1992,12 @@ Overfull \hbox (5.20876pt too wide) in paragraph at lines 5--7
 
 
 
-Overfull \hbox (2.22pt too wide) in paragraph at lines 27--33
-\TU/LinLibertine(0)/m/n/9 an LLM-driven framework for automated unit test generation. \TU/LinLibertine(0)/m/sc/9 Cog-
+Overfull \hbox (8.30853pt too wide) in paragraph at lines 26--33
+\TU/LinLibertine(0)/m/n/9 ing complex dependencies are properly addressed rather than silently
  []
 
 
-Overfull \hbox (7.509pt too wide) in paragraph at lines 27--33
+Overfull \hbox (7.509pt too wide) in paragraph at lines 26--33
 \TU/LinLibertine(0)/m/n/9 vant code. The slicing is triggered selectively when coverage plateaus,
  []
 
@@ -2052,9 +2052,6 @@ Package microtype Info: Loading generic protrusion settings for font family
 ) (./sections/motivation.tex
 
 Package natbib Warning: Citation `baldoni2018' on page 2 undefined on input line 9.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
@@ -2190,59 +2187,78 @@ Overfull \hbox (2.7095pt too wide) in paragraph at lines 205--125
  []
 
 (./sections/experiments.tex (./tables/dataset.tex)
-LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/sc' will be
-(Font)              scaled to size 9.0pt on input line 32.
 
-Overfull \hbox (5.53726pt too wide) in paragraph at lines 34--35
-[]\TU/LinLibertine(1)/b/n/9 RQ3: Model Generalizability of \TU/LinLibertine(0)/b/sc/9 CogPath\TU/LinLibertine(1)/b/n/9 . \TU/LinLibertine(0)/m/n/9 Is \TU/LinLibertine(0)/m/sc/9 CogPath\TU/LinLibertine(0)/m/n/9 ’s
+[5.5]
+Overfull \hbox (5.63774pt too wide) in paragraph at lines 49--52
+\TU/LinLibertine(0)/m/n/9 branch-coverage benchmark infeasible. Therefore, we compare \TU/LinLibertine(0)/m/sc/9 Cog-
  []
 
 
-
-[5.5]
-Overfull \hbox (10.74152pt too wide) in paragraph at lines 40--41
+Overfull \hbox (10.74152pt too wide) in paragraph at lines 52--53
 \TU/LinLibertine(0)/m/n/9 encodes symbolic execution concepts into structured prompts.
  []
 
 LaTeX Font Info:    Font shape `TU/LinLibertine(1)/b/n' will be
-(Font)              scaled to size 7.0pt on input line 41.
+(Font)              scaled to size 7.0pt on input line 53.
+
+Underfull \vbox (badness 1342) has occurred while \output is active []
+
+
+
 (./tables/rq1_main.tex)
-
 LaTeX Font Info:    Font shape `TU/LinBiolinum(0)/m/it' will be
-(Font)              scaled to size 9.0pt on input line 52.
+(Font)              scaled to size 9.0pt on input line 64.
 
-Overfull \hbox (4.63026pt too wide) in paragraph at lines 52--55
+Overfull \hbox (4.63026pt too wide) in paragraph at lines 64--67
  \TU/LinBiolinum(0)/m/it/9 4.2.1 Overall Performance.[] \TU/LinLibertine(0)/m/n/9 As shown in Table []2[], \TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 achieves
  []
 
 
-Overfull \hbox (9.28351pt too wide) in paragraph at lines 52--55
+Overfull \hbox (9.28351pt too wide) in paragraph at lines 64--67
 \TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 achieves 53.14% versus SymPrompt (26.19%), HITS (40.31%),
  []
 
 
-Overfull \hbox (3.52977pt too wide) in paragraph at lines 56--58
+Overfull \hbox (3.52977pt too wide) in paragraph at lines 68--70
 []\TU/LinLibertine(0)/m/n/9 Gains over the two strongest baselines—HITS (\TU/LinLibertine(1)/b/n/9 +10.2%\TU/LinLibertine(0)/m/n/9 ) and Panta
  []
 
 
-Overfull \hbox (1.64253pt too wide) in paragraph at lines 56--58
+Overfull \hbox (1.64253pt too wide) in paragraph at lines 68--70
 \TU/LinLibertine(0)/m/n/9 (\TU/LinLibertine(1)/b/n/9 +12.1%\TU/LinLibertine(0)/m/n/9 )—confirm that jointly reducing irrelevant context and mak-
  []
 
 
-Overfull \hbox (5.175pt too wide) in paragraph at lines 56--58
+Overfull \hbox (5.175pt too wide) in paragraph at lines 68--70
 \TU/LinLibertine(0)/m/n/9 close. The margin widens substantially against SymPrompt (\TU/LinLibertine(1)/b/n/9 +23.3%\TU/LinLibertine(0)/m/n/9 ),
  []
 
 
-Overfull \hbox (1.22255pt too wide) in paragraph at lines 63--65
+Underfull \vbox (badness 7576) has occurred while \output is active []
+
+
+
+[6.6]
+Overfull \hbox (1.22255pt too wide) in paragraph at lines 75--77
 \TU/LinLibertine(0)/m/n/9 mark), \TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 achieves a BC of 41.24% while SymPrompt reaches
  []
 
 
-Underfull \hbox (badness 1158) in paragraph at lines 69--71
+Underfull \hbox (badness 1158) in paragraph at lines 81--83
 []\TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 outperforms all three baselines on average,
+ []
+
+(./tables/rq2_ablation.tex
+LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/sc' will be
+(Font)              scaled to size 9.0pt on input line 3.
+)
+Overfull \hbox (3.84978pt too wide) in paragraph at lines 94--97
+\TU/LinLibertine(0)/m/n/9 preconditions explicit but also implicitly focuses the LLM on branch-
+ []
+
+
+Overfull \hbox (5.01231pt too wide) in paragraph at lines 94--97
+\TU/LinLibertine(0)/m/n/9 relevant predicates, partially mirroring BS’s context-reduction role—
  []
 
 
@@ -2250,43 +2266,20 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[6.6] (./tables/rq2_ablation.tex)
-Overfull \hbox (3.84978pt too wide) in paragraph at lines 82--85
-\TU/LinLibertine(0)/m/n/9 preconditions explicit but also implicitly focuses the LLM on branch-
- []
 
-
-Overfull \hbox (5.01231pt too wide) in paragraph at lines 82--85
-\TU/LinLibertine(0)/m/n/9 relevant predicates, partially mirroring BS’s context-reduction role—
- []
-
-
-Overfull \hbox (12.15526pt too wide) in paragraph at lines 86--95
+Overfull \hbox (12.15526pt too wide) in paragraph at lines 98--107
 \TU/LinLibertine(0)/m/n/9 plementary rather than redundant. BS contributes most where method
  []
 
 
-Overfull \hbox (7.15204pt too wide) in paragraph at lines 86--95
+Overfull \hbox (7.15204pt too wide) in paragraph at lines 98--107
 \TU/LinLibertine(0)/m/n/9 a single control flow. Backward slicing strips these dialect-processing
  []
 
 
-Underfull \vbox (badness 2027) has occurred while \output is active []
-
-
-
-
-Overfull \hbox (8.7203pt too wide) in paragraph at lines 96--100
+Overfull \hbox (8.7203pt too wide) in paragraph at lines 108--112
 \TU/LinLibertine(0)/m/n/9 First, many branch predicates in these projects are feature-flag checks
  []
-
-File: figures/branch_coverage_comparison.pdf Graphic file (type pdf)
-<use figures/branch_coverage_comparison.pdf>
-
-Class acmart Warning: A possible image without description on input line 107.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2294,61 +2287,67 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [7.7]
-Underfull \hbox (badness 1565) in paragraph at lines 117--120
+File: figures/branch_coverage_comparison.pdf Graphic file (type pdf)
+<use figures/branch_coverage_comparison.pdf>
+
+
+Class acmart Warning: A possible image without description on input line 119.
+
+
+
+
+Underfull \hbox (badness 1565) in paragraph at lines 129--132
 []\TU/LinLibertine(0)/m/n/9 Both backward slicing (BS) and constraint-hints (CS)
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
 (./tables/rq3_different_llms.tex)
 
-Package natbib Warning: Citation `qwen35' on page 8 undefined on input line 129.
+Package natbib Warning: Citation `qwen35' on page 8 undefined on input line 141.
 
 
-Overfull \hbox (3.32854pt too wide) in paragraph at lines 132--139
-\TU/LinLibertine(0)/m/n/9 following capability—translating structured hints into correct multi-
- []
-
-
-Underfull \vbox (badness 4416) has occurred while \output is active []
+Underfull \vbox (badness 1810) has occurred while \output is active []
 
 
 
 [8.8]
-Overfull \hbox (1.85577pt too wide) in paragraph at lines 140--146
-[]\TU/LinLibertine(1)/b/n/9 Structural bottlenecks. \TU/LinLibertine(0)/m/n/9 Despite the strong overall gains, \TU/inconsolata(0)/m/n/9 JCore
+Overfull \hbox (3.32854pt too wide) in paragraph at lines 145--151
+\TU/LinLibertine(0)/m/n/9 following capability—translating structured hints into correct multi-
  []
 
 
-Underfull \hbox (badness 1102) in paragraph at lines 148--150
+Overfull \hbox (5.75829pt too wide) in paragraph at lines 153--158
+ \TU/LinBiolinum(0)/m/it/9 4.4.3 Structural bottlenecks.[] \TU/LinLibertine(0)/m/n/9 Despite the strong overall gains, \TU/inconsolata(0)/m/n/9 JCore
+ []
+
+
+Underfull \hbox (badness 1102) in paragraph at lines 160--162
 []\TU/LinLibertine(0)/m/sc/9 CogPath \TU/LinLibertine(0)/m/n/9 performs robustly across all four backbone
  []
 
-) (./sections/discussion.tex
-Overfull \hbox (1.05602pt too wide) in paragraph at lines 3--6
+)
+
+(./sections/discussion.tex
+Overfull \hbox (1.05602pt too wide) in paragraph at lines 4--7
 \TU/LinLibertine(0)/m/it/9 Inference Token Cost. \TU/LinLibertine(0)/m/n/9 To present cost in a deployment-relevant form,
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Overfull \hbox (7.44815pt too wide) in paragraph at lines 8--12
+\TU/LinLibertine(0)/m/n/9 over SymPrompt (470s/class) and +13% over HITS (610s/class), while
+ []
 
 
-
-
-Overfull \hbox (11.23563pt too wide) in paragraph at lines 7--11
-\TU/LinLibertine(0)/m/n/9 head over SymPrompt (20.6s/MUT) and +13% over HITS (26.7s/MUT),
+Overfull \hbox (2.09851pt too wide) in paragraph at lines 8--12
+\TU/LinLibertine(0)/m/n/9 and 32.32% for the three baselines—relative improvements of +110%,
  []
 
 )
-Overfull \hbox (6.27156pt too wide) in paragraph at lines 16--129
+Overfull \hbox (6.27156pt too wide) in paragraph at lines 13--129
 \TU/LinLibertine(0)/m/n/9 further limited to Java projects from the Defects4J benchmark, which
  []
 
 
-Overfull \hbox (5.2313pt too wide) in paragraph at lines 16--129
+Overfull \hbox (5.2313pt too wide) in paragraph at lines 13--129
 \TU/LinLibertine(0)/m/n/9 may affect generalizability to other languages or ecosystems, though
  []
 
@@ -2358,20 +2357,6 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [9.9] (./sections/related_work.tex
-Overfull \hbox (3.16576pt too wide) in paragraph at lines 5--6
-\TU/LinLibertine(0)/m/n/9 cently, LLM-based synthesis. Early techniques such as Randoop [[]]
- []
-
-
-Overfull \hbox (8.00702pt too wide) in paragraph at lines 5--6
-\TU/LinLibertine(0)/m/n/9 infers regression assertions. While effective at exploring input spaces,
- []
-
-
-Overfull \hbox (4.57277pt too wide) in paragraph at lines 5--6
-\TU/LinLibertine(0)/m/n/9 SBST methods fundamentally operate on syntactic signals and strug-
- []
-
 
 Package natbib Warning: Citation `watson2020atalas' on page 10 undefined on input line 7.
 
@@ -2422,8 +2407,8 @@ Overfull \hbox (2.94305pt too wide) in paragraph at lines 13--14
  []
 
 
-Overfull \hbox (24.15454pt too wide) in paragraph at lines 13--14
-\TU/LinLibertine(0)/m/n/9 whose reachability depends on cross-method object states—preconditions
+Overfull \hbox (20.51854pt too wide) in paragraph at lines 13--14
+\TU/LinLibertine(0)/m/n/9 whose reachability depends on cross-method object states-preconditions
  []
 
 
@@ -2449,17 +2434,7 @@ Overfull \hbox (5.12929pt too wide) in paragraph at lines 19--20
 \TU/LinLibertine(0)/m/n/9 dedicated analysis infrastructure, achieving results competitive with
  []
 
-
-Overfull \hbox (4.11624pt too wide) in paragraph at lines 21--22
-[]\TU/LinLibertine(0)/m/n/9 In the test generation domain, HITS [[]] applies a form of method
- []
-
-)
-Overfull \hbox (15.93228pt too wide) in paragraph at lines 23--131
-\TU/LinLibertine(0)/m/n/9 condition, the slicer traces all data and control dependencies—including
- []
-
-(./sections/conclusion.tex
+) (./sections/conclusion.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2484,9 +2459,6 @@ LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/it' will be
 LaTeX Info: Redefining \tempurl on input line 77.
 LaTeX Info: Redefining \tempurl on input line 95.
 LaTeX Info: Redefining \tempurl on input line 219.
-
-Underfull \vbox (badness 1014) has occurred while \output is active []
-
 
 
 LaTeX Info: Redefining \tempurl on input line 261.
@@ -2530,21 +2502,14 @@ File: se-utf32be.def 2019/11/29 v1.12 stringenc: UTF-32BE
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
-
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 9F5BEF6DF807E02F6B8DCC868722F66F;2880
-(rerunfilecheck)             After:  14F70273DBC20F63BE716D392873A604;3078.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: D15B8F33243906A03935591FD6845257;3078.
  ) 
 Here is how much of TeX's memory you used:
- 55814 strings out of 473832
- 1200490 string characters out of 5729481
- 2117922 words of memory out of 5000000
- 77871 multiletter control sequences out of 15000+600000
+ 55816 strings out of 473832
+ 1200577 string characters out of 5729481
+ 2117915 words of memory out of 5000000
+ 77873 multiletter control sequences out of 15000+600000
  568833 words of font info for 176 fonts, out of 8000000 for 9000
  1509 hyphenation exceptions out of 8191
  105i,19n,131p,1861b,32948s stack positions out of 10000i,1000n,20000p,200000b,200000s

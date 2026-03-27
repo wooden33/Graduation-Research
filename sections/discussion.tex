@@ -1,18 +1,16 @@
 \section{DISCUSSION}
 
+
 {\em Inference Token Cost.}
-To present cost in a deployment-relevant form, we report per-MUT cost under the four backbones used in RQ3: QC3-30B (0.079\$/class), GPT-5.4-Mini (0.44\$/class), QW3.5-397B (0.78\$/class), and DS-V3.1 (0.2\$/class). 
+To present cost in a deployment-relevant form, we report per-class cost under the four LLM backbones used in RQ3: QC3-30B (0.079\$/class), GPT-5.4-Mini (0.44\$/class), QW3.5-397B (0.78\$/class), and DS-V3.1 (0.2\$/class). 
 Across all four settings, the per-class cost remains low in absolute terms, indicating that the framework-level overhead of \ourmethod{} is operationally affordable. 
 
 {\em Runtime Overhead.}
 Across all 130 classes using QC3-30B as the backbone, \ourmethod{} averages 692\,s/class, incurring +47\% overhead over SymPrompt (470\,s/class) and +13\% over HITS (610\,s/class), while running 4\% faster than Panta (720\,s/class). 
 Against these time differentials, \ourmethod{} achieves a BC of 44.41\% versus 21.14\%, 34.24\%, and 32.32\% for the three baselines---relative improvements of +110\%, +30\%, and +37\% respectively. The overhead is thus proportionate to the coverage gains in every comparison.
-Of the 30.3\,s, $\approx$1.2\,s is attributable to static preprocessing, which scales with the inter-procedural dependency graph and is already included in the figures above; the remainder is LLM inference time. 
+Of the 692\,s, $\approx$1.2\,s is attributable to static preprocessing, which scales with the inter-procedural dependency graph and is already included in the figures above; the remainder is LLM inference time. 
 
-{\em Limitations.}
-
-
-\paragraph{Threats to Validity.}
+{\em Threats to Validity.}
 The effectiveness of \ourmethod{} depends on the capabilities of the underlying LLM, and results may vary as more advanced models are introduced; we mitigate this by evaluating across four models spanning a range of scales and architectures (RQ3). 
 Data contamination is a known concern in LLM-based software engineering research, as evaluated models may have encountered Defects4J code during pretraining; to reduce its effect, all methods are evaluated on the same projects with the same backbone model, so reported results reflect relative improvements between approaches rather than absolute figures. 
 Our evaluation is further limited to Java projects from the Defects4J benchmark, which may affect generalizability to other languages or ecosystems, though the underlying techniques are language-agnostic in principle. 

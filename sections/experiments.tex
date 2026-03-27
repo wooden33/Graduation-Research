@@ -135,13 +135,13 @@ The iterative loop further amplifies these gains: \ourmethod{} leads at every it
 \input{tables/rq3_different_llms.tex}
 To evaluate model generalizability, we run \ourmethod{} under four backbone models---QC3-30B (used in RQ1 and RQ2), GPT-5.4-Mini, QW3.5-397B, and DS-V3.1---using the same experimental configuration as RQ1. Results are summarized in Table~\ref{tab:model-generalization}.
 
-\textbf{Overall trends.} 
+\subsubsection{Overall trends.} 
 Scaling up the backbone model brings substantial coverage improvements across all 14 projects. 
 While QC3-30B achieves an average BC of 44.41\%, the three large-scale models reach 79.76\% (GPT-5.4-Mini), 80.36\% (DS-V3.1), and 83.47\% (QW3.5-397B)---gains of 35--39 \% over QC3-30B. 
 Among them, QW3.5-397B achieves the highest overall BC, consistent with its leading performance on code-oriented benchmarks documented in its technical report~\cite{qwen35}. 
 Notably, even QC3-30B already surpasses every RQ1 baseline (best: HITS at 34.24\%), confirming that \ourmethod{}'s framework-level contributions hold independently of model scale.
 
-\textbf{Where model scale matters most.}
+\subsubsection{Where model scale matters most.}
 The capacity-driven gains are pronounced on projects that demand dense conditional reasoning. 
 On \texttt{JDatabind}, QC3-30B reaches only 17.85\% BC while large models achieve 68--77\%. 
 Cross-referencing with the RQ2 ablation sharpens this picture: removing CS costs 8.52\% on \texttt{JDatabind}, while removing BS \emph{improves} coverage by 8.70 \%.
@@ -149,7 +149,7 @@ Together, these results indicate that \texttt{JDatabind}'s dense cross-method in
 It is precisely this constraint reasoning and following capability---translating structured hints into correct multi-step object state construction---that scales with model size, explaining the pronounced gap between QC3-30B and the larger models on this project.
 By contrast, on structurally simpler projects such as \texttt{Cli} and \texttt{Time}, the gap narrows to under 20 \%, where \ourmethod{}'s structural guidance already suffices for QC3-30B to handle the less demanding conditional logic.
 
-\textbf{Structural bottlenecks.} 
+\subsubsection{Structural bottlenecks.} 
 Despite the strong overall gains, \texttt{JCore} and \texttt{JXml} remain below the large-model average of $\sim$81\% regardless of backbone---best BC of 76.77\% and 74.20\%, respectively. 
 As identified in RQ2, these projects share a framework-level bottleneck: their branch predicates are governed by builder-chain configuration state that spans multiple factory-method layers, causing BS to produce semantically incomplete slices that are worse than the unsliced method body. 
 Scaling up model capacity cannot compensate for structurally deficient input, which is why the ceiling persists even under the strongest models. 
