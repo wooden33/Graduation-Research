@@ -191,7 +191,7 @@ The complete workflow of \ourmethod{} is formalized in Algorithm~\ref{alg:main}.
 
 
 {\em Initialization.}
-The framework extracts test-scope dependencies, constructs the CFG and method dictionary from the source file, and measures baseline coverage on the initial suite (lines 1--4).
+Initialization. The framework extracts test-scope dependencies, constructs the CFG and method dictionary from the source file. This phase also establishes the static context required by the two core components: for Constraint-Hints, the branch sequence and predicate structure are derived from the CFG; for Backward Slicing, inter-procedural dependency information is extracted from related classes and stored in the method dictionary. Baseline coverage is then measured on the initial suite (lines 1--4), providing the missed-branch information that drives subsequent path selection.
 
 {\em Path selection with Constraints-Hints.}
 At each non-initial iteration, \textsc{SelectUncoveredPaths} identifies candidate paths from the CFG that intersect with missed lines or branches, weighted by both coverage impact and visit history $\textit{pathHistory}$ (line 8). For each selected path $\pi$, the constraint solver derives $\mathcal{C}(\pi)$ by analyzing the branch sequence up to the first uncovered predicate $b^*$, and these conditions are embedded into the generation prompt (lines 9--13).
