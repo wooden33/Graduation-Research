@@ -196,27 +196,35 @@ isbn="978-3-031-17108-6"
   pubstate = {prepublished}
 }
 
-@online{pizzorno2024,
-  title = {{{CoverUp}}: {{Coverage-Guided LLM-Based Test Generation}}},
-  shorttitle = {{{CoverUp}}},
-  author = {Pizzorno, Juan Altmayer and Berger, Emery D.},
-  date = {2024-09-13},
-  eprint = {2403.16218},
-  eprinttype = {arXiv},
-  url = {http://arxiv.org/abs/2403.16218},
-  urldate = {2024-10-16},
-  langid = {american},
-  pubstate = {prepublished}
+@article{liu2024lost,
+  title={Lost in the middle: How language models use long contexts},
+  author={Liu, Nelson F and Lin, Kevin and Hewitt, John and Paranjape, Ashwin and Bevilacqua, Michele and Petroni, Fabio and Liang, Percy},
+  journal={Transactions of the association for computational linguistics},
+  volume={12},
+  pages={157--173},
+  year={2024}
 }
 
-@misc{baldoni2018,
-      title={A Survey of Symbolic Execution Techniques}, 
-      author={Roberto Baldoni and Emilio Coppa and Daniele Cono D'Elia and Camil Demetrescu and Irene Finocchi},
-      year={2018},
-      eprint={1610.00502},
-      archivePrefix={arXiv},
-      primaryClass={cs.SE},
-      url={https://arxiv.org/abs/1610.00502}, 
+@article{pizzorno2025,
+  title={Coverup: Effective high coverage test generation for python},
+  author={Altmayer Pizzorno, Juan and Berger, Emery D},
+  journal={Proceedings of the ACM on Software Engineering},
+  volume={2},
+  number={FSE},
+  pages={2897--2919},
+  year={2025},
+  publisher={ACM New York, NY, USA}
+}
+
+@article{baldoni2018,
+  title={A survey of symbolic execution techniques},
+  author={Baldoni, Roberto and Coppa, Emilio and D’elia, Daniele Cono and Demetrescu, Camil and Finocchi, Irene},
+  journal={ACM Computing Surveys (CSUR)},
+  volume={51},
+  number={3},
+  pages={1--39},
+  year={2018},
+  publisher={ACM New York, NY, USA}
 }
 
 @article{yang2024telpa,
@@ -297,14 +305,15 @@ numpages = {9}
       url={https://arxiv.org/abs/2601.15300}, 
 }
 
-@misc{yuan2024manualtest,
-      title={No More Manual Tests? Evaluating and Improving ChatGPT for Unit Test Generation}, 
-      author={Zhiqiang Yuan and Yiling Lou and Mingwei Liu and Shiji Ding and Kaixin Wang and Yixuan Chen and Xin Peng},
-      year={2024},
-      eprint={2305.04207},
-      archivePrefix={arXiv},
-      primaryClass={cs.SE},
-      url={https://arxiv.org/abs/2305.04207}, 
+@article{yuan2024manualtest,
+  title={Evaluating and improving chatgpt for unit test generation},
+  author={Yuan, Zhiqiang and Liu, Mingwei and Ding, Shiji and Wang, Kaixin and Chen, Yixuan and Peng, Xin and Lou, Yiling},
+  journal={Proceedings of the ACM on Software Engineering},
+  volume={1},
+  number={FSE},
+  pages={1703--1726},
+  year={2024},
+  publisher={ACM New York, NY, USA}
 }
 
 @misc{konstantinou2025yate,
@@ -458,9 +467,85 @@ keywords = {software engineering tools, machine learning, code naturalness, Big 
   year={2024}
 }
 
-@inproceedings{just2014defects4j,
-  title={Defects4J: A Database of Existing Faults to Enable Controlled Testing Studies for Java Programs},
-  author={Just, Ren{\'e} and Jalali, Darioush and Ernst, Michael D},
-  booktitle={ISSTA},
-  year={2014}
+@inproceedings{defects4j2014,
+author = {Just, Ren\'{e} and Jalali, Darioush and Ernst, Michael D.},
+title = {Defects4J: a database of existing faults to enable controlled testing studies for Java programs},
+year = {2014},
+isbn = {9781450326452},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2610384.2628055},
+doi = {10.1145/2610384.2628055},
+abstract = {Empirical studies in software testing research may not be comparable, reproducible, or characteristic of practice. One reason is that real bugs are too infrequently used in software testing research. Extracting and reproducing real bugs is challenging and as a result hand-seeded faults or mutants are commonly used as a substitute. This paper presents Defects4J, a database and extensible framework providing real bugs to enable reproducible studies in software testing research. The initial version of Defects4J contains 357 real bugs from 5 real-world open source pro- grams. Each real bug is accompanied by a comprehensive test suite that can expose (demonstrate) that bug. Defects4J is extensible and builds on top of each program’s version con- trol system. Once a program is configured in Defects4J, new bugs can be added to the database with little or no effort. Defects4J features a framework to easily access faulty and fixed program versions and corresponding test suites. This framework also provides a high-level interface to common tasks in software testing research, making it easy to con- duct and reproduce empirical studies. Defects4J is publicly available at http://defects4j.org.},
+booktitle = {Proceedings of the 2014 International Symposium on Software Testing and Analysis},
+pages = {437–440},
+numpages = {4},
+keywords = {Bug database, real bugs, testing framework},
+location = {San Jose, CA, USA},
+series = {ISSTA 2014}
 }
+
+@inproceedings{codet5,
+  title={CodeT5: Identifier-aware unified pre-trained encoder-decoder models for code understanding and generation},
+  author={Wang, Yue and others},
+  booktitle={EMNLP},
+  year={2021}
+}
+
+@inproceedings{feng2020codebert,
+  title={Codebert: A pre-trained model for programming and natural languages},
+  author={Feng, Zhangyin and Guo, Daya and Tang, Duyu and Duan, Nan and Feng, Xiaocheng and Gong, Ming and Shou, Linjun and Qin, Bing and Liu, Ting and Jiang, Daxin and others},
+  booktitle={Findings of the association for computational linguistics: EMNLP 2020},
+  pages={1536--1547},
+  year={2020}
+}
+
+@article{ferrante1987,
+author = {Ferrante, Jeanne and Ottenstein, Karl J. and Warren, Joe D.},
+title = {The program dependence graph and its use in optimization},
+year = {1987},
+issue_date = {July 1987},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {9},
+number = {3},
+issn = {0164-0925},
+url = {https://doi.org/10.1145/24039.24041},
+doi = {10.1145/24039.24041},
+abstract = {In this paper we present an intermediate program representation, called the program dependence graph (PDG), that makes explicit both the data and control dependences for each operation in a program. Data dependences have been used to represent only the relevant data flow relationships of a program. Control dependences are introduced to analogously represent only the essential control flow relationships of a program. Control dependences are derived from the usual control flow graph. Many traditional optimizations operate more efficiently on the PDG. Since dependences in the PDG connect computationally related parts of the program, a single walk of these dependences is sufficient to perform many optimizations. The PDG allows transformations such as vectorization, that previously required special treatment of control dependence, to be performed in a manner that is uniform for both control and data dependences. Program transformations that require interaction of the two dependence types can also be easily handled with our representation. As an example, an incremental approach to modifying data dependences resulting from branch deletion or loop unrolling is introduced. The PDG supports incremental optimization, permitting transformations to be triggered by one another and applied only to affected dependences.},
+journal = {ACM Trans. Program. Lang. Syst.},
+month = jul,
+pages = {319–349},
+numpages = {31}
+}
+
+
+
+@inproceedings{godefroid2025dart,
+author = {Godefroid, Patrice and Klarlund, Nils and Sen, Koushik},
+title = {DART: directed automated random testing},
+year = {2005},
+isbn = {1595930566},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1065010.1065036},
+doi = {10.1145/1065010.1065036},
+abstract = {We present a new tool, named DART, for automatically testing software that combines three main techniques: (1) automated extraction of the interface of a program with its external environment using static source-code parsing; (2) automatic generation of a test driver for this interface that performs random testing to simulate the most general environment the program can operate in; and (3) dynamic analysis of how the program behaves under random testing and automatic generation of new test inputs to direct systematically the execution along alternative program paths. Together, these three techniques constitute Directed Automated Random Testing, or DART for short. The main strength of DART is thus that testing can be performed completely automatically on any program that compiles -- there is no need to write any test driver or harness code. During testing, DART detects standard errors such as program crashes, assertion violations, and non-termination. Preliminary experiments to unit test several examples of C programs are very encouraging.},
+booktitle = {Proceedings of the 2005 ACM SIGPLAN Conference on Programming Language Design and Implementation},
+pages = {213–223},
+numpages = {11},
+keywords = {automated test generation, interfaces, program verification, random testing, software testing},
+location = {Chicago, IL, USA},
+series = {PLDI '05}
+}
+
+@article{Le2025TestWeaverEF,
+  title={TestWeaver: Execution-aware, Feedback-driven Regression Testing Generation with Large Language Models},
+  author={Cuong Chi Le and Cuong Duc Van and Tu Vu and Thai Minh Pham Vu and Hoang Nhat Phan and Huy Nhat Phan and Tien N. Nguyen},
+  journal={ArXiv},
+  year={2025},
+  volume={abs/2508.01255},
+  url={https://api.semanticscholar.org/CorpusID:280421599}
+}
+
+
