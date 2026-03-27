@@ -23,7 +23,7 @@ in branch-oriented test generation, this effect is further magnified because the
 %Taken together, these two issues suggest a systematic form of \emph{cognitive misalignment} in LLM-based unit test generation: the information shown to the model is often misaligned with the information actually needed to cover a target branch. 
 %This misalignment has two complementary dimensions, namely \emph{what to satisfy} and \emph{what to attend to}.
 
-
+\textbf{Approach.}
 To address this cognitive misalignment, we propose \ourmethod{}, an LLM-driven framework for automated unit test generation. \ourmethod{} explicitly tackles both dimensions of the gap, by making critical constraints explicit and concentrating the model's attention on branch-relevant program context.
 First, {\textit{Constraint-Hints}} addresses the \emph{what to satisfy} dimension by making the execution conditions of uncovered paths explicit. Instead of forcing the LLM to deduce implicit constraints from raw code, this mechanism extracts path conditions and translates them into actionable guidance. It drastically reduces the model's reasoning difficulty by directly suggesting \emph{how} to satisfy a target condition—such as invoking specific setter methods to establish the required object state. By surfacing these hidden cross-method preconditions, it actively guides the LLM to construct valid initialization sequences, ensuring complex dependencies are properly addressed rather than silently skipped.
 Then, \textit{coverage-driven backward slicing} addresses the \emph{what to attend to} dimension. Rather than supplying the full method body, the slicer isolates the minimal set of statements that genuinely influence an uncovered branch, including cross-method dependencies such as field initializations and setter methods. 
@@ -38,9 +38,10 @@ Gains are most pronounced on logic-heavy subjects with rich cross-method depende
 
 Ablation study confirms the complementary roles of both components. 
 Removing \emph{Backward Slicing} drops coverage from 44.41\% to 38.47\%, with the largest degradation on context-heavy subjects (e.g., Csv: 52.29\%$\to$24.80\%). 
-Removing \emph{Constraint-Hints} drops coverage to 39.79\%, most severely on subjects with object-state dependencies (e.g., JacksonDatabind: 17.85\%$\to$9.33\%).
+Removing \emph{Constraint-Hints} drops coverage to 39.79\%, most severely on subjects with object-state dependencies (e.g., JDatabind: 17.85\%$\to$9.33\%).
 Finally, \ourmethod{} generalizes across backbone LLMs, achieving 44.41\% (QC3-30B), 83.47\% (QW3.5-397B), and 80.12\% (DS-V3.1), confirming that its benefit derives from restructuring branch-relevant information rather than relying on any specific model.
 
+\textbf{Contribution.}
 In summary, this paper makes the following contributions:
 \begin{itemize}[leftmargin=*]
 \item We identify a key limitation of existing LLM-based test generation approaches in handling implicit, cross-method constraints.

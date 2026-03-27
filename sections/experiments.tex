@@ -1,7 +1,19 @@
-
 \section{EXPERIMENTS}
 
 \input{tables/dataset.tex}
+
+We design our experiment to answer the following three research questions (\textbf{RQ}s):
+
+\begin{description}
+\item[\textbf{RQ1: Effectiveness}] 
+How does \ourmethod{} perform compared to baselines in terms of line and branch coverage, especially on complex, logic-heavy methods?
+
+\item[\textbf{RQ2: Ablation Study}]
+What are the individual contributions of Backward Slicing and Constraint Hints to the overall coverage of \ourmethod{}, and how does the iterative generation loop affect the branch coverage?
+
+\item[\textbf{RQ3: Generality}]
+Is \ourmethod{}'s effectiveness robust across different underlying large language models, and how do their performances vary?
+\end{description}
 
 \subsection{Experimental Setup}
 
@@ -26,23 +38,23 @@ To evaluate the effectiveness of the generated unit tests, we primarily focus on
 \end{itemize}
 All coverage data in our experiments are collected using the JaCoCo library, ensuring consistent and reproducible measurements across all subjects and baselines.
 
-\textbf{Research Questions.}
-To evaluate the effectiveness and design of \ourmethod{}, we address the following three research questions:
-\begin{itemize}
-\item \textbf{RQ1: Effectiveness of \ourmethod{}.} How does \ourmethod{} perform compared to baselines in terms of line and branch coverage, especially on complex, logic-heavy methods?
-\item \textbf{RQ2: Ablation Study.} What are the individual contributions of Backward Slicing and Constraint Hints to the overall coverage of \ourmethod{}, and how does the iterative generation loop affect the branch coverage?
-\item \textbf{RQ3: Model Generalizability of \ourmethod{}.} Is \ourmethod{}'s effectiveness robust across different underlying large language models, and how do their performances vary?
-\end{itemize}
+% \textbf{Research Questions.}
+% To evaluate the effectiveness and design of \ourmethod{}, we address the following three research questions:
+% \begin{itemize}
+% \item \textbf{RQ1: Effectiveness of \ourmethod{}.} How does \ourmethod{} perform compared to baselines in terms of line and branch coverage, especially on complex, logic-heavy methods?
+% \item \textbf{RQ2: Ablation Study.} What are the individual contributions of Backward Slicing and Constraint Hints to the overall coverage of \ourmethod{}, and how does the iterative generation loop affect the branch coverage?
+% \item \textbf{RQ3: Model Generalizability of \ourmethod{}.} Is \ourmethod{}'s effectiveness robust across different underlying large language models, and how do their performances vary?
+% \end{itemize}
 
 \textbf{Baselines.}
-To evaluate the performance of \ourmethod{}, we compare it against three state-of-the-art LLM-based unit test generation frameworks representing diverse paradigms in the field:
+Prior work (e.g., SymPrompt and HITS) has shown that LLM-based approaches outperform EvoSuite under comparable settings. Therefore, we focus on comparisons with state-of-the-art LLM-based baselines. CoverUp targets Python and operates at line-level granularity, making direct comparison on our Java branch-coverage benchmark infeasible. Therefore, we compare \ourmethod{} against three representative LLM-based unit test generation frameworks that capture diverse design paradigms in the field:
 \begin{itemize}
     \item \textbf{SymPrompt \cite{ryan2024}:} A prompt-engineering approach that encodes symbolic execution concepts into structured prompts. It extracts branch conditions from Control Flow Graphs CFGs) and constructs path-oriented prompts to guide the LLM in generating inputs that satisfy specific execution paths.
     \item \textbf{HITS \cite{wang2024c}:} A hierarchical prompting framework that decomposes complex methods into smaller code segments before test generation. It adopts a self-healing strategy that iteratively repairs failing tests to improve compilability and coverage.\footnote{Due to missing components in the official HITS repository, we re-implemented its workflow by strictly following the prompt templates described in the paper and the procedural logic of available open-source fragments.}
-    \item \textbf{Panta \cite{gu2025a}:} A hybrid framework that combines static CFG analysis with dynamic coverage feedback to identify uncovered paths. It constructs context-aware prompts that expose intra-class data dependencies to guide the LLM toward uncovered branches.
+    \item \textbf{Panta \cite{gu2025a}:} A hybrid framework that combines static CFG analysis with dynamic coverage feedback to locate uncovered paths. It constructs context-aware prompts that expose intra-class data dependencies to guide the LLM toward uncovered branches.
 \end{itemize}
 
-For fair comparison, all methods use the same backbone model as \ourmethod{} in each experiment. In RQ1 and RQ2, we adopt Qwen3-Coder-30B-A3B (QC3-30B), deployed locally on an NVIDIA H800 GPU (80\,GB) for cost-efficient evaluation, while RQ3 further includes Qwen3.5-397B-A17B, GPT-5.4-Mini, and DeepSeek-V3.1 to assess generalizability. For each MUT, all approaches are restricted to the declaring class source code and import statements, without access to project-level dependencies or configurations, ensuring that performance differences stem from the frameworks rather than external information. To improve reproducibility, all models are configured with temperature $0.2$ and top-$p$ $1.0$. The key hyperparameters of \ourmethod{} are set as follows: $\textit{maxIter}=20$, $\Lambda=3$, $\beta=0.6$, and target coverage $\tau=100.00\%$, with all experiments starting from an empty test suite.
+For fair comparison, all methods use the same backbone model as \ourmethod{} in each experiment. In RQ1 and RQ2, we adopt Qwen3-Coder-30B-A3B (QC3-30B), deployed locally on an NVIDIA H800 GPU (80,GB) for cost-efficient evaluation. To reduce randomness, each experiment is repeated three times and the average results are reported, while RQ3 further includes Qwen3.5-397B-A17B, GPT-5.4-Mini, and DeepSeek-V3.1 to assess generalizability. For each MUT, all approaches are restricted to the declaring class source code and import statements, without access to project-level dependencies or configurations, ensuring that performance differences stem from the frameworks rather than external information. To improve reproducibility, all models are configured with temperature $0.2$ and top-$p$ $1.0$. The key hyperparameters of \ourmethod{} are set as follows: $\textit{maxIter}=20$, $\Lambda=3$, $\beta=0.6$, and target coverage $\tau=100.00\%$, with all experiments starting from an empty test suite.
 
 \input{tables/rq1_main.tex}
 
