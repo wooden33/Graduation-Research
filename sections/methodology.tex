@@ -10,19 +10,13 @@
 \subsection{Overview}
 
 
-
-
 \ourmethod{} is a coverage-guided iterative framework for automated unit test generation, illustrated in Figure~\ref{fig:overview}. Given a method under test, \ourmethod{} first performs an initialization step that extracts project-level dependencies, resolves the required JUnit imports, and seeds the suite with a syntactically valid scaffolding test containing a trivial \texttt{assertTrue(true)} assertion, ensuring a compilable starting point for all subsequent iterations. It then constructs the CFG, enumerates feasible paths, and collects dynamic coverage feedback to identify uncovered branches before entering an iterative refinement loop.
 
 Each iteration begins with path selection, where \textit{Constraint-Hints} analyzes the selected uncovered path and injects explicit branch conditions as structured guidance into the generation prompt. When coverage improvement stagnates, \textit{Backward Slicing} is activated, replacing the full method body with the minimal set of statements that bear data or control dependence on the target branch. The LLM then generates candidate tests against this focused context; passing tests are merged into the suite while failing ones are forwarded to the repair phase. During repair, compiler diagnostics—including error messages and their associated line numbers—are incorporated into the repair prompt, allowing the LLM to precisely locate and correct the offending statements rather than re-generating the test from scratch. Coverage is re-measured at the end of each iteration to drive target selection in the next round. The loop terminates when the coverage target is reached, the iteration budget is exhausted, or coverage fails to improve for a configurable number of consecutive iterations.
 
 \subsection{Constraints-Hints}
 
-\textit{Constraints-Hints} addresses the implicit precondition problem by 
-decoupling constraint inference from test synthesis. Instead of requiring 
-the LLM to simultaneously infer branch reachability and generate tests, 
-we explicitly extract the conditions necessary to trigger a target branch 
-and provide them as structured guidance.
+\textit{Constraints-Hints} addresses the implicit precondition problem by decoupling constraint inference from test synthesis. Instead of requiring the LLM to simultaneously infer branch reachability and generate tests, we explicitly extract the conditions necessary to trigger a target branch based on its CFG path and provide them as structured guidance; the detailed prompt design is described in the supplementary material.
 
 While symbolic execution can derive precise path conditions, it often 
 struggles to scale to real-world programs due to path explosion, complex 
