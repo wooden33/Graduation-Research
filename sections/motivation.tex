@@ -27,6 +27,7 @@ By supplying the explicit constraint that \texttt{meanImpl} must differ from the
 
 \begin{lstlisting}[language=Java, caption={Correct test (constraint satisfied)}]
 // Assume CustomMeanImpl is a valid implementation
+SummaryStatistics stats = new SummaryStatistics();
 stats.setMeanImpl(new CustomMeanImpl());
 stats.addValue(1.0);
 \end{lstlisting}
@@ -60,7 +61,7 @@ By retaining only statements with data or control dependence on the target branc
 \begin{lstlisting}[language=Java, caption={Branch-relevant slice}]
 Map<MemberKey,MethodBuilder> methods = new LinkedHashMap<>();
 _addMemberMethods(tc, mainType.getRawClass(), methods, primaryMixIn);
-for (...) { ... }  // superTypes iteration -- no dependence on target branch
+// for (...) { ... }  // DELETE: no dependence on target branch
 boolean checkJavaLangObject = false;
 if (_mixInResolver != null) {
   Class<?> mixin = _mixInResolver.findMixInClassFor(Object.class);

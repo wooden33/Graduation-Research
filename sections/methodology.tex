@@ -15,11 +15,7 @@ Each iteration begins with path selection, where \textit{Constraint-Hints} analy
 
 \subsection{Constraints-Hints}
 
-\textit{Constraints-Hints} addresses the implicit precondition problem by 
-decoupling constraint inference from test synthesis. Instead of requiring 
-the LLM to simultaneously infer branch reachability and generate tests, 
-we explicitly extract the conditions necessary to trigger a target branch 
-and provide them as structured guidance.
+\textit{Constraints-Hints} addresses the implicit precondition problem by decoupling constraint inference from test synthesis. Instead of requiring the LLM to simultaneously infer branch reachability and generate tests, we explicitly extract the conditions necessary to trigger a target branch based on its CFG path and provide them as structured guidance; the detailed prompt design is described in the supplementary material.
 
 While symbolic execution can derive precise path conditions, it often 
 struggles to scale to real-world programs due to path explosion, complex 
