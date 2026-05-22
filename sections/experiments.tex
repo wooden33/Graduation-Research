@@ -110,7 +110,7 @@ BS correctly traces the data flow to the field, but the full assignment path spa
 Second, \textit{JXml} compounds this with a two-layer configuration stack---a Woodstox \texttt{WstxInputFactory} beneath Jackson's \texttt{XmlMapper}---so BS structurally misses the lower layer's dependencies from the start, not merely truncates them. 
 
 \subsubsection{Improvement of Iterative Framework}
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=\linewidth]{figures/branch_coverage_comparison.pdf}
     \caption{Branch coverage improvement over iterations for \ourmethod{} and its three ablated variants.}
