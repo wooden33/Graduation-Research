@@ -76,10 +76,9 @@ These gains collectively demonstrate that reducing irrelevant context via backwa
 
 These results indicate that \ourmethod{} excels particularly in logic-heavy methods where complex object interactions and conditional dependencies are prevalent.
 
-\begin{tcolorbox}[colback=gray!5, colframe=gray!100, title=Answer to RQ1]
-\ourmethod{} outperforms all three baselines on average, achieving a branch coverage of 44.41\%, representing improvements of 10.2\%--23.3\% over baselines. 
+\noindent\textbf{Answer to RQ1.}
+\ourmethod{} outperforms all three baselines on average, achieving a branch coverage of 44.41\%, representing improvements of 10.2\%--23.3\% over baselines.
 Its advantage is most pronounced in projects with high cyclomatic complexity and cross-method dependencies (e.g., +20\% on Gson, +14\% on JCore).
-\end{tcolorbox}
 
 
 \subsection{RQ2: Ablation Study}
@@ -124,11 +123,10 @@ Across the entire range, \ourmethod{} remains the top-performing configuration a
 In contrast, w/o BS and w/o CS rise more slowly and saturate at lower coverage levels, while w/o CS+BS plateaus the earliest with the lowest ceiling.
 This three-way pattern---faster rise, higher ceiling, and later plateau---indicates that BS and CS improve iterative testing in two complementary ways: they increase the effectiveness of each generation round and they postpone premature saturation. 
 
-\begin{tcolorbox}[colback=gray!5, colframe=gray!100, title=Answer to RQ2]
+\noindent\textbf{Answer to RQ2.}
 Both backward slicing (BS) and constraint-hints (CS) make independent, complementary contributions and neither component is dispensable: 
 BS eliminates context noise ($-$5.94 \% on average), while CS makes implicit cross-method preconditions explicit ($-$4.62 \% on average). 
 The iterative loop further amplifies these gains: \ourmethod{} leads at every iteration with the fastest early growth and the latest saturation.
-\end{tcolorbox}
 
 \subsection{RQ3: Model Generalizability}
 \input{tables/rq3_different_llms.tex}
@@ -155,7 +153,6 @@ Scaling up model capacity cannot compensate for structurally deficient input, wh
 The consequence is also visible in higher inter-model variance on these two projects (e.g., \texttt{JCore}: QW3.5-397B=76.77\% vs.\ GPT-5.4-Mini=57.83\%), suggesting that when \ourmethod{}'s structural guidance is compromised, performance may fall back on model-specific code reasoning rather than shared framework scaffolding. 
 Extending backward slicing to handle cross-layer builder chains is therefore the primary direction for future refinement.
 
-\begin{tcolorbox}[colback=gray!5,colframe=gray!100, title=Answer to RQ3]
+\noindent\textbf{Answer to RQ3.}
 \ourmethod{} performs robustly across all four backbone LLMs, with stronger models consistently yielding higher coverage (79.76--83.47\% avg.\ branch coverage for large models).
 On high-complexity projects with deep inter-method dependencies, improved model reasoning ability further amplifies this advantage.
-\end{tcolorbox}
