@@ -43,9 +43,11 @@ Finally, \ourmethod{} generalizes across backbone LLMs, achieving 44.41\% (QC3-3
 \textbf{Contribution.}
 In summary, this paper makes the following contributions:
 \begin{itemize}[leftmargin=*]
-\item \textit{Novel Workflow.} We present \ourmethod{}, an unit test generation framework that integrates \textit{Constraint Hints} and \textit{Backward Slicing} to jointly address implicit preconditions and context noise in branch-targeted generation.
+\item We formulate branch-coverage failures in LLM-based test generation as a form of \emph{cognitive misalignment}, caused by hidden cross-method preconditions and branch-irrelevant context.
 
-\item \textit{Thorough Evaluation.} We evaluate \ourmethod{} on complex methods from 14 real-world Java projects, outperforming state-of-the-art baselines in both branch and line coverage. Ablation studies confirm the independent contribution of each component.
+\item We propose \ourmethod{}, an iterative generate--execute--repair framework that combines \emph{Constraint-Hints} and coverage-driven \emph{Backward Slicing} to make path-specific preconditions explicit and reduce irrelevant context.
 
-\item \textit{Open-Source Tool.} \ourmethod{} is publicly available with all prompts, analysis components, and evaluation scripts to support replication and future research. All prompt templates are additionally provided in the supplementary material for direct inspection.
+\item We evaluate \ourmethod{} on 130 classes and 2{,}971 complex methods from 14 Defects4J projects. Under controlled backbone and context settings, \ourmethod{} improves average line and branch coverage over the strongest baseline by 12.8 and 10.2 percentage points, respectively.
+
+\item We release \ourmethod{} with its prompts, analysis components, and evaluation scripts to support replication and follow-up research.
 \end{itemize}

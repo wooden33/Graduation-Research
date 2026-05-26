@@ -47,23 +47,30 @@ All coverage data in our experiments are collected using the JaCoCo library, ens
 % \end{itemize}
 
 \textbf{Baselines.}
-Prior work (e.g., SymPrompt and HITS) has shown that LLM-based approaches outperform EvoSuite under comparable settings. Therefore, we focus on comparisons with state-of-the-art LLM-based baselines. CoverUp targets Python and operates at line-level granularity, making direct comparison on our Java branch-coverage benchmark infeasible. Therefore, we compare \ourmethod{} against three representative LLM-based unit test generation frameworks that capture diverse design paradigms in the field:
+Prior studies, including SymPrompt and HITS, suggest that LLM-based approaches can outperform SBST tools such as EvoSuite under comparable experimental settings. Therefore, we focus on comparisons with state-of-the-art LLM-based baselines. CoverUp targets Python and operates at line-level granularity, making direct comparison on our Java branch-coverage benchmark infeasible. Therefore, we compare \ourmethod{} against three representative LLM-based unit test generation frameworks that capture diverse design paradigms in the field, plus a Vanilla Prompt control to isolate framework-level gains from the backbone LLM's intrinsic capability:
 \begin{itemize}
+    \item \textbf{Vanilla Prompt:} A plain prompting baseline that issues the canonical instruction ``generate a JUnit test suite that achieves 100\% branch coverage of the target class'' together with the focal class source, with no framework support. It is included to control for the possibility that the observed improvements stem from the backbone LLM itself rather than \ourmethod{}'s design.
     \item \textbf{SymPrompt \cite{ryan2024}:} A prompt-engineering approach that encodes symbolic execution concepts into structured prompts. It extracts branch conditions from CFGs and constructs path-oriented prompts to guide the LLM in generating inputs that satisfy specific execution paths.
     \item \textbf{HITS \cite{wang2024c}:} A hierarchical prompting framework that decomposes complex methods into smaller code segments before test generation. It adopts a self-healing strategy that iteratively repairs failing tests to improve compilability and coverage.\footnote{Due to missing components in the official HITS repository, we re-implemented its workflow by strictly following the prompt templates described in the paper and the procedural logic of available open-source fragments.}
     \item \textbf{Panta \cite{gu2025a}:} A hybrid framework that combines static CFG analysis with dynamic coverage feedback to locate uncovered paths. It constructs context-aware prompts that expose intra-class data dependencies to guide the LLM toward uncovered branches.
 \end{itemize}
 
-For fair comparison, all methods use the same backbone model as \ourmethod{} in each experiment. In RQ1 and RQ2, we adopt Qwen3-Coder-30B-A3B (QC3-30B), deployed locally on an NVIDIA H800 GPU (80,GB) for cost-efficient evaluation. To reduce randomness, each experiment is repeated three times and the average results are reported, while RQ3 further includes Qwen3.5-397B-A17B, GPT-5.4-Mini, and DeepSeek-V3.1 to assess generalizability. For each MUT, all approaches are restricted to the declaring class source code and import statements, without access to project-level dependencies or configurations, ensuring that performance differences stem from the frameworks rather than external information. To improve reproducibility, all models are configured with temperature $0.2$ and top-$p$ $1.0$. The key hyperparameters of \ourmethod{} are set as follows: $\textit{maxIter}=20$, $\Lambda=3$, $\beta=0.6$, and target coverage $\tau=100.00\%$, with all experiments starting from an empty test suite.
+For fair comparison, all methods use the same backbone model as \ourmethod{} in each experiment. In RQ1 and RQ2, we use Qwen3-Coder-30B-A3B (QC3-30B) deployed
+locally on an NVIDIA H800 GPU (80 GB), and repeat each experiment three times with averaged results. RQ3 additionally evaluates Qwen3.5-397B-A17B, GPT-5.4-Mini,
+and DeepSeek-V3.1 to assess generalizability. For each MUT, all methods access only the declaring class source code and imports, excluding project-level
+dependencies and configurations. All models use temperature $0.2$ and top-$p$ $1.0$. \ourmethod{} is configured with $\textit{maxIter}=20$, $\Lambda=3$, $
+\beta=0.6$, target coverage $\tau=100.00\%$, and starts from an empty test suite.
 
 \input{tables/rq1_main.tex}
 
 \subsection{RQ1: Effectiveness}
 To answer RQ1, we compare \ourmethod{} against three state-of-the-art baselines on the selected dataset. Results are summarized in Table~\ref{tab:coverage}.
 \subsubsection{Overall Performance}
-As shown in Table~\ref{tab:coverage}, \ourmethod{} achieves the highest average LC and BC across all projects. 
-Specifically, it attains an average BC of 44.41\%, outperforming SymPrompt (21.14\%), HITS (34.24\%), and Panta (32.32\%). 
-Same trends hold for LC, where \ourmethod{} achieves 53.14\% versus SymPrompt (26.19\%), HITS (40.31\%), and Panta (39.77\%). 
+As shown in Table~\ref{tab:coverage}, \ourmethod{} achieves the highest average LC and BC across all projects.
+Specifically, it attains an average BC of 44.41\%, outperforming SymPrompt (21.14\%), HITS (34.24\%), and Panta (32.32\%).
+Same trends hold for LC, where \ourmethod{} achieves 53.14\% versus SymPrompt (26.19\%), HITS (40.31\%), and Panta (39.77\%).
+The Vanilla Prompt control reaches only 14.90\% BC---lower than every structured baseline, including SymPrompt---and trails \ourmethod{} by \textbf{29.5\%}.
+This gap, obtained under the identical backbone LLM, indicates that on logic-heavy methods (CC $> 10$) plain prompting fails to elicit the model's reasoning capacity, and that \ourmethod{}'s advantage is attributable to its framework-level structural guidance rather than to the underlying model.
 
 Gains over the two strongest baselines---HITS (\textbf{+10.2\%}) and Panta (\textbf{+12.1\%})---confirm that jointly reducing irrelevant context and making implicit preconditions explicit addresses coverage gaps that iterative refinement and context-aware prompting alone cannot close. 
 The margin widens substantially against SymPrompt (\textbf{+23.3\%}), underscoring the necessity of explicit program analysis when navigating logic-heavy control flows.
@@ -72,13 +79,10 @@ The margin widens substantially against SymPrompt (\textbf{+23.3\%}), underscori
 The advantages of \ourmethod{} are most pronounced on projects with high cyclomatic complexity and deeper inter-method dependencies. 
 
 For instance, on Gson (CC$_{avg}$ = 23.25, the highest in the benchmark), \ourmethod{} achieves a BC of 41.24\% while SymPrompt reaches only 3.59\%; on JCore (CC$_{avg}$ = 16.33), BC rises from 18.51\% (HITS) to 35.54\%; and on Jsoup (CC$_{avg}$ = 14.13), BC improves from 17.36\% (HITS) to 52.55\%.
-These gains collectively demonstrate that reducing irrelevant context via backward slicing and surfacing implicit preconditions via constraint hints are both essential for navigating the dense branching logic and cross-method dependencies that characterize high-complexity projects.
-
-These results indicate that \ourmethod{} excels particularly in logic-heavy methods where complex object interactions and conditional dependencies are prevalent.
+These gains demonstrate that reducing irrelevant context via backward slicing and surfacing implicit preconditions via constraint hints are both essential for navigating dense branching logic and cross-method dependencies.
 
 \noindent\textbf{Answer to RQ1.}
-\ourmethod{} outperforms all three baselines on average, achieving a branch coverage of 44.41\%, representing improvements of 10.2\%--23.3\% over baselines.
-Its advantage is most pronounced in projects with high cyclomatic complexity and cross-method dependencies (e.g., +20\% on Gson, +14\% on JCore).
+\ourmethod{} outperforms all three baselines on average, achieving 44.41\% BC (+10.2\%--23.3\% over baselines), with the largest gains on high-CC, dependency-rich projects (e.g., +20\% on Gson, +14\% on JCore). The Vanilla Prompt control (14.90\% BC) further indicates that the gain stems from \ourmethod{}'s structural guidance rather than the backbone LLM itself.
 
 
 \subsection{RQ2: Ablation Study}
