@@ -49,7 +49,7 @@ All coverage data in our experiments are collected using the JaCoCo library, ens
 \textbf{Baselines.}
 Prior studies, including SymPrompt and HITS, suggest that LLM-based approaches can outperform SBST tools such as EvoSuite under comparable experimental settings. Therefore, we focus on comparisons with state-of-the-art LLM-based baselines. CoverUp targets Python and operates at line-level granularity, making direct comparison on our Java branch-coverage benchmark infeasible. Therefore, we compare \ourmethod{} against three representative LLM-based unit test generation frameworks that capture diverse design paradigms in the field, plus a Vanilla Prompt control to isolate framework-level gains from the backbone LLM's intrinsic capability:
 \begin{itemize}
-    \item \textbf{Vanilla Prompt:} A plain prompting baseline that issues the canonical instruction ``generate a JUnit test suite that achieves 100\% branch coverage of the target class'' together with the focal class source, with no framework support. It is included to control for the possibility that the observed improvements stem from the backbone LLM itself rather than \ourmethod{}'s design.
+    \item \textbf{Vanilla Prompt:} A plain prompt that asks the backbone LLM to generate a JUnit test suite with 100\% branch coverage from the focal class source, without framework support.
     \item \textbf{SymPrompt \cite{ryan2024}:} A prompt-engineering approach that encodes symbolic execution concepts into structured prompts. It extracts branch conditions from CFGs and constructs path-oriented prompts to guide the LLM in generating inputs that satisfy specific execution paths.
     \item \textbf{HITS \cite{wang2024c}:} A hierarchical prompting framework that decomposes complex methods into smaller code segments before test generation. It adopts a self-healing strategy that iteratively repairs failing tests to improve compilability and coverage.\footnote{Due to missing components in the official HITS repository, we re-implemented its workflow by strictly following the prompt templates described in the paper and the procedural logic of available open-source fragments.}
     \item \textbf{Panta \cite{gu2025a}:} A hybrid framework that combines static CFG analysis with dynamic coverage feedback to locate uncovered paths. It constructs context-aware prompts that expose intra-class data dependencies to guide the LLM toward uncovered branches.
@@ -70,19 +70,20 @@ As shown in Table~\ref{tab:coverage}, \ourmethod{} achieves the highest average 
 Specifically, it attains an average BC of 44.41\%, outperforming SymPrompt (21.14\%), HITS (34.24\%), and Panta (32.32\%).
 Same trends hold for LC, where \ourmethod{} achieves 53.14\% versus SymPrompt (26.19\%), HITS (40.31\%), and Panta (39.77\%).
 The Vanilla Prompt control reaches only 14.90\% BC---lower than every structured baseline, including SymPrompt---and trails \ourmethod{} by \textbf{29.5\%}.
-This gap, obtained under the identical backbone LLM, indicates that on logic-heavy methods (CC $> 10$) plain prompting fails to elicit the model's reasoning capacity, and that \ourmethod{}'s advantage is attributable to its framework-level structural guidance rather than to the underlying model.
+Because this comparison uses the identical backbone LLM, the gap is consistent with the hypothesis that logic-heavy methods (CC $> 10$) require more structured guidance than plain prompting provides.
+It also reduces the likelihood that the observed improvement is explained solely by the backbone model, although additional diagnostics are needed to isolate the exact contribution of each guidance mechanism.
 
-Gains over the two strongest baselines---HITS (\textbf{+10.2\%}) and Panta (\textbf{+12.1\%})---confirm that jointly reducing irrelevant context and making implicit preconditions explicit addresses coverage gaps that iterative refinement and context-aware prompting alone cannot close. 
-The margin widens substantially against SymPrompt (\textbf{+23.3\%}), underscoring the necessity of explicit program analysis when navigating logic-heavy control flows.
+Gains over the two strongest baselines---HITS (\textbf{+10.2\%}) and Panta (\textbf{+12.1\%})---suggest that jointly reducing irrelevant context and making implicit preconditions explicit can cover branches that remain difficult for iterative refinement and context-aware prompting alone.
+The margin widens substantially against SymPrompt (\textbf{+23.3\%}), which is consistent with the need for branch-specific context construction when navigating logic-heavy control flows.
 
 \subsubsection{Performance on High-Complexity Projects}
 The advantages of \ourmethod{} are most pronounced on projects with high cyclomatic complexity and deeper inter-method dependencies. 
 
 For instance, on Gson (CC$_{avg}$ = 23.25, the highest in the benchmark), \ourmethod{} achieves a BC of 41.24\% while SymPrompt reaches only 3.59\%; on JCore (CC$_{avg}$ = 16.33), BC rises from 18.51\% (HITS) to 35.54\%; and on Jsoup (CC$_{avg}$ = 14.13), BC improves from 17.36\% (HITS) to 52.55\%.
-These gains demonstrate that reducing irrelevant context via backward slicing and surfacing implicit preconditions via constraint hints are both essential for navigating dense branching logic and cross-method dependencies.
+These project-level gains are consistent with the intended roles of backward slicing and constraint hints: reducing branch-irrelevant context and surfacing implicit preconditions in code with dense branching logic and cross-method dependencies.
 
 \noindent\textbf{Answer to RQ1.}
-\ourmethod{} outperforms all three baselines on average, achieving 44.41\% BC (+10.2\%--23.3\% over baselines), with the largest gains on high-CC, dependency-rich projects (e.g., +20\% on Gson, +14\% on JCore). The Vanilla Prompt control (14.90\% BC) further indicates that the gain stems from \ourmethod{}'s structural guidance rather than the backbone LLM itself.
+\ourmethod{} outperforms all three baselines on average, achieving 44.41\% BC (+10.2\%--23.3\% over baselines), with the largest gains on high-CC, dependency-rich projects (e.g., +20\% on Gson, +14\% on JCore). The Vanilla Prompt control (14.90\% BC) provides evidence that structured framework guidance contributes to the improvement beyond the backbone LLM alone.
 
 
 \subsection{RQ2: Ablation Study}
@@ -93,7 +94,7 @@ These gains demonstrate that reducing irrelevant context via backward slicing an
 \subsubsection{Contribution of BS and CS}
 We construct three variants---\textbf{w/o BS} (removing backward slicing), \textbf{w/o CS} (removing constraint hints), and \textbf{w/o CS+BS} (removing both)---all sharing the same iterative loop limit (maxIter=20) and evaluated under QC3-30B. Results are assessed via Table~\ref{tab:ablation}.
 
-Table~\ref{tab:ablation} shows that both components contribute independently: removing BS alone drops average BC by 5.94 \% (44.41\% $\to$ 38.47\%), removing CS alone by 4.62 \% (44.41\% $\to$ 39.79\%), and removing both by 7.84 pp (44.41\% $\to$ 36.57\%). 
+Table~\ref{tab:ablation} shows that both components contribute independently: removing BS alone drops average BC by 5.94 pp (44.41\% $\to$ 38.47\%), removing CS alone by 4.62 pp (44.41\% $\to$ 39.79\%), and removing both by 7.84 pp (44.41\% $\to$ 36.57\%). 
 The joint degradation falls below the sum of individual losses (10.56 pp), a subadditivity that reflects partial functional overlap---CS not only makes cross-method preconditions explicit but also implicitly focuses the LLM on branch-relevant predicates, partially mirroring BS's context-reduction role---though neither component can fully substitute for the other. 
 The same degradation ordering holds for LC (BS removal: $-$6.63 pp; CS removal: $-$6.56 pp; both: $-$9.70 pp).
 
@@ -140,7 +141,7 @@ To evaluate model generalizability, we run \ourmethod{} under four backbone mode
 Scaling up the backbone model brings substantial coverage improvements across all 14 projects. 
 While QC3-30B achieves an average BC of 44.41\%, the three large-scale models reach 79.76\% (GPT-5.4-Mini), 80.36\% (DS-V3.1), and 83.47\% (QW3.5-397B)---gains of 35--39 \% over QC3-30B. 
 Among them, QW3.5-397B achieves the highest overall BC, consistent with its leading performance on code-oriented benchmarks documented in its technical report~\cite{qwen35}. 
-Notably, even QC3-30B already surpasses every RQ1 baseline (best: HITS at 34.24\%), confirming that \ourmethod{}'s framework-level contributions hold independently of model scale.
+Notably, even QC3-30B already surpasses every RQ1 baseline (best: HITS at 34.24\%), suggesting that \ourmethod{}'s framework-level guidance is beneficial even with a smaller backbone model.
 
 \subsubsection{Where model scale matters most.}
 The capacity-driven gains are pronounced on projects that demand dense conditional reasoning. 

@@ -23,14 +23,24 @@
 
 
 \lstset{
-  basicstyle=\ttfamily\small,
+  basicstyle=\ttfamily\footnotesize,
   keywordstyle=\color{blue},
   commentstyle=\color{gray},
   stringstyle=\color{red},
   numbers=left,
   numberstyle=\tiny,
+  numbersep=5pt,
+  xleftmargin=2em,
+  framexleftmargin=1.5em,
   breaklines=true,
-  frame=single
+  breakatwhitespace=true,
+  breakindent=0pt,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  framerule=0.4pt,
+  showstringspaces=false,
+  captionpos=b
 }
 
 \newcommand{\ourmethod}{\textsc{CogPath}}
@@ -43,7 +53,7 @@
 \title{CogPath: A Constraint-Guided Context-Reduction Framework for LLM-Based Test Generation}
 
 \author{
-\IEEEauthorblockN{Anonymous Authors}¬
+\IEEEauthorblockN{Anonymous Authors}
 }
 
 \maketitle

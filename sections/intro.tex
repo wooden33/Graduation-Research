@@ -27,17 +27,7 @@ in branch-oriented test generation, this effect is further magnified because the
 To address this cognitive misalignment, we propose \ourmethod{}, a branch-level alignment framework for LLM-based unit test generation. Rather than treating an uncovered branch as a generic request for more tests, \ourmethod{} aligns the prompt with the specific reasoning needed to reach that branch: it exposes the preconditions that must be satisfied and suppresses context that is irrelevant to the branch outcome.
 This alignment is performed inside an iterative generate--execute--repair loop driven by dynamic coverage feedback. For each resistant branch, \ourmethod{} derives path-specific \textit{Constraint-Hints} that translate hidden reachability requirements---such as setter calls needed to establish object state---into explicit generation guidance. When coverage plateaus, it further applies coverage-driven \textit{Backward Slicing} using the uncovered branch as the criterion, so that the prompt is rebuilt around the statements and cross-method dependencies that actually influence the target outcome. In this way, the two analyses serve a single branch-level alignment objective rather than acting as independent prompting add-ons.
 
-\textbf{Evaluation.}
-We evaluate \ourmethod{} on 14 Java projects from Defects4J v2.0.1~\cite{defects4j2014}, covering 130 classes and 2971 methods with cyclomatic complexity greater than 10. Baselines include SymPrompt, HITS, and Panta, representing complementary design philosophies.
-\ourmethod{} achieves 44.41\% average branch coverage, outperforming SymPrompt (21.14\%), HITS (34.24\%), and Panta (32.32\%). 
-Gains are most pronounced on logic-heavy subjects with rich cross-method dependencies: on Gson, \ourmethod{} reaches 41.24\% versus SymPrompt's 3.59\%; on Jsoup, it improves over HITS by 35.2\%.
-
-Ablation study confirms the complementary roles of both components. 
-Removing \emph{Backward Slicing} drops coverage from 44.41\% to 38.47\%, and removing \emph{Constraint-Hints} drops coverage to 39.79\%.
-Finally, \ourmethod{} generalizes across backbone LLMs, achieving 44.41\% (QC3-30B), 83.47\% (QW3.5-397B), and 80.12\% (DS-V3.1), confirming that its benefit derives from restructuring branch-relevant information rather than relying on any specific model.
-
-\textbf{Contribution.}
-In summary, this paper makes the following contributions:
+The main contributions can be summarized as follows:
 \begin{itemize}[leftmargin=*]
 \item We formulate branch-coverage failures in LLM-based test generation as a form of \emph{cognitive misalignment}, caused by hidden cross-method preconditions and branch-irrelevant context.
 
