@@ -20,13 +20,7 @@ Is \ourmethod{}'s effectiveness robust across different underlying large languag
 %In this section, we first introduce the construction and statistics of the evaluation dataset.
 
 
-\textbf{Dataset.} To evaluate the effectiveness of \ourmethod{} in generating unit tests for complex methods, we utilize real-world subjects from the Defects4J (v2.0.1) benchmark \cite{defects4j}. 
-We selected the latest fixed version of each subject program to ensure compatibility with modern build environments. 
-Following prior work \cite{gu2025a}, we excluded projects that do not use Maven or rely on deprecated dependencies (i.e., Chart, Mockito, and Closure). 
-The remaining 14 subjects are compatible with Java 8+, Maven (v3.6.3), and JUnit (v4.13.2).
-To specifically assess performance on logic-heavy code, we focus on complex classes rather than entire projects. 
-We identified non-abstract, public classes containing at least one method with Cyclomatic Complexity (CC) $> 10$ \cite{mccabe1976complexity}. 
-The statistics of our evaluation dataset are summarized in Table~\ref{tab:dataset}.
+\textbf{Dataset.} We use the latest fixed versions of Defects4J v2.0.1 projects~\cite{defects4j}, excluding non-Maven or deprecated-dependency subjects (Chart, Mockito, and Closure) following prior work~\cite{gu2025a}. The resulting 14 Java projects are compatible with Java 8+, Maven 3.6.3, and JUnit 4.13.2. To focus on logic-heavy code, we select non-abstract public classes containing at least one method with Cyclomatic Complexity (CC) $> 10$~\cite{mccabe1976complexity}; dataset statistics are shown in Table~\ref{tab:dataset}.
 
 
 

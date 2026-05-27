@@ -15,32 +15,9 @@ Each iteration begins with path selection, where \textit{Constraint-Hints} analy
 
 \subsection{Constraints-Hints}
 
-\textit{Constraints-Hints} addresses the implicit precondition problem by decoupling constraint inference from test synthesis. Instead of requiring the LLM to simultaneously infer branch reachability and generate tests, we explicitly extract the conditions necessary to trigger a target branch based on its CFG path and provide them as structured guidance; the detailed prompt design is described in the supplementary material.
+\textit{Constraints-Hints} decouples constraint inference from test synthesis. After each test-generation round, \ourmethod{} parses the JaCoCo report to identify missed branches and maps them back to candidate CFG paths. For a selected path $\pi$, the first missed branch $b^*$ is treated as the immediate coverage obstacle, and the LLM is asked to produce sufficient conditions for reaching it rather than a full symbolic solution.
 
-While symbolic execution can derive precise path conditions, it often 
-struggles to scale to real-world programs due to path explosion, complex 
-heap interactions, and challenges in modeling external libraries and 
-reflection~\cite{baldoni2018, cadar2008klee}. 
-Rather than performing exact constraint solving, we aim to extract 
-\emph{sufficient} conditions that characterize branch reachability.
-
-Concretely, given an uncovered branch, we analyze its predicate and 
-derive a set of constraint hints that describe the required program state 
-(e.g., variable relations, nullness conditions, and key object properties). 
-These hints are then embedded into the generation prompt, guiding the LLM 
-to construct inputs and invocation sequences that satisfy the target condition.
-
-By transforming implicit dependencies into explicit guidance, 
-\textit{Constraints-Hints} reduces the reasoning burden on the LLM and 
-enables more reliable generation of tests that reach previously uncovered branches.
-
-\textit{Path formulation.}
-Let $P = \langle b_1, b_2, \ldots, b_k \rangle$ denote the sequence of branch
-decisions along a target execution path $\pi$, where each predicate
-$b_i(\mathbf{x}) \in \{\texttt{true}, \texttt{false}\}$ is evaluated over the
-program input vector $\mathbf{x}$. Covering the path requires an input
-assignment $\mathbf{x}^*$ that satisfies all branch predicates along the
-path:
+Let $\pi=\langle b_1,b_2,\ldots,b_k\rangle$ denote the branch decisions along a target CFG path. Covering $\pi$ requires an input assignment $\mathbf{x}^*$ that satisfies:
 \begin{equation}
 \mathbf{x}^* \in \mathcal{F}(\pi) =
 \left\{
@@ -48,38 +25,7 @@ path:
 b_1(\mathbf{x}) \wedge b_2(\mathbf{x}) \wedge \cdots \wedge b_k(\mathbf{x})
 \right\}.
 \end{equation}
-
-Rather than solving this constraint system symbolically---which can be
-computationally expensive and brittle under complex object states or
-indirect method calls---\ourmethod{} employs an LLM-based constraint solver to
-approximate the feasible input space as a lightweight set of interpretable conditions $\mathcal{C}(\pi)$.
-The first uncovered branch along the path, denoted as $b^*$, is identified
-from the coverage report and provided to the solver as additional context,
-guiding the model toward the most immediate obstacle preventing the path
-from being executed.
-
-\textit{Integration.}
-The constraint-solving prompt is generated from a configurable template that
-incorporates the source code, the branch sequence of $\pi$, and the uncovered
-branch $b^*$. The solver produces $\mathcal{C}(\pi)$ as a list of conditions
-such as \texttt{paramA > 0} or \texttt{obj.status == "ACTIVE"}. These
-conditions are appended to the test generation prompt, transforming an
-opaque path coverage objective into a concrete specification of required
-inputs.
-
-\textit{Example.}
-Consider the \texttt{addValue} method, which contains three conditional
-branches dispatching to overridable statistical implementations. An
-existing test suite covers only the false branches of all three predicates,
-meaning \texttt{meanImpl}, \texttt{varianceImpl}, and \texttt{geoMeanImpl}
-all refer to their default implementations. The first uncovered branch is
-\texttt{(meanImpl != mean)}. The constraint solver identifies that
-satisfying this predicate requires replacing the default implementation
-before invoking \texttt{addValue}. This object-state precondition is
-expressed as a constraint in $\mathcal{C}(\pi)$, i.e., $c : \texttt{meanImpl} \neq \texttt{mean}$, which implies that a call such as \texttt{setMeanImpl(...)} must occur prior
-to invoking \texttt{addValue}. By making this requirement explicit, the test
-generation LLM can construct the correct setup sequence and cover the
-previously unreachable branch.
+Rather than solving $\mathcal{F}(\pi)$ exactly, which is brittle under complex object states and indirect calls~\cite{baldoni2018, cadar2008klee}, \ourmethod{} approximates it as a lightweight set of interpretable hints $\mathcal{C}(\pi)$. The prompt includes the source code, the selected CFG path, and $b^*$; the output describes variable relations, nullness requirements, object states, and setup actions such as setter or factory calls. These hints are appended to the test-generation prompt, turning an opaque coverage target into explicit guidance about what the generated test must satisfy.
 
 \subsection{Branch-Aligned Context Slicing}
 
@@ -174,7 +120,7 @@ The complete workflow of \ourmethod{} is formalized in Algorithm~\ref{alg:main}.
 The framework extracts test-scope dependencies, constructs the CFG and method dictionary from the source file, deriving branch sequences and inter-procedural dependency information to bootstrap Constraint-Hints and Backward Slicing respectively. Baseline coverage is then measured on the initial suite (lines 1--4), providing the missed-branch information that drives subsequent path selection.
 
 {\em Path selection with Constraints-Hints.}
-At each non-initial iteration, \textsc{SelectUncoveredPaths} identifies candidate paths from the CFG that intersect with missed lines or branches, weighted by both coverage impact and visit history $\textit{pathHistory}$ (line 8). For each selected path $\pi$, the constraint solver derives $\mathcal{C}(\pi)$ by analyzing the branch sequence up to the first uncovered predicate $b^*$, and these conditions are embedded into the generation prompt (lines 9--13).
+At each non-initial iteration, \textsc{SelectUncoveredPaths} identifies CFG paths that intersect with missed lines or branches and records the number of previous hint-generation attempts for each path in $\textit{pathHistory}$ (line 8). Paths with fewer attempts are prioritized, subject to coverage impact, so that \ourmethod{} explores under-tried uncovered paths instead of repeatedly targeting the same stalled path. For each selected path $\pi$, the constraint solver derives $\mathcal{C}(\pi)$ by analyzing the branch sequence up to the first uncovered predicate $b^*$, and these conditions are embedded into the generation prompt (lines 9--13).
 
 {\em Backward slicing.}
 When $\textit{noIncr} \geq \beta \cdot \Lambda$, indicating a coverage plateau, the backward slicer is invoked on the remaining missed code segments. It returns a source-grounded branch context---relevant statements, required object states, and setup actions---which is used to construct an additional batch of targeted tests $\mathcal{T}_s$ (lines 16--19).

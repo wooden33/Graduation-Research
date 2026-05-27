@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  26 MAY 2026 23:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Homebrew) (preloaded format=pdflatex 2026.3.4)  27 MAY 2026 11:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -534,62 +534,45 @@ Underfull \hbox (badness 1917) in paragraph at lines 12--13
  []
 
 [3]
-Underfull \hbox (badness 1406) in paragraph at lines 70--83
-\OT1/ptm/m/n/10 sta-tis-ti-cal im-ple-men-ta-tions. An ex-ist-ing test suite cov-ers
- []
-
-[4 <./figures/overview.pdf>]
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 109.
+(Font)              using `OT1/ptm/m/sc' instead on input line 55.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 113--113
+Underfull \hbox (badness 10000) in paragraph at lines 59--59
 []\OT1/ptm/b/n/10 Algorithm 1: \OT1/ptm/m/n/10 It-er-a-tive Test Gen-er-a-tion with
  []
 
 
 LaTeX Font Warning: Font shape `OT1/ptm/m/scit' undefined
-(Font)              using `OT1/ptm/m/sc' instead on input line 166.
+(Font)              using `OT1/ptm/m/sc' instead on input line 112.
 
+[4 <./figures/overview.pdf>]) (./sections/experiments.tex (./tables/dataset.tex)
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Underfull \hbox (badness 3492) in paragraph at lines 176--178
-[]\OT1/ptm/m/it/10 Path se-lec-tion with Constraints-Hints. \OT1/ptm/m/n/10 At each non-
- []
-
-) (./sections/experiments.tex (./tables/dataset.tex) [5] (./tables/rq1_main.tex)
-Underfull \vbox (badness 6641) has occurred while \output is active []
-
- [6] (./tables/rq2_ablation.tex)
-Underfull \hbox (badness 2932) in paragraph at lines 95--96
+ [5] (./tables/rq1_main.tex) [6] (./tables/rq2_ablation.tex)
+Underfull \hbox (badness 2932) in paragraph at lines 89--90
  \OT1/ptm/m/it/10 1) Con-tri-bu-tion of BS and CS: [][] \OT1/ptm/m/n/10 We con-struct three
  []
 
-[7]
-<figures/branch_coverage_comparison.pdf, id=77, 851.97484pt x 562.8522pt>
+<figures/branch_coverage_comparison.pdf, id=73, 851.97484pt x 562.8522pt>
 File: figures/branch_coverage_comparison.pdf Graphic file (type pdf)
 <use figures/branch_coverage_comparison.pdf>
-Package pdftex.def Info: figures/branch_coverage_comparison.pdf  used on input line 119.
+Package pdftex.def Info: figures/branch_coverage_comparison.pdf  used on input line 113.
 (pdftex.def)             Requested size: 252.0pt x 166.47797pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 1902) in paragraph at lines 127--130
+Underfull \hbox (badness 1902) in paragraph at lines 121--124
 []\OT1/ptm/m/n/10 Across the en-tire range, \OT1/ptm/m/sc/10 Cog-Path \OT1/ptm/m/n/10 re-mains the top-
  []
 
 
-Underfull \vbox (badness 1436) has occurred while \output is active []
+Underfull \vbox (badness 3189) has occurred while \output is active []
 
- [8 <./figures/branch_coverage_comparison.pdf>] (./tables/rq3_different_llms.tex)) (./sections/discussion.tex
+ [7] (./tables/rq3_different_llms.tex) [8 <./figures/branch_coverage_comparison.pdf>]) (./sections/discussion.tex
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 5.
  (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-)) (./sections/related_work.tex
-Underfull \vbox (badness 1412) has occurred while \output is active []
-
- [9] [10]) (./sections/conclusion.tex) (./sections/data_availability_statement.tex) (./main.bbl [11])
+)) (./sections/related_work.tex [9]) (./sections/conclusion.tex) (./sections/data_availability_statement.tex) (./main.bbl [10])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -601,25 +584,25 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[12] (./main.aux)
+[11] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 12562 strings out of 467525
- 258620 string characters out of 5408440
- 905300 words of memory out of 5000000
- 41255 multiletter control sequences out of 15000+600000
- 687137 words of font info for 157 fonts, out of 8000000 for 9000
+ 12560 strings out of 467525
+ 258594 string characters out of 5408440
+ 904299 words of memory out of 5000000
+ 41253 multiletter control sequences out of 15000+600000
+ 686705 words of font info for 155 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  73i,19n,80p,1908b,1678s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on main.pdf (12 pages, 350888 bytes).
+Output written on main.pdf (11 pages, 346775 bytes).
 PDF statistics:
- 246 PDF objects out of 1000 (max. 8388607)
- 120 compressed objects within 2 object streams
+ 243 PDF objects out of 1000 (max. 8388607)
+ 118 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
