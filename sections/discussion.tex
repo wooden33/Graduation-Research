@@ -2,8 +2,7 @@
 
 
 {\em Inference Token Cost.}
-To present cost in a deployment-relevant form, we report per-class cost under the four LLM backbones used in RQ3: QC3-30B (0.079\$/class), GPT-5.4-Mini (0.44\$/class), QW3.5-397B (0.78\$/class), and DS-V3.1 (0.2\$/class). 
-Across all four settings, the per-class cost remains low in absolute terms, indicating that the framework-level overhead of \ourmethod{} is operationally affordable. 
+Per-class inference costs under the four RQ3 backbones are 0.079\$ for QC3-30B, 0.44\$ for GPT-5.4-Mini, 0.78\$ for QW3.5-397B, and 0.2\$ for DS-V3.1.
 
 {\em Runtime Overhead.}
 Across all 130 classes using QC3-30B as the backbone, \ourmethod{} averages 692\,s/class, incurring +47\% overhead over SymPrompt (470\,s/class) and +13\% over HITS (610\,s/class), while running 4\% faster than Panta (720\,s/class). 
