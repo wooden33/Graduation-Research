@@ -51,18 +51,23 @@ def extract_config_data(src_file_obj, project_name, max_complexity, prompt_type,
             'junit_version': junit_version,
             'prompt_type': prompt_type,
             'model': model,
-            'enable_fixing': '3'
+            'enable_fixing': '3',
+            # These were previously omitted, so they silently inherited whatever
+            # the previous run had left in config.ini. This driver can no longer
+            # produce ablations; use experiment.py with a study manifest for that.
+            'use_constraints': 'true',
+            'use_backward_slice': 'true',
+            'fix_type': '',
+            'pick_two_paths': 'true',
+            'additional_instructions': ''
         }
     }
     return config_data
 
 
 def fill_config(config_data, filename="config.ini"):
-    # Initialize the ConfigParser
+    """Write a config file from scratch (see execute_cogpath.fill_config)."""
     config = configparser.ConfigParser()
-
-    # Load existing configuration if the file exists
-    config.read(filename)
 
     # Update config with provided data
     for section, settings in config_data.items():

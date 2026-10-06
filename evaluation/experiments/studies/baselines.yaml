@@ -1,0 +1,27 @@
+# SymPrompt and HITS baselines.
+#
+# These are alternative *execution modes*, not ablation variants: `main.py`
+# dispatches to `Cogpath.run_symprompt()` / `Cogpath.run_hits()` before the
+# CogPath loop is entered, so the CS/BS factors do not apply.  The `mode` factor
+# makes that explicit instead of relying on the reader knowing the dispatch order.
+#
+# `prompt_type` is set to the mode name because it still names the per-class
+# report file (`<Class>_symprompt_test_results.html`), matching the existing
+# result trees under result-files/symprompt_* and result-files/hits_*.
+
+study: baselines
+extends: ../base.yaml
+description: >-
+  Re-runnable SymPrompt and HITS baselines under the shared dataset and backbone
+  model.
+
+factors:
+  mode:
+    symprompt: {run_symprompt: true, run_hits: false, prompt_type: symprompt}
+    hits: {run_hits: true, run_symprompt: false, prompt_type: hits}
+
+variants:
+  symprompt:
+    mode: symprompt
+  hits:
+    mode: hits

@@ -1,0 +1,195 @@
+# Provenance backfill for result trees produced before manifests existed.
+#
+# These runs were created by hand-editing src/cogpath/config.ini; the config file
+# is tracked with only its initial commit, so the configurations below are
+# INFERRED, not recorded.  Every entry states the evidence it rests on.
+#
+#   `label`  : the directory name is composed by cogpath.run_label.report_label(),
+#              so it decodes deterministically to a set of flags.  This is strong
+#              evidence (the naming rule is verified against all 12 existing
+#              directories).
+#   `slices` : the report contains `s_N` rows (slice-generated tests), which can
+#              only exist when Backward Slicing ran.  This is independent evidence
+#              from the report *content*, and is used where the directory name
+#              carries no configuration at all.
+#
+# `paper_column` records where the numbers ended up; entries marked CONFOUNDED did
+# not run the configuration their paper column claims.
+
+runs:
+  # ---- RQ2 ablation (backbone: ollama/qwen3-coder:30b-a3b-q8_0) -------------
+  - dir: control_ollama/qwen3-coder:30b-a3b-q8_0
+    study: rq2_ablation
+    variant: w_o_cs_bs
+    model: ollama/qwen3-coder:30b-a3b-q8_0
+    factors: {constraint_hints: disabled, backward_slicing: disabled, repair: traditional}
+    evidence: {label: "control_<model>", slices: 0}
+    complete: {classes: 130, of: 130}
+    paper_column: null
+    note: >-
+      The CLEAN base (w/o CS+BS) with the traditional repair prompt, i.e. exactly
+      the configuration the paper's `w/o CS+BS` column describes. 130/130 complete
+      but NEVER aggregated into the paper. Re-aggregating it gives 41.33/33.31
+      instead of the published 43.44/36.57.
+
+  - dir: control_ollama/qwen3-coder:30b-a3b-q8_0_bs
+    study: rq2_ablation
+    variant: w_o_cs
+    model: ollama/qwen3-coder:30b-a3b-q8_0
+    factors: {constraint_hints: disabled, backward_slicing: enabled, repair: traditional}
+    evidence: {label: "control_<model>_bs", slices: 183}
+    complete: {classes: 130, of: 130}
+    paper_column: "w/o CS"
+    note: Matches the published w/o CS column (46.58 / 39.79).
+
+  - dir: control_ollama/qwen3-coder:30b-a3b-q8_0_constraints
+    study: rq2_ablation
+    variant: w_o_bs
+    model: ollama/qwen3-coder:30b-a3b-q8_0
+    factors: {constraint_hints: enabled, backward_slicing: disabled, repair: traditional}
+    evidence: {label: "control_<model>_constraints", slices: 0}
+    complete: {classes: 130, of: 130}
+    paper_column: "w/o BS"
+    note: Matches the published w/o BS column (46.51 / 38.47).
+
+  - dir: control_ollama/qwen3-coder:30b-a3b-q8_0_constraints_bs
+    study: rq2_ablation
+    variant: cogpath
+    model: ollama/qwen3-coder:30b-a3b-q8_0
+    factors: {constraint_hints: enabled, backward_slicing: enabled, repair: traditional}
+    evidence: {label: "control_<model>_constraints_bs", slices: 248}
+    complete: {classes: 130, of: 130}
+    paper_column: "CogPath (RQ1/RQ2)"
+    note: Matches the published CogPath column (53.14 / 44.41).
+
+  - dir: control_ollama/qwen3-coder:30b-a3b-q8_0_mcts
+    study: rq2_ablation
+    variant: w_o_cs_bs
+    model: ollama/qwen3-coder:30b-a3b-q8_0
+    factors: {constraint_hints: disabled, backward_slicing: disabled, repair: mcts_prompt}
+    evidence: {label: "control_<model>_mcts", slices: 0}
+    complete: {classes: 130, of: 130}
+    paper_column: "w/o CS+BS (RQ2)  <-- CONFOUNDED"
+    note: >-
+      This run has BOTH factors disabled AND the MCTS repair prompt enabled. Its
+      numbers (43.44 / 36.57) were published as `w/o CS+BS`, so that column varies
+      two things at once. Its own built-in average row reproduces 53.14/44.41 only
+      if this column is 43.44/36.57, which is how the mapping was confirmed.
+
+  - dir: control_ollama/qwen3-coder:30b-a3b-q8_0_constraints_mcts_deepseek-v3
+    study: rq2_ablation
+    variant: cogpath
+    model: ollama/qwen3-coder:30b-a3b-q8_0
+    solver_model: deepseek-v3
+    factors: {constraint_hints: enabled, backward_slicing: disabled, repair: mcts_prompt}
+    evidence: {label: "control_<model>_constraints_mcts_<solver>", slices: 0}
+    complete: {classes: 130, of: 130}
+    paper_column: null
+    note: >-
+      NOT the source of the RQ3 DS-V3.1 row, despite the derived project CSV being
+      named `project_cogpath_deepseek-v3_constraints_mcts.csv`. Backward Slicing is
+      disabled here and this run averages 45.1 / 38.1, far below the published
+      DS-V3.1 numbers. The CSV filename does not describe its contents.
+
+  # ---- RQ3 model generality -------------------------------------------------
+  - dir: control_openrouter/openai/gpt-5.4-mini_constraints_bs
+    study: rq3_models
+    variant: cogpath
+    model: openrouter/openai/gpt-5.4-mini
+    factors: {constraint_hints: enabled, backward_slicing: enabled, repair: traditional}
+    evidence: {label: "control_<model>_constraints_bs", slices: 379}
+    complete: {classes: 130, of: 130}
+    paper_column: "GPT-5.4-Mini (RQ3)"
+    note: Correct configuration. Matches the published column.
+
+  - dir: control_openrouter/qwen/qwen3.5-397b-a17b_bs
+    study: rq3_models
+    variant: w_o_cs
+    model: openrouter/qwen/qwen3.5-397b-a17b
+    factors: {constraint_hints: disabled, backward_slicing: enabled, repair: traditional}
+    evidence: {label: "control_<model>_bs", slices: 88}
+    complete: {classes: 130, of: 130}
+    paper_column: "QW3.5-397B (RQ3)  <-- CONFOUNDED"
+    note: >-
+      The `_bs` label means use_constraints=false, i.e. Constraint-Hints DISABLED.
+      Its per-project numbers reproduce the published QW3.5-397B column exactly
+      (8/8 projects; unweighted mean 88.57 / 83.47). RQ3 claims the same
+      configuration as RQ1, which this is not.
+
+  - dir: control_openrouter/qwen/qwen3.5-397b-a17b_constraints_bs
+    study: rq3_models
+    variant: cogpath
+    model: openrouter/qwen/qwen3.5-397b-a17b
+    factors: {constraint_hints: enabled, backward_slicing: enabled, repair: traditional}
+    evidence: {label: "control_<model>_constraints_bs", slices: 1}
+    complete: {classes: 2, of: 130}
+    paper_column: null
+    note: >-
+      The run RQ3 SHOULD have used. Abandoned after 2 of 130 classes. On the two
+      completed classes (Gson, JsonTreeReader) it matches the `_bs` run exactly, so
+      the numerical impact of the CS factor here is unknown but may be small --
+      which is why this must be re-run rather than assumed.
+
+  - dir: cogpath_deepseek-v3.1
+    study: rq3_models
+    variant: null
+    model: deepseek-v3.1
+    factors: {backward_slicing: disabled, repair: traditional}
+    evidence: {label: "NOT a label-derived name -- carries no configuration", slices: 0}
+    complete: {classes: 130, of: 130}
+    paper_column: "DS-V3.1 (RQ3)  <-- CONFOUNDED"
+    note: >-
+      The actual source of the DS-V3.1 row (its per-class CSV reproduces the
+      published column 8/8). The directory name encodes nothing at all, and the
+      report content shows ZERO slice-test rows, so Backward Slicing was disabled.
+      Whether Constraint-Hints was enabled cannot be recovered from the reports.
+      RQ3 claims the same configuration as RQ1, which this is not.
+
+  # ---- Baselines ------------------------------------------------------------
+  - dir: hits_ollama/qwen3-coder:30b-a3b-q8_0
+    study: baselines
+    variant: hits
+    model: ollama/qwen3-coder:30b-a3b-q8_0
+    evidence: {label: "hits_<model>"}
+    complete: {classes: 130, of: 130}
+    paper_column: "HITS (RQ1)"
+
+  - dir: hits_openrouter/qwen/qwen3.5-397b-a17b
+    study: baselines
+    variant: hits
+    model: openrouter/qwen/qwen3.5-397b-a17b
+    evidence: {label: "hits_<model>"}
+    complete: {classes: 130, of: 130}
+    paper_column: "HITS (RQ3 re-run)"
+
+  - dir: symprompt_llama3-3
+    study: baselines
+    variant: symprompt
+    model: llama3-3
+    evidence: {label: "symprompt_<model>"}
+    complete: {classes: 130, of: 130}
+    paper_column: "SymPrompt (legacy backbone)"
+    note: >-
+      Produced with the older llama3-3 backbone; the RQ1 SymPrompt column is
+      derived from the qwen3-coder run, not this one.
+
+  - dir: symprompt_ollama/qwen3-coder:30b-a3b-q8_0
+    study: baselines
+    variant: symprompt
+    model: ollama/qwen3-coder:30b-a3b-q8_0
+    evidence: {label: "symprompt_<model>"}
+    complete: {classes: 130, of: 130}
+    paper_column: "SymPrompt (RQ1)"
+    note: >-
+      Affected by the `single_test` list/dict shape bug in symprompt.py:162, which
+      makes validate_test reject tests with "'list' object has no attribute 'get'".
+      The resulting numbers understate SymPrompt and must be re-run.
+
+  - dir: symprompt_openrouter/qwen/qwen3.5-397b-a17b
+    study: baselines
+    variant: symprompt
+    model: openrouter/qwen/qwen3.5-397b-a17b
+    evidence: {label: "symprompt_<model>"}
+    complete: {classes: 37, of: 130}
+    paper_column: null
+    note: Incomplete run; not used for any published column.

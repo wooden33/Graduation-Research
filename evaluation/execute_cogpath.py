@@ -77,7 +77,10 @@ def extract_config_data(src_file_obj, project_name, max_complexity, prompt_type,
             'prompt_type': prompt_type,
             'use_backward_slice': 'true',
             'use_constraints': 'true',
-            # 'fix_type': 'MCTS',
+            # Every ablation factor must be stated explicitly. `fix_type` used to be
+            # commented out here, so it silently inherited whatever value the
+            # previous run had left in config.ini.
+            'fix_type': '',
             'pick_two_paths': 'true',
             'additional_instructions': ''
         }
@@ -86,11 +89,17 @@ def extract_config_data(src_file_obj, project_name, max_complexity, prompt_type,
 
 
 def fill_config(config_data, filename="config.ini"):
-    # Initialize the ConfigParser
-    config = configparser.ConfigParser()
+    """Write a config file from scratch.
 
-    # Load existing configuration if the file exists
-    config.read(filename)
+    NOTE: this deliberately uses a *fresh* ConfigParser instead of reading and
+    merging into the existing file.  Merging left every key the caller did not set
+    at whatever value a previous run had written, which is how an ablation run
+    could execute a different configuration than its directory name implied.
+
+    New experiments should use ``experiment.py`` (manifest-driven) rather than this
+    legacy driver.
+    """
+    config = configparser.ConfigParser()
 
     # Update config with provided data
     for section, settings in config_data.items():

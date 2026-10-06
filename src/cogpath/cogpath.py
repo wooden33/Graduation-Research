@@ -14,6 +14,8 @@ from .templates import TEST_CLASS_JUNIT_3, TEST_CLASS_JUNIT_4, TEST_CLASS_JUNIT_
 from .cfg.src.comex.codeviews.combined_graph.combined_driver import line_number_to_node_id_mapping
 from .cfg.src.comex.codeviews.CFG.CFG_driver import CFGDriver
 from .utils import read_file, get_code_language, get_class_name
+from .run_label import report_label
+from . import provenance
 
 
 class Cogpath:
@@ -22,6 +24,7 @@ class Cogpath:
 
         # Extract project name from project directory path
         project_name = os.path.basename(args.project_directory.rstrip('/'))
+        self.project_name = project_name
 
 
         cogpathLogger.set_log_path(
@@ -36,31 +39,12 @@ class Cogpath:
         self.logger.info(f"Project name: {project_name}")
         self.logger.info(f"Log file path: {cogpathLogger.log_file}")
 
-        # Build report label with think and mcts flags
-        if args.run_symprompt:
-            report_parts = ['symprompt', args.model]
-        elif args.run_hits:
-            report_parts = ['hits', args.model]
-        else:
-            report_parts = [args.prompt_type, args.model]
-
-        # Add think flag if enabled
-        if args.use_constraints:
-            report_parts.append("constraints")
-
+        # The result-directory label is defined in one place so that the experiment
+        # runner can predict a run's output directory without importing the tool.
+        # It is computed from the *raw* config (before model short-name mapping),
+        # and `solver_model` is included only when explicitly set.
         self.beta = 0.6
-
-        # Add mcts flag if fix_type is MCTS
-        if args.fix_type == "MCTS":
-            report_parts.append("mcts")
-            
-        if args.use_backward_slice:
-            report_parts.append("bs")
-
-        if args.solver_model:
-            report_parts.append(args.solver_model)
-
-        self.report_label = "_".join(report_parts)
+        self.report_label = report_label(vars(args))
 
         # Validate and map the model argument before passing it to UnitTestGenerator
         try:
@@ -182,6 +166,56 @@ class Cogpath:
         except Exception as e:
             self.logger.error(f"Failed to cleanup test file: {str(e)}")
 
+    def write_provenance(self, report_path, test_results=None, iterations=None, report_file=""):
+        """Record the effective configuration and outcome next to the results.
+
+        The result *directory name* is not a record: it is derived from the runtime
+        flags, it is ambiguous, and the config file that produced a run used to be
+        mutated in place by the evaluation harness.  Writing the resolved
+        configuration, its dependencies and the outcome into the result directory
+        makes each run independently auditable.
+
+        ``config.resolved.json`` and ``run_meta.json`` describe the configuration
+        and are shared by every class in a directory; the outcome is written per
+        class as ``<report stem>_run_summary.json``.
+
+        Provenance is diagnostics, so a failure here is logged, never raised.
+        """
+        try:
+            stem = os.path.splitext(os.path.basename(report_file or ""))[0]
+            config = dict(vars(self.args))
+            written = provenance.write_run_provenance(
+                report_dir=report_path,
+                config=config,
+                provenance_file=getattr(self.args, "provenance_file", "") or None,
+                dataset_path=getattr(self.args, "dataset_file", "") or None,
+            )
+
+            coverage = None
+            try:
+                line, branch = self.test_gen.current_coverage
+                coverage = {"line": round(line * 100, 2), "branch": round(branch * 100, 2)}
+            except (TypeError, IndexError, AttributeError):
+                coverage = None
+
+            written.update(
+                provenance.write_run_summary(
+                    report_dir=report_path,
+                    stem=stem,
+                    test_results=test_results or [],
+                    coverage=coverage,
+                    iterations=iterations,
+                )
+            )
+
+            if written:
+                self.logger.info(
+                    "Run provenance written to %s: %s",
+                    report_path, ", ".join(sorted(written)),
+                )
+        except Exception as e:  # pragma: no cover - diagnostics must not break a run
+            self.logger.warning("Could not write run provenance: %s", e)
+
     def run(self):
         iteration_count = 0
         test_results_list = []
@@ -216,7 +250,11 @@ class Cogpath:
                     generated_tests_dict["slice_tests"] = []
                     for result in backward_results:
                         generated_tests_dict["slice_tests"].extend(result.get("generated_tests", []))
-                    gen_token_count = 0  
+                    # Add the tokens spent on slice analysis to this iteration's
+                    # cost.  This used to hard-zero `gen_token_count`, discarding
+                    # both the slice cost *and* the generation cost for every
+                    # iteration that triggered slicing.
+                    gen_token_count += sum(int(r.get("tokens", 0) or 0) for r in backward_results)
                 
                 token_count += gen_token_count
 
@@ -319,7 +357,9 @@ class Cogpath:
                                f"{round(self.test_gen.current_coverage[1] * 100, 2)}%)")
             self.logger.error(failure_message)
 
-        report_file = self.args.report_filepath
+        # Fall back to a derived name so an empty `report_filepath` cannot make the
+        # report write fail at the very end of a long run.
+        report_file = self.args.report_filepath or f"{self.project_name}_{self.args.prompt_type}_test_results.html"
 
         current_file = os.path.abspath(__file__)
         project_root = os.path.dirname(os.path.dirname(os.path.dirname(current_file)))
@@ -337,6 +377,7 @@ class Cogpath:
         test_results_list.append(info_dict)
         if not os.path.exists(report_path):
             os.makedirs(report_path)
+        self.write_provenance(report_path, test_results_list, iteration_count, report_file)
         ReportGenerator.generate_report(test_results_list, os.path.join(report_path, report_file))
         self.logger.info(f"Report generated successfully at: {os.path.join(report_path, report_file)}")
 
@@ -413,6 +454,7 @@ class Cogpath:
         report_path = os.path.join(project_root, "result-files", self.report_label)
         if not os.path.exists(report_path):
             os.makedirs(report_path)
+        self.write_provenance(report_path, test_results_list, report_file=report_file)
         ReportGenerator.generate_report(test_results_list, os.path.join(report_path, report_file))
         self.logger.info(f"Report generated successfully at: {os.path.join(report_path, report_file)}")
         # Cleanup test file after run
@@ -463,6 +505,7 @@ class Cogpath:
         report_path = os.path.join(project_root, "result-files", self.report_label)
         if not os.path.exists(report_path):
             os.makedirs(report_path)
+        self.write_provenance(report_path, test_results_list, report_file=report_file)
         ReportGenerator.generate_report(test_results_list, os.path.join(report_path, report_file))
         self.logger.info(f"Report generated successfully at: {os.path.join(report_path, report_file)}")
         # Cleanup test file after run

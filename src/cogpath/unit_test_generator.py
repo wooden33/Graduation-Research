@@ -92,9 +92,23 @@ class UnitTestGenerator:
 
         self.llm_invoker = LLMInvocation(model=llm_model)
 
+        # Both optional analysers must exist as attributes regardless of the
+        # configuration: `build_prompt` and `_init_prompt_builder` read them
+        # unconditionally, so leaving `backward_slicer` unset made
+        # `use_backward_slice=false` raise AttributeError on the first prompt
+        # build -- which the run loop swallowed, producing a silent 0% run.
+        # That combination is exactly the "w/o BS" ablation, so it has to work.
+        self.constraint_solver = None
+        self.backward_slicer = None
+
         if self.use_constraints:
-            self.constraint_solver = LLMConstraintSolver(LLMInvocation(model=solver_model))
-        
+            # `solver_model` may legitimately be empty ("use the main model"), and
+            # config validation deliberately leaves it empty rather than resolving
+            # it, because the result-directory label includes it only when set.
+            self.constraint_solver = LLMConstraintSolver(
+                LLMInvocation(model=solver_model or llm_model)
+            )
+
         if self.use_backward_slice:
             self.backward_slicer = LLMBackwardSlicer(llm_invoker=LLMInvocation(model=llm_model))
 
@@ -399,6 +413,7 @@ class UnitTestGenerator:
 
             backward_slice = None
             generated_tests = []
+            slice_tokens = 0
             self.logger.info(f"Processing method {method_name}: uncovered_code={bool(uncovered_code)}, backward_slicer={bool(self.backward_slicer)}")
             if uncovered_code and self.backward_slicer:
                 try:
@@ -410,7 +425,9 @@ class UnitTestGenerator:
 
                     # Generate tests using backward slice info
                     if backward_slice:
-                        generated_tests = self._generate_tests_from_slice(backward_slice, max_tokens)
+                        generated_tests, slice_tokens = self._generate_tests_from_slice(
+                            backward_slice, max_tokens
+                        )
                         self.logger.info(f"Generated {len(generated_tests)} tests for {method_name}")
                     else:
                         self.logger.warning(f"Backward slice returned empty for {method_name}")
@@ -427,7 +444,10 @@ class UnitTestGenerator:
                 "total_lines": total_lines,
                 "longest_segment": longest_segment,
                 "backward_slice": backward_slice,
-                "generated_tests": generated_tests
+                "generated_tests": generated_tests,
+                # Reported so the caller can account for tokens spent on the
+                # slice phase; they used to be dropped on the floor.
+                "tokens": slice_tokens,
             })
 
         self.logger.info(f"Analyzed {len(analyzed_results)} methods, generated {sum(len(r.get('generated_tests', [])) for r in analyzed_results)} tests")
@@ -445,7 +465,7 @@ class UnitTestGenerator:
             return tests_response.get("new_tests", [])
         return []
 
-    def _generate_tests_from_slice(self, backward_slice: dict, max_tokens: int = 4096) -> list:
+    def _generate_tests_from_slice(self, backward_slice: dict, max_tokens: int = 4096) -> tuple:
         """
         Generate tests using backward slice information.
 
@@ -454,7 +474,9 @@ class UnitTestGenerator:
             max_tokens: Maximum tokens for LLM response
 
         Returns:
-            list: Generated test dictionaries
+            tuple: ``(generated_tests, token_count)``.  The token count used to be
+            discarded, which made the token totals wrong for every iteration that
+            triggered the slicing phase.
         """
         from jinja2 import Environment, StrictUndefined
 
@@ -503,11 +525,11 @@ class UnitTestGenerator:
                 # Backward slice template returns a single test object
                 tests = [tests_dict]
 
-            return tests
+            return tests, token_count
 
         except Exception as e:
             self.logger.error(f"Failed to generate tests from slice: {e}")
-            return []
+            return [], 0
 
     def _extract_code_segment_for_slicing(self, start_line: int, end_line: int) -> str:
         if not hasattr(self, 'prompt_builder'):
