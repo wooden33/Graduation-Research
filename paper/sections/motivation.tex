@@ -1,0 +1,86 @@
+\section{Motivation}
+\textbf{Challenge 1: Underspecified Constraints (What to Satisfy).}
+\textbf{Problem}: Branch reachability often depends on implicit object states established through inter-procedural interactions~\cite{baldoni2018}. These constraints are not explicitly represented in the input, forcing the LLM to infer them from incomplete information.
+
+\textbf{Example}: Consider the \texttt{addValue()} method from Apache Commons Math (Listing~\ref{lst:motivation-cs}). The target branch depends on the condition \texttt{meanImpl != mean}, which can only be satisfied if a prior method modifies the internal state:
+
+To reach this branch, \texttt{meanImpl} must be explicitly set to a non-null, non-default value before \texttt{addValue()} is called. An LLM provided only with the \texttt{addValue()} method body might generate:
+
+This test is executable but fails to cover the branch because the critical precondition of \texttt{meanImpl} being initialized is unmet. The LLM lacks the context to "see" this inter-procedural requirement.
+
+\begin{lstlisting}[language=Java, label={lst:motivation-cs}, caption={Target branch with hidden cross-method dependency}]
+public void addValue(double value) {
+  ...
+  if (meanImpl != mean) { // target branch
+    meanImpl.increment(value);
+  }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=Java, caption={LLM-generated test (constraint not satisfied)}]
+SummaryStatistics stats = new SummaryStatistics();
+stats.addValue(1.0);
+\end{lstlisting}
+
+
+By supplying the explicit constraint that \texttt{meanImpl} must differ from the default \texttt{mean}, the LLM successfully identifies the required precondition and generates a correct initialization sequence:
+
+\begin{lstlisting}[language=Java, caption={Correct test (constraint satisfied)}]
+// Assume CustomMeanImpl is a valid implementation
+SummaryStatistics stats = new SummaryStatistics();
+stats.setMeanImpl(new CustomMeanImpl());
+stats.addValue(1.0);
+\end{lstlisting}
+
+This example illustrates a general failure mode: when constraints are encoded as cross-method state transitions, they remain invisible unless explicitly surfaced, making them unlikely to be satisfied during generation. Challenge 1 addresses the case where critical information is absent from the provided context. A complementary problem arises when the information is present but obscured.
+
+
+\textbf{Challenge 2: Misaligned Context (What to Attend To).}
+\textbf{Problem}: Even when all necessary conditions are locally available, they are often embedded within large methods containing substantial irrelevant logic. Providing the full method body introduces noise that is not aligned with the coverage objective.
+
+\textbf{Example}: Consider the \texttt{collect()} method from JDatabind, where the target branch is guarded by a conjunction of three conditions:
+
+\begin{lstlisting}[language=Java, caption={Target branch with multi-variable condition}]
+if (checkJavaLangObject && (_intr != null) && !methods.isEmpty()) { ... }
+\end{lstlisting}
+
+Each condition originates from a different part of the method body. The full method interleaves the initialization of \texttt{methods}, the resolution of \texttt{checkJavaLangObject}, and several loops and nested branches entirely unrelated to the target guard. When exposed to the complete implementation, the LLM fails to identify that \texttt{\_mixInResolver} is the critical dependency and generates a test that leaves \texttt{checkJavaLangObject} permanently false:
+
+\begin{lstlisting}[language=Java, caption={LLM-generated test (branch not covered)}]
+Collector collector=new Collector(intr, null); // _mixInResolver is null
+collector.collect(typeFactory, tc, mainType, superTypes, primaryMixIn);
+// checkJavaLangObject remains false; target branch never reached
+\end{lstlisting}
+
+The bottleneck is that the LLM's attention is diluted across the full method body.
+The critical dependency---that \texttt{checkJavaLangObject} is set to \texttt{true} only when \texttt{\_mixInResolver} returns a non-null mixin---is buried among dozens of unrelated statements.
+The model fails to trace this data-flow chain and leaves \texttt{\_mixInResolver} as \texttt{null}.
+
+By retaining only statements with data or control dependence on the target branch, the three guard dependencies become structurally visible, enabling the LLM to correctly configure the resolver and construct a valid test:
+
+\begin{lstlisting}[language=Java, caption={Branch-relevant slice}]
+Map<MemberKey,MethodBuilder> methods = new LinkedHashMap<>();
+_addMemberMethods(tc, mainType.getRawClass(), methods, primaryMixIn);
+// for (...) { ... }  // DELETE: no dependence on target branch
+boolean checkJavaLangObject = false;
+if (_mixInResolver != null) {
+  Class<?> mixin = _mixInResolver.findMixInClassFor(Object.class);
+  if (mixin != null) {
+    _addMethodMixIns(...);
+    checkJavaLangObject = true;  // sole setter of guard variable
+  }
+}
+if (checkJavaLangObject && (_intr != null) && !methods.isEmpty()) { ... }
+\end{lstlisting}
+
+With this focused context, the three dependencies become structurally visible: \texttt{checkJavaLangObject} requires a non-null mixin, \texttt{\_intr} is constructor-injected, and \texttt{methods} is populated by \texttt{\_add\-MemberMethods}.
+The LLM now generates:
+\begin{lstlisting}[language=Java, caption={Test generated by our approach (branch covered)}]
+Collector collector = new Collector(intr, resolver);
+// resolver returns non-null mixin -> checkJavaLangObject = true
+// _addMemberMethods populates methods -> !methods.isEmpty()
+collector.collect(typeFactory, tc, mainType, superTypes, primaryMixIn);
+// target branch covered
+\end{lstlisting}
+
+This reflects a second failure mode: even when constraints are present in the source, they are not structurally aligned with the model's attention, making precise reasoning difficult.

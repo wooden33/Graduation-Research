@@ -1,0 +1,10 @@
+\begin{abstract}
+Large language models (LLMs) have shown promise in automated unit test generation, yet achieving high branch coverage for complex methods remains challenging. 
+We attribute this limitation not to model capability alone, but to a fundamental cognitive misalignment between what LLM prompts expose and what branch reachability requires: implicit cross-method preconditions are hidden, while branch-irrelevant code is over-provided. 
+To address this misalignment, we propose \textsc{CogPath}, a unit test generation framework that externalizes hidden path conditions as Constraint-Hints and isolates branch-relevant dependencies via coverage-driven Backward Slicing, within an iterative generate-execute-repair loop. 
+Our empirical evaluation, conducted on 2971 methods with cyclomatic complexity greater than 10 from 14 open-source projects, demonstrates that \textsc{CogPath} achieves 12.8\% higher line coverage and 10.2\% higher branch coverage compared to the state-of-the-art, with improvements reaching 32.3\% and 20\% respectively on the most complex project.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Unit Test Generation, Large Language Models, Software Testing, Program Slicing
+\end{IEEEkeywords}

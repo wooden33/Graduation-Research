@@ -1,0 +1,157 @@
+\section{Experiments}
+
+\input{tables/dataset.tex}
+
+We design our experiment to answer the following three research questions (\textbf{RQ}s):
+
+\begin{description}
+\item[\textbf{RQ1: Effectiveness}] 
+How does \ourmethod{} perform compared to baselines in terms of line and branch coverage, especially on complex, logic-heavy methods?
+
+\item[\textbf{RQ2: Ablation Study}]
+What are the individual contributions of Backward Slicing and Constraint Hints to the overall coverage of \ourmethod{}, and how does the iterative generation loop affect the branch coverage?
+
+\item[\textbf{RQ3: Generality}]
+Is \ourmethod{}'s effectiveness robust across different underlying large language models, and how do their performances vary?
+\end{description}
+
+\subsection{Experimental Setup}
+
+%In this section, we first introduce the construction and statistics of the evaluation dataset.
+
+
+\textbf{Dataset.} We use the latest fixed versions of Defects4J v2.0.1 projects~\cite{defects4j}, excluding non-Maven or deprecated-dependency subjects (Chart, Mockito, and Closure) following prior work~\cite{gu2025a}. The resulting 14 Java projects are compatible with Java 8+, Maven 3.6.3, and JUnit 4.13.2. To focus on logic-heavy code, we select non-abstract public classes containing at least one method with Cyclomatic Complexity (CC) $> 10$~\cite{mccabe1976complexity}; dataset statistics are shown in Table~\ref{tab:dataset}.
+
+
+
+\textbf{Evaluation Metrics.}
+To evaluate the effectiveness of the generated unit tests, we primarily focus on code coverage, which is the standard metric in automated test generation research \cite{randoop, evosuite}. We report two specific metrics:
+\begin{itemize}
+\item \textbf{Line Coverage (LC):} The ratio of executable lines in the target class that are exercised by the generated test suite. It provides a baseline measure of how much of the implementation has been reached.
+\item \textbf{Branch Coverage (BC):} The ratio of executed decision outcomes (e.g., the true and false paths of an \textit{if} statement) to the total number of possible branches. Given our focus on methods with high Cyclomatic Complexity ($CC > 10$), branch coverage is our primary metric.
+\end{itemize}
+All coverage data in our experiments are collected using the JaCoCo library, ensuring consistent and reproducible measurements across all subjects and baselines.
+
+% \textbf{Research Questions.}
+% To evaluate the effectiveness and design of \ourmethod{}, we address the following three research questions:
+% \begin{itemize}
+% \item \textbf{RQ1: Effectiveness of \ourmethod{}.} How does \ourmethod{} perform compared to baselines in terms of line and branch coverage, especially on complex, logic-heavy methods?
+% \item \textbf{RQ2: Ablation Study.} What are the individual contributions of Backward Slicing and Constraint Hints to the overall coverage of \ourmethod{}, and how does the iterative generation loop affect the branch coverage?
+% \item \textbf{RQ3: Model Generalizability of \ourmethod{}.} Is \ourmethod{}'s effectiveness robust across different underlying large language models, and how do their performances vary?
+% \end{itemize}
+
+\textbf{Baselines.}
+Prior studies, including SymPrompt and HITS, suggest that LLM-based approaches can outperform SBST tools such as EvoSuite under comparable experimental settings. Therefore, we focus on comparisons with state-of-the-art LLM-based baselines. CoverUp targets Python and operates at line-level granularity, making direct comparison on our Java branch-coverage benchmark infeasible. Therefore, we compare \ourmethod{} against three representative LLM-based unit test generation frameworks that capture diverse design paradigms in the field, plus a Vanilla Prompt control to isolate framework-level gains from the backbone LLM's intrinsic capability:
+\begin{itemize}
+    \item \textbf{Vanilla Prompt:} A plain prompt that asks the backbone LLM to generate a JUnit test suite with 100\% branch coverage from the focal class source, without framework support.
+    \item \textbf{SymPrompt \cite{ryan2024}:} A prompt-engineering approach that encodes symbolic execution concepts into structured prompts. It extracts branch conditions from CFGs and constructs path-oriented prompts to guide the LLM in generating inputs that satisfy specific execution paths.
+    \item \textbf{HITS \cite{wang2024c}:} A hierarchical prompting framework that decomposes complex methods into smaller code segments before test generation. It adopts a self-healing strategy that iteratively repairs failing tests to improve compilability and coverage.\footnote{Due to missing components in the official HITS repository, we re-implemented its workflow by strictly following the prompt templates described in the paper and the procedural logic of available open-source fragments.}
+    \item \textbf{Panta \cite{gu2025a}:} A hybrid framework that combines static CFG analysis with dynamic coverage feedback to locate uncovered paths. It constructs context-aware prompts that expose intra-class data dependencies to guide the LLM toward uncovered branches.
+\end{itemize}
+
+For fair comparison, all methods use the same backbone model as \ourmethod{} in each experiment. In RQ1 and RQ2, we use Qwen3-Coder-30B-A3B (QC3-30B) deployed
+locally on an NVIDIA H800 GPU (80 GB), and repeat each experiment three times with averaged results. RQ3 additionally evaluates Qwen3.5-397B-A17B, GPT-5.4-Mini,
+and DeepSeek-V3.1 to assess generalizability. For each MUT, all methods access only the declaring class source code and imports, excluding project-level
+dependencies and configurations. All models use temperature $0.2$ and top-$p$ $1.0$. \ourmethod{} is configured with $\textit{maxIter}=20$, $\Lambda=3$, $
+\beta=0.6$, target coverage $\tau=100.00\%$, and starts from an empty test suite.
+
+\input{tables/rq1_main.tex}
+
+\subsection{RQ1: Effectiveness}
+To answer RQ1, we compare \ourmethod{} against three state-of-the-art baselines on the selected dataset. Results are summarized in Table~\ref{tab:coverage}.
+\subsubsection{Overall Performance}
+As shown in Table~\ref{tab:coverage}, \ourmethod{} achieves the highest average LC and BC across all projects.
+Specifically, it attains an average BC of 44.41\%, outperforming SymPrompt (21.14\%), HITS (34.24\%), and Panta (32.32\%).
+Same trends hold for LC, where \ourmethod{} achieves 53.14\% versus SymPrompt (26.19\%), HITS (40.31\%), and Panta (39.77\%).
+The Vanilla Prompt control reaches only 14.90\% BC---lower than every structured baseline, including SymPrompt---and trails \ourmethod{} by \textbf{29.5\%}.
+Because this comparison uses the identical backbone LLM, the gap is consistent with the hypothesis that logic-heavy methods (CC $> 10$) require more structured guidance than plain prompting provides.
+It also reduces the likelihood that the observed improvement is explained solely by the backbone model, although additional diagnostics are needed to isolate the exact contribution of each guidance mechanism.
+
+Gains over the two strongest baselines---HITS (\textbf{+10.2\%}) and Panta (\textbf{+12.1\%})---suggest that jointly reducing irrelevant context and making implicit preconditions explicit can cover branches that remain difficult for iterative refinement and context-aware prompting alone.
+The margin widens substantially against SymPrompt (\textbf{+23.3\%}), which is consistent with the need for branch-specific context construction when navigating logic-heavy control flows.
+
+\subsubsection{Performance on High-Complexity Projects}
+The advantages of \ourmethod{} are most pronounced on projects with high cyclomatic complexity and deeper inter-method dependencies. 
+
+For instance, on Gson (CC$_{avg}$ = 23.25, the highest in the benchmark), \ourmethod{} achieves a BC of 41.24\% while SymPrompt reaches only 3.59\%; on JCore (CC$_{avg}$ = 16.33), BC rises from 18.51\% (HITS) to 35.54\%; and on Jsoup (CC$_{avg}$ = 14.13), BC improves from 17.36\% (HITS) to 52.55\%.
+These project-level gains are consistent with the intended roles of backward slicing and constraint hints: reducing branch-irrelevant context and surfacing implicit preconditions in code with dense branching logic and cross-method dependencies.
+
+\noindent\textbf{Answer to RQ1.}
+\ourmethod{} outperforms all three baselines on average, achieving 44.41\% BC (+10.2\%--23.3\% over baselines), with the largest gains on high-CC, dependency-rich projects (e.g., +20\% on Gson, +14\% on JCore). The Vanilla Prompt control (14.90\% BC) provides evidence that structured framework guidance contributes to the improvement beyond the backbone LLM alone.
+
+
+\subsection{RQ2: Ablation Study}
+
+\input{tables/rq2_ablation.tex}
+%To examine the design of \ourmethod{}, this section addresses two questions: (1) what do BS and CS each contribute to final coverage, and (2) does the iterative generation loop meaningfully accelerate coverage accumulation beyond the gains from individual components?
+
+\subsubsection{Contribution of BS and CS}
+We construct three variants---\textbf{w/o BS} (removing backward slicing), \textbf{w/o CS} (removing constraint hints), and \textbf{w/o CS+BS} (removing both)---all sharing the same iterative loop limit (maxIter=20) and evaluated under QC3-30B. Results are assessed via Table~\ref{tab:ablation}.
+
+Table~\ref{tab:ablation} shows that both components contribute independently: removing BS alone drops average BC by 5.94 pp (44.41\% $\to$ 38.47\%), removing CS alone by 4.62 pp (44.41\% $\to$ 39.79\%), and removing both by 7.84 pp (44.41\% $\to$ 36.57\%). 
+The joint degradation falls below the sum of individual losses (10.56 pp), a subadditivity that reflects partial functional overlap---CS not only makes cross-method preconditions explicit but also implicitly focuses the LLM on branch-relevant predicates, partially mirroring BS's context-reduction role---though neither component can fully substitute for the other. 
+The same degradation ordering holds for LC (BS removal: $-$6.63 pp; CS removal: $-$6.56 pp; both: $-$9.70 pp).
+
+Yet these averages mask substantial per-project variation: BS and CS address structurally distinct bottlenecks, making them complementary rather than redundant.
+BS contributes most where method bodies are dominated by branch-irrelevant statements: 
+\textit{Csv} is a highly configurable, multi-dialect parser whose methods interleave handling for delimiters, quotes, escape sequences, and EOF within a single control flow. 
+Backward slicing strips these dialect-processing branches that are irrelevant to the target predicate, letting the LLM focus on the right conditions; 
+without it, the interference from unrelated branches collapses BC from 52.29\% to 24.80\% ($-$27.49 \%). 
+CS contributes most where branch reachability is governed by cross-call preconditions rather than local logic: 
+in \textit{JDatabind}, reaching many branches requires a specific sequence of configuration API calls to establish the correct mapper or reader/writer state---constraints that are invisible within the focal method body alone. 
+CS makes these preconditions explicit; without it, the LLM readily produces syntactically valid tests that nonetheless fail to satisfy the required object state, reducing BC from 17.85\% to 9.33\% ($-$8.52 \%). 
+In short, BS addresses context noise while CS addresses hidden state dependencies---distinct bottlenecks that neither component can resolve for the other.
+
+This benefit, however, is not universal: on \textit{JCore} and \textit{JXml}, removing BS raises coverage, pointing to two related failure modes. 
+First, many branch predicates in these projects are feature-flag checks whose controlling field is set via a builder chain at construction time, not passed as a method argument. 
+BS correctly traces the data flow to the field, but the full assignment path spans multiple factory-method layers; the resulting slice is semantically incomplete rather than merely short, and the LLM is left with worse context than the unsliced method body. 
+Second, \textit{JXml} compounds this with a two-layer configuration stack---a Woodstox \texttt{WstxInputFactory} beneath Jackson's \texttt{XmlMapper}---so BS structurally misses the lower layer's dependencies from the start, not merely truncates them. 
+
+\subsubsection{Improvement of Iterative Framework}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{figures/branch_coverage_comparison.pdf}
+    \caption{Branch coverage improvement over iterations for \ourmethod{} and its three ablated variants.}
+    \label{fig:branch-growth}
+\end{figure}
+
+Beyond final coverage, we examine whether the iterative loop itself accelerates progress. We ran all four configurations (\ourmethod{} and its three ablated variants) under QC3-30B, recording average BC at each step; the resulting growth curves are shown in Figure~\ref{fig:branch-growth}.
+For clarity, we plot the first 10 iterations only, because all curves become nearly flat afterward and additional rounds yield negligible gains.
+
+Across the entire range, \ourmethod{} remains the top-performing configuration at every iteration, showing both the fastest early-stage growth and the highest eventual plateau. 
+In contrast, w/o BS and w/o CS rise more slowly and saturate at lower coverage levels, while w/o CS+BS plateaus the earliest with the lowest ceiling.
+This three-way pattern---faster rise, higher ceiling, and later plateau---indicates that BS and CS improve iterative testing in two complementary ways: they increase the effectiveness of each generation round and they postpone premature saturation. 
+
+\noindent\textbf{Answer to RQ2.}
+Both backward slicing (BS) and constraint-hints (CS) make independent, complementary contributions and neither component is dispensable: 
+BS eliminates context noise ($-$5.94 \% on average), while CS makes implicit cross-method preconditions explicit ($-$4.62 \% on average). 
+The iterative loop further amplifies these gains: \ourmethod{} leads at every iteration with the fastest early growth and the latest saturation.
+
+\subsection{RQ3: Model Generalizability}
+\input{tables/rq3_different_llms.tex}
+To evaluate model generalizability, we run \ourmethod{} under four backbone models---QC3-30B (used in RQ1 and RQ2), GPT-5.4-Mini, QW3.5-397B, and DS-V3.1---using the same experimental configuration as RQ1. Results are summarized in Table~\ref{tab:model-generalization}.
+
+\subsubsection{Overall trends.} 
+Scaling up the backbone model brings substantial coverage improvements across all 14 projects. 
+While QC3-30B achieves an average BC of 44.41\%, the three large-scale models reach 79.76\% (GPT-5.4-Mini), 80.36\% (DS-V3.1), and 83.47\% (QW3.5-397B)---gains of 35--39 \% over QC3-30B. 
+Among them, QW3.5-397B achieves the highest overall BC, consistent with its leading performance on code-oriented benchmarks documented in its technical report~\cite{qwen35}. 
+Notably, even QC3-30B already surpasses every RQ1 baseline (best: HITS at 34.24\%), suggesting that \ourmethod{}'s framework-level guidance is beneficial even with a smaller backbone model.
+
+\subsubsection{Where model scale matters most.}
+The capacity-driven gains are pronounced on projects that demand dense conditional reasoning. 
+On \texttt{JDatabind}, QC3-30B reaches only 17.85\% BC while large models achieve 68--77\%. 
+Cross-referencing with the RQ2 ablation sharpens this picture: removing CS costs 8.52\% on \texttt{JDatabind}, while removing BS \emph{improves} coverage by 8.70 \%.
+Together, these results indicate that \texttt{JDatabind}'s dense cross-method initialization logic depends critically on explicit constraint guidance rather than code-context breadth. 
+It is precisely this constraint reasoning and following capability---translating structured hints into correct multi-step object state construction---that scales with model size, explaining the pronounced gap between QC3-30B and the larger models on this project.
+By contrast, on structurally simpler projects such as \texttt{Cli} and \texttt{Time}, the gap narrows to under 20 \%, where \ourmethod{}'s structural guidance already suffices for QC3-30B to handle the less demanding conditional logic.
+
+\subsubsection{Structural bottlenecks.} 
+Despite the strong overall gains, \texttt{JCore} and \texttt{JXml} remain below the large-model average of $\sim$81\% regardless of backbone---best BC of 76.77\% and 74.20\%, respectively. 
+As identified in RQ2, these projects share a framework-level bottleneck: their branch predicates are governed by builder-chain configuration state that spans multiple factory-method layers, causing BS to produce semantically incomplete slices that are worse than the unsliced method body. 
+Scaling up model capacity cannot compensate for structurally deficient input, which is why the ceiling persists even under the strongest models. 
+The consequence is also visible in higher inter-model variance on these two projects (e.g., \texttt{JCore}: QW3.5-397B=76.77\% vs.\ GPT-5.4-Mini=57.83\%), suggesting that when \ourmethod{}'s structural guidance is compromised, performance may fall back on model-specific code reasoning rather than shared framework scaffolding. 
+Extending backward slicing to handle cross-layer builder chains is therefore the primary direction for future refinement.
+
+\noindent\textbf{Answer to RQ3.}
+\ourmethod{} performs robustly across all four backbone LLMs, with stronger models consistently yielding higher coverage (79.76--83.47\% avg.\ branch coverage for large models).
+On high-complexity projects with deep inter-method dependencies, improved model reasoning ability further amplifies this advantage.

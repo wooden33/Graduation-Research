@@ -1,0 +1,99 @@
+\documentclass[10pt,conference]{IEEEtran}
+
+\IEEEoverridecommandlockouts
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{siunitx}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{pifont}
+\usepackage[normalem]{ulem}
+\usepackage{soul}
+\usepackage{xspace}
+\usepackage{url}
+
+
+
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{red},
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  xleftmargin=2em,
+  framexleftmargin=1.5em,
+  breaklines=true,
+  breakatwhitespace=true,
+  breakindent=0pt,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  framerule=0.4pt,
+  showstringspaces=false,
+  captionpos=b
+}
+
+\newcommand{\ourmethod}{\textsc{CogPath}}
+\newcommand{\eg}{e.g.\xspace}
+\newcommand{\xtz}[1]{\textcolor{blue}{[xtz:#1]}}
+\newcommand{\ulbf}[1]{\uline{\textbf{#1}}}
+
+\begin{document}
+
+\title{CogPath: A Constraint-Guided Context-Reduction Framework for LLM-Based Test Generation}
+
+\author{
+\IEEEauthorblockN{Jianhan Liu, Tangzhi Xu, Yuan Yao, Feng Xu, Xiaoxing Ma}
+\IEEEauthorblockA{\textit{State Key Laboratory for Novel Software Technology, Nanjing University}\\
+Nanjing, China\\
+\{jh.liu, xutz\}@smail.nju.edu.cn, \{y.yao, xf, xxm\}@nju.edu.cn}
+}
+
+% Copyright type CONFIRMED = standard IEEE Copyright Transfer (eCF Paper Id 1786276976373,
+% signed 2026-08-09), so the "\copyright 2026 IEEE" variant below is the correct one.
+% TODO: replace 979-8-XXXX-XXXX-X with the conference proceedings ISBN from the SCAM 2026
+% CPS Author Kit "Preparation Instructions" (it is NOT in the eCopyright receipt).
+\IEEEpubid{\makebox[\columnwidth]{979-8-XXXX-XXXX-X/26/\$31.00~\copyright2026 IEEE\hfill}%
+  \hspace{\columnsep}\makebox[\columnwidth]{}}
+
+\maketitle
+
+\input{sections/abstract}
+
+\input{sections/intro}
+
+\input{sections/motivation}
+
+\input{sections/methodology}
+
+\input{sections/experiments}
+
+\input{sections/discussion}
+
+\input{sections/related_work}
+
+\input{sections/conclusion}
+
+\input{sections/data_availability_statement}
+
+\section*{Acknowledgments}
+
+This work is supported by the Frontier Technologies R\&D Program of Jiangsu (BF2024059), and the National Natural Science Foundation of China (No. 92582201, 62572229).
+%
+%
+Yuan Yao is the corresponding author.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

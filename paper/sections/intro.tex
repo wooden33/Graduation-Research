@@ -1,0 +1,39 @@
+\section{Introduction}
+
+Automated unit test generation plays a critical role in improving software reliability and reducing developer effort. Traditional techniques, such as symbolic execution and search-based software testing (SBST), have made substantial progress in systematically exploring input spaces and maximizing structural coverage~\cite{cadar2008klee, evosuite, mcminn2011, randoop}. However, these approaches often face fundamental limitations in scalability and in handling complex program semantics: They struggle to capture implicit preconditions that arise from intricate object states and inter-procedural interactions, where the conditions required to reach a target path are established outside the local method scope through sequences of prior method calls~\cite{baldoni2018}.
+
+Recent advances demonstrate that large language models (LLMs) can directly synthesize executable unit tests, significantly alleviating manual effort~\cite{yuan2024manualtest, chen2024, chu2025}. To handle complex methods and improve coverage, subsequent research mainly pursues two directions. The first is \textit{feedback-driven refinement}: CoverUp~\cite{chen2024} iteratively targets untested regions using dynamic coverage analysis, while YATE~\cite{konstantinou2025yate} repairs failing tests to enhance validity. The second direction emphasizes \textit{structural decomposition and path sensitivity}. %To simplify complex logic, 
+HITS~\cite{wang2024c} prompts LLMs to decompose methods into fragments. Advancing this using program analysis, SymPrompt~\cite{ryan2024} extracts branch constraints from Control Flow Graphs (CFGs), whereas Panta~\cite{gu2025a} fuses static CFG analysis with dynamic coverage feedback to identify uncovered paths. Building upon this trajectory, JUnitGenie~\cite{liao2025} achieves strict path sensitivity by isolating the minimal, path-specific context required for targeted generation.
+
+Despite these promising results, a substantial coverage gap remains, rooted not in a lack of feedback or prompting sophistication, but in a deeper mismatch, i.e., \emph{cognitive misalignment}, between the information exposed to the LLM and what is actually required to cover complex target branches.
+
+\ding{172} One important dimension of this misalignment is \emph{What to Satisfy}. 
+In many cases, branch reachability depends on implicit preconditions scattered across long dependency chains~\cite{godefroid2025dart}, requiring the model to infer hidden constraints through multiple variable assignments and state transitions before it can synthesize a valid test. 
+Existing approaches typically provide only the target branch structure and compress constraint inference and test synthesis into a single generation step, without any explicit intermediate output or independent verification of the inferred constraints. 
+As a result, the LLM can easily skip or compress critical reasoning steps, producing tests that appear plausible but fail to satisfy the actual conditions required to reach the target branch. 
+This problem becomes particularly severe when the underlying dependency chain is long or semantically complex.
+
+\ding{173} The second dimension concerns \emph{What to Attend To}. 
+Existing methods usually expose the entire method body to the LLM, even though only a small subset of statements has real data or control dependency on the target branch. 
+The resulting context is therefore structurally misaligned with the branch-coverage objective: coverage-critical dependencies are diluted by irrelevant code, attention is spread across non-essential statements, and the model must reason under a representation that over-emphasizes what is visible rather than what is truly necessary~\cite{liu2024lost}. 
+This not only amplifies cognitive burden, but also makes precise state construction substantially less likely. 
+Even without explicit distractors, LLM performance can already degrade as context length grows~\cite{du2025contextlengthhurtsllm, wang2026intelligencedegradationlongcontextllms}; 
+in branch-oriented test generation, this effect is further magnified because the relevant context is often deeply buried inside much longer method bodies.
+
+%Taken together, these two issues suggest a systematic form of \emph{cognitive misalignment} in LLM-based unit test generation: the information shown to the model is often misaligned with the information actually needed to cover a target branch. 
+%This misalignment has two complementary dimensions, namely \emph{what to satisfy} and \emph{what to attend to}.
+
+\textbf{Approach.}
+To address this cognitive misalignment, we propose \ourmethod{}, a branch-level alignment framework for LLM-based unit test generation. Rather than treating an uncovered branch as a generic request for more tests, \ourmethod{} aligns the prompt with the specific reasoning needed to reach that branch: it exposes the preconditions that must be satisfied and suppresses context that is irrelevant to the branch outcome.
+This alignment is performed inside an iterative generate--execute--repair loop driven by dynamic coverage feedback. For each resistant branch, \ourmethod{} derives path-specific \textit{Constraint-Hints} that translate hidden reachability requirements---such as setter calls needed to establish object state---into explicit generation guidance. When coverage plateaus, it further applies coverage-driven \textit{Backward Slicing} using the uncovered branch as the criterion, so that the prompt is rebuilt around the statements and cross-method dependencies that actually influence the target outcome. In this way, the two analyses serve a single branch-level alignment objective rather than acting as independent prompting add-ons.
+
+The main contributions can be summarized as follows:
+\begin{itemize}[leftmargin=*]
+\item We formulate branch-coverage failures in LLM-based test generation as a form of \emph{cognitive misalignment}, caused by hidden cross-method preconditions and branch-irrelevant context.
+
+\item We propose \ourmethod{}, an iterative generate--execute--repair framework that combines \emph{Constraint-Hints} and coverage-driven \emph{Backward Slicing} to make path-specific preconditions explicit and reduce irrelevant context.
+
+\item We evaluate \ourmethod{} on 130 classes and 2{,}971 complex methods from 14 Defects4J projects. Under controlled backbone and context settings, \ourmethod{} improves average line and branch coverage over the strongest baseline by 12.8 and 10.2 percentage points, respectively.
+
+\item We release \ourmethod{} with its prompts, analysis components, and evaluation scripts to support replication and follow-up research.
+\end{itemize}
