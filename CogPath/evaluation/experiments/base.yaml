@@ -1,0 +1,60 @@
+# Shared settings for every CogPath study.
+#
+# A study does `extends: ../base.yaml` and then declares only what is specific to
+# it.  Anything declared here is inherited unless the study overrides it.
+#
+# Level names deliberately avoid "on"/"off": YAML 1.1 (PyYAML) parses bare
+# `on`/`off` as booleans, which silently turns a level name into True/False.
+
+study: base
+description: >-
+  Common configuration for CogPath studies.  All ablation factors are stated
+  explicitly here; a manifest never relies on a defaulted factor.
+
+dataset: data/class_list.csv
+
+# How many independent repetitions each variant/model gets.  The published paper
+# claims three repetitions, but only one run per configuration exists in the
+# repository, so this is 1 until the claim is backed by data.
+repetitions: 1
+
+fixed:
+  prompt_type: control
+  coverage_type: jacoco
+  target_coverage: 100
+  maximum_iterations: 20
+  no_coverage_increase_iterations: 3
+  enable_fixing: 3
+  # Constraint-Hints is only invoked for the *second* candidate path, so this must
+  # stay true whenever `use_constraints` is enabled (validation enforces it).
+  pick_two_paths: true
+  # Repair prompt selection is an explicit factor, never an implicit default.
+  fix_type: ""
+
+factors:
+  # ---- Constraint-Hints (CS) ----------------------------------------------
+  constraint_hints:
+    enabled: {use_constraints: true}
+    disabled: {use_constraints: false}
+
+  # ---- Backward Slicing (BS) ---------------------------------------------
+  backward_slicing:
+    enabled: {use_backward_slice: true}
+    disabled: {use_backward_slice: false}
+
+  # ---- Repair prompt -----------------------------------------------------
+  # There is no Monte-Carlo tree search in the code: `MCTS` merely selects the
+  # `failed_test_feedback_prompt_with_MCTS` template.  It is modelled as a real
+  # factor because the published "w/o CS+BS" column was produced with it enabled,
+  # which silently confounded that ablation.
+  repair:
+    traditional: {fix_type: ""}
+    mcts_prompt: {fix_type: "MCTS"}
+
+# Model-specific overrides.  Any litellm model id is accepted on the command line,
+# so a new model does not require editing a manifest; add an entry here only when
+# it needs a different solver model or other settings.
+#
+# Left empty on purpose: `run` then requires an explicit --model, which prevents
+# an accidental sweep over every model in the manifest.
+models: {}

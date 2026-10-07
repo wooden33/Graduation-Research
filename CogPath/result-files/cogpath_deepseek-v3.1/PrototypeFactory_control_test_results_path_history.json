@@ -1,0 +1,35 @@
+{
+  "final_line_coverage": 100.0,
+  "final_branch_coverage": 100.0,
+  "final_lines_missed": [
+    122,
+    123,
+    142,
+    143,
+    186,
+    187,
+    195,
+    200
+  ],
+  "final_branches_missed": [],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 100.0,
+      "branch_coverage": 100.0,
+      "path_history": {},
+      "lines_missed": [
+        122,
+        123,
+        142,
+        143,
+        186,
+        187,
+        195,
+        200
+      ],
+      "branches_missed": [],
+      "timestamp": 1766652429.64092
+    }
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "final_line_coverage": 99.26,
+  "final_branch_coverage": 97.67,
+  "final_lines_missed": [
+    349,
+    345,
+    348
+  ],
+  "final_branches_missed": [
+    345,
+    348
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 91.11,
+      "branch_coverage": 88.37,
+      "path_history": {},
+      "lines_missed": [
+        321,
+        322,
+        346,
+        349,
+        392,
+        395,
+        433,
+        470,
+        471,
+        472,
+        489,
+        490,
+        317,
+        328,
+        345,
+        348,
+        391,
+        394,
+        432,
+        457,
+        477
+      ],
+      "branches_missed": [
+        317,
+        328,
+        345,
+        348,
+        391,
+        394,
+        432,
+        457,
+        477
+      ],
+      "timestamp": 1773698403.280596
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 93.33,
+      "branch_coverage": 89.53,
+      "path_history": {
+        "logBeta_1106_9": 1,
+        "logBeta_1106_15": 1
+      },
+      "lines_missed": [
+        321,
+        322,
+        346,
+        349,
+        392,
+        395,
+        433,
+        489,
+        490,
+        317,
+        328,
+        345,
+        348,
+        391,
+        394,
+        432,
+        477
+      ],
+      "branches_missed": [
+        317,
+        328,
+        345,
+        348,
+        391,
+        394,
+        432,
+        477
+      ],
+      "timestamp": 1773698469.566808
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 94.81,
+      "branch_coverage": 90.7,
+      "path_history": {
+        "logBeta_1106_9": 1,
+        "logBeta_1106_15": 1,
+        "logBeta_1106_5": 1
+      },
+      "lines_missed": [
+        321,
+        322,
+        346,
+        349,
+        392,
+        395,
+        433,
+        317,
+        328,
+        345,
+        348,
+        391,
+        394,
+        432
+      ],
+      "branches_missed": [
+        317,
+        328,
+        345,
+        348,
+        391,
+        394,
+        432
+      ],
+      "timestamp": 1773698512.1958745
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 95.56,
+      "branch_coverage": 91.86,
+      "path_history": {
+        "logBeta_1106_9": 1,
+        "logBeta_1106_15": 1,
+        "logBeta_1106_5": 1,
+        "logBeta_1106_6": 1,
+        "logBeta_1106_7": 1
+      },
+      "lines_missed": [
+        321,
+        322,
+        346,
+        349,
+        392,
+        395,
+        317,
+        328,
+        345,
+        348,
+        391,
+        394
+      ],
+      "branches_missed": [
+        317,
+        328,
+        345,
+        348,
+        391,
+        394
+      ],
+      "timestamp": 1773698572.674113
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 97.78,
+      "branch_coverage": 95.35,
+      "path_history": {
+        "logBeta_1106_9": 1,
+        "logBeta_1106_15": 1,
+        "logBeta_1106_5": 1,
+        "logBeta_1106_6": 1,
+        "logBeta_1106_7": 1
+      },
+      "lines_missed": [
+        321,
+        322,
+        349,
+        317,
+        328,
+        345,
+        348
+      ],
+      "branches_missed": [
+        317,
+        328,
+        345,
+        348
+      ],
+      "timestamp": 1773698762.8117352
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 99.26,
+      "branch_coverage": 97.67,
+      "path_history": {
+        "logBeta_1106_9": 1,
+        "logBeta_1106_15": 1,
+        "logBeta_1106_5": 1,
+        "logBeta_1106_6": 1,
+        "logBeta_1106_7": 1
+      },
+      "lines_missed": [
+        349,
+        345,
+        348
+      ],
+      "branches_missed": [
+        345,
+        348
+      ],
+      "timestamp": 1773698980.3862596
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 99.26,
+      "branch_coverage": 97.67,
+      "path_history": {
+        "logBeta_1106_9": 1,
+        "logBeta_1106_15": 1,
+        "logBeta_1106_5": 1,
+        "logBeta_1106_6": 1,
+        "logBeta_1106_7": 1
+      },
+      "lines_missed": [
+        349,
+        345,
+        348
+      ],
+      "branches_missed": [
+        345,
+        348
+      ],
+      "timestamp": 1773699294.7470849
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 99.26,
+      "branch_coverage": 97.67,
+      "path_history": {
+        "logBeta_1106_9": 1,
+        "logBeta_1106_15": 1,
+        "logBeta_1106_5": 1,
+        "logBeta_1106_6": 1,
+        "logBeta_1106_7": 1
+      },
+      "lines_missed": [
+        349,
+        345,
+        348
+      ],
+      "branches_missed": [
+        345,
+        348
+      ],
+      "timestamp": 1773699514.544579
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 99.26,
+      "branch_coverage": 97.67,
+      "path_history": {
+        "logBeta_1106_9": 1,
+        "logBeta_1106_15": 1,
+        "logBeta_1106_5": 1,
+        "logBeta_1106_6": 1,
+        "logBeta_1106_7": 1
+      },
+      "lines_missed": [
+        349,
+        345,
+        348
+      ],
+      "branches_missed": [
+        345,
+        348
+      ],
+      "timestamp": 1773699729.4190736
+    }
+  ]
+}

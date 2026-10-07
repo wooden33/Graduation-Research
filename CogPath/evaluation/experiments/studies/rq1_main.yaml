@@ -1,0 +1,21 @@
+# RQ1 - effectiveness of full CogPath on the shared dataset.
+#
+# The comparison baselines live in `baselines.yaml` (SymPrompt, HITS) because they
+# are separate execution modes rather than ablation variants.
+#
+# NOT REPRODUCIBLE HERE
+# ---------------------
+# The Panta and Vanilla-Prompt baselines were produced outside this repository --
+# only their derived CSVs are checked in under evaluation/cogpath_results/, with
+# no raw HTML -- so they cannot be re-run from a manifest.
+
+study: rq1_main
+extends: ../base.yaml
+description: >-
+  Full CogPath on the 130-class dataset: all factors enabled, traditional repair.
+
+variants:
+  cogpath:
+    constraint_hints: enabled
+    backward_slicing: enabled
+    repair: traditional

@@ -1,0 +1,92 @@
+[test_generation_cfg_guided_with_constraint_solver_prompt]
+system="""You are an expert Java Test Engineer. Your goal is to achieve 100% branch coverage by solving specific path constraints. You write concise, executable JUnit tests."""
+
+user="""
+## 1. Context
+- **Source (`{{ source_file_name }}`)**:
+=========
+{{ source_file_numbered|trim }}
+=========
+
+- **Existing Test (`{{ test_file_name }}`)**:
+=========
+{{ test_file|trim }}
+=========
+
+- **Dependencies**: {{ test_dependencies }}
+
+{%- if failed_tests_section|trim  %}
+{{ failed_tests_section|trim }}
+{% endif %}
+
+## 2. Targeted Coverage Goals
+For each method below, use the provided **Path** and **Constraint Solution** to construct your test inputs.
+{{ method_under_test }}
+
+## 3. Mandatory Analysis (Chain of Thought)
+Before the YAML, provide a brief analysis for each target:
+1. **Constraint Mapping**: How will you instantiate/mock objects to satisfy the `Constraint Solution`?
+2. **Setup**: Identify which existing helper methods from the `Test File` can be reused.
+3. **Observation**: What is the expected outcome of this specific path (Exception, specific return value, or state change)?
+
+## 4. Response Format
+Output must be:
+1. **Analysis & Thinking** (Plain text)
+2. **YAML Output** (Strictly following the `NewTests` schema)
+
+=====
+class SingleTest {
+    String test_behavior; // Short description of the behavior the test covers
+    String test_name; // A short test name, in camel case, that reflects the behavior to test
+    String test_code; // A single test function, that tests the behavior described in 'test_behavior'. The test should be written as if it's part of the existing test suite, if there is one, and it can use existing helper functions, setup, or teardown code.
+    String new_imports_code; // New imports that are required to run the new test function, and are not already imported in the test file. Give an empty string if no new imports are required. If relevant, add new imports as 'import ...' lines.
+}
+
+class NewTests {
+    String language; // The programming language of the source code
+    String existing_test_function_signature; // A single line repeating a signature header of one of the existing test functions
+    List<SingleTest> new_tests; // A list of new test functions to append to the existing test suite, aiming to increase the code coverage. Each test should run as-is, without requiring any additional inputs or setup code. Don't introduce new dependencies
+}
+=====
+
+Response:
+**Analysis & Thinking**
+[Plain text]
+
+```yaml
+language: Java
+existing_test_function_signature: |
+  @Test
+  public void testExample() {
+    // existing test code
+  }
+new_tests:
+- test_behavior: |
+    Test that the function returns the correct output for a specific scenario
+  test_name: |
+    testSpecificScenario
+  test_code: |
+    @Test
+    public void testSpecificScenario() {
+        // test implementation
+    }
+  new_imports_code: |
+    import static org.junit.jupiter.api.Assertions.*;
+    import org.junit.jupiter.api.Test;
+- test_behavior: |
+    Test that the function handles a specific edge case correctly
+  test_name: |
+    testEdgeCase
+  test_code: |
+    @Test
+    public void testEdgeCase() {
+        // test implementation
+    }
+  new_imports_code: |
+    import static org.junit.jupiter.api.Assertions.*;
+    import org.junit.jupiter.api.Test;
+```
+
+Use block scalar('|') to format each YAML output.
+
+Response:"""

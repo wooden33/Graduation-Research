@@ -1,0 +1,367 @@
+{
+  "final_line_coverage": 90.48,
+  "final_branch_coverage": 93.33,
+  "final_lines_missed": [
+    36,
+    51,
+    52,
+    53,
+    100,
+    105
+  ],
+  "final_branches_missed": [
+    100,
+    105
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 0.0,
+      "branch_coverage": 0.0,
+      "path_history": {},
+      "lines_missed": [
+        18,
+        28,
+        29,
+        36,
+        45,
+        46,
+        51,
+        52,
+        53,
+        63,
+        64,
+        65,
+        68,
+        69,
+        70,
+        79,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        89,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        103,
+        105,
+        106,
+        107,
+        108,
+        110,
+        112,
+        113
+      ],
+      "branches_missed": [
+        63,
+        65,
+        82,
+        83,
+        84,
+        86,
+        89,
+        91,
+        94,
+        98,
+        100,
+        103,
+        105,
+        106
+      ],
+      "timestamp": 1768920518.9140992
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 0.0,
+      "branch_coverage": 0.0,
+      "path_history": {},
+      "lines_missed": [
+        18,
+        28,
+        29,
+        36,
+        45,
+        46,
+        51,
+        52,
+        53,
+        63,
+        64,
+        65,
+        68,
+        69,
+        70,
+        79,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        89,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        103,
+        105,
+        106,
+        107,
+        108,
+        110,
+        112,
+        113
+      ],
+      "branches_missed": [
+        63,
+        65,
+        82,
+        83,
+        84,
+        86,
+        89,
+        91,
+        94,
+        98,
+        100,
+        103,
+        105,
+        106
+      ],
+      "timestamp": 1768920633.3421123
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 88.1,
+      "branch_coverage": 80.0,
+      "path_history": {},
+      "lines_missed": [
+        36,
+        51,
+        52,
+        53,
+        110,
+        83,
+        86,
+        100,
+        103,
+        105,
+        106
+      ],
+      "branches_missed": [
+        83,
+        86,
+        100,
+        103,
+        105,
+        106
+      ],
+      "timestamp": 1768920781.2221048
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 88.1,
+      "branch_coverage": 83.33,
+      "path_history": {
+        "formData_223_8": 1,
+        "formData_223_3": 1
+      },
+      "lines_missed": [
+        36,
+        51,
+        52,
+        53,
+        110,
+        83,
+        100,
+        103,
+        105,
+        106
+      ],
+      "branches_missed": [
+        83,
+        100,
+        103,
+        105,
+        106
+      ],
+      "timestamp": 1768920871.915642
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 90.48,
+      "branch_coverage": 86.67,
+      "path_history": {
+        "formData_223_8": 2,
+        "formData_223_3": 1,
+        "formData_223_6": 1
+      },
+      "lines_missed": [
+        36,
+        51,
+        52,
+        53,
+        83,
+        100,
+        105,
+        106
+      ],
+      "branches_missed": [
+        83,
+        100,
+        105,
+        106
+      ],
+      "timestamp": 1768921009.0321026
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 90.48,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "formData_223_8": 3,
+        "formData_223_3": 1,
+        "formData_223_6": 1,
+        "formData_223_1": 1
+      },
+      "lines_missed": [
+        36,
+        51,
+        52,
+        53,
+        100,
+        105,
+        106
+      ],
+      "branches_missed": [
+        100,
+        105,
+        106
+      ],
+      "timestamp": 1768921096.8700724
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 90.48,
+      "branch_coverage": 93.33,
+      "path_history": {
+        "formData_223_8": 4,
+        "formData_223_3": 1,
+        "formData_223_6": 1,
+        "formData_223_1": 1,
+        "formData_223_5": 1
+      },
+      "lines_missed": [
+        36,
+        51,
+        52,
+        53,
+        100,
+        105
+      ],
+      "branches_missed": [
+        100,
+        105
+      ],
+      "timestamp": 1768921197.560679
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 90.48,
+      "branch_coverage": 93.33,
+      "path_history": {
+        "formData_223_8": 4,
+        "formData_223_3": 1,
+        "formData_223_6": 1,
+        "formData_223_1": 1,
+        "formData_223_5": 1,
+        "formData_223_9": 1
+      },
+      "lines_missed": [
+        36,
+        51,
+        52,
+        53,
+        100,
+        105
+      ],
+      "branches_missed": [
+        100,
+        105
+      ],
+      "timestamp": 1768921295.5701647
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 90.48,
+      "branch_coverage": 93.33,
+      "path_history": {
+        "formData_223_8": 4,
+        "formData_223_3": 1,
+        "formData_223_6": 1,
+        "formData_223_1": 1,
+        "formData_223_5": 1,
+        "formData_223_9": 1,
+        "formData_223_11": 1
+      },
+      "lines_missed": [
+        36,
+        51,
+        52,
+        53,
+        100,
+        105
+      ],
+      "branches_missed": [
+        100,
+        105
+      ],
+      "timestamp": 1768921398.5499976
+    },
+    {
+      "iteration": 9,
+      "line_coverage": 90.48,
+      "branch_coverage": 93.33,
+      "path_history": {
+        "formData_223_8": 4,
+        "formData_223_3": 1,
+        "formData_223_6": 1,
+        "formData_223_1": 1,
+        "formData_223_5": 1,
+        "formData_223_9": 1,
+        "formData_223_11": 2
+      },
+      "lines_missed": [
+        36,
+        51,
+        52,
+        53,
+        100,
+        105
+      ],
+      "branches_missed": [
+        100,
+        105
+      ],
+      "timestamp": 1768921499.235213
+    }
+  ]
+}

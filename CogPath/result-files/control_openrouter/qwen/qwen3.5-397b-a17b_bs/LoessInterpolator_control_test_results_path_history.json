@@ -1,0 +1,181 @@
+{
+  "final_line_coverage": 92.24,
+  "final_branch_coverage": 78.85,
+  "final_lines_missed": [
+    222,
+    323,
+    351,
+    352,
+    353,
+    354,
+    356,
+    357,
+    440,
+    221,
+    264,
+    320,
+    347,
+    422,
+    439
+  ],
+  "final_branches_missed": [
+    351,
+    353,
+    221,
+    264,
+    320,
+    347,
+    422,
+    439
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 92.24,
+      "branch_coverage": 78.85,
+      "path_history": {},
+      "lines_missed": [
+        222,
+        323,
+        351,
+        352,
+        353,
+        354,
+        356,
+        357,
+        440,
+        221,
+        264,
+        320,
+        347,
+        422,
+        439
+      ],
+      "branches_missed": [
+        351,
+        353,
+        221,
+        264,
+        320,
+        347,
+        422,
+        439
+      ],
+      "timestamp": 1773718032.88567
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 92.24,
+      "branch_coverage": 78.85,
+      "path_history": {
+        "smooth_371_9": 1,
+        "smooth_371_8": 1
+      },
+      "lines_missed": [
+        222,
+        323,
+        351,
+        352,
+        353,
+        354,
+        356,
+        357,
+        440,
+        221,
+        264,
+        320,
+        347,
+        422,
+        439
+      ],
+      "branches_missed": [
+        351,
+        353,
+        221,
+        264,
+        320,
+        347,
+        422,
+        439
+      ],
+      "timestamp": 1773718097.5964925
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 92.24,
+      "branch_coverage": 78.85,
+      "path_history": {
+        "smooth_371_9": 2,
+        "smooth_371_8": 1,
+        "smooth_371_12": 1
+      },
+      "lines_missed": [
+        222,
+        323,
+        351,
+        352,
+        353,
+        354,
+        356,
+        357,
+        440,
+        221,
+        264,
+        320,
+        347,
+        422,
+        439
+      ],
+      "branches_missed": [
+        351,
+        353,
+        221,
+        264,
+        320,
+        347,
+        422,
+        439
+      ],
+      "timestamp": 1773718289.0343657
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 92.24,
+      "branch_coverage": 78.85,
+      "path_history": {
+        "smooth_371_9": 3,
+        "smooth_371_8": 1,
+        "smooth_371_12": 1,
+        "smooth_371_6": 1
+      },
+      "lines_missed": [
+        222,
+        323,
+        351,
+        352,
+        353,
+        354,
+        356,
+        357,
+        440,
+        221,
+        264,
+        320,
+        347,
+        422,
+        439
+      ],
+      "branches_missed": [
+        351,
+        353,
+        221,
+        264,
+        320,
+        347,
+        422,
+        439
+      ],
+      "timestamp": 1773718513.7693133
+    }
+  ]
+}

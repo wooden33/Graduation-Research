@@ -1,0 +1,55 @@
+# RQ3 - generality of full CogPath across backbone models.
+#
+# Every run here is the SAME configuration: all factors enabled, traditional
+# repair, solver model = backbone.  Only the backbone model changes.  That is what
+# the paper claims ("using the same experimental configuration as RQ1").
+#
+# HISTORY -- what was actually run
+# --------------------------------
+# Two of the four published columns did not use this configuration:
+#
+#   QW3.5-397B : aggregated from a `..._bs` run, i.e. Constraint-Hints DISABLED.
+#                The full `..._constraints_bs` run has only 2 of 130 classes, so
+#                the incomplete run was silently used instead.  `verify` now fails
+#                on exactly that situation.
+#   DS-V3.1    : aggregated from `..._constraints_mcts_deepseek-v3`, i.e. Backward
+#                Slicing DISABLED, the MCTS repair prompt enabled, and a separate
+#                solver model.
+#
+# Only QC3-30B and GPT-5.4-Mini were produced with the intended configuration.
+# Re-running the other two is required before the RQ3 claim holds.
+#
+# RUNNING IT
+# ----------
+# `models` is intentionally empty, so `run` requires an explicit --model.  A model
+# sweep is 4 x 130 classes x up to 20 iterations of paid inference, which should
+# never start because a manifest happened to list the models.  The paper used:
+#
+#   ollama/qwen3-coder:30b-a3b-q8_0        (QC3-30B)
+#   openrouter/openai/gpt-5.4-mini         (GPT-5.4-Mini)
+#   openrouter/qwen/qwen3.5-397b-a17b      (QW3.5-397B)
+#   openrouter/deepseek/deepseek-chat      (DS-V3.1)
+#
+#   python experiment.py run --study experiments/studies/rq3_models.yaml \
+#       --variant cogpath --model openrouter/openai/gpt-5.4-mini
+#
+# Any litellm model id works, so a new model needs no edit to this file.  Add an
+# entry under `models` only when a model needs overrides, e.g.:
+#
+#   models:
+#     openrouter/qwen/qwen3.5-397b-a17b:
+#       solver_model: openrouter/openai/gpt-5.4-mini
+
+study: rq3_models
+extends: ../base.yaml
+description: >-
+  Full CogPath across backbone LLMs, with the repair prompt and factor levels held
+  identical so that only model capability varies.
+
+variants:
+  cogpath:
+    constraint_hints: enabled
+    backward_slicing: enabled
+    repair: traditional
+
+models: {}

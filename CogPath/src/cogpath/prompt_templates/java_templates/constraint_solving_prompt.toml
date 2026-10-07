@@ -1,0 +1,40 @@
+[constraint_solving_prompt]
+system="""\
+You are an expert in constraint solving for code coverage. Your task is to generate simple input variable conditions that will help reach uncovered paths in the function under test.
+"""
+
+user="""\
+## Context: Source Code
+=========
+{{ source_code|trim }}
+=========
+
+## Target: Uncovered Path
+The following sequence of branch decisions is required to reach the target:
+=========
+{{ path_info|trim }}
+=========
+
+## Hint: First Uncovered Branch
+{% if first_uncovered_branch %}
+First uncovered branch to cover: Line {{ first_uncovered_branch.line }} - {{ first_uncovered_branch.statement }} should be {{ first_uncovered_branch.condition }}
+{% else %}
+No specific branch information available.
+{% endif %} 
+
+## Task
+Derive the mandatory input conditions for the function parameters to satisfy the path above. 
+
+### Rules:
+1. **Symbolic Logic**: Convert method calls to simple states (e.g., `list.isEmpty()` -> `list.size == 0`, `obj != null`).
+2. **Minimalism**: Provide the simplest possible value or comparison that satisfies the branch.
+3. **Format**: Use a bulleted list of conditions for each parameter.
+
+### Expected Output Example:
+Input Conditions:
+- paramA > 10
+- paramB == null
+- paramC.status == "ACTIVE"
+
+Input Conditions:
+"""

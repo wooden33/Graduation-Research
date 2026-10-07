@@ -1,0 +1,119 @@
+{
+  "final_line_coverage": 100.0,
+  "final_branch_coverage": 87.5,
+  "final_lines_missed": [
+    81,
+    86,
+    98,
+    99
+  ],
+  "final_branches_missed": [
+    81,
+    86,
+    98,
+    99
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 97.56,
+      "branch_coverage": 81.25,
+      "path_history": {},
+      "lines_missed": [
+        92,
+        71,
+        81,
+        86,
+        91,
+        98,
+        99
+      ],
+      "branches_missed": [
+        71,
+        81,
+        86,
+        91,
+        98,
+        99
+      ],
+      "timestamp": 1774274575.2759647
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 97.56,
+      "branch_coverage": 81.25,
+      "path_history": {
+        "translate_140_5": 1,
+        "translate_140_11": 1
+      },
+      "lines_missed": [
+        92,
+        71,
+        81,
+        86,
+        91,
+        98,
+        99
+      ],
+      "branches_missed": [
+        71,
+        81,
+        86,
+        91,
+        98,
+        99
+      ],
+      "timestamp": 1774274623.1065772
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 97.56,
+      "branch_coverage": 83.33,
+      "path_history": {
+        "translate_140_5": 2,
+        "translate_140_11": 1,
+        "translate_140_2": 1
+      },
+      "lines_missed": [
+        92,
+        81,
+        86,
+        91,
+        98,
+        99
+      ],
+      "branches_missed": [
+        81,
+        86,
+        91,
+        98,
+        99
+      ],
+      "timestamp": 1774274661.9615114
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 100.0,
+      "branch_coverage": 87.5,
+      "path_history": {
+        "translate_140_5": 3,
+        "translate_140_11": 1,
+        "translate_140_2": 1,
+        "translate_140_8": 1
+      },
+      "lines_missed": [
+        81,
+        86,
+        98,
+        99
+      ],
+      "branches_missed": [
+        81,
+        86,
+        98,
+        99
+      ],
+      "timestamp": 1774274697.2216933
+    }
+  ]
+}

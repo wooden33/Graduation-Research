@@ -1,0 +1,100 @@
+[test_generation_cfg_guided_prompt]
+system="""\
+You are an expert Java test-driven developer.
+"""
+
+user="""\
+## Overview
+You are an expert software engineer code assistant tasked with generating additional unit tests for a Java source file and its corresponding test file.
+Your objective is to enhance both line coverage and branch coverage by adding new unit tests to the existing test suite.
+
+### Guidelines:
+1. Analyze the Code: Examine the provided source code to understand its functionality, inputs, outputs, and core logic.
+2. Identify Test Cases: Develop a detailed list of test cases that will fully validate the source code and achieve 100% line coverage and branch coverage.
+3. Add and Review Tests: Integrate individual tests ensuring they collectively cover all possible scenarios, including edge cases and exception handling.
+4. Maintain Consistency: Ensure new tests are consistent with the existing test suite in terms of style, naming conventions, and structure. Assume new tests are part of the same suite if a test suite exists.
+
+## Source File
+Here is the source file that you will be writing tests against, called `{{ source_file_name }}`.
+We have manually added line numbers to assist in understanding the code coverage.
+These line numbers are not part of the original code.
+
+=========
+{{ source_file_numbered|trim }}
+=========
+
+## Test File
+Here is the file that contains the existing tests, called `{{ test_file_name }}`.
+=========
+{{ test_file| trim }}
+=========
+
+## Third-party dependencies for test generation
+Please use the following dependencies to generation tests
+=========
+{{ test_dependencies }}
+=========
+
+{%- if failed_tests_section|trim  %}
+{{ failed_tests_section|trim }}
+{% endif %}
+
+## Method Under Test
+Please generate tests for the following method under test respectively to increase the overall code coverage:
+{{method_under_test}}
+
+## Response
+The output must be a YAML object equivalent to type `NewTests`, according to the following definitions:
+=====
+class SingleTest {
+    String test_behavior; // Short description of the behavior the test covers
+    String test_name; // A short test name, in camel case, that reflects the behavior to test
+    String test_code; // A single test function, that tests the behavior described in 'test_behavior'. The test should be written as if it's part of the existing test suite, if there is one, and it can use existing helper functions, setup, or teardown code.
+    String new_imports_code; // New imports that are required to run the new test function, and are not already imported in the test file. Give an empty string if no new imports are required. If relevant, add new imports as 'import ...' lines.
+}
+
+class NewTests {
+    String language; // The programming language of the source code
+    String existing_test_function_signature; // A single line repeating a signature header of one of the existing test functions
+    List<SingleTest> new_tests; // A list of new test functions to append to the existing test suite, aiming to increase the code coverage. Each test should run as-is, without requiring any additional inputs or setup code. Don't introduce new dependencies
+}
+=====
+
+Response:
+```yaml
+language: Java
+existing_test_function_signature: |
+  @Test
+  public void testExample() {
+    // existing test code
+  }
+new_tests:
+- test_behavior: |
+    Test that the function returns the correct output for a specific scenario
+  test_name: |
+    testSpecificScenario
+  test_code: |
+    @Test
+    public void testSpecificScenario() {
+        // test implementation
+    }
+  new_imports_code: |
+    import static org.junit.Assert.*;
+    import org.junit.Test;
+- test_behavior: |
+    Test that the function handles a specific edge case correctly
+  test_name: |
+    testEdgeCase
+  test_code: |
+    @Test
+    public void testEdgeCase() {
+        // test implementation
+    }
+  new_imports_code: |
+    import static org.junit.Assert.*;
+    import org.junit.Test;
+```
+
+Use block scalar('|') to format each YAML output.
+
+Response:"""

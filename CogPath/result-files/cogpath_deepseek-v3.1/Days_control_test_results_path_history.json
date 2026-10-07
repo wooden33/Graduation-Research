@@ -1,0 +1,119 @@
+{
+  "final_line_coverage": 98.68,
+  "final_branch_coverage": 100.0,
+  "final_lines_missed": [
+    225
+  ],
+  "final_branches_missed": [],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 96.05,
+      "branch_coverage": 94.87,
+      "path_history": {},
+      "lines_missed": [
+        141,
+        142,
+        225,
+        135
+      ],
+      "branches_missed": [
+        135
+      ],
+      "timestamp": 1766690906.4359775
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 96.05,
+      "branch_coverage": 94.87,
+      "path_history": {
+        "daysBetween_296_0": 1
+      },
+      "lines_missed": [
+        141,
+        142,
+        225,
+        135
+      ],
+      "branches_missed": [
+        135
+      ],
+      "timestamp": 1766691072.379229
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 96.05,
+      "branch_coverage": 94.87,
+      "path_history": {
+        "daysBetween_296_0": 2,
+        "daysBetween_296_1": 1
+      },
+      "lines_missed": [
+        141,
+        142,
+        225,
+        135
+      ],
+      "branches_missed": [
+        135
+      ],
+      "timestamp": 1766691272.2646363
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 98.68,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "daysBetween_296_0": 3,
+        "daysBetween_296_1": 2
+      },
+      "lines_missed": [
+        225
+      ],
+      "branches_missed": [],
+      "timestamp": 1766691401.5737064
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 98.68,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "daysBetween_296_0": 3,
+        "daysBetween_296_1": 2
+      },
+      "lines_missed": [
+        225
+      ],
+      "branches_missed": [],
+      "timestamp": 1766691558.6735382
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 98.68,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "daysBetween_296_0": 3,
+        "daysBetween_296_1": 2
+      },
+      "lines_missed": [
+        225
+      ],
+      "branches_missed": [],
+      "timestamp": 1766691800.58915
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 98.68,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "daysBetween_296_0": 3,
+        "daysBetween_296_1": 2
+      },
+      "lines_missed": [
+        225
+      ],
+      "branches_missed": [],
+      "timestamp": 1766692023.7704575
+    }
+  ]
+}

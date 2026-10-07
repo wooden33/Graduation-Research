@@ -1,0 +1,137 @@
+{
+  "final_line_coverage": 98.52,
+  "final_branch_coverage": 95.35,
+  "final_lines_missed": [
+    321,
+    322,
+    272,
+    275,
+    317,
+    328
+  ],
+  "final_branches_missed": [
+    272,
+    275,
+    317,
+    328
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 97.04,
+      "branch_coverage": 94.19,
+      "path_history": {},
+      "lines_missed": [
+        155,
+        321,
+        322,
+        433,
+        272,
+        275,
+        317,
+        328,
+        432
+      ],
+      "branches_missed": [
+        272,
+        275,
+        317,
+        328,
+        432
+      ],
+      "timestamp": 1766846602.29618
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 98.52,
+      "branch_coverage": 95.35,
+      "path_history": {
+        "logBeta_1106_6": 1
+      },
+      "lines_missed": [
+        321,
+        322,
+        272,
+        275,
+        317,
+        328
+      ],
+      "branches_missed": [
+        272,
+        275,
+        317,
+        328
+      ],
+      "timestamp": 1766846727.998093
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 98.52,
+      "branch_coverage": 95.35,
+      "path_history": {
+        "logBeta_1106_6": 1
+      },
+      "lines_missed": [
+        321,
+        322,
+        272,
+        275,
+        317,
+        328
+      ],
+      "branches_missed": [
+        272,
+        275,
+        317,
+        328
+      ],
+      "timestamp": 1766847228.5477753
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 98.52,
+      "branch_coverage": 95.35,
+      "path_history": {
+        "logBeta_1106_6": 1
+      },
+      "lines_missed": [
+        321,
+        322,
+        272,
+        275,
+        317,
+        328
+      ],
+      "branches_missed": [
+        272,
+        275,
+        317,
+        328
+      ],
+      "timestamp": 1766847386.144125
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 98.52,
+      "branch_coverage": 95.35,
+      "path_history": {
+        "logBeta_1106_6": 1
+      },
+      "lines_missed": [
+        321,
+        322,
+        272,
+        275,
+        317,
+        328
+      ],
+      "branches_missed": [
+        272,
+        275,
+        317,
+        328
+      ],
+      "timestamp": 1766847531.9960942
+    }
+  ]
+}

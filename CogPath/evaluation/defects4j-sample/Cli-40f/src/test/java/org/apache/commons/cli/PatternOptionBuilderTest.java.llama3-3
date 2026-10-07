@@ -1,0 +1,190 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.apache.commons.cli;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.net.URL;
+import java.util.Date;
+import org.junit.Before;
+import org.junit.After;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class PatternOptionBuilderTest {
+
+
+    @Test
+    public void testGetValueClassAt() {
+        Object result = PatternOptionBuilder.getValueClass('@');
+        assertEquals(PatternOptionBuilder.OBJECT_VALUE, result);
+    }
+
+
+    @Test
+    public void testGetValueClassColon() {
+        Object result = PatternOptionBuilder.getValueClass(':');
+        assertEquals(PatternOptionBuilder.STRING_VALUE, result);
+    }
+
+
+    @Test
+    public void testGetValueClassPercent() {
+        Object result = PatternOptionBuilder.getValueClass('%');
+        assertEquals(PatternOptionBuilder.NUMBER_VALUE, result);
+    }
+
+
+    @Test
+    public void testGetValueClassPlus() {
+        Object result = PatternOptionBuilder.getValueClass('+');
+        assertEquals(PatternOptionBuilder.CLASS_VALUE, result);
+    }
+
+
+    @Test
+    public void testGetValueClassHash() {
+        Object result = PatternOptionBuilder.getValueClass('#');
+        assertEquals(PatternOptionBuilder.DATE_VALUE, result);
+    }
+
+
+    @Test
+    public void testGetValueClassLessThan() {
+        Object result = PatternOptionBuilder.getValueClass('<');
+        assertEquals(PatternOptionBuilder.EXISTING_FILE_VALUE, result);
+    }
+
+
+    @Test
+    public void testGetValueClassGreaterThan() {
+        Object result = PatternOptionBuilder.getValueClass('>');
+        assertEquals(PatternOptionBuilder.FILE_VALUE, result);
+    }
+
+
+    @Test
+    public void testGetValueClassStar() {
+        Object result = PatternOptionBuilder.getValueClass('*');
+        assertEquals(PatternOptionBuilder.FILES_VALUE, result);
+    }
+
+
+    @Test
+    public void testGetValueClassForwardSlash() {
+        Object result = PatternOptionBuilder.getValueClass('/');
+        assertEquals(PatternOptionBuilder.URL_VALUE, result);
+    }
+
+
+    @Test
+    public void testIsValueCodeAt() {
+        boolean result = PatternOptionBuilder.isValueCode('@');
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void testIsValueCodeColon() {
+        boolean result = PatternOptionBuilder.isValueCode(':');
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void testIsValueCodePercent() {
+        boolean result = PatternOptionBuilder.isValueCode('%');
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void testIsValueCodePlus() {
+        boolean result = PatternOptionBuilder.isValueCode('+');
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void testIsValueCodeHash() {
+        boolean result = PatternOptionBuilder.isValueCode('#');
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void testIsValueCodeLessThan() {
+        boolean result = PatternOptionBuilder.isValueCode('<');
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void testIsValueCodeGreaterThan() {
+        boolean result = PatternOptionBuilder.isValueCode('>');
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void testIsValueCodeStar() {
+        boolean result = PatternOptionBuilder.isValueCode('*');
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void testIsValueCodeForwardSlash() {
+        boolean result = PatternOptionBuilder.isValueCode('/');
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void testIsValueCodeExclamation() {
+        boolean result = PatternOptionBuilder.isValueCode('!');
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void testParsePatternSimple() {
+        String pattern = "a";
+        Options options = PatternOptionBuilder.parsePattern(pattern);
+        assertNotNull(options);
+        assertEquals(1, options.getOptions().size());
+    }
+
+
+    @Test
+    public void testParsePatternInvalid() {
+        String pattern = null;
+        try {
+            PatternOptionBuilder.parsePattern(pattern);
+            fail("Expected NullPointerException");
+        } catch (NullPointerException e) {
+            // expected
+        }
+    }
+
+    @Test
+    public void  testPlaceHolder() {
+        assertTrue(true); 
+    }
+}
+

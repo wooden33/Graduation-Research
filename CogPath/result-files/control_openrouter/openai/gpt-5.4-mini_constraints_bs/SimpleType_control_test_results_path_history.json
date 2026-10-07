@@ -1,0 +1,411 @@
+{
+  "final_line_coverage": 93.41,
+  "final_branch_coverage": 96.0,
+  "final_lines_missed": [
+    48,
+    49,
+    68,
+    70,
+    165,
+    166,
+    153,
+    158
+  ],
+  "final_branches_missed": [
+    153,
+    158
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 60.44,
+      "branch_coverage": 50.0,
+      "path_history": {},
+      "lines_missed": [
+        48,
+        49,
+        68,
+        70,
+        82,
+        125,
+        126,
+        132,
+        137,
+        141,
+        142,
+        143,
+        146,
+        147,
+        148,
+        152,
+        153,
+        154,
+        155,
+        158,
+        159,
+        160,
+        165,
+        166,
+        223,
+        224,
+        225,
+        226,
+        227,
+        229,
+        231,
+        260,
+        261,
+        262,
+        264,
+        285,
+        222,
+        259,
+        284
+      ],
+      "branches_missed": [
+        125,
+        132,
+        142,
+        146,
+        153,
+        154,
+        158,
+        224,
+        226,
+        261,
+        222,
+        259,
+        284
+      ],
+      "timestamp": 1774317609.407836
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 84.62,
+      "branch_coverage": 82.0,
+      "path_history": {
+        "_narrow_319_12": 1,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_2": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_1": 1
+      },
+      "lines_missed": [
+        48,
+        49,
+        68,
+        70,
+        126,
+        137,
+        143,
+        147,
+        148,
+        158,
+        159,
+        160,
+        165,
+        166,
+        125,
+        132,
+        142,
+        146,
+        153,
+        154
+      ],
+      "branches_missed": [
+        158,
+        125,
+        132,
+        142,
+        146,
+        153,
+        154
+      ],
+      "timestamp": 1774317901.8675551
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 87.91,
+      "branch_coverage": 86.0,
+      "path_history": {
+        "_narrow_319_12": 2,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_2": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_1": 1,
+        "_narrow_319_14": 1
+      },
+      "lines_missed": [
+        48,
+        49,
+        68,
+        70,
+        126,
+        137,
+        158,
+        159,
+        160,
+        165,
+        166,
+        125,
+        132,
+        146,
+        153,
+        154
+      ],
+      "branches_missed": [
+        158,
+        125,
+        132,
+        146,
+        153,
+        154
+      ],
+      "timestamp": 1774318015.7882552
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 89.01,
+      "branch_coverage": 88.0,
+      "path_history": {
+        "_narrow_319_12": 3,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_2": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_1": 1,
+        "_narrow_319_14": 1,
+        "_narrow_319_1": 1
+      },
+      "lines_missed": [
+        48,
+        49,
+        68,
+        70,
+        126,
+        158,
+        159,
+        160,
+        165,
+        166,
+        125,
+        146,
+        153,
+        154
+      ],
+      "branches_missed": [
+        158,
+        125,
+        146,
+        153,
+        154
+      ],
+      "timestamp": 1774318091.1640916
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 90.11,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "_narrow_319_12": 4,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_2": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_1": 1,
+        "_narrow_319_14": 1,
+        "_narrow_319_1": 1,
+        "_narrow_319_6": 1
+      },
+      "lines_missed": [
+        48,
+        49,
+        68,
+        70,
+        158,
+        159,
+        160,
+        165,
+        166,
+        146,
+        153,
+        154
+      ],
+      "branches_missed": [
+        158,
+        146,
+        153,
+        154
+      ],
+      "timestamp": 1774318179.8947766
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 90.11,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "_narrow_319_12": 5,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_2": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_1": 1,
+        "_narrow_319_14": 1,
+        "_narrow_319_1": 1,
+        "_narrow_319_6": 1,
+        "_narrow_319_7": 1
+      },
+      "lines_missed": [
+        48,
+        49,
+        68,
+        70,
+        158,
+        159,
+        160,
+        165,
+        166,
+        146,
+        153,
+        154
+      ],
+      "branches_missed": [
+        158,
+        146,
+        153,
+        154
+      ],
+      "timestamp": 1774318256.1510937
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 93.41,
+      "branch_coverage": 96.0,
+      "path_history": {
+        "_narrow_319_12": 6,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_2": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_1": 1,
+        "_narrow_319_14": 1,
+        "_narrow_319_1": 1,
+        "_narrow_319_6": 1,
+        "_narrow_319_7": 1,
+        "_narrow_319_15": 1
+      },
+      "lines_missed": [
+        48,
+        49,
+        68,
+        70,
+        165,
+        166,
+        153,
+        158
+      ],
+      "branches_missed": [
+        153,
+        158
+      ],
+      "timestamp": 1774318357.9097767
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 93.41,
+      "branch_coverage": 96.0,
+      "path_history": {
+        "_narrow_319_12": 6,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_2": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_1": 1,
+        "_narrow_319_14": 1,
+        "_narrow_319_1": 1,
+        "_narrow_319_6": 1,
+        "_narrow_319_7": 1,
+        "_narrow_319_15": 1,
+        "_narrow_319_13": 1
+      },
+      "lines_missed": [
+        48,
+        49,
+        68,
+        70,
+        165,
+        166,
+        153,
+        158
+      ],
+      "branches_missed": [
+        153,
+        158
+      ],
+      "timestamp": 1774318410.797129
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 93.41,
+      "branch_coverage": 96.0,
+      "path_history": {
+        "_narrow_319_12": 7,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_2": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_1": 1,
+        "_narrow_319_14": 1,
+        "_narrow_319_1": 1,
+        "_narrow_319_6": 1,
+        "_narrow_319_7": 1,
+        "_narrow_319_15": 1,
+        "_narrow_319_13": 1,
+        "_narrow_319_10": 1
+      },
+      "lines_missed": [
+        48,
+        49,
+        68,
+        70,
+        165,
+        166,
+        153,
+        158
+      ],
+      "branches_missed": [
+        153,
+        158
+      ],
+      "timestamp": 1774318476.2755513
+    },
+    {
+      "iteration": 9,
+      "line_coverage": 93.41,
+      "branch_coverage": 96.0,
+      "path_history": {
+        "_narrow_319_12": 7,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_2": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_1": 1,
+        "_narrow_319_14": 1,
+        "_narrow_319_1": 1,
+        "_narrow_319_6": 1,
+        "_narrow_319_7": 1,
+        "_narrow_319_15": 2,
+        "_narrow_319_13": 1,
+        "_narrow_319_10": 1
+      },
+      "lines_missed": [
+        48,
+        49,
+        68,
+        70,
+        165,
+        166,
+        153,
+        158
+      ],
+      "branches_missed": [
+        153,
+        158
+      ],
+      "timestamp": 1774318598.7556496
+    }
+  ]
+}

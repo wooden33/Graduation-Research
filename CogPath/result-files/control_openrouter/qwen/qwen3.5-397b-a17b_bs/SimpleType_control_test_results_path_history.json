@@ -1,0 +1,414 @@
+{
+  "final_line_coverage": 94.51,
+  "final_branch_coverage": 96.0,
+  "final_lines_missed": [
+    68,
+    70,
+    165,
+    166,
+    285,
+    153,
+    284
+  ],
+  "final_branches_missed": [
+    153,
+    284
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 62.64,
+      "branch_coverage": 50.0,
+      "path_history": {},
+      "lines_missed": [
+        68,
+        70,
+        132,
+        137,
+        141,
+        142,
+        143,
+        146,
+        147,
+        148,
+        152,
+        153,
+        154,
+        155,
+        158,
+        159,
+        160,
+        165,
+        166,
+        223,
+        224,
+        225,
+        226,
+        227,
+        229,
+        231,
+        260,
+        261,
+        262,
+        264,
+        285,
+        322,
+        323,
+        324,
+        125,
+        222,
+        259,
+        284,
+        319
+      ],
+      "branches_missed": [
+        132,
+        142,
+        146,
+        153,
+        154,
+        158,
+        224,
+        226,
+        261,
+        125,
+        222,
+        259,
+        284,
+        319
+      ],
+      "timestamp": 1773666079.2587404
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 89.01,
+      "branch_coverage": 84.0,
+      "path_history": {
+        "_narrow_319_12": 1,
+        "_narrow_319_0": 1,
+        "equals_976_4": 1,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_1": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_0": 1
+      },
+      "lines_missed": [
+        68,
+        70,
+        137,
+        143,
+        158,
+        159,
+        160,
+        165,
+        166,
+        285,
+        132,
+        142,
+        146,
+        153,
+        154,
+        284
+      ],
+      "branches_missed": [
+        158,
+        132,
+        142,
+        146,
+        153,
+        154,
+        284
+      ],
+      "timestamp": 1773666275.855384
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 90.11,
+      "branch_coverage": 86.0,
+      "path_history": {
+        "_narrow_319_12": 2,
+        "_narrow_319_0": 1,
+        "equals_976_4": 1,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_1": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_0": 1,
+        "_narrow_319_8": 1
+      },
+      "lines_missed": [
+        68,
+        70,
+        137,
+        158,
+        159,
+        160,
+        165,
+        166,
+        285,
+        132,
+        146,
+        153,
+        154,
+        284
+      ],
+      "branches_missed": [
+        158,
+        132,
+        146,
+        153,
+        154,
+        284
+      ],
+      "timestamp": 1773666383.1799428
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 91.21,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "_narrow_319_12": 3,
+        "_narrow_319_0": 1,
+        "equals_976_4": 1,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_1": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_0": 1,
+        "_narrow_319_8": 1,
+        "_narrow_319_2": 1
+      },
+      "lines_missed": [
+        68,
+        70,
+        137,
+        159,
+        160,
+        165,
+        166,
+        285,
+        132,
+        146,
+        153,
+        158,
+        284
+      ],
+      "branches_missed": [
+        132,
+        146,
+        153,
+        158,
+        284
+      ],
+      "timestamp": 1773666490.7631118
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 93.41,
+      "branch_coverage": 94.0,
+      "path_history": {
+        "_narrow_319_12": 3,
+        "_narrow_319_0": 1,
+        "equals_976_4": 1,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_1": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_0": 1,
+        "_narrow_319_8": 1,
+        "_narrow_319_2": 1,
+        "_narrow_319_15": 1,
+        "_narrow_319_9": 1
+      },
+      "lines_missed": [
+        68,
+        70,
+        137,
+        165,
+        166,
+        285,
+        132,
+        153,
+        284
+      ],
+      "branches_missed": [
+        132,
+        153,
+        284
+      ],
+      "timestamp": 1773666596.3228707
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 93.41,
+      "branch_coverage": 94.0,
+      "path_history": {
+        "_narrow_319_12": 4,
+        "_narrow_319_0": 1,
+        "equals_976_4": 1,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_1": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_0": 1,
+        "_narrow_319_8": 1,
+        "_narrow_319_2": 1,
+        "_narrow_319_15": 1,
+        "_narrow_319_9": 1,
+        "_narrow_319_13": 1
+      },
+      "lines_missed": [
+        68,
+        70,
+        137,
+        165,
+        166,
+        285,
+        132,
+        153,
+        284
+      ],
+      "branches_missed": [
+        132,
+        153,
+        284
+      ],
+      "timestamp": 1773666712.2755136
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 94.51,
+      "branch_coverage": 96.0,
+      "path_history": {
+        "_narrow_319_12": 5,
+        "_narrow_319_0": 1,
+        "equals_976_4": 1,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_1": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_0": 1,
+        "_narrow_319_8": 1,
+        "_narrow_319_2": 1,
+        "_narrow_319_15": 1,
+        "_narrow_319_9": 1,
+        "_narrow_319_13": 1,
+        "_narrow_319_3": 1
+      },
+      "lines_missed": [
+        68,
+        70,
+        165,
+        166,
+        285,
+        153,
+        284
+      ],
+      "branches_missed": [
+        153,
+        284
+      ],
+      "timestamp": 1773666802.1459913
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 94.51,
+      "branch_coverage": 96.0,
+      "path_history": {
+        "_narrow_319_12": 6,
+        "_narrow_319_0": 1,
+        "equals_976_4": 1,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_1": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_0": 1,
+        "_narrow_319_8": 1,
+        "_narrow_319_2": 1,
+        "_narrow_319_15": 1,
+        "_narrow_319_9": 1,
+        "_narrow_319_13": 1,
+        "_narrow_319_3": 1,
+        "_narrow_319_10": 1
+      },
+      "lines_missed": [
+        68,
+        70,
+        165,
+        166,
+        285,
+        153,
+        284
+      ],
+      "branches_missed": [
+        153,
+        284
+      ],
+      "timestamp": 1773666952.6003847
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 94.51,
+      "branch_coverage": 96.0,
+      "path_history": {
+        "_narrow_319_12": 6,
+        "_narrow_319_0": 1,
+        "equals_976_4": 1,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_1": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_0": 1,
+        "_narrow_319_8": 1,
+        "_narrow_319_2": 1,
+        "_narrow_319_15": 1,
+        "_narrow_319_9": 1,
+        "_narrow_319_13": 1,
+        "_narrow_319_3": 1,
+        "_narrow_319_10": 2
+      },
+      "lines_missed": [
+        68,
+        70,
+        165,
+        166,
+        285,
+        153,
+        284
+      ],
+      "branches_missed": [
+        153,
+        284
+      ],
+      "timestamp": 1773667021.434789
+    },
+    {
+      "iteration": 9,
+      "line_coverage": 94.51,
+      "branch_coverage": 96.0,
+      "path_history": {
+        "_narrow_319_12": 7,
+        "_narrow_319_0": 1,
+        "equals_976_4": 1,
+        "buildCanonicalName_670_3": 1,
+        "buildCanonicalName_670_1": 1,
+        "getGenericSignature_805_2": 1,
+        "getGenericSignature_805_0": 1,
+        "_narrow_319_8": 1,
+        "_narrow_319_2": 1,
+        "_narrow_319_15": 1,
+        "_narrow_319_9": 1,
+        "_narrow_319_13": 1,
+        "_narrow_319_3": 1,
+        "_narrow_319_10": 3
+      },
+      "lines_missed": [
+        68,
+        70,
+        165,
+        166,
+        285,
+        153,
+        284
+      ],
+      "branches_missed": [
+        153,
+        284
+      ],
+      "timestamp": 1773667302.1989417
+    }
+  ]
+}

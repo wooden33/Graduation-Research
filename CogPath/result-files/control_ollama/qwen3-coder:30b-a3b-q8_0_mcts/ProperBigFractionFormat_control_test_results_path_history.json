@@ -1,0 +1,194 @@
+{
+  "final_line_coverage": 92.54,
+  "final_branch_coverage": 88.89,
+  "final_lines_missed": [
+    153,
+    154,
+    183,
+    205,
+    206,
+    149,
+    179,
+    201
+  ],
+  "final_branches_missed": [
+    149,
+    179,
+    201
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 88.06,
+      "branch_coverage": 81.48,
+      "path_history": {},
+      "lines_missed": [
+        153,
+        154,
+        166,
+        167,
+        183,
+        205,
+        206,
+        235,
+        149,
+        162,
+        179,
+        201,
+        234
+      ],
+      "branches_missed": [
+        149,
+        162,
+        179,
+        201,
+        234
+      ],
+      "timestamp": 1768985011.829745
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 89.55,
+      "branch_coverage": 85.19,
+      "path_history": {
+        "parse_294_6": 1,
+        "parse_294_4": 1,
+        "setWholeFormat_569_0": 1
+      },
+      "lines_missed": [
+        153,
+        154,
+        166,
+        167,
+        183,
+        205,
+        206,
+        149,
+        162,
+        179,
+        201
+      ],
+      "branches_missed": [
+        149,
+        162,
+        179,
+        201
+      ],
+      "timestamp": 1768985116.9206915
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 92.54,
+      "branch_coverage": 88.89,
+      "path_history": {
+        "parse_294_6": 2,
+        "parse_294_4": 1,
+        "setWholeFormat_569_0": 1,
+        "parse_294_2": 1
+      },
+      "lines_missed": [
+        153,
+        154,
+        183,
+        205,
+        206,
+        149,
+        179,
+        201
+      ],
+      "branches_missed": [
+        149,
+        179,
+        201
+      ],
+      "timestamp": 1768985189.7386348
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 92.54,
+      "branch_coverage": 88.89,
+      "path_history": {
+        "parse_294_6": 3,
+        "parse_294_4": 1,
+        "setWholeFormat_569_0": 1,
+        "parse_294_2": 1,
+        "parse_294_5": 1
+      },
+      "lines_missed": [
+        153,
+        154,
+        183,
+        205,
+        206,
+        149,
+        179,
+        201
+      ],
+      "branches_missed": [
+        149,
+        179,
+        201
+      ],
+      "timestamp": 1768985261.8609242
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 92.54,
+      "branch_coverage": 88.89,
+      "path_history": {
+        "parse_294_6": 4,
+        "parse_294_4": 1,
+        "setWholeFormat_569_0": 1,
+        "parse_294_2": 1,
+        "parse_294_5": 1,
+        "parse_294_10": 1
+      },
+      "lines_missed": [
+        153,
+        154,
+        183,
+        205,
+        206,
+        149,
+        179,
+        201
+      ],
+      "branches_missed": [
+        149,
+        179,
+        201
+      ],
+      "timestamp": 1768985334.7061348
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 92.54,
+      "branch_coverage": 88.89,
+      "path_history": {
+        "parse_294_6": 5,
+        "parse_294_4": 1,
+        "setWholeFormat_569_0": 1,
+        "parse_294_2": 1,
+        "parse_294_5": 1,
+        "parse_294_10": 1,
+        "parse_294_1": 1
+      },
+      "lines_missed": [
+        153,
+        154,
+        183,
+        205,
+        206,
+        149,
+        179,
+        201
+      ],
+      "branches_missed": [
+        149,
+        179,
+        201
+      ],
+      "timestamp": 1768985406.986112
+    }
+  ]
+}

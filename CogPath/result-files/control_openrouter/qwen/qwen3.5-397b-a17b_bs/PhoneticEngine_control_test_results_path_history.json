@@ -1,0 +1,128 @@
+{
+  "final_line_coverage": 99.12,
+  "final_branch_coverage": 95.45,
+  "final_lines_missed": [
+    117,
+    182,
+    447,
+    114,
+    116,
+    181,
+    260,
+    430
+  ],
+  "final_branches_missed": [
+    114,
+    116,
+    181,
+    260,
+    430
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 99.12,
+      "branch_coverage": 95.45,
+      "path_history": {},
+      "lines_missed": [
+        117,
+        182,
+        447,
+        114,
+        116,
+        181,
+        260,
+        430
+      ],
+      "branches_missed": [
+        114,
+        116,
+        181,
+        260,
+        430
+      ],
+      "timestamp": 1773651168.3184273
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 99.12,
+      "branch_coverage": 95.45,
+      "path_history": {
+        "encode_1314_1": 1
+      },
+      "lines_missed": [
+        117,
+        182,
+        447,
+        114,
+        116,
+        181,
+        260,
+        430
+      ],
+      "branches_missed": [
+        114,
+        116,
+        181,
+        260,
+        430
+      ],
+      "timestamp": 1773651322.5506556
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 99.12,
+      "branch_coverage": 95.45,
+      "path_history": {
+        "encode_1314_1": 2,
+        "encode_1314_3": 1
+      },
+      "lines_missed": [
+        117,
+        182,
+        447,
+        114,
+        116,
+        181,
+        260,
+        430
+      ],
+      "branches_missed": [
+        114,
+        116,
+        181,
+        260,
+        430
+      ],
+      "timestamp": 1773651472.1854541
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 99.12,
+      "branch_coverage": 95.45,
+      "path_history": {
+        "encode_1314_1": 3,
+        "encode_1314_3": 1,
+        "encode_1314_7": 1
+      },
+      "lines_missed": [
+        117,
+        182,
+        447,
+        114,
+        116,
+        181,
+        260,
+        430
+      ],
+      "branches_missed": [
+        114,
+        116,
+        181,
+        260,
+        430
+      ],
+      "timestamp": 1773651728.4864113
+    }
+  ]
+}

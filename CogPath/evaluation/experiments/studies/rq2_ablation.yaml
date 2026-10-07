@@ -1,0 +1,49 @@
+# RQ2 - ablation of Constraint-Hints (CS) and Backward Slicing (BS).
+#
+# Variant names match the columns of paper/tables/rq2_ablation.tex, so the mapping
+# from a paper column to a run is mechanical instead of being inferred from a
+# result directory name.
+#
+# HISTORY -- why this file exists
+# ------------------------------
+# The published `w/o CS+BS` column was aggregated from a run whose directory is
+# named `..._q8_0_mcts`, i.e. it also had the MCTS repair prompt enabled.  A clean
+# base run (`..._q8_0`, 130/130 classes) already exists but was never aggregated.
+# Re-aggregating it moves the column from 43.44/36.57 to 41.33/33.31, which flips
+# the ablation's stated interpretation from sub-additive (partial overlap) to
+# super-additive (complementary).  The `repair` factor below makes that
+# coincidence impossible to repeat.
+#
+# The clean base is `w_o_cs_bs` with `repair: traditional`, which is what CogPath
+# itself uses -- the ablation is supposed to remove only CS and BS.
+
+study: rq2_ablation
+extends: ../base.yaml
+description: >-
+  2x2 ablation of Constraint-Hints and Backward Slicing, with the repair prompt
+  held constant at the traditional variant.
+
+variants:
+  # full CogPath
+  cogpath:
+    constraint_hints: enabled
+    backward_slicing: enabled
+    repair: traditional
+
+  # w/o CS -- Backward Slicing only
+  w_o_cs:
+    constraint_hints: disabled
+    backward_slicing: enabled
+    repair: traditional
+
+  # w/o BS -- Constraint-Hints only
+  w_o_bs:
+    constraint_hints: enabled
+    backward_slicing: disabled
+    repair: traditional
+
+  # w/o CS+BS -- the clean base
+  w_o_cs_bs:
+    constraint_hints: disabled
+    backward_slicing: disabled
+    repair: traditional

@@ -1,0 +1,466 @@
+{
+  "final_line_coverage": 98.04,
+  "final_branch_coverage": 89.39,
+  "final_lines_missed": [
+    188,
+    196,
+    125,
+    134,
+    152,
+    219,
+    225
+  ],
+  "final_branches_missed": [
+    125,
+    134,
+    152,
+    219,
+    225
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 94.12,
+      "branch_coverage": 68.18,
+      "path_history": {},
+      "lines_missed": [
+        88,
+        116,
+        134,
+        180,
+        188,
+        196,
+        125,
+        152,
+        206,
+        212,
+        213,
+        214,
+        215,
+        216,
+        218,
+        219,
+        225,
+        226,
+        227,
+        228,
+        230,
+        231,
+        232
+      ],
+      "branches_missed": [
+        134,
+        125,
+        152,
+        206,
+        212,
+        213,
+        214,
+        215,
+        216,
+        218,
+        219,
+        225,
+        226,
+        227,
+        228,
+        230,
+        231,
+        232
+      ],
+      "timestamp": 1774327543.32245
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 98.04,
+      "branch_coverage": 71.21,
+      "path_history": {
+        "equals_374_10": 1,
+        "equals_374_5": 1
+      },
+      "lines_missed": [
+        188,
+        196,
+        125,
+        134,
+        152,
+        206,
+        212,
+        213,
+        215,
+        216,
+        218,
+        219,
+        225,
+        226,
+        227,
+        228,
+        230,
+        231,
+        232
+      ],
+      "branches_missed": [
+        125,
+        134,
+        152,
+        206,
+        212,
+        213,
+        215,
+        216,
+        218,
+        219,
+        225,
+        226,
+        227,
+        228,
+        230,
+        231,
+        232
+      ],
+      "timestamp": 1774327638.0961008
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 98.04,
+      "branch_coverage": 75.76,
+      "path_history": {
+        "equals_374_10": 2,
+        "equals_374_5": 1,
+        "equals_374_0": 1
+      },
+      "lines_missed": [
+        188,
+        196,
+        125,
+        134,
+        152,
+        212,
+        213,
+        215,
+        216,
+        218,
+        219,
+        225,
+        228,
+        230,
+        231,
+        232
+      ],
+      "branches_missed": [
+        125,
+        134,
+        152,
+        212,
+        213,
+        215,
+        216,
+        218,
+        219,
+        225,
+        228,
+        230,
+        231,
+        232
+      ],
+      "timestamp": 1774327685.3955705
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 98.04,
+      "branch_coverage": 77.27,
+      "path_history": {
+        "equals_374_10": 3,
+        "equals_374_5": 1,
+        "equals_374_0": 1,
+        "equals_374_3": 1
+      },
+      "lines_missed": [
+        188,
+        196,
+        125,
+        134,
+        152,
+        213,
+        215,
+        216,
+        218,
+        219,
+        225,
+        228,
+        230,
+        231,
+        232
+      ],
+      "branches_missed": [
+        125,
+        134,
+        152,
+        213,
+        215,
+        216,
+        218,
+        219,
+        225,
+        228,
+        230,
+        231,
+        232
+      ],
+      "timestamp": 1774327736.0356066
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 98.04,
+      "branch_coverage": 78.79,
+      "path_history": {
+        "equals_374_10": 4,
+        "equals_374_5": 1,
+        "equals_374_0": 1,
+        "equals_374_3": 1,
+        "equals_374_7": 1
+      },
+      "lines_missed": [
+        188,
+        196,
+        125,
+        134,
+        152,
+        213,
+        215,
+        218,
+        219,
+        225,
+        228,
+        230,
+        231,
+        232
+      ],
+      "branches_missed": [
+        125,
+        134,
+        152,
+        213,
+        215,
+        218,
+        219,
+        225,
+        228,
+        230,
+        231,
+        232
+      ],
+      "timestamp": 1774327817.5253959
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 98.04,
+      "branch_coverage": 80.3,
+      "path_history": {
+        "equals_374_10": 5,
+        "equals_374_5": 1,
+        "equals_374_0": 1,
+        "equals_374_3": 1,
+        "equals_374_7": 1,
+        "equals_374_9": 1
+      },
+      "lines_missed": [
+        188,
+        196,
+        125,
+        134,
+        152,
+        213,
+        215,
+        219,
+        225,
+        228,
+        230,
+        231,
+        232
+      ],
+      "branches_missed": [
+        125,
+        134,
+        152,
+        213,
+        215,
+        219,
+        225,
+        228,
+        230,
+        231,
+        232
+      ],
+      "timestamp": 1774327873.3078487
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 98.04,
+      "branch_coverage": 87.88,
+      "path_history": {
+        "equals_374_10": 6,
+        "equals_374_5": 1,
+        "equals_374_0": 1,
+        "equals_374_3": 1,
+        "equals_374_7": 1,
+        "equals_374_9": 1,
+        "equals_374_4": 1
+      },
+      "lines_missed": [
+        188,
+        196,
+        125,
+        134,
+        152,
+        215,
+        219,
+        225
+      ],
+      "branches_missed": [
+        125,
+        134,
+        152,
+        215,
+        219,
+        225
+      ],
+      "timestamp": 1774327920.2803366
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 98.04,
+      "branch_coverage": 87.88,
+      "path_history": {
+        "equals_374_10": 7,
+        "equals_374_5": 1,
+        "equals_374_0": 1,
+        "equals_374_3": 1,
+        "equals_374_7": 1,
+        "equals_374_9": 1,
+        "equals_374_4": 1,
+        "equals_374_6": 1
+      },
+      "lines_missed": [
+        188,
+        196,
+        125,
+        134,
+        152,
+        215,
+        219,
+        225
+      ],
+      "branches_missed": [
+        125,
+        134,
+        152,
+        215,
+        219,
+        225
+      ],
+      "timestamp": 1774327991.369647
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 98.04,
+      "branch_coverage": 87.88,
+      "path_history": {
+        "equals_374_10": 8,
+        "equals_374_5": 1,
+        "equals_374_0": 1,
+        "equals_374_3": 1,
+        "equals_374_7": 1,
+        "equals_374_9": 1,
+        "equals_374_4": 1,
+        "equals_374_6": 1,
+        "equals_374_8": 1
+      },
+      "lines_missed": [
+        188,
+        196,
+        125,
+        134,
+        152,
+        215,
+        219,
+        225
+      ],
+      "branches_missed": [
+        125,
+        134,
+        152,
+        215,
+        219,
+        225
+      ],
+      "timestamp": 1774328036.8739748
+    },
+    {
+      "iteration": 9,
+      "line_coverage": 98.04,
+      "branch_coverage": 89.39,
+      "path_history": {
+        "equals_374_10": 9,
+        "equals_374_5": 1,
+        "equals_374_0": 1,
+        "equals_374_3": 1,
+        "equals_374_7": 1,
+        "equals_374_9": 1,
+        "equals_374_4": 1,
+        "equals_374_6": 2,
+        "equals_374_8": 1
+      },
+      "lines_missed": [
+        188,
+        196,
+        125,
+        134,
+        152,
+        219,
+        225
+      ],
+      "branches_missed": [
+        125,
+        134,
+        152,
+        219,
+        225
+      ],
+      "timestamp": 1774328114.6401632
+    },
+    {
+      "iteration": 10,
+      "line_coverage": 98.04,
+      "branch_coverage": 89.39,
+      "path_history": {
+        "equals_374_10": 10,
+        "equals_374_5": 1,
+        "equals_374_0": 1,
+        "equals_374_3": 1,
+        "equals_374_7": 1,
+        "equals_374_9": 1,
+        "equals_374_4": 1,
+        "equals_374_6": 2,
+        "equals_374_8": 1
+      },
+      "lines_missed": [
+        188,
+        196,
+        125,
+        134,
+        152,
+        219,
+        225
+      ],
+      "branches_missed": [
+        125,
+        134,
+        152,
+        219,
+        225
+      ],
+      "timestamp": 1774328149.6488326
+    }
+  ]
+}

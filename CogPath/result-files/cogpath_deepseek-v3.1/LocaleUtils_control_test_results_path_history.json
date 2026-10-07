@@ -1,0 +1,397 @@
+{
+  "final_line_coverage": 97.8,
+  "final_branch_coverage": 98.57,
+  "final_lines_missed": [
+    57,
+    58,
+    309,
+    103
+  ],
+  "final_branches_missed": [
+    103
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 89.01,
+      "branch_coverage": 82.86,
+      "path_history": {},
+      "lines_missed": [
+        57,
+        58,
+        99,
+        104,
+        110,
+        113,
+        128,
+        142,
+        145,
+        197,
+        309,
+        98,
+        103,
+        109,
+        112,
+        118,
+        127,
+        135,
+        141,
+        144,
+        193,
+        196
+      ],
+      "branches_missed": [
+        98,
+        103,
+        109,
+        112,
+        118,
+        127,
+        135,
+        141,
+        144,
+        193,
+        196
+      ],
+      "timestamp": 1766761143.8977983
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 91.21,
+      "branch_coverage": 87.14,
+      "path_history": {
+        "toLocale_128_17": 1,
+        "localeLookupList_535_4": 1,
+        "localeLookupList_535_2": 1
+      },
+      "lines_missed": [
+        57,
+        58,
+        99,
+        104,
+        110,
+        113,
+        128,
+        142,
+        309,
+        98,
+        103,
+        109,
+        112,
+        118,
+        127,
+        135,
+        141
+      ],
+      "branches_missed": [
+        98,
+        103,
+        109,
+        112,
+        118,
+        127,
+        135,
+        141
+      ],
+      "timestamp": 1766761217.7445097
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 92.31,
+      "branch_coverage": 88.57,
+      "path_history": {
+        "toLocale_128_17": 1,
+        "localeLookupList_535_4": 1,
+        "localeLookupList_535_2": 1,
+        "toLocale_128_11": 1
+      },
+      "lines_missed": [
+        57,
+        58,
+        99,
+        104,
+        110,
+        128,
+        142,
+        309,
+        98,
+        103,
+        109,
+        118,
+        127,
+        135,
+        141
+      ],
+      "branches_missed": [
+        98,
+        103,
+        109,
+        118,
+        127,
+        135,
+        141
+      ],
+      "timestamp": 1766761262.3186908
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 93.41,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "toLocale_128_17": 1,
+        "localeLookupList_535_4": 1,
+        "localeLookupList_535_2": 1,
+        "toLocale_128_11": 1,
+        "toLocale_128_16": 1,
+        "toLocale_128_13": 1
+      },
+      "lines_missed": [
+        57,
+        58,
+        99,
+        104,
+        110,
+        128,
+        309,
+        98,
+        103,
+        109,
+        118,
+        127,
+        135
+      ],
+      "branches_missed": [
+        98,
+        103,
+        109,
+        118,
+        127,
+        135
+      ],
+      "timestamp": 1766761334.4732044
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 95.6,
+      "branch_coverage": 92.86,
+      "path_history": {
+        "toLocale_128_17": 1,
+        "localeLookupList_535_4": 1,
+        "localeLookupList_535_2": 1,
+        "toLocale_128_11": 1,
+        "toLocale_128_16": 1,
+        "toLocale_128_13": 1,
+        "toLocale_128_10": 1,
+        "toLocale_128_6": 1
+      },
+      "lines_missed": [
+        57,
+        58,
+        99,
+        128,
+        309,
+        98,
+        103,
+        118,
+        127,
+        135
+      ],
+      "branches_missed": [
+        98,
+        103,
+        118,
+        127,
+        135
+      ],
+      "timestamp": 1766761385.8368628
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 96.7,
+      "branch_coverage": 95.71,
+      "path_history": {
+        "toLocale_128_17": 1,
+        "localeLookupList_535_4": 1,
+        "localeLookupList_535_2": 1,
+        "toLocale_128_11": 1,
+        "toLocale_128_16": 1,
+        "toLocale_128_13": 1,
+        "toLocale_128_10": 1,
+        "toLocale_128_6": 1,
+        "toLocale_128_14": 1,
+        "toLocale_128_3": 1
+      },
+      "lines_missed": [
+        57,
+        58,
+        128,
+        309,
+        103,
+        118,
+        127
+      ],
+      "branches_missed": [
+        103,
+        118,
+        127
+      ],
+      "timestamp": 1766761437.8124373
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 97.8,
+      "branch_coverage": 97.14,
+      "path_history": {
+        "toLocale_128_17": 1,
+        "localeLookupList_535_4": 1,
+        "localeLookupList_535_2": 1,
+        "toLocale_128_11": 1,
+        "toLocale_128_16": 1,
+        "toLocale_128_13": 1,
+        "toLocale_128_10": 1,
+        "toLocale_128_6": 1,
+        "toLocale_128_14": 1,
+        "toLocale_128_3": 1,
+        "toLocale_128_9": 1,
+        "toLocale_128_7": 1
+      },
+      "lines_missed": [
+        57,
+        58,
+        309,
+        103,
+        118
+      ],
+      "branches_missed": [
+        103,
+        118
+      ],
+      "timestamp": 1766761491.815093
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 97.8,
+      "branch_coverage": 98.57,
+      "path_history": {
+        "toLocale_128_17": 1,
+        "localeLookupList_535_4": 1,
+        "localeLookupList_535_2": 1,
+        "toLocale_128_11": 1,
+        "toLocale_128_16": 1,
+        "toLocale_128_13": 1,
+        "toLocale_128_10": 1,
+        "toLocale_128_6": 1,
+        "toLocale_128_14": 1,
+        "toLocale_128_3": 1,
+        "toLocale_128_9": 1,
+        "toLocale_128_7": 1,
+        "toLocale_128_4": 1
+      },
+      "lines_missed": [
+        57,
+        58,
+        309,
+        103
+      ],
+      "branches_missed": [
+        103
+      ],
+      "timestamp": 1766761543.587081
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 97.8,
+      "branch_coverage": 98.57,
+      "path_history": {
+        "toLocale_128_17": 1,
+        "localeLookupList_535_4": 1,
+        "localeLookupList_535_2": 1,
+        "toLocale_128_11": 1,
+        "toLocale_128_16": 1,
+        "toLocale_128_13": 1,
+        "toLocale_128_10": 1,
+        "toLocale_128_6": 2,
+        "toLocale_128_14": 1,
+        "toLocale_128_3": 1,
+        "toLocale_128_9": 1,
+        "toLocale_128_7": 1,
+        "toLocale_128_4": 1,
+        "toLocale_128_8": 1
+      },
+      "lines_missed": [
+        57,
+        58,
+        309,
+        103
+      ],
+      "branches_missed": [
+        103
+      ],
+      "timestamp": 1766761598.6638958
+    },
+    {
+      "iteration": 9,
+      "line_coverage": 97.8,
+      "branch_coverage": 98.57,
+      "path_history": {
+        "toLocale_128_17": 1,
+        "localeLookupList_535_4": 1,
+        "localeLookupList_535_2": 1,
+        "toLocale_128_11": 1,
+        "toLocale_128_16": 1,
+        "toLocale_128_13": 1,
+        "toLocale_128_10": 1,
+        "toLocale_128_6": 2,
+        "toLocale_128_14": 1,
+        "toLocale_128_3": 1,
+        "toLocale_128_9": 1,
+        "toLocale_128_7": 1,
+        "toLocale_128_4": 1,
+        "toLocale_128_8": 1,
+        "toLocale_128_12": 1
+      },
+      "lines_missed": [
+        57,
+        58,
+        309,
+        103
+      ],
+      "branches_missed": [
+        103
+      ],
+      "timestamp": 1766761642.8914337
+    },
+    {
+      "iteration": 10,
+      "line_coverage": 97.8,
+      "branch_coverage": 98.57,
+      "path_history": {
+        "toLocale_128_17": 1,
+        "localeLookupList_535_4": 1,
+        "localeLookupList_535_2": 1,
+        "toLocale_128_11": 2,
+        "toLocale_128_16": 1,
+        "toLocale_128_13": 1,
+        "toLocale_128_10": 1,
+        "toLocale_128_6": 2,
+        "toLocale_128_14": 1,
+        "toLocale_128_3": 1,
+        "toLocale_128_9": 1,
+        "toLocale_128_7": 1,
+        "toLocale_128_4": 1,
+        "toLocale_128_8": 1,
+        "toLocale_128_12": 1
+      },
+      "lines_missed": [
+        57,
+        58,
+        309,
+        103
+      ],
+      "branches_missed": [
+        103
+      ],
+      "timestamp": 1766761687.8036454
+    }
+  ]
+}

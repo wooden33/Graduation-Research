@@ -1,0 +1,267 @@
+{
+  "final_line_coverage": 91.67,
+  "final_branch_coverage": 90.0,
+  "final_lines_missed": [
+    104,
+    110,
+    121,
+    122,
+    123,
+    103,
+    109
+  ],
+  "final_branches_missed": [
+    103,
+    109
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 78.33,
+      "branch_coverage": 55.0,
+      "path_history": {},
+      "lines_missed": [
+        104,
+        110,
+        121,
+        122,
+        123,
+        128,
+        136,
+        137,
+        138,
+        139,
+        140,
+        143,
+        160,
+        102,
+        103,
+        109,
+        127,
+        159
+      ],
+      "branches_missed": [
+        136,
+        139,
+        102,
+        103,
+        109,
+        127,
+        159
+      ],
+      "timestamp": 1768913169.1331928
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 91.67,
+      "branch_coverage": 80.0,
+      "path_history": {
+        "getPropertyDescriptors_221_13": 1,
+        "toString_454_1": 1,
+        "getPropertyDescriptor_380_2": 1,
+        "getPropertyDescriptor_380_1": 1
+      },
+      "lines_missed": [
+        104,
+        110,
+        121,
+        122,
+        123,
+        102,
+        103,
+        109,
+        136
+      ],
+      "branches_missed": [
+        102,
+        103,
+        109,
+        136
+      ],
+      "timestamp": 1768913255.103986
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 91.67,
+      "branch_coverage": 85.0,
+      "path_history": {
+        "getPropertyDescriptors_221_13": 1,
+        "toString_454_1": 1,
+        "getPropertyDescriptor_380_2": 1,
+        "getPropertyDescriptor_380_1": 2,
+        "getPropertyDescriptors_221_10": 1,
+        "getPropertyDescriptor_380_0": 1
+      },
+      "lines_missed": [
+        104,
+        110,
+        121,
+        122,
+        123,
+        103,
+        109,
+        136
+      ],
+      "branches_missed": [
+        103,
+        109,
+        136
+      ],
+      "timestamp": 1768913316.359011
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 91.67,
+      "branch_coverage": 85.0,
+      "path_history": {
+        "getPropertyDescriptors_221_13": 1,
+        "toString_454_1": 1,
+        "getPropertyDescriptor_380_2": 1,
+        "getPropertyDescriptor_380_1": 3,
+        "getPropertyDescriptors_221_10": 1,
+        "getPropertyDescriptor_380_0": 2,
+        "getPropertyDescriptors_221_12": 1
+      },
+      "lines_missed": [
+        104,
+        110,
+        121,
+        122,
+        123,
+        103,
+        109,
+        136
+      ],
+      "branches_missed": [
+        103,
+        109,
+        136
+      ],
+      "timestamp": 1768913386.5618649
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 91.67,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "getPropertyDescriptors_221_13": 2,
+        "toString_454_1": 1,
+        "getPropertyDescriptor_380_2": 2,
+        "getPropertyDescriptor_380_1": 3,
+        "getPropertyDescriptors_221_10": 1,
+        "getPropertyDescriptor_380_0": 2,
+        "getPropertyDescriptors_221_12": 1,
+        "getPropertyDescriptors_221_4": 1
+      },
+      "lines_missed": [
+        104,
+        110,
+        121,
+        122,
+        123,
+        103,
+        109
+      ],
+      "branches_missed": [
+        103,
+        109
+      ],
+      "timestamp": 1768913453.1455364
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 91.67,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "getPropertyDescriptors_221_13": 2,
+        "toString_454_1": 1,
+        "getPropertyDescriptor_380_2": 2,
+        "getPropertyDescriptor_380_1": 3,
+        "getPropertyDescriptors_221_10": 1,
+        "getPropertyDescriptor_380_0": 2,
+        "getPropertyDescriptors_221_12": 2,
+        "getPropertyDescriptors_221_4": 1,
+        "getPropertyDescriptors_221_6": 1
+      },
+      "lines_missed": [
+        104,
+        110,
+        121,
+        122,
+        123,
+        103,
+        109
+      ],
+      "branches_missed": [
+        103,
+        109
+      ],
+      "timestamp": 1768913507.6788156
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 91.67,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "getPropertyDescriptors_221_13": 2,
+        "toString_454_1": 1,
+        "getPropertyDescriptor_380_2": 2,
+        "getPropertyDescriptor_380_1": 3,
+        "getPropertyDescriptors_221_10": 1,
+        "getPropertyDescriptor_380_0": 2,
+        "getPropertyDescriptors_221_12": 2,
+        "getPropertyDescriptors_221_4": 1,
+        "getPropertyDescriptors_221_6": 1,
+        "getPropertyDescriptors_221_5": 1,
+        "getPropertyDescriptors_221_8": 1
+      },
+      "lines_missed": [
+        104,
+        110,
+        121,
+        122,
+        123,
+        103,
+        109
+      ],
+      "branches_missed": [
+        103,
+        109
+      ],
+      "timestamp": 1768913563.732076
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 91.67,
+      "branch_coverage": 90.0,
+      "path_history": {
+        "getPropertyDescriptors_221_13": 2,
+        "toString_454_1": 1,
+        "getPropertyDescriptor_380_2": 2,
+        "getPropertyDescriptor_380_1": 3,
+        "getPropertyDescriptors_221_10": 2,
+        "getPropertyDescriptor_380_0": 2,
+        "getPropertyDescriptors_221_12": 2,
+        "getPropertyDescriptors_221_4": 1,
+        "getPropertyDescriptors_221_6": 1,
+        "getPropertyDescriptors_221_5": 1,
+        "getPropertyDescriptors_221_8": 1,
+        "getPropertyDescriptors_221_11": 1
+      },
+      "lines_missed": [
+        104,
+        110,
+        121,
+        122,
+        123,
+        103,
+        109
+      ],
+      "branches_missed": [
+        103,
+        109
+      ],
+      "timestamp": 1768913645.2582421
+    }
+  ]
+}

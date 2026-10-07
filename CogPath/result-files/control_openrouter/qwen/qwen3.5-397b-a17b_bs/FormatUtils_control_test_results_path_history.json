@@ -1,0 +1,162 @@
+{
+  "final_line_coverage": 100.0,
+  "final_branch_coverage": 100.0,
+  "final_lines_missed": [],
+  "final_branches_missed": [],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 88.08,
+      "branch_coverage": 83.33,
+      "path_history": {},
+      "lines_missed": [
+        114,
+        157,
+        158,
+        160,
+        174,
+        175,
+        176,
+        177,
+        179,
+        181,
+        182,
+        184,
+        203,
+        205,
+        210,
+        298,
+        308,
+        325,
+        113,
+        156,
+        161,
+        202,
+        204,
+        209,
+        297,
+        299,
+        324
+      ],
+      "branches_missed": [
+        157,
+        174,
+        176,
+        181,
+        113,
+        156,
+        161,
+        202,
+        204,
+        209,
+        297,
+        299,
+        324
+      ],
+      "timestamp": 1773659532.389351
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 96.03,
+      "branch_coverage": 94.12,
+      "path_history": {
+        "writePaddedInteger_408_10": 1,
+        "writePaddedInteger_408_4": 1,
+        "appendPaddedInteger_271_6": 1,
+        "appendPaddedInteger_271_7": 1,
+        "writePaddedInteger_627_6": 1,
+        "writePaddedInteger_627_4": 1,
+        "writeUnpaddedInteger_939_2": 1,
+        "writeUnpaddedInteger_939_1": 1,
+        "writeUnpaddedInteger_1063_1": 1
+      },
+      "lines_missed": [
+        114,
+        175,
+        177,
+        182,
+        203,
+        210,
+        113,
+        174,
+        176,
+        181,
+        202,
+        209
+      ],
+      "branches_missed": [
+        113,
+        174,
+        176,
+        181,
+        202,
+        209
+      ],
+      "timestamp": 1773659937.6143305
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 96.69,
+      "branch_coverage": 95.1,
+      "path_history": {
+        "writePaddedInteger_408_10": 1,
+        "writePaddedInteger_408_4": 1,
+        "appendPaddedInteger_271_6": 2,
+        "appendPaddedInteger_271_7": 1,
+        "writePaddedInteger_627_6": 2,
+        "writePaddedInteger_627_4": 1,
+        "writeUnpaddedInteger_939_2": 1,
+        "writeUnpaddedInteger_939_1": 1,
+        "writeUnpaddedInteger_1063_1": 1,
+        "writePaddedInteger_408_9": 1,
+        "appendPaddedInteger_271_4": 1,
+        "writePaddedInteger_627_3": 1
+      },
+      "lines_missed": [
+        114,
+        175,
+        182,
+        203,
+        210,
+        113,
+        174,
+        181,
+        202,
+        209
+      ],
+      "branches_missed": [
+        113,
+        174,
+        181,
+        202,
+        209
+      ],
+      "timestamp": 1773660067.732588
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 100.0,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "writePaddedInteger_408_10": 1,
+        "writePaddedInteger_408_4": 1,
+        "appendPaddedInteger_271_6": 3,
+        "appendPaddedInteger_271_7": 1,
+        "writePaddedInteger_627_6": 3,
+        "writePaddedInteger_627_4": 1,
+        "writeUnpaddedInteger_939_2": 1,
+        "writeUnpaddedInteger_939_1": 1,
+        "writeUnpaddedInteger_1063_1": 1,
+        "writePaddedInteger_408_9": 1,
+        "appendPaddedInteger_271_4": 2,
+        "writePaddedInteger_627_3": 1,
+        "writePaddedInteger_408_11": 1,
+        "writePaddedInteger_408_7": 1,
+        "writePaddedInteger_627_1": 1
+      },
+      "lines_missed": [],
+      "branches_missed": [],
+      "timestamp": 1773660257.127277
+    }
+  ]
+}

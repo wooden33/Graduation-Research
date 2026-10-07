@@ -1,0 +1,370 @@
+{
+  "final_line_coverage": 96.36,
+  "final_branch_coverage": 96.0,
+  "final_lines_missed": [
+    170,
+    171,
+    208,
+    209,
+    410,
+    504,
+    308,
+    377,
+    503
+  ],
+  "final_branches_missed": [
+    308,
+    377,
+    503
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 92.73,
+      "branch_coverage": 84.0,
+      "path_history": {},
+      "lines_missed": [
+        170,
+        171,
+        208,
+        209,
+        255,
+        256,
+        410,
+        435,
+        442,
+        448,
+        490,
+        504,
+        308,
+        353,
+        377,
+        434,
+        441,
+        446,
+        494,
+        503
+      ],
+      "branches_missed": [
+        308,
+        353,
+        377,
+        434,
+        441,
+        446,
+        494,
+        503
+      ],
+      "timestamp": 1773630328.9189553
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 93.33,
+      "branch_coverage": 88.0,
+      "path_history": {
+        "decode_785_9": 1,
+        "encode_1394_5": 1,
+        "encode_1394_7": 1
+      },
+      "lines_missed": [
+        170,
+        171,
+        208,
+        209,
+        255,
+        256,
+        410,
+        435,
+        442,
+        490,
+        504,
+        308,
+        353,
+        377,
+        434,
+        441,
+        446,
+        494,
+        503
+      ],
+      "branches_missed": [
+        308,
+        353,
+        377,
+        434,
+        441,
+        446,
+        494,
+        503
+      ],
+      "timestamp": 1773630485.9003162
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 94.55,
+      "branch_coverage": 89.33,
+      "path_history": {
+        "decode_785_9": 1,
+        "encode_1394_5": 1,
+        "encode_1394_7": 1,
+        "decode_785_8": 1,
+        "encode_1394_6": 1
+      },
+      "lines_missed": [
+        170,
+        171,
+        208,
+        209,
+        410,
+        435,
+        442,
+        490,
+        504,
+        308,
+        353,
+        377,
+        434,
+        441,
+        446,
+        503
+      ],
+      "branches_missed": [
+        308,
+        353,
+        377,
+        434,
+        441,
+        446,
+        503
+      ],
+      "timestamp": 1773630641.6873803
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 95.15,
+      "branch_coverage": 93.33,
+      "path_history": {
+        "decode_785_9": 1,
+        "encode_1394_5": 1,
+        "encode_1394_7": 1,
+        "decode_785_8": 1,
+        "encode_1394_6": 1,
+        "decode_785_7": 1,
+        "encode_1394_4": 1
+      },
+      "lines_missed": [
+        170,
+        171,
+        208,
+        209,
+        410,
+        435,
+        442,
+        504,
+        308,
+        377,
+        434,
+        441,
+        503
+      ],
+      "branches_missed": [
+        308,
+        377,
+        434,
+        441,
+        503
+      ],
+      "timestamp": 1773630891.6285439
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 95.76,
+      "branch_coverage": 94.67,
+      "path_history": {
+        "decode_785_9": 1,
+        "encode_1394_5": 1,
+        "encode_1394_7": 1,
+        "decode_785_8": 1,
+        "encode_1394_6": 1,
+        "decode_785_7": 1,
+        "encode_1394_4": 1,
+        "decode_785_5": 1,
+        "encode_1394_3": 1,
+        "encode_1394_8": 1
+      },
+      "lines_missed": [
+        170,
+        171,
+        208,
+        209,
+        410,
+        435,
+        504,
+        308,
+        377,
+        434,
+        503
+      ],
+      "branches_missed": [
+        308,
+        377,
+        434,
+        503
+      ],
+      "timestamp": 1773631057.1868753
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 96.36,
+      "branch_coverage": 96.0,
+      "path_history": {
+        "decode_785_9": 1,
+        "encode_1394_5": 1,
+        "encode_1394_7": 1,
+        "decode_785_8": 2,
+        "encode_1394_6": 1,
+        "decode_785_7": 1,
+        "encode_1394_4": 1,
+        "decode_785_5": 1,
+        "encode_1394_3": 1,
+        "encode_1394_8": 1,
+        "decode_785_6": 1,
+        "encode_1394_0": 1,
+        "encode_1394_1": 1
+      },
+      "lines_missed": [
+        170,
+        171,
+        208,
+        209,
+        410,
+        504,
+        308,
+        377,
+        503
+      ],
+      "branches_missed": [
+        308,
+        377,
+        503
+      ],
+      "timestamp": 1773631229.0473864
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 96.36,
+      "branch_coverage": 96.0,
+      "path_history": {
+        "decode_785_9": 2,
+        "encode_1394_5": 1,
+        "encode_1394_7": 1,
+        "decode_785_8": 2,
+        "encode_1394_6": 1,
+        "decode_785_7": 1,
+        "encode_1394_4": 1,
+        "decode_785_5": 1,
+        "encode_1394_3": 1,
+        "encode_1394_8": 1,
+        "decode_785_6": 1,
+        "encode_1394_0": 1,
+        "encode_1394_1": 1,
+        "decode_785_10": 1
+      },
+      "lines_missed": [
+        170,
+        171,
+        208,
+        209,
+        410,
+        504,
+        308,
+        377,
+        503
+      ],
+      "branches_missed": [
+        308,
+        377,
+        503
+      ],
+      "timestamp": 1773631350.2230022
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 96.36,
+      "branch_coverage": 96.0,
+      "path_history": {
+        "decode_785_9": 2,
+        "encode_1394_5": 1,
+        "encode_1394_7": 1,
+        "decode_785_8": 2,
+        "encode_1394_6": 1,
+        "decode_785_7": 1,
+        "encode_1394_4": 1,
+        "decode_785_5": 1,
+        "encode_1394_3": 1,
+        "encode_1394_8": 1,
+        "decode_785_6": 1,
+        "encode_1394_0": 1,
+        "encode_1394_1": 1,
+        "decode_785_10": 2,
+        "decode_785_11": 1
+      },
+      "lines_missed": [
+        170,
+        171,
+        208,
+        209,
+        410,
+        504,
+        308,
+        377,
+        503
+      ],
+      "branches_missed": [
+        308,
+        377,
+        503
+      ],
+      "timestamp": 1773631458.7455456
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 96.36,
+      "branch_coverage": 96.0,
+      "path_history": {
+        "decode_785_9": 2,
+        "encode_1394_5": 1,
+        "encode_1394_7": 1,
+        "decode_785_8": 2,
+        "encode_1394_6": 1,
+        "decode_785_7": 1,
+        "encode_1394_4": 1,
+        "decode_785_5": 2,
+        "encode_1394_3": 1,
+        "encode_1394_8": 1,
+        "decode_785_6": 1,
+        "encode_1394_0": 1,
+        "encode_1394_1": 1,
+        "decode_785_10": 2,
+        "decode_785_11": 1
+      },
+      "lines_missed": [
+        170,
+        171,
+        208,
+        209,
+        410,
+        504,
+        308,
+        377,
+        503
+      ],
+      "branches_missed": [
+        308,
+        377,
+        503
+      ],
+      "timestamp": 1773631679.816293
+    }
+  ]
+}

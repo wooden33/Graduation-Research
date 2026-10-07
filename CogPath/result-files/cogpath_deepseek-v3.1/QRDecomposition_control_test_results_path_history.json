@@ -1,0 +1,47 @@
+{
+  "final_line_coverage": 100.0,
+  "final_branch_coverage": 95.24,
+  "final_lines_missed": [
+    344,
+    387,
+    390,
+    141,
+    246,
+    343,
+    386,
+    389
+  ],
+  "final_branches_missed": [
+    141,
+    246,
+    343,
+    386,
+    389
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 100.0,
+      "branch_coverage": 95.24,
+      "path_history": {},
+      "lines_missed": [
+        344,
+        387,
+        390,
+        141,
+        246,
+        343,
+        386,
+        389
+      ],
+      "branches_missed": [
+        141,
+        246,
+        343,
+        386,
+        389
+      ],
+      "timestamp": 1766765676.463386
+    }
+  ]
+}

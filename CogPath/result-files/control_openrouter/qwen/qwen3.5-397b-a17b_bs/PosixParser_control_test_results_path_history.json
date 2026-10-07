@@ -1,0 +1,223 @@
+{
+  "final_line_coverage": 100.0,
+  "final_branch_coverage": 100.0,
+  "final_lines_missed": [],
+  "final_branches_missed": [],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 82.61,
+      "branch_coverage": 76.92,
+      "path_history": {},
+      "lines_missed": [
+        151,
+        152,
+        154,
+        156,
+        157,
+        158,
+        226,
+        281,
+        283,
+        284,
+        288,
+        289,
+        145,
+        149,
+        201,
+        224,
+        229,
+        269,
+        274
+      ],
+      "branches_missed": [
+        152,
+        281,
+        145,
+        149,
+        201,
+        224,
+        229,
+        269,
+        274
+      ],
+      "timestamp": 1773632843.5729978
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 94.2,
+      "branch_coverage": 84.62,
+      "path_history": {
+        "flatten_90_8": 1,
+        "flatten_90_6": 1,
+        "burstToken_551_2": 1,
+        "burstToken_551_4": 1
+      },
+      "lines_missed": [
+        154,
+        226,
+        283,
+        284,
+        145,
+        152,
+        201,
+        224,
+        229,
+        274,
+        281
+      ],
+      "branches_missed": [
+        145,
+        152,
+        201,
+        224,
+        229,
+        274,
+        281
+      ],
+      "timestamp": 1773633148.8124764
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 97.1,
+      "branch_coverage": 86.54,
+      "path_history": {
+        "flatten_90_8": 1,
+        "flatten_90_6": 1,
+        "burstToken_551_2": 1,
+        "burstToken_551_4": 1,
+        "flatten_90_5": 1,
+        "burstToken_551_1": 1,
+        "burstToken_551_3": 1
+      },
+      "lines_missed": [
+        154,
+        226,
+        145,
+        152,
+        201,
+        224,
+        229,
+        274
+      ],
+      "branches_missed": [
+        145,
+        152,
+        201,
+        224,
+        229,
+        274
+      ],
+      "timestamp": 1773633409.8815243
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 97.1,
+      "branch_coverage": 86.54,
+      "path_history": {
+        "flatten_90_8": 1,
+        "flatten_90_6": 1,
+        "burstToken_551_2": 1,
+        "burstToken_551_4": 2,
+        "flatten_90_5": 2,
+        "burstToken_551_1": 1,
+        "burstToken_551_3": 1,
+        "flatten_90_4": 1
+      },
+      "lines_missed": [
+        154,
+        226,
+        145,
+        152,
+        201,
+        224,
+        229,
+        274
+      ],
+      "branches_missed": [
+        145,
+        152,
+        201,
+        224,
+        229,
+        274
+      ],
+      "timestamp": 1773633867.6324952
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 97.1,
+      "branch_coverage": 90.38,
+      "path_history": {
+        "flatten_90_8": 1,
+        "flatten_90_6": 2,
+        "burstToken_551_2": 1,
+        "burstToken_551_4": 3,
+        "flatten_90_5": 3,
+        "burstToken_551_1": 1,
+        "burstToken_551_3": 2,
+        "flatten_90_4": 1
+      },
+      "lines_missed": [
+        154,
+        226,
+        145,
+        152,
+        201,
+        224,
+        229
+      ],
+      "branches_missed": [
+        145,
+        152,
+        201,
+        224,
+        229
+      ],
+      "timestamp": 1773634136.9680235
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 98.55,
+      "branch_coverage": 96.15,
+      "path_history": {
+        "flatten_90_8": 2,
+        "flatten_90_6": 2,
+        "burstToken_551_2": 1,
+        "burstToken_551_4": 3,
+        "flatten_90_5": 4,
+        "burstToken_551_1": 1,
+        "burstToken_551_3": 2,
+        "flatten_90_4": 1
+      },
+      "lines_missed": [
+        226,
+        224,
+        229
+      ],
+      "branches_missed": [
+        224,
+        229
+      ],
+      "timestamp": 1773634315.9821947
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 100.0,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "flatten_90_8": 2,
+        "flatten_90_6": 2,
+        "burstToken_551_2": 1,
+        "burstToken_551_4": 3,
+        "flatten_90_5": 4,
+        "burstToken_551_1": 1,
+        "burstToken_551_3": 2,
+        "flatten_90_4": 1
+      },
+      "lines_missed": [],
+      "branches_missed": [],
+      "timestamp": 1773634559.2190006
+    }
+  ]
+}

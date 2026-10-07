@@ -1,0 +1,294 @@
+{
+  "final_line_coverage": 99.32,
+  "final_branch_coverage": 98.21,
+  "final_lines_missed": [
+    408,
+    400
+  ],
+  "final_branches_missed": [
+    400
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 93.92,
+      "branch_coverage": 87.5,
+      "path_history": {},
+      "lines_missed": [
+        189,
+        190,
+        293,
+        355,
+        374,
+        408,
+        444,
+        623,
+        624,
+        373,
+        377,
+        400,
+        607,
+        622
+      ],
+      "branches_missed": [
+        623,
+        373,
+        377,
+        400,
+        607,
+        622
+      ],
+      "timestamp": 1773700218.0662997
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 97.3,
+      "branch_coverage": 89.29,
+      "path_history": {
+        "getCumFreq_863_10": 1,
+        "equals_1536_2": 1,
+        "equals_1536_5": 1
+      },
+      "lines_missed": [
+        374,
+        408,
+        623,
+        624,
+        373,
+        400,
+        607,
+        622
+      ],
+      "branches_missed": [
+        623,
+        373,
+        400,
+        607,
+        622
+      ],
+      "timestamp": 1773700361.0138526
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 97.3,
+      "branch_coverage": 89.29,
+      "path_history": {
+        "getCumFreq_863_10": 1,
+        "equals_1536_2": 2,
+        "equals_1536_5": 1,
+        "getCumFreq_863_8": 1,
+        "getCumFreq_863_9": 1,
+        "equals_1536_3": 1
+      },
+      "lines_missed": [
+        374,
+        408,
+        623,
+        624,
+        373,
+        400,
+        607,
+        622
+      ],
+      "branches_missed": [
+        623,
+        373,
+        400,
+        607,
+        622
+      ],
+      "timestamp": 1773700536.3870296
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 97.3,
+      "branch_coverage": 89.29,
+      "path_history": {
+        "getCumFreq_863_10": 2,
+        "equals_1536_2": 3,
+        "equals_1536_5": 1,
+        "getCumFreq_863_8": 1,
+        "getCumFreq_863_9": 1,
+        "equals_1536_3": 1,
+        "getCumFreq_863_5": 1,
+        "equals_1536_4": 1
+      },
+      "lines_missed": [
+        374,
+        408,
+        623,
+        624,
+        373,
+        400,
+        607,
+        622
+      ],
+      "branches_missed": [
+        623,
+        373,
+        400,
+        607,
+        622
+      ],
+      "timestamp": 1773700606.9709947
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 97.97,
+      "branch_coverage": 91.07,
+      "path_history": {
+        "getCumFreq_863_10": 3,
+        "equals_1536_2": 4,
+        "equals_1536_5": 2,
+        "getCumFreq_863_8": 1,
+        "getCumFreq_863_9": 1,
+        "equals_1536_3": 1,
+        "getCumFreq_863_5": 1,
+        "equals_1536_4": 1,
+        "getCumFreq_863_7": 1
+      },
+      "lines_missed": [
+        408,
+        623,
+        624,
+        400,
+        607,
+        622
+      ],
+      "branches_missed": [
+        623,
+        400,
+        607,
+        622
+      ],
+      "timestamp": 1773700818.8952901
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 97.97,
+      "branch_coverage": 91.07,
+      "path_history": {
+        "getCumFreq_863_10": 4,
+        "equals_1536_2": 5,
+        "equals_1536_5": 2,
+        "getCumFreq_863_8": 1,
+        "getCumFreq_863_9": 2,
+        "equals_1536_3": 1,
+        "getCumFreq_863_5": 1,
+        "equals_1536_4": 2,
+        "getCumFreq_863_7": 1
+      },
+      "lines_missed": [
+        408,
+        623,
+        624,
+        400,
+        607,
+        622
+      ],
+      "branches_missed": [
+        623,
+        400,
+        607,
+        622
+      ],
+      "timestamp": 1773700953.7835433
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 99.32,
+      "branch_coverage": 98.21,
+      "path_history": {
+        "getCumFreq_863_10": 4,
+        "equals_1536_2": 6,
+        "equals_1536_5": 2,
+        "getCumFreq_863_8": 2,
+        "getCumFreq_863_9": 2,
+        "equals_1536_3": 2,
+        "getCumFreq_863_5": 1,
+        "equals_1536_4": 2,
+        "getCumFreq_863_7": 1
+      },
+      "lines_missed": [
+        408,
+        400
+      ],
+      "branches_missed": [
+        400
+      ],
+      "timestamp": 1773701053.7304845
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 99.32,
+      "branch_coverage": 98.21,
+      "path_history": {
+        "getCumFreq_863_10": 5,
+        "equals_1536_2": 6,
+        "equals_1536_5": 2,
+        "getCumFreq_863_8": 2,
+        "getCumFreq_863_9": 3,
+        "equals_1536_3": 2,
+        "getCumFreq_863_5": 1,
+        "equals_1536_4": 2,
+        "getCumFreq_863_7": 1
+      },
+      "lines_missed": [
+        408,
+        400
+      ],
+      "branches_missed": [
+        400
+      ],
+      "timestamp": 1773701119.23846
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 99.32,
+      "branch_coverage": 98.21,
+      "path_history": {
+        "getCumFreq_863_10": 5,
+        "equals_1536_2": 6,
+        "equals_1536_5": 2,
+        "getCumFreq_863_8": 3,
+        "getCumFreq_863_9": 3,
+        "equals_1536_3": 2,
+        "getCumFreq_863_5": 1,
+        "equals_1536_4": 2,
+        "getCumFreq_863_7": 1
+      },
+      "lines_missed": [
+        408,
+        400
+      ],
+      "branches_missed": [
+        400
+      ],
+      "timestamp": 1773701224.2007568
+    },
+    {
+      "iteration": 9,
+      "line_coverage": 99.32,
+      "branch_coverage": 98.21,
+      "path_history": {
+        "getCumFreq_863_10": 6,
+        "equals_1536_2": 6,
+        "equals_1536_5": 2,
+        "getCumFreq_863_8": 3,
+        "getCumFreq_863_9": 4,
+        "equals_1536_3": 2,
+        "getCumFreq_863_5": 1,
+        "equals_1536_4": 2,
+        "getCumFreq_863_7": 1
+      },
+      "lines_missed": [
+        408,
+        400
+      ],
+      "branches_missed": [
+        400
+      ],
+      "timestamp": 1773701467.4977224
+    }
+  ]
+}

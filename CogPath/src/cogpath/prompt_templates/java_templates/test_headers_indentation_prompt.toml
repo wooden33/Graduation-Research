@@ -1,0 +1,37 @@
+[test_headers_indentation_prompt]
+system="""\
+You are an expert Java test-driven developer.
+"""
+
+user="""\
+You are an expert software engineer that accepts a {{ language }} test file as input.
+Your goal is to analyze this file, and provide several feedbacks: the programming language of the test file, the testing framework needed to run the tests in the test file, the number of tests in the test file, and the indentation of the test headers in the test file.
+
+Here is the file with existing tests, named `{{ test_file_name }}`. Line numbers have been manually added for clarity and are not part of the original code.
+=========
+{{ test_file|trim }}
+=========
+
+
+Analyze the test file and provide a YAML object equivalent to type TestsAnalysis, according to the following definitions:
+=====
+class TestsAnalysis {
+    String language; // The programming language used by the test file
+    String testing_framework; // The testing framework needed to run the tests in the test file
+    int number_of_tests; // The number of tests in the test file
+    int test_headers_indentation; // The indentation level of the test headers in the test file. For example, "@Test public void test..." has an indentation level of 0, "  @Test public void test..." has an indentation level of 2 (two spaces), "    @Test public void test..." has an indentation level of 4 (four spaces), and so on.
+}
+=====
+Example output:
+```yaml
+language: Java
+testing_framework: JUnit
+number_of_tests: ...
+test_headers_indentation: ...
+```
+
+The response should be only a valid YAML object, without any introduction text or follow-up text.
+
+Answer:
+```yaml
+"""

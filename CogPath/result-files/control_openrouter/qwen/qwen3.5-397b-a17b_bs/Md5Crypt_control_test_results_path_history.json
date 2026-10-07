@@ -1,0 +1,143 @@
+{
+  "final_line_coverage": 98.48,
+  "final_branch_coverage": 100.0,
+  "final_lines_missed": [
+    48
+  ],
+  "final_branches_missed": [],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 0.0,
+      "branch_coverage": 0.0,
+      "path_history": {},
+      "lines_missed": [
+        48,
+        72,
+        89,
+        90,
+        92,
+        105,
+        126,
+        141,
+        161,
+        180,
+        184,
+        185,
+        187,
+        188,
+        189,
+        190,
+        192,
+        194,
+        196,
+        201,
+        206,
+        211,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        230,
+        235,
+        236,
+        237,
+        238,
+        239,
+        241,
+        243,
+        249,
+        250,
+        256,
+        257,
+        258,
+        259,
+        261,
+        264,
+        265,
+        268,
+        269,
+        272,
+        273,
+        275,
+        277,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        294,
+        295,
+        296,
+        297,
+        298,
+        300
+      ],
+      "branches_missed": [
+        89,
+        184,
+        189,
+        222,
+        223,
+        237,
+        238,
+        256,
+        258,
+        264,
+        268,
+        272
+      ],
+      "timestamp": 1773638736.1179352
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 98.48,
+      "branch_coverage": 100.0,
+      "path_history": {},
+      "lines_missed": [
+        48
+      ],
+      "branches_missed": [],
+      "timestamp": 1773639044.9494293
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 98.48,
+      "branch_coverage": 100.0,
+      "path_history": {},
+      "lines_missed": [
+        48
+      ],
+      "branches_missed": [],
+      "timestamp": 1773639255.5998917
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 98.48,
+      "branch_coverage": 100.0,
+      "path_history": {},
+      "lines_missed": [
+        48
+      ],
+      "branches_missed": [],
+      "timestamp": 1773639581.6741118
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 98.48,
+      "branch_coverage": 100.0,
+      "path_history": {},
+      "lines_missed": [
+        48
+      ],
+      "branches_missed": [],
+      "timestamp": 1773639778.5163677
+    }
+  ]
+}

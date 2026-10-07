@@ -1,0 +1,476 @@
+{
+  "final_line_coverage": 97.44,
+  "final_branch_coverage": 96.88,
+  "final_lines_missed": [
+    95,
+    94
+  ],
+  "final_branches_missed": [
+    94
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 84.62,
+      "branch_coverage": 56.25,
+      "path_history": {},
+      "lines_missed": [
+        76,
+        92,
+        93,
+        94,
+        95,
+        98,
+        69,
+        70,
+        71,
+        72,
+        74,
+        78,
+        80,
+        84
+      ],
+      "branches_missed": [
+        93,
+        94,
+        69,
+        70,
+        71,
+        72,
+        74,
+        78,
+        80,
+        84
+      ],
+      "timestamp": 1774330155.8786104
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 84.62,
+      "branch_coverage": 62.5,
+      "path_history": {
+        "equals_270_12": 1,
+        "equals_270_8": 1
+      },
+      "lines_missed": [
+        76,
+        92,
+        93,
+        94,
+        95,
+        98,
+        69,
+        70,
+        71,
+        72,
+        74,
+        78,
+        84
+      ],
+      "branches_missed": [
+        93,
+        94,
+        69,
+        70,
+        71,
+        72,
+        74,
+        78,
+        84
+      ],
+      "timestamp": 1774330192.5710576
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 84.62,
+      "branch_coverage": 65.62,
+      "path_history": {
+        "equals_270_12": 1,
+        "equals_270_8": 1,
+        "equals_270_14": 1,
+        "equals_270_6": 1
+      },
+      "lines_missed": [
+        76,
+        92,
+        93,
+        94,
+        95,
+        98,
+        69,
+        70,
+        71,
+        72,
+        74,
+        78
+      ],
+      "branches_missed": [
+        93,
+        94,
+        69,
+        70,
+        71,
+        72,
+        74,
+        78
+      ],
+      "timestamp": 1774330229.3948975
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 97.44,
+      "branch_coverage": 81.25,
+      "path_history": {
+        "equals_270_12": 1,
+        "equals_270_8": 1,
+        "equals_270_14": 1,
+        "equals_270_6": 1,
+        "equals_270_7": 1,
+        "equals_270_5": 1
+      },
+      "lines_missed": [
+        95,
+        69,
+        70,
+        71,
+        72,
+        74,
+        94
+      ],
+      "branches_missed": [
+        69,
+        70,
+        71,
+        72,
+        74,
+        94
+      ],
+      "timestamp": 1774330267.4562924
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 97.44,
+      "branch_coverage": 84.38,
+      "path_history": {
+        "equals_270_12": 1,
+        "equals_270_8": 1,
+        "equals_270_14": 1,
+        "equals_270_6": 1,
+        "equals_270_7": 1,
+        "equals_270_5": 2,
+        "equals_270_2": 1
+      },
+      "lines_missed": [
+        95,
+        69,
+        71,
+        72,
+        74,
+        94
+      ],
+      "branches_missed": [
+        69,
+        71,
+        72,
+        74,
+        94
+      ],
+      "timestamp": 1774330305.492823
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 97.44,
+      "branch_coverage": 84.38,
+      "path_history": {
+        "equals_270_12": 1,
+        "equals_270_8": 2,
+        "equals_270_14": 1,
+        "equals_270_6": 1,
+        "equals_270_7": 1,
+        "equals_270_5": 2,
+        "equals_270_2": 1,
+        "equals_270_13": 1
+      },
+      "lines_missed": [
+        95,
+        69,
+        71,
+        72,
+        74,
+        94
+      ],
+      "branches_missed": [
+        69,
+        71,
+        72,
+        74,
+        94
+      ],
+      "timestamp": 1774330347.0084972
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 97.44,
+      "branch_coverage": 87.5,
+      "path_history": {
+        "equals_270_12": 1,
+        "equals_270_8": 2,
+        "equals_270_14": 1,
+        "equals_270_6": 1,
+        "equals_270_7": 1,
+        "equals_270_5": 3,
+        "equals_270_2": 1,
+        "equals_270_13": 1,
+        "equals_270_11": 1
+      },
+      "lines_missed": [
+        95,
+        69,
+        71,
+        72,
+        94
+      ],
+      "branches_missed": [
+        69,
+        71,
+        72,
+        94
+      ],
+      "timestamp": 1774330387.0144978
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 97.44,
+      "branch_coverage": 90.62,
+      "path_history": {
+        "equals_270_12": 1,
+        "equals_270_8": 2,
+        "equals_270_14": 1,
+        "equals_270_6": 1,
+        "equals_270_7": 2,
+        "equals_270_5": 3,
+        "equals_270_2": 1,
+        "equals_270_13": 1,
+        "equals_270_11": 1,
+        "equals_270_4": 1
+      },
+      "lines_missed": [
+        95,
+        69,
+        71,
+        94
+      ],
+      "branches_missed": [
+        69,
+        71,
+        94
+      ],
+      "timestamp": 1774330427.417525
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 97.44,
+      "branch_coverage": 90.62,
+      "path_history": {
+        "equals_270_12": 1,
+        "equals_270_8": 2,
+        "equals_270_14": 1,
+        "equals_270_6": 2,
+        "equals_270_7": 2,
+        "equals_270_5": 3,
+        "equals_270_2": 1,
+        "equals_270_13": 1,
+        "equals_270_11": 1,
+        "equals_270_4": 1,
+        "equals_270_10": 1
+      },
+      "lines_missed": [
+        95,
+        69,
+        71,
+        94
+      ],
+      "branches_missed": [
+        69,
+        71,
+        94
+      ],
+      "timestamp": 1774330465.7805529
+    },
+    {
+      "iteration": 9,
+      "line_coverage": 97.44,
+      "branch_coverage": 93.75,
+      "path_history": {
+        "equals_270_12": 1,
+        "equals_270_8": 3,
+        "equals_270_14": 1,
+        "equals_270_6": 2,
+        "equals_270_7": 2,
+        "equals_270_5": 3,
+        "equals_270_2": 1,
+        "equals_270_13": 1,
+        "equals_270_11": 1,
+        "equals_270_4": 1,
+        "equals_270_10": 1,
+        "equals_270_1": 1
+      },
+      "lines_missed": [
+        95,
+        71,
+        94
+      ],
+      "branches_missed": [
+        71,
+        94
+      ],
+      "timestamp": 1774330507.1310167
+    },
+    {
+      "iteration": 10,
+      "line_coverage": 97.44,
+      "branch_coverage": 93.75,
+      "path_history": {
+        "equals_270_12": 1,
+        "equals_270_8": 3,
+        "equals_270_14": 1,
+        "equals_270_6": 2,
+        "equals_270_7": 2,
+        "equals_270_5": 4,
+        "equals_270_2": 1,
+        "equals_270_13": 1,
+        "equals_270_11": 1,
+        "equals_270_4": 1,
+        "equals_270_10": 1,
+        "equals_270_1": 1,
+        "equals_270_9": 1
+      },
+      "lines_missed": [
+        95,
+        71,
+        94
+      ],
+      "branches_missed": [
+        71,
+        94
+      ],
+      "timestamp": 1774330548.855889
+    },
+    {
+      "iteration": 11,
+      "line_coverage": 97.44,
+      "branch_coverage": 96.88,
+      "path_history": {
+        "equals_270_12": 1,
+        "equals_270_8": 3,
+        "equals_270_14": 1,
+        "equals_270_6": 2,
+        "equals_270_7": 2,
+        "equals_270_5": 4,
+        "equals_270_2": 1,
+        "equals_270_13": 1,
+        "equals_270_11": 1,
+        "equals_270_4": 1,
+        "equals_270_10": 1,
+        "equals_270_1": 1,
+        "equals_270_9": 1,
+        "equals_270_3": 1
+      },
+      "lines_missed": [
+        95,
+        94
+      ],
+      "branches_missed": [
+        94
+      ],
+      "timestamp": 1774330574.6083992
+    },
+    {
+      "iteration": 12,
+      "line_coverage": 97.44,
+      "branch_coverage": 96.88,
+      "path_history": {
+        "equals_270_12": 1,
+        "equals_270_8": 3,
+        "equals_270_14": 1,
+        "equals_270_6": 2,
+        "equals_270_7": 2,
+        "equals_270_5": 4,
+        "equals_270_2": 1,
+        "equals_270_13": 1,
+        "equals_270_11": 1,
+        "equals_270_4": 1,
+        "equals_270_10": 1,
+        "equals_270_1": 1,
+        "equals_270_9": 1,
+        "equals_270_3": 1
+      },
+      "lines_missed": [
+        95,
+        94
+      ],
+      "branches_missed": [
+        94
+      ],
+      "timestamp": 1774330622.1325004
+    },
+    {
+      "iteration": 13,
+      "line_coverage": 97.44,
+      "branch_coverage": 96.88,
+      "path_history": {
+        "equals_270_12": 1,
+        "equals_270_8": 3,
+        "equals_270_14": 1,
+        "equals_270_6": 2,
+        "equals_270_7": 2,
+        "equals_270_5": 4,
+        "equals_270_2": 1,
+        "equals_270_13": 1,
+        "equals_270_11": 1,
+        "equals_270_4": 1,
+        "equals_270_10": 1,
+        "equals_270_1": 1,
+        "equals_270_9": 1,
+        "equals_270_3": 1
+      },
+      "lines_missed": [
+        95,
+        94
+      ],
+      "branches_missed": [
+        94
+      ],
+      "timestamp": 1774330659.2546177
+    },
+    {
+      "iteration": 14,
+      "line_coverage": 97.44,
+      "branch_coverage": 96.88,
+      "path_history": {
+        "equals_270_12": 1,
+        "equals_270_8": 3,
+        "equals_270_14": 1,
+        "equals_270_6": 2,
+        "equals_270_7": 2,
+        "equals_270_5": 4,
+        "equals_270_2": 1,
+        "equals_270_13": 1,
+        "equals_270_11": 1,
+        "equals_270_4": 1,
+        "equals_270_10": 1,
+        "equals_270_1": 1,
+        "equals_270_9": 1,
+        "equals_270_3": 1
+      },
+      "lines_missed": [
+        95,
+        94
+      ],
+      "branches_missed": [
+        94
+      ],
+      "timestamp": 1774330754.1921268
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+name,project,version,command,coverageReportDir,junitVersion
+Cli-40f,Cli,40,mvn clean package,target/jacoco,4.12
+Codec-18f,Codec,18,mvn clean package,target/jacoco,4.12
+Collections-28f,Collections,28,mvn clean package,target/jacoco,4.12
+Compress-47f,Compress,47,mvn clean package,target/jacoco,4.12
+Csv-16f,Csv,16,mvn clean package,target/jacoco,4.12
+Gson-16f,Gson,16,mvn clean package,target/jacoco,4.12
+JacksonCore-26f,JacksonCore,26,mvn clean package,target/jacoco,4.13.2
+JacksonDatabind-112f,JacksonDatabind,112,mvn clean package,target/jacoco,4.13.2
+JacksonXml-5f,JacksonXml,5,mvn clean package,target/jacoco,4.12
+Jsoup-93f,Jsoup,93,mvn clean package,target/jacoco,4.12
+JxPath-22f,JxPath,22,mvn clean package,target/jacoco,3.8.1
+Lang-4f,Lang,4,mvn clean package,target/jacoco,4.11
+Math-2f,Math,2,mvn clean package,target/jacoco,4.10
+Time-13f,Time,13,mvn clean package,target/jacoco,3.8.2
+closure-compiler,Closure,maven-v20150901,mvn clean package,target/jacoco,4.11
+mockito,Mockito,9ca4fdc,./gradlew coverageReport,build/jacoco,4.12
+Chart-1f,Chart,1,mvn clean package,target/jacoco,4.13.2

@@ -1,0 +1,207 @@
+{
+  "final_line_coverage": 98.51,
+  "final_branch_coverage": 96.3,
+  "final_lines_missed": [
+    183,
+    179
+  ],
+  "final_branches_missed": [
+    179
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 88.06,
+      "branch_coverage": 81.48,
+      "path_history": {},
+      "lines_missed": [
+        153,
+        154,
+        166,
+        167,
+        183,
+        205,
+        206,
+        235,
+        149,
+        162,
+        179,
+        201,
+        234
+      ],
+      "branches_missed": [
+        149,
+        162,
+        179,
+        201,
+        234
+      ],
+      "timestamp": 1773401901.0690632
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 95.52,
+      "branch_coverage": 92.59,
+      "path_history": {
+        "parse_294_6": 1,
+        "parse_294_2": 1,
+        "setWholeFormat_569_0": 1
+      },
+      "lines_missed": [
+        153,
+        154,
+        183,
+        149,
+        179
+      ],
+      "branches_missed": [
+        149,
+        179
+      ],
+      "timestamp": 1773401957.628346
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 95.52,
+      "branch_coverage": 92.59,
+      "path_history": {
+        "parse_294_6": 1,
+        "parse_294_2": 1,
+        "setWholeFormat_569_0": 1,
+        "parse_294_4": 1,
+        "parse_294_8": 1
+      },
+      "lines_missed": [
+        153,
+        154,
+        183,
+        149,
+        179
+      ],
+      "branches_missed": [
+        149,
+        179
+      ],
+      "timestamp": 1773402031.4087532
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 95.52,
+      "branch_coverage": 92.59,
+      "path_history": {
+        "parse_294_6": 1,
+        "parse_294_2": 1,
+        "setWholeFormat_569_0": 1,
+        "parse_294_4": 2,
+        "parse_294_8": 1,
+        "parse_294_10": 1
+      },
+      "lines_missed": [
+        153,
+        154,
+        183,
+        149,
+        179
+      ],
+      "branches_missed": [
+        149,
+        179
+      ],
+      "timestamp": 1773402123.5501137
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 98.51,
+      "branch_coverage": 96.3,
+      "path_history": {
+        "parse_294_6": 1,
+        "parse_294_2": 1,
+        "setWholeFormat_569_0": 1,
+        "parse_294_4": 3,
+        "parse_294_8": 1,
+        "parse_294_10": 1,
+        "parse_294_1": 1
+      },
+      "lines_missed": [
+        183,
+        179
+      ],
+      "branches_missed": [
+        179
+      ],
+      "timestamp": 1773402213.6625328
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 98.51,
+      "branch_coverage": 96.3,
+      "path_history": {
+        "parse_294_6": 1,
+        "parse_294_2": 1,
+        "setWholeFormat_569_0": 1,
+        "parse_294_4": 4,
+        "parse_294_8": 1,
+        "parse_294_10": 1,
+        "parse_294_1": 1,
+        "parse_294_5": 1
+      },
+      "lines_missed": [
+        183,
+        179
+      ],
+      "branches_missed": [
+        179
+      ],
+      "timestamp": 1773402235.38403
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 98.51,
+      "branch_coverage": 96.3,
+      "path_history": {
+        "parse_294_6": 1,
+        "parse_294_2": 1,
+        "setWholeFormat_569_0": 1,
+        "parse_294_4": 5,
+        "parse_294_8": 1,
+        "parse_294_10": 1,
+        "parse_294_1": 1,
+        "parse_294_5": 1,
+        "parse_294_9": 1
+      },
+      "lines_missed": [
+        183,
+        179
+      ],
+      "branches_missed": [
+        179
+      ],
+      "timestamp": 1773402291.846878
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 98.51,
+      "branch_coverage": 96.3,
+      "path_history": {
+        "parse_294_6": 1,
+        "parse_294_2": 1,
+        "setWholeFormat_569_0": 1,
+        "parse_294_4": 6,
+        "parse_294_8": 1,
+        "parse_294_10": 1,
+        "parse_294_1": 1,
+        "parse_294_5": 1,
+        "parse_294_9": 1,
+        "parse_294_7": 1
+      },
+      "lines_missed": [
+        183,
+        179
+      ],
+      "branches_missed": [
+        179
+      ],
+      "timestamp": 1773402383.3282783
+    }
+  ]
+}

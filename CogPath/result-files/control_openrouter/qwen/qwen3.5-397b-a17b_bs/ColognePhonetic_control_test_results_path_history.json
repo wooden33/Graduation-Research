@@ -1,0 +1,164 @@
+{
+  "final_line_coverage": 98.84,
+  "final_branch_coverage": 94.19,
+  "final_lines_missed": [
+    260,
+    261,
+    262,
+    391,
+    349,
+    388,
+    394,
+    435
+  ],
+  "final_branches_missed": [
+    349,
+    388,
+    394,
+    435
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 96.51,
+      "branch_coverage": 91.86,
+      "path_history": {},
+      "lines_missed": [
+        260,
+        261,
+        262,
+        379,
+        391,
+        413,
+        349,
+        376,
+        388,
+        394,
+        406,
+        435
+      ],
+      "branches_missed": [
+        349,
+        376,
+        388,
+        394,
+        406,
+        435
+      ],
+      "timestamp": 1773644203.947571
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 98.84,
+      "branch_coverage": 94.19,
+      "path_history": {
+        "colognePhonetic_562_17": 1,
+        "encode_973_1": 1
+      },
+      "lines_missed": [
+        260,
+        261,
+        262,
+        391,
+        349,
+        388,
+        394,
+        435
+      ],
+      "branches_missed": [
+        349,
+        388,
+        394,
+        435
+      ],
+      "timestamp": 1773644347.2281203
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 98.84,
+      "branch_coverage": 94.19,
+      "path_history": {
+        "colognePhonetic_562_17": 1,
+        "encode_973_1": 1,
+        "colognePhonetic_562_21": 1,
+        "colognePhonetic_562_19": 1
+      },
+      "lines_missed": [
+        260,
+        261,
+        262,
+        391,
+        349,
+        388,
+        394,
+        435
+      ],
+      "branches_missed": [
+        349,
+        388,
+        394,
+        435
+      ],
+      "timestamp": 1773644478.3428004
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 98.84,
+      "branch_coverage": 94.19,
+      "path_history": {
+        "colognePhonetic_562_17": 1,
+        "encode_973_1": 1,
+        "colognePhonetic_562_21": 2,
+        "colognePhonetic_562_19": 1,
+        "colognePhonetic_562_7": 1
+      },
+      "lines_missed": [
+        260,
+        261,
+        262,
+        391,
+        349,
+        388,
+        394,
+        435
+      ],
+      "branches_missed": [
+        349,
+        388,
+        394,
+        435
+      ],
+      "timestamp": 1773644599.8519256
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 98.84,
+      "branch_coverage": 94.19,
+      "path_history": {
+        "colognePhonetic_562_17": 1,
+        "encode_973_1": 1,
+        "colognePhonetic_562_21": 3,
+        "colognePhonetic_562_19": 1,
+        "colognePhonetic_562_7": 1,
+        "colognePhonetic_562_8": 1
+      },
+      "lines_missed": [
+        260,
+        261,
+        262,
+        391,
+        349,
+        388,
+        394,
+        435
+      ],
+      "branches_missed": [
+        349,
+        388,
+        394,
+        435
+      ],
+      "timestamp": 1773644742.964971
+    }
+  ]
+}

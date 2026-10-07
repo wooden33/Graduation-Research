@@ -1,0 +1,214 @@
+{
+  "final_line_coverage": 100.0,
+  "final_branch_coverage": 100.0,
+  "final_lines_missed": [],
+  "final_branches_missed": [],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 86.57,
+      "branch_coverage": 77.78,
+      "path_history": {},
+      "lines_missed": [
+        104,
+        153,
+        154,
+        166,
+        167,
+        183,
+        205,
+        206,
+        235,
+        103,
+        149,
+        162,
+        179,
+        201,
+        234
+      ],
+      "branches_missed": [
+        103,
+        149,
+        162,
+        179,
+        201,
+        234
+      ],
+      "timestamp": 1768076278.9076145
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 86.57,
+      "branch_coverage": 77.78,
+      "path_history": {
+        "parse_294_6": 1,
+        "parse_294_10": 1,
+        "format_147_2": 1,
+        "format_147_1": 1,
+        "setWholeFormat_569_0": 1
+      },
+      "lines_missed": [
+        104,
+        153,
+        154,
+        166,
+        167,
+        183,
+        205,
+        206,
+        235,
+        103,
+        149,
+        162,
+        179,
+        201,
+        234
+      ],
+      "branches_missed": [
+        103,
+        149,
+        162,
+        179,
+        201,
+        234
+      ],
+      "timestamp": 1768076455.2586055
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 92.54,
+      "branch_coverage": 88.89,
+      "path_history": {
+        "parse_294_6": 2,
+        "parse_294_10": 1,
+        "format_147_2": 2,
+        "format_147_1": 1,
+        "setWholeFormat_569_0": 2,
+        "parse_294_2": 1,
+        "setWholeFormat_569_1": 1
+      },
+      "lines_missed": [
+        153,
+        154,
+        166,
+        167,
+        183,
+        149,
+        162,
+        179
+      ],
+      "branches_missed": [
+        149,
+        162,
+        179
+      ],
+      "timestamp": 1768076569.2139745
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 95.52,
+      "branch_coverage": 92.59,
+      "path_history": {
+        "parse_294_6": 2,
+        "parse_294_10": 1,
+        "format_147_2": 2,
+        "format_147_1": 1,
+        "setWholeFormat_569_0": 2,
+        "parse_294_2": 1,
+        "setWholeFormat_569_1": 1,
+        "parse_294_4": 1,
+        "parse_294_1": 1
+      },
+      "lines_missed": [
+        166,
+        167,
+        183,
+        162,
+        179
+      ],
+      "branches_missed": [
+        162,
+        179
+      ],
+      "timestamp": 1768076644.8723078
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 95.52,
+      "branch_coverage": 92.59,
+      "path_history": {
+        "parse_294_6": 2,
+        "parse_294_10": 1,
+        "format_147_2": 2,
+        "format_147_1": 1,
+        "setWholeFormat_569_0": 2,
+        "parse_294_2": 1,
+        "setWholeFormat_569_1": 1,
+        "parse_294_4": 2,
+        "parse_294_1": 1,
+        "parse_294_5": 1
+      },
+      "lines_missed": [
+        166,
+        167,
+        183,
+        162,
+        179
+      ],
+      "branches_missed": [
+        162,
+        179
+      ],
+      "timestamp": 1768076722.1250086
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 97.01,
+      "branch_coverage": 96.3,
+      "path_history": {
+        "parse_294_6": 2,
+        "parse_294_10": 1,
+        "format_147_2": 2,
+        "format_147_1": 1,
+        "setWholeFormat_569_0": 2,
+        "parse_294_2": 1,
+        "setWholeFormat_569_1": 1,
+        "parse_294_4": 3,
+        "parse_294_1": 1,
+        "parse_294_5": 1,
+        "parse_294_3": 1
+      },
+      "lines_missed": [
+        166,
+        167,
+        162
+      ],
+      "branches_missed": [
+        162
+      ],
+      "timestamp": 1768076777.0750859
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 100.0,
+      "branch_coverage": 100.0,
+      "path_history": {
+        "parse_294_6": 2,
+        "parse_294_10": 1,
+        "format_147_2": 2,
+        "format_147_1": 1,
+        "setWholeFormat_569_0": 2,
+        "parse_294_2": 2,
+        "setWholeFormat_569_1": 1,
+        "parse_294_4": 3,
+        "parse_294_1": 1,
+        "parse_294_5": 1,
+        "parse_294_3": 1,
+        "parse_294_7": 1
+      },
+      "lines_missed": [],
+      "branches_missed": [],
+      "timestamp": 1768076832.2322998
+    }
+  ]
+}

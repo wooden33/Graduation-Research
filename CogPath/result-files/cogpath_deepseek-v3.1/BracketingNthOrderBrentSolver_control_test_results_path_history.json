@@ -1,0 +1,297 @@
+{
+  "final_line_coverage": 99.24,
+  "final_branch_coverage": 90.91,
+  "final_lines_missed": [
+    231,
+    217,
+    218,
+    220,
+    226,
+    228,
+    264
+  ],
+  "final_branches_missed": [
+    217,
+    218,
+    220,
+    226,
+    228,
+    264
+  ],
+  "detailed_path_history": [
+    {
+      "iteration": 0,
+      "line_coverage": 96.97,
+      "branch_coverage": 81.82,
+      "path_history": {},
+      "lines_missed": [
+        226,
+        228,
+        231,
+        297,
+        217,
+        218,
+        220,
+        264,
+        294,
+        315
+      ],
+      "branches_missed": [
+        226,
+        228,
+        217,
+        218,
+        220,
+        264,
+        294,
+        315
+      ],
+      "timestamp": 1766799877.5734336
+    },
+    {
+      "iteration": 1,
+      "line_coverage": 97.73,
+      "branch_coverage": 83.33,
+      "path_history": {
+        "doSolve_333_13": 1
+      },
+      "lines_missed": [
+        226,
+        228,
+        231,
+        217,
+        218,
+        220,
+        264,
+        315
+      ],
+      "branches_missed": [
+        226,
+        228,
+        217,
+        218,
+        220,
+        264,
+        315
+      ],
+      "timestamp": 1766799946.0262775
+    },
+    {
+      "iteration": 2,
+      "line_coverage": 98.48,
+      "branch_coverage": 87.88,
+      "path_history": {
+        "doSolve_333_13": 1,
+        "doSolve_333_10": 1,
+        "doSolve_333_15": 1
+      },
+      "lines_missed": [
+        226,
+        231,
+        217,
+        218,
+        220,
+        228,
+        264
+      ],
+      "branches_missed": [
+        226,
+        217,
+        218,
+        220,
+        228,
+        264
+      ],
+      "timestamp": 1766800327.598353
+    },
+    {
+      "iteration": 3,
+      "line_coverage": 98.48,
+      "branch_coverage": 87.88,
+      "path_history": {
+        "doSolve_333_13": 1,
+        "doSolve_333_10": 2,
+        "doSolve_333_15": 1,
+        "doSolve_333_14": 1
+      },
+      "lines_missed": [
+        226,
+        231,
+        217,
+        218,
+        220,
+        228,
+        264
+      ],
+      "branches_missed": [
+        226,
+        217,
+        218,
+        220,
+        228,
+        264
+      ],
+      "timestamp": 1766800448.4275696
+    },
+    {
+      "iteration": 4,
+      "line_coverage": 98.48,
+      "branch_coverage": 87.88,
+      "path_history": {
+        "doSolve_333_13": 1,
+        "doSolve_333_10": 3,
+        "doSolve_333_15": 1,
+        "doSolve_333_14": 1,
+        "doSolve_333_17": 1
+      },
+      "lines_missed": [
+        226,
+        231,
+        217,
+        218,
+        220,
+        228,
+        264
+      ],
+      "branches_missed": [
+        226,
+        217,
+        218,
+        220,
+        228,
+        264
+      ],
+      "timestamp": 1766800663.1224484
+    },
+    {
+      "iteration": 5,
+      "line_coverage": 99.24,
+      "branch_coverage": 90.91,
+      "path_history": {
+        "doSolve_333_13": 1,
+        "doSolve_333_10": 3,
+        "doSolve_333_15": 1,
+        "doSolve_333_14": 1,
+        "doSolve_333_17": 1,
+        "doSolve_333_9": 1
+      },
+      "lines_missed": [
+        231,
+        217,
+        218,
+        220,
+        226,
+        228,
+        264
+      ],
+      "branches_missed": [
+        217,
+        218,
+        220,
+        226,
+        228,
+        264
+      ],
+      "timestamp": 1766800737.5339317
+    },
+    {
+      "iteration": 6,
+      "line_coverage": 99.24,
+      "branch_coverage": 90.91,
+      "path_history": {
+        "doSolve_333_13": 1,
+        "doSolve_333_10": 3,
+        "doSolve_333_15": 1,
+        "doSolve_333_14": 1,
+        "doSolve_333_17": 1,
+        "doSolve_333_9": 2,
+        "doSolve_333_8": 1
+      },
+      "lines_missed": [
+        231,
+        217,
+        218,
+        220,
+        226,
+        228,
+        264
+      ],
+      "branches_missed": [
+        217,
+        218,
+        220,
+        226,
+        228,
+        264
+      ],
+      "timestamp": 1766800832.342068
+    },
+    {
+      "iteration": 7,
+      "line_coverage": 99.24,
+      "branch_coverage": 90.91,
+      "path_history": {
+        "doSolve_333_13": 1,
+        "doSolve_333_10": 3,
+        "doSolve_333_15": 1,
+        "doSolve_333_14": 1,
+        "doSolve_333_17": 1,
+        "doSolve_333_9": 3,
+        "doSolve_333_8": 1,
+        "doSolve_333_6": 1
+      },
+      "lines_missed": [
+        231,
+        217,
+        218,
+        220,
+        226,
+        228,
+        264
+      ],
+      "branches_missed": [
+        217,
+        218,
+        220,
+        226,
+        228,
+        264
+      ],
+      "timestamp": 1766800959.8671014
+    },
+    {
+      "iteration": 8,
+      "line_coverage": 99.24,
+      "branch_coverage": 90.91,
+      "path_history": {
+        "doSolve_333_13": 1,
+        "doSolve_333_10": 3,
+        "doSolve_333_15": 1,
+        "doSolve_333_14": 1,
+        "doSolve_333_17": 1,
+        "doSolve_333_9": 3,
+        "doSolve_333_8": 1,
+        "doSolve_333_6": 2,
+        "doSolve_333_7": 1
+      },
+      "lines_missed": [
+        231,
+        217,
+        218,
+        220,
+        226,
+        228,
+        264
+      ],
+      "branches_missed": [
+        217,
+        218,
+        220,
+        226,
+        228,
+        264
+      ],
+      "timestamp": 1766801075.6755998
+    }
+  ]
+}
