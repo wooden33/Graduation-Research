@@ -1,0 +1,208 @@
+{
+  "migration_version": 1,
+  "migrated_at": "2026-10-09T08:54:08.507618+00:00",
+  "source_dir": "symprompt_openrouter/qwen/qwen3.5-397b-a17b",
+  "archive_dir": "legacy/baselines/openrouter--qwen--qwen3.5-397b-a17b/symprompt/repair-unspecified/qwen3.5-397b-a17b",
+  "mapping_status": "mapped",
+  "study": "baselines",
+  "variant": "symprompt",
+  "model": "openrouter/qwen/qwen3.5-397b-a17b",
+  "factors": {},
+  "complete": {
+    "classes": 37,
+    "of": 130
+  },
+  "evidence": {
+    "label": "symprompt_<model>"
+  },
+  "paper_column": null,
+  "note": "Incomplete run; not used for any published column.",
+  "report_count": 37,
+  "files": [
+    {
+      "path": "Base32_symprompt_test_results.html",
+      "bytes": 68540,
+      "sha256": "4e7b16b919a4c01951fd2a749364b5383cdc6de0947b917cc29a30de27e1bea1"
+    },
+    {
+      "path": "Base64Variant_symprompt_test_results.html",
+      "bytes": 132934,
+      "sha256": "0880110b873fab1c1c1a1527e4e5ccaab90049dc019d91e12d3e0823b10a7c7d"
+    },
+    {
+      "path": "BasicTypeConverter_symprompt_test_results.html",
+      "bytes": 300654,
+      "sha256": "8bd5c1e1a29f6f6830e2b1909b08329e373a067242ec79b438c2f551e81e93f0"
+    },
+    {
+      "path": "ByteSourceJsonBootstrapper_symprompt_test_results.html",
+      "bytes": 131271,
+      "sha256": "49bdf62f66ec8f800c558f45fb6745bac375815b6c065ec0b48c41d4a2917ff3"
+    },
+    {
+      "path": "CSVFormat_symprompt_test_results.html",
+      "bytes": 207962,
+      "sha256": "e1738f086b20d978f55eeba11813d98758ac490db8d762ed34ea73d0272c7482"
+    },
+    {
+      "path": "CSVParser_symprompt_test_results.html",
+      "bytes": 70061,
+      "sha256": "3dfd857cfa1e71aba004ad3bd04d2cb0550a8c798f61dcbf558c203d9d6ba5b4"
+    },
+    {
+      "path": "DOMNodePointer_symprompt_test_results.html",
+      "bytes": 301519,
+      "sha256": "f13b07e1cf18506eca04cf36efb97ef9c68f1f4e8631ea9683a8cbc700a49b09"
+    },
+    {
+      "path": "DataUtil_symprompt_test_results.html",
+      "bytes": 122211,
+      "sha256": "4237a0a302859be094933321327ed04feb0799d9e2eb1817e6fa7096cbabe565"
+    },
+    {
+      "path": "Excluder_symprompt_test_results.html",
+      "bytes": 74596,
+      "sha256": "89750c3e9ac847e52532d37824dcaf6318fc81d21a35b6e63ad87e33b86ed22f"
+    },
+    {
+      "path": "Flat3Map_symprompt_test_results.html",
+      "bytes": 307746,
+      "sha256": "684bbc0cf3d0c819695f4994786702cfc67731080176efaa4642fc73c9693c05"
+    },
+    {
+      "path": "FromXmlParser_symprompt_test_results.html",
+      "bytes": 464386,
+      "sha256": "3a53f3b30e23658dd159b7a84fdf453df675edf60de5778e7cd39e8d7f44a725"
+    },
+    {
+      "path": "Gson_symprompt_test_results.html",
+      "bytes": 181698,
+      "sha256": "afb2276206bd5993d1ad4d63ba4f0a83c2b249b66ea1c1f85cdd3e13211d2458"
+    },
+    {
+      "path": "HelpFormatter_symprompt_test_results.html",
+      "bytes": 136172,
+      "sha256": "d613449683a8cbfe88ae678fcf9a08e2009c3be4f2d98b3085ae9005a0e83aff"
+    },
+    {
+      "path": "HtmlTreeBuilder_symprompt_test_results.html",
+      "bytes": 365430,
+      "sha256": "55323ddff42fe9a1ddf8a95dad2382a899bef99da5bdf9fcb2739a903aae9a6a"
+    },
+    {
+      "path": "IterableUtils_symprompt_test_results.html",
+      "bytes": 109563,
+      "sha256": "618b43536eac166a09a6be7df27b01883a258193e200f475b9ed15d66764292f"
+    },
+    {
+      "path": "IteratorUtils_symprompt_test_results.html",
+      "bytes": 241653,
+      "sha256": "cc9c7132a481bf5887f2bfc34d37f81bcef2679ea442a6914f058a6e3a94fb10"
+    },
+    {
+      "path": "JDOMNodePointer_symprompt_test_results.html",
+      "bytes": 228099,
+      "sha256": "fb3e8f4b7b04275f56ed0632aebf9b945d9b32782994f40fd0375f50c3d11f18"
+    },
+    {
+      "path": "JXPathBasicBeanInfo_symprompt_test_results.html",
+      "bytes": 73891,
+      "sha256": "73a7735f65c81c8851f3ee589e66c793ceba83784eeedb8e30cb836ad6bf9f6d"
+    },
+    {
+      "path": "JsonReader_symprompt_test_results.html",
+      "bytes": 474308,
+      "sha256": "acf3466e48dc2cd830cecd12b7f6f0c22eb155ce508f534ecaba2ff28ac3df4a"
+    },
+    {
+      "path": "JsonStringEncoder_symprompt_test_results.html",
+      "bytes": 126721,
+      "sha256": "d2da372859cfd2330a1306f0413796003c75fcb4b97734572bcd2e26fe5906e2"
+    },
+    {
+      "path": "JsonTreeReader_symprompt_test_results.html",
+      "bytes": 125253,
+      "sha256": "0b8a075ed3ff3077b314950f339124af2821fe706c70764e79977729f521f8b4"
+    },
+    {
+      "path": "Lexer_symprompt_test_results.html",
+      "bytes": 104006,
+      "sha256": "6da087ec09edec35f7bd58fefcfb9d2010e0a0ce6c2fc20ced9e73a4ff7a1615"
+    },
+    {
+      "path": "MapUtils_symprompt_test_results.html",
+      "bytes": 203400,
+      "sha256": "dace1f1619aa3c4484fd4ca1389e3bc24414f1611df8f25d477448f30fe08a4e"
+    },
+    {
+      "path": "NameN_symprompt_test_results.html",
+      "bytes": 42304,
+      "sha256": "80d67cafce55a83a6202ead6c6c4f7351fb976a28023b9f0ea4e969f242cc57d"
+    },
+    {
+      "path": "NumberInput_symprompt_test_results.html",
+      "bytes": 116488,
+      "sha256": "add8b2add79d78245743ccabb996f85df179ff2fbe79ab546b24619083a1e083"
+    },
+    {
+      "path": "PackageFunctions_symprompt_test_results.html",
+      "bytes": 80076,
+      "sha256": "9e25a7f29a05a3606cf9055d7174ca01c7e4d472b6a0a77d809954770926db3f"
+    },
+    {
+      "path": "PosixParser_symprompt_test_results.html",
+      "bytes": 37466,
+      "sha256": "fe43dc94d3454c1833f638b35a61dee78f9f071e14517c7c46b695da154eb870"
+    },
+    {
+      "path": "PropertyIterator_symprompt_test_results.html",
+      "bytes": 97277,
+      "sha256": "5905e71bbc507dee830cea643ce7d6e62f0c62f30df651731a7b11195a88625d"
+    },
+    {
+      "path": "PrototypeFactory_symprompt_test_results.html",
+      "bytes": 24606,
+      "sha256": "d38a1f97ea25afa24a945c69b959ad06dd921ec34fa31f035fd2fcfe3dfb1b23"
+    },
+    {
+      "path": "SimpleCharStream_symprompt_test_results.html",
+      "bytes": 268709,
+      "sha256": "3274c8287f437e6fd53be12bf460cbce9f3a94d4dab30af0c6094b16e00ca069"
+    },
+    {
+      "path": "StaxUtil_symprompt_test_results.html",
+      "bytes": 38300,
+      "sha256": "db59d9901ebf19f585cf09f09acbb2deefd85af4fac22dc812cf2b60d228877a"
+    },
+    {
+      "path": "ToXmlGenerator_symprompt_test_results.html",
+      "bytes": 1092750,
+      "sha256": "ee1394b6344416337d5f01f9ec81bab24fa74615b3a5178b1a1694c070c1c75c"
+    },
+    {
+      "path": "TokenFilterContext_symprompt_test_results.html",
+      "bytes": 260742,
+      "sha256": "b28b0b26b0370da6cae812cada4521bde7e9ae46dc24cb7e6d516b20bb5af9df"
+    },
+    {
+      "path": "UTF32Reader_symprompt_test_results.html",
+      "bytes": 60834,
+      "sha256": "ab488d7c0acd6693bddc4f74fd0cb852a5db7d79fbcbfe440c6f96e22aea210c"
+    },
+    {
+      "path": "UTF8JsonGenerator_symprompt_test_results.html",
+      "bytes": 664337,
+      "sha256": "20444d5380fc35d1e8d69286976a8c5143f48433955350e590b73a1f2898ca09"
+    },
+    {
+      "path": "ValueUtils_symprompt_test_results.html",
+      "bytes": 232245,
+      "sha256": "60ebce0f64b4d8414c0e41187512fd44dc81c5459fe1083a9dccd08579aec927"
+    },
+    {
+      "path": "XmlFactory_symprompt_test_results.html",
+      "bytes": 208052,
+      "sha256": "aa09ed072d5c83c993f111f8ff064be7d848e2d5fc145f0024b2027a5447af72"
+    }
+  ]
+}

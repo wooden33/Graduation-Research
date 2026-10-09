@@ -1,0 +1,19 @@
+{
+  "cogpath_run_summary_version": 1,
+  "coverage": {
+    "branch": 6.94,
+    "line": 13.03
+  },
+  "failures_by_reason": {
+    "Compilation failure": 1,
+    "Test failures": 4
+  },
+  "generated_at": "2026-10-07T09:20:29+00:00",
+  "iterations": 1,
+  "report": "ToXmlGenerator_control_test_results",
+  "tests_failed": 5,
+  "tests_info": 2,
+  "tests_passed": 13,
+  "tests_total": 18,
+  "tokens_total": 15700
+}

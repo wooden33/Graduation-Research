@@ -1,0 +1,48 @@
+{
+  "migration_version": 1,
+  "migrated_at": "2026-10-09T08:54:08.092426+00:00",
+  "source_dir": "control_openrouter/qwen/qwen3.5-397b-a17b_constraints_bs",
+  "archive_dir": "legacy/rq3_models/openrouter--qwen--qwen3.5-397b-a17b/cogpath/repair-traditional/qwen3.5-397b-a17b_constraints_bs",
+  "mapping_status": "mapped",
+  "study": "rq3_models",
+  "variant": "cogpath",
+  "model": "openrouter/qwen/qwen3.5-397b-a17b",
+  "factors": {
+    "constraint_hints": "enabled",
+    "backward_slicing": "enabled",
+    "repair": "traditional"
+  },
+  "complete": {
+    "classes": 2,
+    "of": 130
+  },
+  "evidence": {
+    "label": "control_<model>_constraints_bs",
+    "slices": 1
+  },
+  "paper_column": null,
+  "note": "The run RQ3 SHOULD have used. Abandoned after 2 of 130 classes. On the two completed classes (Gson, JsonTreeReader) it matches the `_bs` run exactly, so the numerical impact of the CS factor here is unknown but may be small -- which is why this must be re-run rather than assumed.",
+  "report_count": 2,
+  "files": [
+    {
+      "path": "Gson_control_test_results.html",
+      "bytes": 149382,
+      "sha256": "7eca33918ad5ef2b71e51b24bab7f59bdc3b6a7794da074d505c3517ef5db0dd"
+    },
+    {
+      "path": "Gson_control_test_results_path_history.json",
+      "bytes": 12850,
+      "sha256": "77c643603eff4b278a8e476e7a0009563f6bfe23443a241c3bf4e231d1db6a52"
+    },
+    {
+      "path": "JsonTreeReader_control_test_results.html",
+      "bytes": 235288,
+      "sha256": "c3196a7c0fac999f821d72ead577c3f97c8d89e6b648b9242f0d4c34931bf2fd"
+    },
+    {
+      "path": "JsonTreeReader_control_test_results_path_history.json",
+      "bytes": 15414,
+      "sha256": "5ba9b905d7c52c93b31e6c4e0c588f7d40b5e78dad56132ff2107f3559ddde47"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "migration_version": 1,
+  "migrated_at": "2026-10-09T08:54:08.510552+00:00",
+  "source_dir": "control_deepseek-v4.1-flash_constraints_bs",
+  "archive_dir": "legacy/adhoc/deepseek-v4.1-flash/control_deepseek-v4.1-flash_constraints_bs",
+  "mapping_status": "unmapped_adhoc",
+  "model": "deepseek-v4.1-flash",
+  "resolved_config": {
+    "additional_instructions": "",
+    "code_coverage_report_path": "/tmp/cogpath-agent-comparison/20261008-csv-cogpath/Csv-16f/target/jacoco/jacoco.csv",
+    "coverage_type": "jacoco",
+    "dataset_file": "",
+    "enable_fixing": 1,
+    "fix_type": "",
+    "included_files": "",
+    "junit_version": 4,
+    "max_slices_per_method": 5,
+    "maximum_iterations": 4,
+    "model": "deepseek-v4.1-flash",
+    "no_coverage_increase_iterations": 2,
+    "pick_two_paths": true,
+    "project_directory": "/tmp/cogpath-agent-comparison/20261008-csv-cogpath/Csv-16f",
+    "prompt_type": "control",
+    "provenance_file": "",
+    "report_filepath": "CSVParser_cogpath_deepseek_smoke.html",
+    "run_hits": false,
+    "run_symprompt": false,
+    "solver_model": "deepseek-v4.1-flash",
+    "source_code_file": "/tmp/cogpath-agent-comparison/20261008-csv-cogpath/Csv-16f/src/main/java/org/apache/commons/csv/CSVParser.java",
+    "target_coverage": 100,
+    "test_code_command_dir": "/tmp/cogpath-agent-comparison/20261008-csv-cogpath/Csv-16f",
+    "test_code_file": "/tmp/cogpath-agent-comparison/20261008-csv-cogpath/Csv-16f/src/test/java/org/apache/commons/csv/CSVParserTest.java",
+    "test_dependency_command": "mvn dependency:list -DexcludeTransitive=true | grep \":test\"",
+    "test_execution_command": "mvn clean package -Dtest=CSVParserTest",
+    "test_file_output_path": "/tmp/cogpath-agent-comparison/20261008-csv-cogpath/Csv-16f/src/test/java/org/apache/commons/csv/CSVParserTest.java",
+    "use_backward_slice": true,
+    "use_constraints": true
+  },
+  "report_count": 2,
+  "files": [
+    {
+      "path": "CSVParser_cogpath_deepseek_smoke.html",
+      "bytes": 79616,
+      "sha256": "2f903ee6c6185aa9fde55385ba0e30bf2c1e41ee08982e091b276815be24324a"
+    },
+    {
+      "path": "CSVParser_cogpath_deepseek_smoke_path_history.json",
+      "bytes": 3069,
+      "sha256": "dc6e57301cd6a923b4d30944d7cb26cb0b3f5abcb25bea80bc6965d57c0c1e03"
+    },
+    {
+      "path": "CSVParser_cogpath_deepseek_smoke_run_summary.json",
+      "bytes": 407,
+      "sha256": "17fbeb26faf88ab2c2926ba7a89095fb6fe5d2b15484cc88a440653063708997"
+    },
+    {
+      "path": "ToXmlGenerator_control_test_results.html",
+      "bytes": 31033,
+      "sha256": "741e3f93dff74737721c988238bc83336f7c97485ca038e33b4c33b208e1f6ec"
+    },
+    {
+      "path": "ToXmlGenerator_control_test_results_path_history.json",
+      "bytes": 12103,
+      "sha256": "4ed8fc4c60ad404cdc6741d1f879a65ae041ea1ff9928844246ef2b2c3595ff0"
+    },
+    {
+      "path": "ToXmlGenerator_control_test_results_run_summary.json",
+      "bytes": 407,
+      "sha256": "341f342487265d5bbc32fe63502327db8f6564f6b89916c9cf5c435d220e4cad"
+    },
+    {
+      "path": "config.resolved.json",
+      "bytes": 1491,
+      "sha256": "f92aee118febde64cb676ae778a61ae6b22a356301474ae893c0e97b865a3a26"
+    },
+    {
+      "path": "run_meta.json",
+      "bytes": 5881,
+      "sha256": "d172794b0541705f6430303a4886e1eeb293502269b6b168b0ae82b60e6ebe8b"
+    }
+  ],
+  "note": "One-off legacy output; not included in a 130-class benchmark mapping."
+}

@@ -1,0 +1,19 @@
+{
+  "cogpath_run_summary_version": 1,
+  "coverage": {
+    "branch": 10.19,
+    "line": 14.74
+  },
+  "failures_by_reason": {
+    "Compilation failure": 3,
+    "Test failures": 45
+  },
+  "generated_at": "2026-10-08T04:59:18+00:00",
+  "iterations": 4,
+  "report": "ToXmlGenerator_cogpath_deepseek_smoke",
+  "tests_failed": 48,
+  "tests_info": 9,
+  "tests_passed": 12,
+  "tests_total": 60,
+  "tokens_total": 217557
+}

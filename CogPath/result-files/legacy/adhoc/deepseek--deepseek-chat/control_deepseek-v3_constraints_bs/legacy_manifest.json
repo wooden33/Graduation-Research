@@ -1,0 +1,68 @@
+{
+  "migration_version": 1,
+  "migrated_at": "2026-10-09T08:54:08.509136+00:00",
+  "source_dir": "control_deepseek-v3_constraints_bs",
+  "archive_dir": "legacy/adhoc/deepseek--deepseek-chat/control_deepseek-v3_constraints_bs",
+  "mapping_status": "unmapped_adhoc",
+  "model": "deepseek/deepseek-chat",
+  "resolved_config": {
+    "additional_instructions": "",
+    "code_coverage_report_path": "defects4j-subjects-notests/JacksonXml-5f/target/jacoco/jacoco.csv",
+    "coverage_type": "jacoco",
+    "dataset_file": "",
+    "enable_fixing": 3,
+    "fix_type": "",
+    "included_files": "",
+    "junit_version": 4,
+    "max_slices_per_method": 5,
+    "maximum_iterations": 1,
+    "model": "deepseek/deepseek-chat",
+    "no_coverage_increase_iterations": 3,
+    "pick_two_paths": true,
+    "project_directory": "defects4j-subjects-notests/JacksonXml-5f",
+    "prompt_type": "control",
+    "provenance_file": "",
+    "report_filepath": "ToXmlGenerator_control_test_results.html",
+    "run_hits": false,
+    "run_symprompt": false,
+    "solver_model": "deepseek/deepseek-chat",
+    "source_code_file": "defects4j-subjects-notests/JacksonXml-5f/src/main/java/com/fasterxml/jackson/dataformat/xml/ser/ToXmlGenerator.java",
+    "target_coverage": 100,
+    "test_code_command_dir": "defects4j-subjects-notests/JacksonXml-5f",
+    "test_code_file": "defects4j-subjects-notests/JacksonXml-5f/src/test/java/com/fasterxml/jackson/dataformat/xml/ser/ToXmlGeneratorTest.java",
+    "test_dependency_command": "mvn dependency:list -DexcludeTransitive=true | grep \":test\"",
+    "test_execution_command": "mvn clean package -Dtest=ToXmlGeneratorTest",
+    "test_file_output_path": "defects4j-subjects-notests/JacksonXml-5f/src/test/java/com/fasterxml/jackson/dataformat/xml/ser/ToXmlGeneratorTest.java",
+    "use_backward_slice": true,
+    "use_constraints": true
+  },
+  "report_count": 1,
+  "files": [
+    {
+      "path": "ToXmlGenerator_control_test_results.html",
+      "bytes": 92152,
+      "sha256": "91677f20bf43f67bad8939e41f9dd8991b79a4c67aae26a22ce5c6f98b583c52"
+    },
+    {
+      "path": "ToXmlGenerator_control_test_results_path_history.json",
+      "bytes": 11986,
+      "sha256": "cfbe66bfa2b3f33f36c8fd70f23913c267a165fa6ee569335b45f3898b269191"
+    },
+    {
+      "path": "ToXmlGenerator_control_test_results_run_summary.json",
+      "bytes": 409,
+      "sha256": "77981d05e990666218831f5402c6ebaf0891af514ca0055cee8a7a56ead51ea8"
+    },
+    {
+      "path": "config.resolved.json",
+      "bytes": 1466,
+      "sha256": "e25c27c96993b1c358aebbb0b0aeb5b22247911eb3f191e70697e0bc3541cfa3"
+    },
+    {
+      "path": "run_meta.json",
+      "bytes": 5252,
+      "sha256": "d97c902e3a0563ee3b661e69f8971d638a5e3ff5dd9ac297479b8e1a9d97284f"
+    }
+  ],
+  "note": "One-off legacy output; not included in a 130-class benchmark mapping."
+}

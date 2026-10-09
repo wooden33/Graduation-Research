@@ -1,0 +1,673 @@
+{
+  "migration_version": 1,
+  "migrated_at": "2026-10-09T08:54:08.409323+00:00",
+  "source_dir": "symprompt_llama3-3",
+  "archive_dir": "legacy/baselines/llama3-3/symprompt/repair-unspecified/symprompt_llama3-3",
+  "mapping_status": "mapped",
+  "study": "baselines",
+  "variant": "symprompt",
+  "model": "llama3-3",
+  "factors": {},
+  "complete": {
+    "classes": 130,
+    "of": 130
+  },
+  "evidence": {
+    "label": "symprompt_<model>"
+  },
+  "paper_column": "SymPrompt (legacy backbone)",
+  "note": "Produced with the older llama3-3 backbone; the RQ1 SymPrompt column is derived from the qwen3-coder run, not this one.",
+  "report_count": 130,
+  "files": [
+    {
+      "path": "AnnotatedMethodCollector_symprompt_test_results.html",
+      "bytes": 79065,
+      "sha256": "3b8e3e2eab069a3ec767fac74606ef7ffd1d83e5eba88e3c344f18aca6a81a4f"
+    },
+    {
+      "path": "AnnotationIntrospectorPair_symprompt_test_results.html",
+      "bytes": 967205,
+      "sha256": "4ec24c6796232e72476e3b72c1139b76618cc304996e74bfa2ca4515f91fda2a"
+    },
+    {
+      "path": "AnnotationUtils_symprompt_test_results.html",
+      "bytes": 98447,
+      "sha256": "c13df2abfe528070dd83bbb8e0d2733a316ab302ec49a0ef89e9b4486f3bcdb5"
+    },
+    {
+      "path": "ArArchiveInputStream_symprompt_test_results.html",
+      "bytes": 91271,
+      "sha256": "c564f01991b3fefee092fe8c3e8dca44265c95e9db9ec0a432fa44568e307e3a"
+    },
+    {
+      "path": "ArchiveStreamFactory_symprompt_test_results.html",
+      "bytes": 114525,
+      "sha256": "e2ad404c5706a2d7f9de8ccb390410e9dfd963a596093c87171a3e444d514d43"
+    },
+    {
+      "path": "ArithmeticUtils_symprompt_test_results.html",
+      "bytes": 142657,
+      "sha256": "0c6fd06263cc2fe47b12a42ddd2d6214bef03db5e850368ce8d684929f3729f4"
+    },
+    {
+      "path": "ArrayFieldVector_symprompt_test_results.html",
+      "bytes": 307250,
+      "sha256": "116128f0535c3a2ec590b43d59b6c3d93a0888c54cb732856ff93e0ed987867e"
+    },
+    {
+      "path": "Base32_symprompt_test_results.html",
+      "bytes": 73933,
+      "sha256": "4cdc8d0e5636b07f6ef99e3afd58902a183ff98b21011bba37028dbc7b9bf85c"
+    },
+    {
+      "path": "Base64Variant_symprompt_test_results.html",
+      "bytes": 88461,
+      "sha256": "e7e491715f21f204ddee97c39cbd93b5cdef99234facd4e0c0c8cb36a767ca8e"
+    },
+    {
+      "path": "Base64_symprompt_test_results.html",
+      "bytes": 75939,
+      "sha256": "29f7a7b88d0a1d35858d16d9234d305d31ce0caf0ef7383690ea6d29e16f84b5"
+    },
+    {
+      "path": "BasicTypeConverter_symprompt_test_results.html",
+      "bytes": 168292,
+      "sha256": "09c30c1b1adcae88e77343cb4894bbb16549c480c0f58cd55b08bdffeb87cb4c"
+    },
+    {
+      "path": "Beta_symprompt_test_results.html",
+      "bytes": 40069,
+      "sha256": "76e4cafe021dbbcd863b28e09b5805838e2dd7f0d75f013e2329b8948c331918"
+    },
+    {
+      "path": "BicubicSplineInterpolator_symprompt_test_results.html",
+      "bytes": 27725,
+      "sha256": "6509d9d881fe123a3cdac558032dff5f4a5eb5c5e5691ce893a06fcab4a6fd0b"
+    },
+    {
+      "path": "BinaryTree_symprompt_test_results.html",
+      "bytes": 40578,
+      "sha256": "a9ab318025ee4a6c1658564278b841ce111f24cc4f7c92ee50a8de3dcafded8c"
+    },
+    {
+      "path": "BlockSort_symprompt_test_results.html",
+      "bytes": 138742,
+      "sha256": "973bafc98c6d5dfbd3e9fe0d6d809488c12574e01fb830d92d490897da79f47d"
+    },
+    {
+      "path": "BooleanUtils_symprompt_test_results.html",
+      "bytes": 97550,
+      "sha256": "4adf12ec1d9e03098fa93e2a5f938e74b7f946d46b571b608166c4f6058360ad"
+    },
+    {
+      "path": "BracketingNthOrderBrentSolverDFP_symprompt_test_results.html",
+      "bytes": 172455,
+      "sha256": "5e275d51d2751619b45fd51ad9ebc57933e010a162cb92aaaa1ed3a430ccf54d"
+    },
+    {
+      "path": "BracketingNthOrderBrentSolver_symprompt_test_results.html",
+      "bytes": 46182,
+      "sha256": "f54ee653eb9c0b1e929e26770437eaaf5e7b85425123a340cc51806b3751d19b"
+    },
+    {
+      "path": "ByteSourceJsonBootstrapper_symprompt_test_results.html",
+      "bytes": 127580,
+      "sha256": "eaf3d7a100315589beeceb9e1eb51e3613c03911064c41c4a1aa618436ad59f4"
+    },
+    {
+      "path": "CSVFormat_symprompt_test_results.html",
+      "bytes": 157037,
+      "sha256": "95403a95aa090619839de52cf9334046ce9b051096e33f5286313b76927a166f"
+    },
+    {
+      "path": "CSVParser_symprompt_test_results.html",
+      "bytes": 45076,
+      "sha256": "ffb6bf2d15795663a9cde5cc37881e820e9ed7eb264cef4bd6ae9ffee942beaa"
+    },
+    {
+      "path": "CharacterReader_symprompt_test_results.html",
+      "bytes": 143921,
+      "sha256": "ecbce345f17b615fbea96714c72a03c6f506f3cb5c092a4e8d8b327d22e78a24"
+    },
+    {
+      "path": "ClassUtil_symprompt_test_results.html",
+      "bytes": 251091,
+      "sha256": "c07942fa08e7838104f2f0caf2a91568ea85f3a89fbb113be5fc3be279f0feda"
+    },
+    {
+      "path": "ClassUtils_symprompt_test_results.html",
+      "bytes": 129509,
+      "sha256": "7340168eb62de1e927a6f46d70845b43f945223b7d75d5256adafd9eafffbdf2"
+    },
+    {
+      "path": "ColognePhonetic_symprompt_test_results.html",
+      "bytes": 45862,
+      "sha256": "4e7726d21705c8474ca37d3322bb140a79dcc82abfb3f48d9c35e864c40081f6"
+    },
+    {
+      "path": "CompareToBuilder_symprompt_test_results.html",
+      "bytes": 145323,
+      "sha256": "9cf60b90613b129bf6f228bb6b2deccd27c71086241d2da72b473ecca630f214"
+    },
+    {
+      "path": "Conversion_symprompt_test_results.html",
+      "bytes": 376406,
+      "sha256": "eed84db22726c6d7ebfcc549212d1bb27baccb9d38e6f3cec94a08b471ef8260"
+    },
+    {
+      "path": "CpioArchiveInputStream_symprompt_test_results.html",
+      "bytes": 92661,
+      "sha256": "1633629fba57eaf62bca5792af8c2dc5738f9e5047a449eb70dacead58592cba"
+    },
+    {
+      "path": "DOMNodePointer_symprompt_test_results.html",
+      "bytes": 372960,
+      "sha256": "896c13f2ed6d4316ff4394f628fc18e18d69df8a647025577bd19389dd85c540"
+    },
+    {
+      "path": "DataUtil_symprompt_test_results.html",
+      "bytes": 61625,
+      "sha256": "1343463dc07cc5e73892253f4a18a93671e0190cf17bf8cf4e7b20684892626d"
+    },
+    {
+      "path": "DateTimeFormatterBuilder_symprompt_test_results.html",
+      "bytes": 173468,
+      "sha256": "358768dfebbafb6806ab3fdfe1a70e7550dc6a7a5508023ffe288b2bae3d05e7"
+    },
+    {
+      "path": "DateTimeParserBucket_symprompt_test_results.html",
+      "bytes": 64021,
+      "sha256": "30a17019a5373f0f90d42b96b0cca34c8faf487ebfaa6d72d34db352d6f37b03"
+    },
+    {
+      "path": "DateTimeZoneBuilder_symprompt_test_results.html",
+      "bytes": 109419,
+      "sha256": "c0ddd5e1c0793a277c28321020c9aaaab042e3fbe698d2f77d5494b9a98ab6a5"
+    },
+    {
+      "path": "DateUtils_symprompt_test_results.html",
+      "bytes": 124662,
+      "sha256": "62493a82063e6186a96e923b1aade239b42e2aa941c59a2d04aeab86ba04cb4e"
+    },
+    {
+      "path": "Days_symprompt_test_results.html",
+      "bytes": 41068,
+      "sha256": "56f136e0ae9fb1648bad79d52ac193f7cfbb5886f669a1ce6c72d065ba393014"
+    },
+    {
+      "path": "DescendantContext_symprompt_test_results.html",
+      "bytes": 83201,
+      "sha256": "a254ea78fc605dd590ad1e63fbdbe9c1216ee3709cce13ecc76824a49ba981eb"
+    },
+    {
+      "path": "DfpMath_symprompt_test_results.html",
+      "bytes": 251061,
+      "sha256": "c2bb42730686dba70dc4b169c0f80f93bd6581d9feac98170bf99fbaa4175f1b"
+    },
+    {
+      "path": "Dfp_symprompt_test_results.html",
+      "bytes": 509649,
+      "sha256": "3dbdb3c17b15a113aaa43a1ec6eb5f2f5e63fa2ef00ebe881021651321514f4f"
+    },
+    {
+      "path": "DoubleMetaphone_symprompt_test_results.html",
+      "bytes": 67702,
+      "sha256": "731e8e75a68fda9598c01c51d45274e36273f4be60a6cf3fd761eb768cbf3567"
+    },
+    {
+      "path": "DurationFormatUtils_symprompt_test_results.html",
+      "bytes": 126757,
+      "sha256": "a495ed2eb59587027096b0e16d2ad0051738cabfbd274fb717dbf6bad548d5c9"
+    },
+    {
+      "path": "EqualsBuilder_symprompt_test_results.html",
+      "bytes": 153479,
+      "sha256": "565fb4ff93e317b52971e8d7ecbcb4ed357190bdd59ec822d64ac9000a94b663"
+    },
+    {
+      "path": "Excluder_symprompt_test_results.html",
+      "bytes": 73731,
+      "sha256": "f97e3eace6159b136ad9600a43ad056206c4a02a9db6f97792d676a1ea23d40e"
+    },
+    {
+      "path": "ExtendedMessageFormat_symprompt_test_results.html",
+      "bytes": 44154,
+      "sha256": "6e41a01c31a4e407b33dc41cc4c868915ba89a8e1585e56780702eb4453d1962"
+    },
+    {
+      "path": "ExtraFieldUtils_symprompt_test_results.html",
+      "bytes": 74988,
+      "sha256": "e3190002247402cbf0c9b0392ceb4fb1f0898934a9312d2e339f10a6b26b2808"
+    },
+    {
+      "path": "FastDatePrinter_symprompt_test_results.html",
+      "bytes": 130156,
+      "sha256": "a8438bd1ea1bdb8df0e90436b3cc77e60bec4ccdf6540d42d550702658c51f27"
+    },
+    {
+      "path": "FastFourierTransformer_symprompt_test_results.html",
+      "bytes": 71720,
+      "sha256": "c8a8cdd35e9195cc0618299b1162a143125bde32e2fbb8cb058304446c017bfa"
+    },
+    {
+      "path": "FastMath_symprompt_test_results.html",
+      "bytes": 323870,
+      "sha256": "3b01a21ca58d7e7b96736d0ff854a4932baa75acedf8e5c5e93a0130a6b1edd1"
+    },
+    {
+      "path": "FieldLUDecomposition_symprompt_test_results.html",
+      "bytes": 76733,
+      "sha256": "fbeeb095a5f9b0f945d7f578fd323e7e2e587956fe2b73e635a6c951e96d1e3a"
+    },
+    {
+      "path": "FieldUtils_symprompt_test_results.html",
+      "bytes": 110857,
+      "sha256": "56c9f5cb3b4cddb6403c1fc76821f03eec4de9c3d4d3e5b56c3f400a75b42454"
+    },
+    {
+      "path": "Flat3Map_symprompt_test_results.html",
+      "bytes": 366312,
+      "sha256": "d505cc72272030a1ee2610806750bf0616c3161935dd3c5c96046f5ec150c266"
+    },
+    {
+      "path": "FormElement_symprompt_test_results.html",
+      "bytes": 47218,
+      "sha256": "f93bbee7ce6124d2825f266557f900007feb769fac68177a7e19a2999e191a0f"
+    },
+    {
+      "path": "FormatUtils_symprompt_test_results.html",
+      "bytes": 70313,
+      "sha256": "1571a8094224a024fb57c06e36f51978c5a67f7ebf1334507b5c59b783e5206b"
+    },
+    {
+      "path": "Frequency_symprompt_test_results.html",
+      "bytes": 98371,
+      "sha256": "bdd4f0682d3a38fa50f0b284c7a300c1f8202fc548de215819eff659334ec79e"
+    },
+    {
+      "path": "FromXmlParser_symprompt_test_results.html",
+      "bytes": 313717,
+      "sha256": "22350339dac4d3b0aafb3bd058d62f6ad9aba4fd09bf2b1930531d88904810b3"
+    },
+    {
+      "path": "GaussNewtonOptimizer_symprompt_test_results.html",
+      "bytes": 117006,
+      "sha256": "764672ba6feaaaf087e79f65f260bb086eebfffd0a5499dc6187bf6b29dc67a0"
+    },
+    {
+      "path": "Gson_symprompt_test_results.html",
+      "bytes": 149290,
+      "sha256": "ba92502ab60b4f565eb4ab68098fe08e0afa88f428ce0d5830e8b72a176466d3"
+    },
+    {
+      "path": "GzipCompressorInputStream_symprompt_test_results.html",
+      "bytes": 49973,
+      "sha256": "8c9d9fe7d1be2df9e96306438a8fd76371167c612bc634122689dcb7ec9971db"
+    },
+    {
+      "path": "HashCodeBuilder_symprompt_test_results.html",
+      "bytes": 90991,
+      "sha256": "25f1bd987fca7ac2cd8f626916889f6d7f3b563a938f88e84a71a776b38f9cf5"
+    },
+    {
+      "path": "HelpFormatter_symprompt_test_results.html",
+      "bytes": 88110,
+      "sha256": "72d0fc175dad6cda241950a6a9b4c9cd9344e8803d413d2702f54f41c08a26db"
+    },
+    {
+      "path": "Hours_symprompt_test_results.html",
+      "bytes": 44010,
+      "sha256": "19d42b2293eee77930edb270ffdbe0ab39414bcc2798e1dbb36f0a3b999c1fc6"
+    },
+    {
+      "path": "HtmlTreeBuilder_symprompt_test_results.html",
+      "bytes": 321578,
+      "sha256": "83edf08f72c219aa3cddc63ad6667a4f71355e63b33eb415caa751f06148bb18"
+    },
+    {
+      "path": "ISODateTimeFormat_symprompt_test_results.html",
+      "bytes": 176729,
+      "sha256": "cad7da5f9ea976cda44420bcbc883053bc238525b5bc5ee60824abe47dc1e302"
+    },
+    {
+      "path": "IterableUtils_symprompt_test_results.html",
+      "bytes": 96980,
+      "sha256": "cf317182fc65dd9c4f813bd4a025db776b75d09052303aea4b5b510a72b06870"
+    },
+    {
+      "path": "IteratorUtils_symprompt_test_results.html",
+      "bytes": 210785,
+      "sha256": "42c55d10f07648b08ea063ab92ff925505d88ddd2027f5f1cbf3cbaca5771ee9"
+    },
+    {
+      "path": "JDOMNodePointer_symprompt_test_results.html",
+      "bytes": 210830,
+      "sha256": "2c20dbb92c67f233cd25cbc14c50bb1de039f095d74a0f223479c3595bca9ea3"
+    },
+    {
+      "path": "JXPathBasicBeanInfo_symprompt_test_results.html",
+      "bytes": 41257,
+      "sha256": "8ce1ab9c70e5215be14f3bb71180105dbcaa95d3fd7eb368ad4377504c3b7099"
+    },
+    {
+      "path": "JsonReader_symprompt_test_results.html",
+      "bytes": 382455,
+      "sha256": "27cadaa402455d5a3e72c3358e67c91b5dfd609a7171219522888e8ad51494b3"
+    },
+    {
+      "path": "JsonStringEncoder_symprompt_test_results.html",
+      "bytes": 58644,
+      "sha256": "398cfe415c749e64a39c86f293e9dcdb260956d38d68f5d4808ea32baa7efb91"
+    },
+    {
+      "path": "JsonTreeReader_symprompt_test_results.html",
+      "bytes": 130539,
+      "sha256": "d0d3390cfeffe41f88c7b988ade61915d4ed3536e466df666918406eb14a8052"
+    },
+    {
+      "path": "LUDecomposition_symprompt_test_results.html",
+      "bytes": 28439,
+      "sha256": "9d0b706bcf9a3d91462420c49ed22b55d10b5b0eca5874d1bf9a448a8e04cfdb"
+    },
+    {
+      "path": "Lexer_symprompt_test_results.html",
+      "bytes": 87553,
+      "sha256": "6efbccf4323b4bc8fe4166c065ca6947b2bb1dc59b2d6147b024ce15face0b65"
+    },
+    {
+      "path": "LocaleUtils_symprompt_test_results.html",
+      "bytes": 52142,
+      "sha256": "4acee46fc66758072b358e6674777440dc621638f5482cab96ae8612b8ee313f"
+    },
+    {
+      "path": "LoessInterpolator_symprompt_test_results.html",
+      "bytes": 36755,
+      "sha256": "9e91217999b62e10b467502b693e0cac886b053f1ac879303c9add57468f94eb"
+    },
+    {
+      "path": "MapUtils_symprompt_test_results.html",
+      "bytes": 159934,
+      "sha256": "bbc9bbe047113b4464fbd5a52053bdc416aea484fc43c481ccfa45022c6044ca"
+    },
+    {
+      "path": "MathArrays_symprompt_test_results.html",
+      "bytes": 207249,
+      "sha256": "ba6016ebd934ee54df521c971e6db41ca646f6cec183c58dba4dcdb66777ae93"
+    },
+    {
+      "path": "Md5Crypt_symprompt_test_results.html",
+      "bytes": 25684,
+      "sha256": "f6378f08e9b386133ca486082a17f778d85c7f1a133296ae2ac35f78e12602f9"
+    },
+    {
+      "path": "MethodLookupUtils_symprompt_test_results.html",
+      "bytes": 125701,
+      "sha256": "610ee94368211c37a94530193e073c993526fe422a10fad2768c32226b5416e0"
+    },
+    {
+      "path": "MillerUpdatingRegression_symprompt_test_results.html",
+      "bytes": 220823,
+      "sha256": "09eed0f3b7cee6dd96da3c6f5fec8e895e13d5c022ad471b00a42a52388dd7af"
+    },
+    {
+      "path": "Months_symprompt_test_results.html",
+      "bytes": 41803,
+      "sha256": "5dedc43c5bdaec36c839ed5129b86c08e94dfb211c52664e0e552a42863e23f9"
+    },
+    {
+      "path": "MultiStartUnivariateOptimizer_symprompt_test_results.html",
+      "bytes": 71483,
+      "sha256": "ea159ac466378d421286bbc18834f31988f1e061cf75259eea284479e2f7f98b"
+    },
+    {
+      "path": "MultivariateNormalMixtureExpectationMaximization_symprompt_test_results.html",
+      "bytes": 61998,
+      "sha256": "49aa685eb8e828b65b54f58e4a79cc5185a32fe03b50bc142fb148450f25b6a7"
+    },
+    {
+      "path": "NameN_symprompt_test_results.html",
+      "bytes": 29187,
+      "sha256": "764b16498d7aa0bbab4265f04f5b949c9c3ca8b27f58cadc5d3ae60a64d44c5a"
+    },
+    {
+      "path": "NaturalRanking_symprompt_test_results.html",
+      "bytes": 20454,
+      "sha256": "c34e21b4bdab560e1794a35f18e6cc93da190b3455b3cbca32f14a754eeb2bee"
+    },
+    {
+      "path": "NodeTraversor_symprompt_test_results.html",
+      "bytes": 63782,
+      "sha256": "ff6f859341da52dadeaab9b2c31ef82fcb5dbd0b87ca1c70c71cd371db1aa1b7"
+    },
+    {
+      "path": "NumberDeserializers_symprompt_test_results.html",
+      "bytes": 35159,
+      "sha256": "52ec103fb0a860cbd036ff0893661304d35f3acfddb682f54d76e4849c0808f6"
+    },
+    {
+      "path": "NumberInput_symprompt_test_results.html",
+      "bytes": 84854,
+      "sha256": "de5b6dedbf930d804b548b862cd3cded5af11d69fc470f780ce63263a2ca5ca3"
+    },
+    {
+      "path": "NumericEntityUnescaper_symprompt_test_results.html",
+      "bytes": 21087,
+      "sha256": "74fabd3fb9d3b6e6abca32e0ccc5ffe3ed3db41ba6e23aa1582dd885bdbda10d"
+    },
+    {
+      "path": "ObjectUtils_symprompt_test_results.html",
+      "bytes": 78554,
+      "sha256": "8d989e528ea452fac3f83d3c3359c62d63320220e08e70af296a281342e113af"
+    },
+    {
+      "path": "ObjectWriter_symprompt_test_results.html",
+      "bytes": 328242,
+      "sha256": "be5d93e1a77a80d308f402281fe01337464cdcac1cc1c213a20a727cfc81c121"
+    },
+    {
+      "path": "OpenIntToDoubleHashMap_symprompt_test_results.html",
+      "bytes": 81758,
+      "sha256": "9a8cf9fdbc3c28266588b9e1e85a54417a2a2cc0c9a55c82157e48a47f4f9c61"
+    },
+    {
+      "path": "OrderedTuple_symprompt_test_results.html",
+      "bytes": 26989,
+      "sha256": "745725b7c919e7d3f786b6876e524c0acfd70e5cf1a42b8434e2425acc8647c6"
+    },
+    {
+      "path": "POJOPropertiesCollector_symprompt_test_results.html",
+      "bytes": 301391,
+      "sha256": "d638fe59fbb9fa3ffcc8a04841644f53b036e00f88a10e6af63e70c486dd4df7"
+    },
+    {
+      "path": "PackageFunctions_symprompt_test_results.html",
+      "bytes": 49671,
+      "sha256": "a3f0275e06ac169fb260b6d0efafb7bac2a2a681d4d3573b0a7751bfdeea9c65"
+    },
+    {
+      "path": "PeriodFormatterBuilder_symprompt_test_results.html",
+      "bytes": 57871,
+      "sha256": "81a4f97c7ce5fecf7a02cee9fbc526f3942888590a55313a0d91f865fae89a99"
+    },
+    {
+      "path": "PeriodType_symprompt_test_results.html",
+      "bytes": 110731,
+      "sha256": "e211cd4b8665bcc6d3a5849c56ba4b3b1e6af26f4530fc4bb4dbf1bcbf4962b4"
+    },
+    {
+      "path": "PhoneticEngine_symprompt_test_results.html",
+      "bytes": 28125,
+      "sha256": "c7e4c70c0e77c914601f691c2f01f727bac47c19bd72b3bf8902e56e814b9d4d"
+    },
+    {
+      "path": "PosixParser_symprompt_test_results.html",
+      "bytes": 37862,
+      "sha256": "b905053b72e673fff627d2fe69f7309a342879b62ba69f28afd5f2fe223d650a"
+    },
+    {
+      "path": "PredicateContext_symprompt_test_results.html",
+      "bytes": 98555,
+      "sha256": "e72909ff7e9527835a5bd8a94409b6a47db46bc3b7bb941571a394b481de7c6f"
+    },
+    {
+      "path": "ProperBigFractionFormat_symprompt_test_results.html",
+      "bytes": 28179,
+      "sha256": "749fd10dbd66b5ef07bdabc09d0ff7f00d412e9751edc632a30524acbd1d6665"
+    },
+    {
+      "path": "PropertyIterator_symprompt_test_results.html",
+      "bytes": 99627,
+      "sha256": "1938a25b743ffebb4a9106c40b5b4ed5d2414a2c812c5a9fd69a0f4e3609afa3"
+    },
+    {
+      "path": "PrototypeFactory_symprompt_test_results.html",
+      "bytes": 19865,
+      "sha256": "80c88949cd0b1f8fe5113fab05eefc1619777d4a387ba595c4de9dcaf8525af4"
+    },
+    {
+      "path": "QRDecomposition_symprompt_test_results.html",
+      "bytes": 44266,
+      "sha256": "69f016ba312c8975c25274fde9e15ee432f21fa28f4b095df6ad1e30cc458578"
+    },
+    {
+      "path": "QuotedPrintableCodec_symprompt_test_results.html",
+      "bytes": 61918,
+      "sha256": "dafd575660ed267a25f0bd8211bd2712c3f0fa1047f78c6dd1763ea117ff6c31"
+    },
+    {
+      "path": "RandomStringUtils_symprompt_test_results.html",
+      "bytes": 38600,
+      "sha256": "cdd905cfff14c310aa4804b08eacf1cb81f88c5ecd2a3b44f9e9c293b0c4aedf"
+    },
+    {
+      "path": "ReaderBasedJsonParser_symprompt_test_results.html",
+      "bytes": 990772,
+      "sha256": "941e3cc9a323f8167baf54850b5a952d1d7b53c0832c80fbcf33bfee43454482"
+    },
+    {
+      "path": "RealMatrixFormat_symprompt_test_results.html",
+      "bytes": 43875,
+      "sha256": "df6a31c4c4df90a70913b350c3cce0182d4fdfb84f9c81b1c479dbf391c46fc3"
+    },
+    {
+      "path": "Rotation_symprompt_test_results.html",
+      "bytes": 82544,
+      "sha256": "abaa28cc43ef9723ef55acf4cb703738c93ec584d4f4d58bba758b04f0cf25d1"
+    },
+    {
+      "path": "SimpleCharStream_symprompt_test_results.html",
+      "bytes": 231332,
+      "sha256": "1dfe0da676855098848ade06372a6f81bbab237bae778b04c0554e2806f1344a"
+    },
+    {
+      "path": "SimpleRegression_symprompt_test_results.html",
+      "bytes": 138176,
+      "sha256": "ae7e6e1bebb98dd199ce7f5c7c192bf75e1a9cc8dab79547b01b546cc2a57e3d"
+    },
+    {
+      "path": "SimpleType_symprompt_test_results.html",
+      "bytes": 94574,
+      "sha256": "ebf4f4ade4e086285efb9b8c6e256ecfb6a2e17c988a034e89da20678095f872"
+    },
+    {
+      "path": "SmoothingPolynomialBicubicSplineInterpolator_symprompt_test_results.html",
+      "bytes": 30803,
+      "sha256": "6ddb2e268edd24eff6a4b321653e2af330a23d08802f33c0fa731a62bd49d736"
+    },
+    {
+      "path": "StaxUtil_symprompt_test_results.html",
+      "bytes": 53598,
+      "sha256": "4564bfb61858334056c107e426d08ac4e410ef561d923f4b2416250905ca9078"
+    },
+    {
+      "path": "StdDateFormat_symprompt_test_results.html",
+      "bytes": 119739,
+      "sha256": "2296d7a0b74493fecbd433bc1062c7df4ff3292113d9b81bc8f85152716f05fd"
+    },
+    {
+      "path": "Step_symprompt_test_results.html",
+      "bytes": 29174,
+      "sha256": "1295ca7e4bf8012e3821bcfa75e448f919a307033e39f6b64f7dd84b10e141a3"
+    },
+    {
+      "path": "StringUtils_symprompt_test_results.html",
+      "bytes": 606591,
+      "sha256": "50c40e88682d4417b9274024895c43bc40ffd4022eabddb1691d3475591a9d05"
+    },
+    {
+      "path": "SummaryStatistics_symprompt_test_results.html",
+      "bytes": 305276,
+      "sha256": "fde6a8198b4b6468bedaf137d2d5257e9f450f02426c894187740dd3b8590fd7"
+    },
+    {
+      "path": "Tag_symprompt_test_results.html",
+      "bytes": 40789,
+      "sha256": "17e0a7c9a5d0f9369d4b776fd0a8129663400838e7de21537a143722351344bc"
+    },
+    {
+      "path": "TarArchiveInputStream_symprompt_test_results.html",
+      "bytes": 118763,
+      "sha256": "52da3557b30dc4397c74239fe949760cdabd02865170dcdd28944b1dbd2b5741"
+    },
+    {
+      "path": "ToXmlGenerator_symprompt_test_results.html",
+      "bytes": 894265,
+      "sha256": "a9045b31b404743c8eef3e0f623f250ed1841b0e88f2522907a0f6b1e57bbc25"
+    },
+    {
+      "path": "TokenFilterContext_symprompt_test_results.html",
+      "bytes": 157593,
+      "sha256": "e0180ddeafe81609c2ec1abeb120058c99974b33d5bebdefd7dcb6f0ef87436d"
+    },
+    {
+      "path": "TokenQueue_symprompt_test_results.html",
+      "bytes": 118335,
+      "sha256": "a613ea24357d990c4998da23afbfb18cfaaf793445cf1229b2b3f717ae33b337"
+    },
+    {
+      "path": "Tokeniser_symprompt_test_results.html",
+      "bytes": 119300,
+      "sha256": "db9173729942242c44260e2ea4a08318c45bdb9072b209abd54c497010df5faf"
+    },
+    {
+      "path": "TricubicSplineInterpolator_symprompt_test_results.html",
+      "bytes": 78246,
+      "sha256": "abc5c43628072ed340eff9f6629edf8aeee82f5ae17f174b72ac7cf72bc5ab1c"
+    },
+    {
+      "path": "TypeFactory_symprompt_test_results.html",
+      "bytes": 315673,
+      "sha256": "a079304e1b8a0eacbc78c18991d673bca08c16ae985de32879e6f57d045b6f27"
+    },
+    {
+      "path": "UTF32Reader_symprompt_test_results.html",
+      "bytes": 33801,
+      "sha256": "0151985cdb9d731ef590f55e4a5c76127e3ac95ce1399a93313560f15a711ae5"
+    },
+    {
+      "path": "UTF8JsonGenerator_symprompt_test_results.html",
+      "bytes": 540808,
+      "sha256": "9585ddba19db18bf5a6517f89ea8e292fd7069b4744a6ae0a0e4994835476a2d"
+    },
+    {
+      "path": "ValueUtils_symprompt_test_results.html",
+      "bytes": 213699,
+      "sha256": "fa8dae85c685755c9ab30f0cdbb88431d411c348dc62bf0d57ea5f83fbe8a6b1"
+    },
+    {
+      "path": "XmlFactory_symprompt_test_results.html",
+      "bytes": 185070,
+      "sha256": "7517afcadee19064f70fd8bf7f1798c364d2e7efa65f29fc9a289c631e5fa7d3"
+    },
+    {
+      "path": "ZipArchiveInputStream_symprompt_test_results.html",
+      "bytes": 119301,
+      "sha256": "deb64ed6ccace1f7b950613e66dea3f35e15da367c6c0898b992195d1f1bfcd1"
+    },
+    {
+      "path": "ZoneInfoCompiler_symprompt_test_results.html",
+      "bytes": 183806,
+      "sha256": "c826157787544a5a4cc03184e7c263e1c6f18eae94ffc0091bf43559449a43fc"
+    }
+  ]
+}

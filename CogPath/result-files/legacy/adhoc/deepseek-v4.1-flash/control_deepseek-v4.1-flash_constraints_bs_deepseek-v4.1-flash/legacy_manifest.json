@@ -1,0 +1,68 @@
+{
+  "migration_version": 1,
+  "migrated_at": "2026-10-09T08:54:08.511951+00:00",
+  "source_dir": "control_deepseek-v4.1-flash_constraints_bs_deepseek-v4.1-flash",
+  "archive_dir": "legacy/adhoc/deepseek-v4.1-flash/control_deepseek-v4.1-flash_constraints_bs_deepseek-v4.1-flash",
+  "mapping_status": "unmapped_adhoc",
+  "model": "deepseek-v4.1-flash",
+  "resolved_config": {
+    "additional_instructions": "",
+    "code_coverage_report_path": "/tmp/cogpath-agent-comparison/20261008T045000Z/JacksonXml-5f/target/jacoco/jacoco.csv",
+    "coverage_type": "jacoco",
+    "dataset_file": "",
+    "enable_fixing": 1,
+    "fix_type": "",
+    "included_files": "",
+    "junit_version": 4,
+    "max_slices_per_method": 5,
+    "maximum_iterations": 4,
+    "model": "deepseek-v4.1-flash",
+    "no_coverage_increase_iterations": 2,
+    "pick_two_paths": true,
+    "project_directory": "/tmp/cogpath-agent-comparison/20261008T045000Z/JacksonXml-5f",
+    "prompt_type": "control",
+    "provenance_file": "",
+    "report_filepath": "ToXmlGenerator_cogpath_deepseek_smoke.html",
+    "run_hits": false,
+    "run_symprompt": false,
+    "solver_model": "deepseek-v4.1-flash",
+    "source_code_file": "/tmp/cogpath-agent-comparison/20261008T045000Z/JacksonXml-5f/src/main/java/com/fasterxml/jackson/dataformat/xml/ser/ToXmlGenerator.java",
+    "target_coverage": 100,
+    "test_code_command_dir": "/tmp/cogpath-agent-comparison/20261008T045000Z/JacksonXml-5f",
+    "test_code_file": "/tmp/cogpath-agent-comparison/20261008T045000Z/JacksonXml-5f/src/test/java/com/fasterxml/jackson/dataformat/xml/ser/ToXmlGeneratorTest.java",
+    "test_dependency_command": "mvn dependency:list -DexcludeTransitive=true | grep \":test\"",
+    "test_execution_command": "mvn clean package -Dtest=ToXmlGeneratorTest",
+    "test_file_output_path": "/tmp/cogpath-agent-comparison/20261008T045000Z/JacksonXml-5f/src/test/java/com/fasterxml/jackson/dataformat/xml/ser/ToXmlGeneratorTest.java",
+    "use_backward_slice": true,
+    "use_constraints": true
+  },
+  "report_count": 1,
+  "files": [
+    {
+      "path": "ToXmlGenerator_cogpath_deepseek_smoke.html",
+      "bytes": 123152,
+      "sha256": "819311fee65e755fd1727c068361f232d902c08e85c69fe23fd4ad9499f32613"
+    },
+    {
+      "path": "ToXmlGenerator_cogpath_deepseek_smoke_path_history.json",
+      "bytes": 42095,
+      "sha256": "24abeecfb4b9a83c9f6a36d08e82ef46c8b6bab393094aa6f69999bbea378fad"
+    },
+    {
+      "path": "ToXmlGenerator_cogpath_deepseek_smoke_run_summary.json",
+      "bytes": 413,
+      "sha256": "5d387c547063f603cce2ed2af684eeee11362ca19023853866603ee130687556"
+    },
+    {
+      "path": "config.resolved.json",
+      "bytes": 1582,
+      "sha256": "c6a6b0795953a05fad67eef74a9e73edced6bcedec04c97301f99c89f6c4a40f"
+    },
+    {
+      "path": "run_meta.json",
+      "bytes": 5875,
+      "sha256": "e4e01577e9a41459edbf8d5abf7ba320a80b73459849b5a87230ef670ff876e1"
+    }
+  ],
+  "note": "One-off legacy output; not included in a 130-class benchmark mapping."
+}

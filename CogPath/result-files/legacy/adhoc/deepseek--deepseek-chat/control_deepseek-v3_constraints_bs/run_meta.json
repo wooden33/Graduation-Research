@@ -1,0 +1,83 @@
+{
+  "cogpath_run_meta_version": 1,
+  "config_hash": "sha256:0b9d198f522640ec91fde5249970124cd20efeeff46dea1e32f0f4ef0ce8187d",
+  "environment": {
+    "packages": {
+      "PyYAML": "6.0.2",
+      "dynaconf": "3.2.11",
+      "jinja2": "3.1.6",
+      "litellm": "1.63.2",
+      "numpy": "1.26.4",
+      "openai": "1.64.0",
+      "tree-sitter": "0.20.4"
+    },
+    "platform": "Linux-5.4.0-216-generic-x86_64-with-glibc2.31",
+    "python": "3.11.13",
+    "python_executable": "/mnt/data1/ljh/miniconda3/envs/panta-env/bin/python"
+  },
+  "generated_at": "2026-10-07T09:11:36+00:00",
+  "git": {
+    "branch": "main",
+    "commit": "d1c368e9c8d2c5745511b14cc37d84e405660932",
+    "dirty": true,
+    "dirty_files": [
+      "M CogPath/src/cogpath/config.ini",
+      " M CogPath/src/cogpath/model_invocation/llm_invocation.py",
+      "?? CogPath/defects4j-subjects-notests/JacksonXml-5f/src/test/"
+    ],
+    "repo": "/mnt/data1/ljh/code/Graduation-Research/CogPath"
+  },
+  "prompt_template_hashes": {
+    "hits_templates/gen_code.toml": "sha256:55ed92ecfcbfc982196eeb57624f07f5c836af3a1515d0c3ecb2980ca32a1594",
+    "hits_templates/gen_slice.toml": "sha256:8999a8e54a2ebbe5d95d2c37c5c83a7a6177f079040c14ca3e4e1ffb7d46e429",
+    "hits_templates/test_repair.toml": "sha256:db0fdca2cf0307d49622c07050ef71cdf54537fe1062141ed9be30fa314ec9e9",
+    "java_templates/analyze_suite_test_insert_line.toml": "sha256:ef5add1722c36bc2f738ae54d988bc54aa98daec0597bd82d01083c58960cfc4",
+    "java_templates/backward_slice_test_generation.toml": "sha256:0c148f591636c2ee331855b0bfec53e2ea248849d9ace2ea5acd0c911e859eaf",
+    "java_templates/constraint_solving_prompt.toml": "sha256:bba509ff02dee3c69a29a3c501ca9f8fefcba68be1ad7da6fc2e52544e48d7b9",
+    "java_templates/failed_test_feedback_prompt.toml": "sha256:1d102dcf3cb7a8889c8c64bd5963a4e1131fa24c9678911dba0db4b1286854ed",
+    "java_templates/failed_test_feedback_prompt_with_MCTS.toml": "sha256:b90711d40ad6a82d4fa0e98e3af66c02baa939ec7d24e57bc916a0349b89f8f0",
+    "java_templates/test_generation_prompt_baseline.toml": "sha256:7eb4b8c37574c1f928728c714573b8a2219acac447156fc25a03ee9e917bf7ac",
+    "java_templates/test_generation_prompt_with_code_coverage_report.toml": "sha256:eda8e1f0087cf17b9731c2486890282180e68247a10786ed06193b64274a9596",
+    "java_templates/test_generation_prompt_with_existing_test_code_and_control_flow_analysis.toml": "sha256:c7c57853e72b65c257204bf67deb56612ae2671292eb0a36e553eb2fb6dd6d5c",
+    "java_templates/test_generation_prompt_with_existing_test_code_and_control_flow_analysis_and_constraint_solver.toml": "sha256:94ce031ab1a588550f6122c34df7d7af3b64bbc9cf8d18f5d1623341e77cca9e",
+    "java_templates/test_generation_symprompt.toml": "sha256:c5712ee54f6929e4319925bcca671bcdad8dcb8d86d75c2c6dd5410620a74d99",
+    "java_templates/test_headers_indentation_prompt.toml": "sha256:a524faa83baa42dd6ea87ccd3c43a88c2cddad04e3f20e7a7c34c88710124237",
+    "language_extensions.toml": "sha256:a862b0d0ffaf7d5443260dfd357639de7282a06edc6d9d7ba007bc81cd64fbfb",
+    "python_templates/analyze_suite_test_insert_line.toml": "sha256:9dd3de0c4ed2880cd26934e14c897afb1295d46ffbc0dc85f772c549f6c2f04e",
+    "python_templates/backward_slice_test_generation.toml": "sha256:2333c1f3ef7ff52521737be6f0032691f0da71ce189c2543cadf9996cea11124",
+    "python_templates/test_generation_prompt_if_test_code_already_exixts.toml": "sha256:bc48787f82bc7459ded207fd9ba90f3ea62f1806165ebe532de86bd01e0ffb97",
+    "python_templates/test_headers_indentation_prompt.toml": "sha256:756d2db45097b275ceaf64cd1792c36f043b092c3b2f9c907f6b0437c2a42314",
+    "slicer_templates/backward_slice.toml": "sha256:d9645869ea69202f481f0c5a886256199a41a722430885a99f93f4cc16b1c9b4"
+  },
+  "resolved_config": {
+    "additional_instructions": "",
+    "code_coverage_report_path": "defects4j-subjects-notests/JacksonXml-5f/target/jacoco/jacoco.csv",
+    "coverage_type": "jacoco",
+    "dataset_file": "",
+    "enable_fixing": 3,
+    "fix_type": "",
+    "included_files": "",
+    "junit_version": 4,
+    "max_slices_per_method": 5,
+    "maximum_iterations": 1,
+    "model": "deepseek/deepseek-chat",
+    "no_coverage_increase_iterations": 3,
+    "pick_two_paths": true,
+    "project_directory": "defects4j-subjects-notests/JacksonXml-5f",
+    "prompt_type": "control",
+    "provenance_file": "",
+    "report_filepath": "ToXmlGenerator_control_test_results.html",
+    "run_hits": false,
+    "run_symprompt": false,
+    "solver_model": "deepseek/deepseek-chat",
+    "source_code_file": "defects4j-subjects-notests/JacksonXml-5f/src/main/java/com/fasterxml/jackson/dataformat/xml/ser/ToXmlGenerator.java",
+    "target_coverage": 100,
+    "test_code_command_dir": "defects4j-subjects-notests/JacksonXml-5f",
+    "test_code_file": "defects4j-subjects-notests/JacksonXml-5f/src/test/java/com/fasterxml/jackson/dataformat/xml/ser/ToXmlGeneratorTest.java",
+    "test_dependency_command": "mvn dependency:list -DexcludeTransitive=true | grep \":test\"",
+    "test_execution_command": "mvn clean package -Dtest=ToXmlGeneratorTest",
+    "test_file_output_path": "defects4j-subjects-notests/JacksonXml-5f/src/test/java/com/fasterxml/jackson/dataformat/xml/ser/ToXmlGeneratorTest.java",
+    "use_backward_slice": true,
+    "use_constraints": true
+  }
+}
