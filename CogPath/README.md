@@ -145,15 +145,45 @@ Notes:
 
 ### API keys
 
-The code never reads environment variables itself; `litellm` does. Export whichever the
-provider prefix in your `model` setting requires:
+Model settings are organized under aliases in `src/cogpath/model_profiles.ini`.
+Credentials can come from an environment variable or the ignored local file
+`src/cogpath/model_profiles.local.ini`.
 
 ```bash
 export OPENROUTER_API_KEY=...     # for model = openrouter/<vendor>/<model>
 export OPENAI_API_KEY=...         # for model = gpt-4o-mini, ...
+export DEEPSEEK_API_KEY=...       # for model = deepseek-v3
 ```
 
+Model-specific settings live in `src/cogpath/model_profiles.ini`, keyed by the
+alias used in `config.ini`'s `model` (or `solver_model`). For example:
+
+```ini
+[deepseek-v4.1-flash]
+model = openai/provider-model-id
+api_base = https://provider.example/v1
+api_key_env = DEEPSEEK_API_KEY
+litellm_params = {"timeout": 120, "extra_body": {"option": "value"}}
+```
+
+`model` is the exact LiteLLM model identifier used for API calls; the section header is
+the user-facing alias. The ignored `model_profiles.local.ini` can hold the complete
+profile, including `api_key`, `model`, and `api_base`; local settings override the shared
+profile. `api_base` and `api_key_env` are optional, and a direct `api_key` takes precedence
+over `api_key_env`. `litellm_params` is an optional JSON object merged into LiteLLM
+completion arguments. Profiles apply to
+regular, tool-calling, OpenHands, and Aider requests. The shipped DeepSeek profile uses
+the OpenAI-compatible `openai/` route because the installed LiteLLM version does not
+pass DeepSeek V4's `thinking` option through its native provider route. Thinking is
+disabled because CogPath currently consumes streamed `content` chunks and does not
+collect `reasoning_content`.
+
 `AWS_*` credentials are needed for Bedrock models, GCP credentials for Vertex models.
+For an OpenAI-compatible endpoint, `COGPATH_LLM_API_BASE` overrides the endpoint
+selected by LiteLLM; `COGPATH_LLM_MAX_RETRIES` sets the retry count (default: `5`).
+These environment settings override or supplement model profiles and are not
+written to run provenance. Keep direct credentials in the ignored local profile, never
+in the shareable profile or experiment manifests.
 
 ---
 
@@ -174,7 +204,7 @@ Everything is driven by `[default]` in **`src/cogpath/config.ini`** — one subj
 | `test_code_command_dir` | path | cwd for both commands above |
 | `included_files` | text | Extra file contents appended to the prompt |
 | `junit_version` | 3 / 4 / 5 | Selects the test-class skeleton in `templates.py` |
-| `model` | str | `litellm` model id. Short aliases (`gpt-4o`, `deepseek-v3`, …) are mapped by `model_invocation/models.py`; anything else is passed through, so `openrouter/openai/gpt-5.4-mini` works |
+| `model` | str | Model profile name or `litellm` model id. Existing short aliases (`gpt-4o`, `deepseek-v3`, …) are mapped by `model_invocation/models.py`; profile names are resolved from `model_profiles.ini` |
 | `solver_model` | str | Optional separate model for Constraint-Hints; falls back to `model` |
 | `coverage_type` | `jacoco` \| `pycov` | Which coverage adapter to instantiate |
 | `report_filepath` | filename | HTML report name inside the run's result directory |
@@ -213,7 +243,6 @@ What is enforced:
 | The ablation factors (`use_constraints`, `use_backward_slice`, `fix_type`) must be **stated explicitly** in CogPath mode | a missing factor used to be inherited silently from the previous run — the root cause of the ablation defects |
 | `use_constraints=true` requires `pick_two_paths=true` | the constraint solver is only called for the *second* candidate path, so otherwise no constraints are ever generated and the run silently degrades to `w/o CS` |
 | `coverage_type` must be `jacoco` | `PycovCoverage.parse_coverage_report()` is a no-op and the CFG backend has no Python map |
-| `model`/`solver_model` must not contain `deepseek-r1` | that branch replaces the request with a hard-coded SageMaker probe and discards the prompt |
 | `run_symprompt` / `run_hits` are mutually exclusive | dispatch is `if/elif` |
 | Unknown option names are rejected | a typo such as `use_constraint` previously did nothing |
 
@@ -260,14 +289,15 @@ otherwise     → Cogpath.run()        # the CogPath loop
    - validate every candidate individually (`validate_test`), then
      `fix_failed_tests()` for up to `enable_fixing` rounds;
    - `run_coverage()` — re-run the test command and re-parse JaCoCo.
-3. Write the HTML report and `<report>_path_history.json` into `result-files/<label>/`,
-   then delete the test file.
+3. Write the HTML report and `<report>_path_history.json` into the configured result
+   directory (the experiment runner assigns a per-attempt artifact directory), then
+   restore the test file state.
 
 ### Running a single subject quickly
 
-Edit `src/cogpath/config.ini` to point at one subject and lower the budget, then run
-`python -m cogpath.main`. To do this without permanently dirtying the tracked file, copy it
-and pass `-c`, or `git checkout src/cogpath/config.ini` afterwards.
+For an ad-hoc single subject, pass a separate config file to `python -m cogpath.main`.
+For reproducible multi-class experiments, use the manifest-driven runner below; it
+does not edit `src/cogpath/config.ini`.
 
 ---
 
@@ -278,6 +308,56 @@ and pass `-c`, or `git checkout src/cogpath/config.ini` afterwards.
 > [`evaluation/experiments/README.md`](evaluation/experiments/README.md).
 
 ```bash
+cd /mnt/data1/ljh/code/Graduation-Research/CogPath
+conda activate panta-env
+export DEEPSEEK_API_KEY='your-deepseek-api-key'
+cd evaluation
+
+# Inspect the resolved 130-class RQ1 configuration first.
+python experiment.py resolve \
+    --study experiments/studies/rq1_main.yaml \
+    --variant cogpath \
+    --model deepseek-v4.1-flash
+
+# Optional: exercise the setup on one class before starting the full run.
+python experiment.py run \
+    --study experiments/studies/rq1_main.yaml \
+    --variant cogpath \
+    --model deepseek-v4.1-flash \
+    --limit 1
+
+# Start the full RQ1 run (130 classes).
+python experiment.py run \
+    --study experiments/studies/rq1_main.yaml \
+    --variant cogpath \
+    --model deepseek-v4.1-flash
+```
+
+The `deepseek-v4.1-flash` alias is defined in
+[`src/cogpath/model_profiles.ini`](src/cogpath/model_profiles.ini); its API key is read
+from `DEEPSEEK_API_KEY`. Keep credentials out of manifests and tracked configuration.
+The runner prints the run directory, under
+`result-files/runs/<study>/<model>/<variant>/rep-001/<run-id>/`. If the command is
+interrupted, reuse that exact directory to resume; completed classes are skipped and
+unfinished tasks are retried as new attempts:
+
+```bash
+RUN_DIR=/absolute/path/printed/by/the/runner
+python experiment.py run \
+    --study experiments/studies/rq1_main.yaml \
+    --variant cogpath \
+    --model deepseek-v4.1-flash \
+    --resume "$RUN_DIR"
+python experiment.py verify --run-dir "$RUN_DIR"
+```
+
+LiteLLM token usage is recorded per task attempt in `token-usage.jsonl` inside the run
+directory. For other studies, variants, models, dry runs and result collection, see
+[`evaluation/experiments/README.md`](evaluation/experiments/README.md) and
+[`evaluation/README.md`](evaluation/README.md).
+
+```bash
+# Example: inspect or run an ablation instead of RQ1.
 cd evaluation
 
 python experiment.py list    --study experiments/studies/rq2_ablation.yaml
@@ -287,8 +367,12 @@ python experiment.py run     --study experiments/studies/rq2_ablation.yaml \
                              --variant w_o_cs_bs --model ollama/qwen3-coder:30b-a3b-q8_0 --dry-run
 python experiment.py run     --study experiments/studies/rq2_ablation.yaml \
                              --variant w_o_cs_bs --model ollama/qwen3-coder:30b-a3b-q8_0
-python experiment.py verify  --study experiments/studies/rq2_ablation.yaml \
-                             --variant w_o_cs_bs --model ollama/qwen3-coder:30b-a3b-q8_0   # exit 1 if incomplete
+# Resume by passing --resume <run-dir> printed by the run command.
+RUN_DIR=/absolute/path/printed/by/the/runner
+python experiment.py run     --study experiments/studies/rq2_ablation.yaml \
+                             --variant w_o_cs_bs --model ollama/qwen3-coder:30b-a3b-q8_0 \
+                             --resume "$RUN_DIR"
+python experiment.py verify  --run-dir "$RUN_DIR"
 ```
 
 Why it exists: ablations used to be produced by editing `config.ini` by hand between
@@ -302,11 +386,10 @@ The runner replaces it with:
   longer co-vary with CS/BS by accident;
 * **resolution + validation** that is printable (`resolve`) and side-effect-free
   (`--dry-run`);
-* **provenance written by the tool** — `config.resolved.json`, `run_meta.json`
-  (config hash, git commit/dirty, dependency versions, all 20 prompt-template hashes,
-  dataset hash) and a per-class `<report>_run_summary.json`;
-* a per-class **`evaluation/runs_index.jsonl`**, so provenance is never inferred from a
-  directory name;
+* **provenance written per run and attempt** — `resolved-config.json`, `run.json`,
+  exact per-class configs, logs, tool provenance and run summaries;
+* explicit **task state files** used to resume interrupted tasks and verify completion;
+* per-request **LiteLLM token usage** in each attempt's `token-usage.jsonl`;
 * a **completeness gate** (`verify`) that refuses incomplete runs — this is what would
   have caught the RQ3 Qwen column being built from a 2-of-130 run.
 
@@ -482,7 +565,7 @@ cd CogPath/evaluation/data          # NOTE: the script reads a bare `d4j-fixed-v
 | `utils.py` | Shared helpers (glob source files, fuzzy src↔test pairing, token counting) | imported by `compute_statistics.py` |
 | `compute_statistics.py` | Builds per-subject CFG/method/CC statistics | reads `data/d4j-fixed-version.csv`, `../defects4j-subjects-notests/**`; writes `defects4j-codefiles/*.json` and `subject_statistics.csv` in the CWD |
 | `count_classes_with_high_complexity.py` | Counts classes passing the CC>10 / non-abstract / CC≤40 filter | reads `defects4j-codefiles/*.json`; **prints only — writes no file** |
-| `execute_cogpath.py <prompt> <model> [--parallel -w N]` | Main CogPath runner, resume-aware | reads `data/class_list.csv`; writes `result-files/**` and a temp config |
+| `execute_cogpath.py <prompt> <model> [--resume RUN_DIR]` | Compatibility wrapper for the resumable CogPath runner | reads the RQ1 manifest; writes one `result-files/runs/...` directory per run |
 | `execute_classes_with_high_complexity.py` | Same, sequential/older driver | writes `result-files/control_*` |
 | `execute_symprompt.py <prompt> <model>` | SymPrompt baseline | writes `result-files/symprompt_*` |
 | `execute_hits.py <prompt> <model>` | HITS baseline | writes `result-files/hits_*` (directory **hard-coded**, ignores the `prompt` argument) |
@@ -494,7 +577,7 @@ cd CogPath/evaluation/data          # NOTE: the script reads a bare `d4j-fixed-v
 | `extract_pass_rate.py` | Per-test PASS/FAIL rates | writes `pass_rate_statistics.csv`; **feeds no paper table** |
 | `context_limit.py` | Counts rows whose prompt exceeded 64 k tokens | writes `pass_rate_statistics.csv` (**misnamed**, header-only) |
 | `cogpath_results/plot_branch_coverage.py` | Branch-growth figure | **broken** — see [Known issues](#known-issues-and-caveats) #5 |
-| `experiment.py` | **Manifest-driven runner**: `list` / `resolve` / `run` / `verify` / `backfill` | writes `runs_index.jsonl`; never edits `config.ini` |
+| `experiment.py` | **Manifest-driven runner**: `list` / `resolve` / `run` / `verify` / `backfill` | writes one resumable `result-files/runs/...` folder per configuration |
 | `subject_config.py` | Per-class subject paths (stdlib-only; legacy special cases preserved) | consumed by `experiment.py` |
 
 The pipeline that actually produced the checked-in aggregates is:
@@ -502,9 +585,10 @@ The pipeline that actually produced the checked-in aggregates is:
 ```bash
 cd CogPath/evaluation
 python3 compute_statistics.py java                 # → defects4j-codefiles/*.json
-python3 execute_cogpath.py control qwen3-coder:30b-a3b-q8_0 --parallel --workers 4
+python3 execute_cogpath.py control ollama/qwen3-coder:30b-a3b-q8_0
 python3 parse_coverage_results.py \
-    --result-dir ../result-files/<run> --class-list data/class_list.csv \
+    --result-dir ../result-files/runs/<study>/<model>/<variant>/rep-001/<run-id> \
+    --class-list data/class_list.csv \
     --output cogpath_results/<run>.csv --prompt-type control
 python3 calculate_project_stats.py \
     --input cogpath_results/<run>.csv --output cogpath_results/project_<run>.csv
@@ -518,20 +602,14 @@ python3 calculate_project_stats.py \
 > `../../result-files` — only one can be right from a given directory. Expect
 > `FileNotFoundError` if you follow the commands in `evaluation/README.md` verbatim.
 
-### ⚠️ The harness mutates the tree
+### Experiment workspaces
 
-`execute_cogpath.py` and friends are **not read-only**:
-
-- they rewrite `../src/cogpath/config.ini` (or create per-thread
-  `config_<thread>_<uuid>.ini` files) and launch `python -m cogpath.main` with `cwd="../"`;
-- they **rename** `<subject>/src/test/java` → `src/test/java_backup` and create their own
-  test directory, so that Maven does not compile unrelated tests;
-- they then remove the generated test file and restore state — but **an interrupted run can
-  leave `*_backup` directories behind.**
-
-Check `git status` and look for `src/test/java_backup` after any harness run. Do not run the
-harness "just to see if it works": each class costs many paid LLM calls and minutes of
-Maven.
+`experiment.py` and the `execute_cogpath.py` wrapper write each configured run into
+one `result-files/runs/...` directory. Per-class configs, logs, reports and retry
+attempts live under `tasks/`; Maven runs in a copy under `workspaces/`. This avoids
+mutating the tracked config and source Defects4J subjects. Use `--resume RUN_DIR` to
+continue an interrupted run. Other legacy drivers may still mutate shared paths;
+inspect those drivers before running them.
 
 ### Checked-in vs. generated data
 
@@ -695,34 +773,26 @@ worth checking before you rely on the behaviour.
     (`poetry install --only main`) breaks at runtime. `PyYAML` is not declared in
     `pyproject.toml` at all — it exists only in `cogpath-env.yml`.
 
-13. **`deepseek-r1` silently discards your prompt.** `llm_invocation.py:31–40` replaces the
-    request with a hard-coded SageMaker endpoint
-    (`sagemaker/endpoint-deepseek-r1-nashid`, `us-east-2`) and a hard-coded question
-    ("Are you better than GPT-4o for test generation and why?"), ignoring the caller's
-    `prompt`. Any run configured with `model = deepseek-r1` does not perform test generation.
-
-14. **Python support is nominal.** `coverage_type = pycov` cannot work:
+13. **Python support is nominal.** `coverage_type = pycov` cannot work:
     `coverage/pycov_coverage.py` `parse_coverage_report()` is literally `pass`, so it returns
     `None` and the unpacking in `unit_test_generator.py:152` fails. `CFGDriver.CFG_map` and
     `ParserDriver.parser_map` contain only `java`/`cs`, so a `.py` source raises `KeyError` in
     `PromptBuilder.__init__`. The `python_templates/` prompts that *are* loaded are never
     selected, because prompt dispatch always requests the Java keys.
 
-15. **The SymPrompt baseline has a result-shape bug.** `symprompt.py:162` wraps the parsed
-    test in a list (`generated_tests[label].extend([generated_test['single_test']])`) while
-    the template defines `single_test` as a list, so `validate_test` receives a `list` and
-    calls `.get()` on it. The exception is caught and the affected tests are recorded as
-    **FAIL without ever being compiled**. Treat the SymPrompt numbers with that in mind.
+15. **The SymPrompt result-shape bug is fixed.** The generator now flattens the template's
+    `single_test` list and ignores malformed entries, so individual test dictionaries reach
+    `validate_test`. Historical SymPrompt results produced before this fix remain affected.
 
 16. **`included_files` is iterated character by character.** `main.py:30` reads it as a raw
     string, but `UnitTestGenerator.get_included_files` (`:184–212`) loops over it expecting a
     list of paths, so every non-empty value produces one failed open per character (errors
     are only printed). Leave it empty unless you also fix the type handling.
 
-17. **`cleanup_test_file()` deletes the generated test at the end of every mode**
-    (`cogpath.py:173–183`, called from `run`, `run_symprompt`, and `run_hits`). Generated
-    tests survive only inside the HTML report and the `_path_history.json` — do not expect to
-    find the test sources afterwards.
+17. **Test-file cleanup restores the input state.** CogPath snapshots configured test paths
+    before setup, restores pre-existing files byte-for-byte, and removes only files created
+    by that run. Generated test content remains available in the HTML report and
+    `_path_history.json` where applicable.
 
 18. **Coverage parsing is strict about freshness.** `Coverage.verify_report_update` requires
     the coverage report's mtime (ms) to be **strictly newer** than the test-command start
@@ -733,9 +803,8 @@ worth checking before you rely on the behaviour.
     missing HTML file raises `FileNotFoundError`, which is **not** in the caught exception
     list at `unit_test_generator.py:173–179`.
 
-19. **`test_file_output_path` must differ from `test_code_file`.** `duplicate_test_file`
-    (`cogpath.py:167–171`) calls `shutil.copy(a, a)` when the two are equal and non-empty,
-    raising `shutil.SameFileError`. Only the empty-string case is handled.
+19. **`test_file_output_path` may equal `test_code_file`.** `duplicate_test_file` skips the
+    copy when both paths resolve to the same absolute path, avoiding `SameFileError`.
 
 20. **Constraint-Hints fire on a narrow path.** `prompt_builder.py:525–532` appends
     constraints only when `pick_two_paths=True`, a solver exists, and the two selected paths

@@ -44,7 +44,10 @@ import argparse
 import configparser
 import csv
 import json
+import hashlib
 import os
+import re
+import shutil
 import subprocess
 import sys
 import time
@@ -84,6 +87,7 @@ _PLACEHOLDER_SUBJECT = {
 # class and must not be set in a manifest.
 SUBJECT_KEYS = frozenset(_PLACEHOLDER_SUBJECT) | {
     "report_filepath",
+    "result_directory",
     "test_file_output_path",
     "test_dependency_command",
     "test_code_command_dir",
@@ -358,7 +362,7 @@ def cmd_resolve(args: argparse.Namespace) -> int:
         "variant": args.variant,
         "model": args.model,
         "report_label": report_label(resolved),
-        "result_dir": str(RESULT_FILES / report_label(resolved)),
+        "result_root": str(RESULT_FILES / "runs" / _safe_slug(study["study"])),
         "config": resolved,
     }
     print(json.dumps(payload, indent=2, sort_keys=True, default=str))
@@ -373,6 +377,74 @@ def _write_config(path: Path, cfg: Mapping[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as handle:
         parser.write(handle)
+
+
+def _sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _safe_slug(value: str) -> str:
+    slug = re.sub(r"[^A-Za-z0-9.-]+", "-", str(value)).strip("-.")
+    return slug or "item"
+
+
+def _atomic_json(path: Path, payload: Mapping[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(path.name + ".tmp-{}".format(os.getpid()))
+    temporary.write_text(
+        json.dumps(payload, indent=2, sort_keys=True, default=str) + "\n",
+        encoding="utf-8",
+    )
+    os.replace(str(temporary), str(path))
+
+
+def _copy_workspace_project(project: str, project_dir: str, run_dir: Path) -> Path:
+    """Create one clean, run-local copy of a Defects4J project."""
+    workspace = run_dir / "workspaces" / _safe_slug(project)
+    if workspace.exists():
+        return workspace
+    source = (REPO_ROOT / project_dir).resolve()
+    if not source.is_dir():
+        raise FileNotFoundError("subject project directory not found: {}".format(source))
+    workspace.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copytree(
+        str(source), str(workspace),
+        ignore=shutil.ignore_patterns(".git", "target", "*.class", ".idea", ".DS_Store", "*_backup"),
+    )
+    return workspace
+
+
+def _remap_to_workspace(value: str, original_project_dir: str, workspace: Path) -> str:
+    original_root = (REPO_ROOT / original_project_dir).resolve()
+    original_path = Path(value)
+    if not original_path.is_absolute():
+        original_path = REPO_ROOT / original_path
+    relative = original_path.resolve().relative_to(original_root)
+    return str(workspace / relative)
+
+
+def _prepare_task_snapshot(test_path: Path, task_dir: Path) -> Dict[str, Any]:
+    """Save a task's original test file once and restore it before each attempt."""
+    snapshot_path = task_dir / "input-test.snapshot"
+    metadata_path = task_dir / "input-test.json"
+    if not metadata_path.exists():
+        existed = test_path.is_file()
+        if existed:
+            snapshot_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(str(test_path), str(snapshot_path))
+        metadata = {"path": str(test_path), "existed": existed}
+        _atomic_json(metadata_path, metadata)
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    if metadata["existed"]:
+        test_path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(str(snapshot_path), str(test_path))
+    elif test_path.exists():
+        test_path.unlink()
+    return metadata
 
 
 def cmd_run(args: argparse.Namespace) -> int:
@@ -393,6 +465,9 @@ def cmd_run(args: argparse.Namespace) -> int:
         return 2
 
     repetitions = args.repeat if args.repeat is not None else int(study.get("repetitions", 1))
+    if repetitions < 1:
+        print("Repetition count must be at least 1", file=sys.stderr)
+        return 2
 
     planned: List[Tuple[str, str, int]] = [
         (variant, model, repetition)
@@ -401,13 +476,35 @@ def cmd_run(args: argparse.Namespace) -> int:
         for repetition in range(repetitions)
     ]
 
+    if (args.resume or args.run_dir) and len(planned) != 1:
+        print("--resume/--run-dir requires exactly one variant/model/repetition combination", file=sys.stderr)
+        return 2
+    if args.resume and args.run_dir:
+        print("Use either --resume or --run-dir, not both", file=sys.stderr)
+        return 2
+
+    indexed_tasks = list(iter_subject_files(dataset))
+    indexed_keys = {"{}::{}".format(project, row["src_name"]) for project, row, _ in indexed_tasks}
+    dataset_keys = {"{}::{}".format(row["project"], row["class"]) for row in dataset}
+    if indexed_keys != dataset_keys:
+        missing = sorted(dataset_keys - indexed_keys)
+        print("Dataset/index mismatch: {} class(es) missing from subject indexes".format(len(missing)), file=sys.stderr)
+        if missing:
+            print("  missing examples: {}".format(", ".join(missing[:8])), file=sys.stderr)
+        return 2
+
     print("study   : {}".format(study["study"]))
     print("dataset : {} ({} classes)".format(dataset_path, len(dataset)))
     print("plan    : {} variant/model/repetition combination(s)".format(len(planned)))
 
     total_ran = 0
+    any_failed = False
     for variant, model, repetition in planned:
         raw_cfg = resolve_variant(study, variant, model, dataset_path)
+        if args.prompt_type:
+            raw_cfg["prompt_type"] = args.prompt_type
+        if args.solver_model:
+            raw_cfg["solver_model"] = args.solver_model
         try:
             validated, warnings = validate_variant(raw_cfg)
         except ConfigError as exc:
@@ -417,29 +514,85 @@ def cmd_run(args: argparse.Namespace) -> int:
 
         prompt_type = str(validated.get("prompt_type", "control"))
         label = report_label(validated)
-        run_dir = RESULT_FILES / label
-        config_dir = run_dir / "_configs"
+        selected_tasks = indexed_tasks[:args.limit] if args.limit else indexed_tasks
+        identity = {
+            "study": study["study"], "variant": variant, "model": model,
+            "repetition": repetition,
+            "manifest_sha256": _sha256(Path(study["_path"])),
+            "dataset_sha256": _sha256(dataset_path),
+            "resolved_config": validated,
+            "planned_tasks": ["{}::{}".format(p, s["src_name"]) for p, s, _ in selected_tasks],
+        }
+        identity_hash = hashlib.sha256(
+            json.dumps(identity, sort_keys=True, default=str).encode("utf-8")
+        ).hexdigest()
+
+        if args.resume:
+            run_dir = Path(args.resume).expanduser().resolve()
+            run_json = run_dir / "run.json"
+            if not run_json.is_file():
+                print("No run.json found in resume directory: {}".format(run_dir), file=sys.stderr)
+                return 2
+            run_metadata = json.loads(run_json.read_text(encoding="utf-8"))
+            if run_metadata.get("identity_sha256") != identity_hash:
+                print("Resume configuration does not match this run; refusing to mix results", file=sys.stderr)
+                return 2
+        else:
+            if args.run_dir:
+                run_dir = Path(args.run_dir).expanduser().resolve()
+            else:
+                timestamp = time.strftime("%Y%m%dT%H%M%S", time.gmtime()) + "{:06d}Z".format(
+                    int(time.time() * 1000000) % 1000000
+                )
+                run_id = timestamp
+                run_dir = (
+                    RESULT_FILES / "runs" / _safe_slug(study["study"])
+                    / _safe_slug(model) / _safe_slug(variant)
+                    / "rep-{:03d}".format(repetition + 1) / run_id
+                )
+            if not args.dry_run:
+                if run_dir.exists():
+                    print("Run directory already exists; use --resume to continue it: {}".format(run_dir), file=sys.stderr)
+                    return 2
+                run_dir.mkdir(parents=True, exist_ok=False)
+                shutil.copy2(study["_path"], run_dir / Path(study["_path"]).name)
+                shutil.copy2(dataset_path, run_dir / "class_list.csv")
+                _atomic_json(run_dir / "resolved-config.json", {
+                    "study": study["study"], "variant": variant,
+                    "model": model, "repetition": repetition, "config": validated,
+                })
+            run_metadata = {
+                "schema_version": 1, "run_id": run_dir.name, "status": "planned",
+                "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "identity_sha256": identity_hash, "identity": identity,
+                "report_label_legacy": label, "planned_count": len(selected_tasks),
+                "completed_count": 0, "failed_count": 0,
+            }
+            if not args.dry_run:
+                _atomic_json(run_dir / "run.json", run_metadata)
 
         print("\n=== {} / {} (repetition {}) ===".format(variant, model, repetition))
-        print("  result dir : {}".format(run_dir))
+        print("  run dir    : {}".format(run_dir))
+        print("  task count : {}".format(len(selected_tasks)))
         for warning in warnings:
             print("  WARNING: {}".format(warning))
 
-        entries: List[Dict[str, Any]] = []
         done = skipped = failed = 0
+        if args.dry_run:
+            for project, src_file, _ in selected_tasks:
+                print("  [dry-run] {} :: tasks/{}/{}".format(
+                    project, _safe_slug(project), _safe_slug(src_file["src_name"])
+                ))
+            continue
 
-        for project, src_file, max_cc in iter_subject_files(dataset):
-            if args.limit and (done + skipped) >= args.limit:
-                break
+        run_metadata["status"] = "running"
+        run_metadata["last_started_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        _atomic_json(run_dir / "run.json", run_metadata)
+
+        for task_index, (project, src_file, max_cc) in enumerate(selected_tasks, start=1):
             class_name = src_file["src_name"]
-
-            # Subject-scoped keys first, then the manifest's settings on top.
             class_cfg = subject_config(
-                src_file,
-                project,
-                max_cc,
-                prompt_type,
-                remove_existing_test=not args.dry_run,
+                src_file, project, max_cc, prompt_type,
             )
             class_cfg.update(validated)
             if "maximum_iterations" not in raw_cfg:
@@ -448,21 +601,33 @@ def cmd_run(args: argparse.Namespace) -> int:
                 # `maximum_iterations` (base.yaml does: 20, as the paper states)
                 # overrides this, so the two protocols never mix silently.
                 class_cfg["maximum_iterations"] = int(max_cc)
-            class_cfg["dataset_file"] = str(dataset_path)
-            class_cfg["provenance_file"] = str(config_dir / "{}.provenance.json".format(class_name))
-
+            task_dir = run_dir / "tasks" / _safe_slug(project) / _safe_slug(class_name)
+            task_dir.mkdir(parents=True, exist_ok=True)
+            artifacts_dir = task_dir / "artifacts"
+            project_dir_rel = class_cfg["project_directory"]
+            workspace = _copy_workspace_project(project, project_dir_rel, run_dir)
+            for key in ("source_code_file", "test_code_file", "code_coverage_report_path"):
+                class_cfg[key] = _remap_to_workspace(class_cfg[key], project_dir_rel, workspace)
+            class_cfg["project_directory"] = str(workspace)
+            class_cfg["test_code_command_dir"] = str(workspace)
+            class_cfg["dataset_file"] = str(run_dir / "class_list.csv")
             report_file = class_cfg.get("report_filepath") or "{}_{}_test_results.html".format(
                 class_name, prompt_type
             )
-            report_path = run_dir / report_file
-
-            if report_path.exists() and not args.force:
+            state_path = task_dir / "state.json"
+            state = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {}
+            previous_report = Path(state["report_path"]) if state.get("report_path") else None
+            if (
+                state.get("status") == "completed"
+                and state.get("exit_code") == 0
+                and previous_report is not None
+                and previous_report.is_file()
+                and not args.force
+            ):
                 skipped += 1
+                print("  [{}/{}] skip {} ({})".format(task_index, len(selected_tasks), class_name, project))
                 continue
 
-            # Validate the per-class config even in a dry run: this is the check
-            # that catches a subject-dependent contradiction before spending money.
-            config_file = config_dir / "{}.ini".format(class_name)
             try:
                 full_cfg, _ = normalise_and_validate(class_cfg)
             except ConfigError as exc:
@@ -471,88 +636,139 @@ def cmd_run(args: argparse.Namespace) -> int:
                 failed += 1
                 continue
 
-            if args.dry_run:
-                print("  [dry-run] {} :: {}".format(class_name, run_dir / report_file))
-                done += 1
-                continue
-
+            attempt_number = int(state.get("attempt", 0)) + 1
+            attempt_dir = task_dir / "attempts" / "{:03d}".format(attempt_number)
+            artifacts_dir = attempt_dir / "artifacts"
+            full_cfg["result_directory"] = str(artifacts_dir)
+            full_cfg["provenance_file"] = str(attempt_dir / "provenance.json")
+            config_file = attempt_dir / "config.ini"
+            _prepare_task_snapshot(Path(full_cfg["test_code_file"]), task_dir)
             _write_config(config_file, full_cfg)
-            config_dir.mkdir(parents=True, exist_ok=True)
-            (config_dir / "{}.provenance.json".format(class_name)).write_text(
-                json.dumps(
-                    {
-                        "study": study["study"],
-                        "variant": variant,
-                        "model": model,
-                        "repetition": repetition,
-                        "class": class_name,
-                        "project": project,
-                        "manifest": study["_path"],
-                        "report_label": label,
-                    },
-                    indent=2,
-                    sort_keys=True,
-                ),
-                encoding="utf-8",
-            )
-
+            task_state = {
+                "project": project, "class": class_name, "status": "running",
+                "attempt": attempt_number,
+                "started_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "config": str(config_file), "artifacts": str(artifacts_dir),
+                "report_file": report_file, "report_path": str(artifacts_dir / report_file),
+            }
+            _atomic_json(state_path, task_state)
             started = time.time()
-            print("  -> {} ({})".format(class_name, project), flush=True)
-            proc = subprocess.run(
-                [sys.executable, "-m", "cogpath.main", "--config", str(config_file)],
-                cwd=str(REPO_ROOT),
-                capture_output=args.quiet,
-                text=True,
-            )
+            print("  [{}/{}] run {} ({})".format(task_index, len(selected_tasks), class_name, project), flush=True)
+            try:
+                child_env = os.environ.copy()
+                source_path = str(REPO_ROOT / "src")
+                existing_pythonpath = child_env.get("PYTHONPATH", "")
+                child_env["PYTHONPATH"] = source_path + (
+                    os.pathsep + existing_pythonpath if existing_pythonpath else ""
+                )
+                child_env["COGPATH_LLM_USAGE_LOG"] = str(attempt_dir / "token-usage.jsonl")
+                with open(attempt_dir / "stdout.log", "w", encoding="utf-8") as stdout_log, open(
+                    attempt_dir / "stderr.log", "w", encoding="utf-8"
+                ) as stderr_log:
+                    proc = subprocess.run(
+                        [sys.executable, "-m", "cogpath.main", "--config", str(config_file)],
+                        cwd=str(REPO_ROOT), env=child_env,
+                        stdout=stdout_log, stderr=stderr_log, text=True,
+                    )
+            except KeyboardInterrupt:
+                task_state.update({
+                    "status": "interrupted",
+                    "finished_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                })
+                _atomic_json(state_path, task_state)
+                run_metadata.update({
+                    "status": "interrupted",
+                    "interrupted_task": "{}::{}".format(project, class_name),
+                })
+                _atomic_json(run_dir / "run.json", run_metadata)
+                print("\nInterrupted. Resume with --resume {}".format(run_dir), file=sys.stderr)
+                return 130
+
+            if not args.quiet:
+                stdout_text = (attempt_dir / "stdout.log").read_text(encoding="utf-8")
+                stderr_text = (attempt_dir / "stderr.log").read_text(encoding="utf-8")
+                if stdout_text:
+                    print(stdout_text, end="" if stdout_text.endswith("\n") else "\n")
+                if stderr_text:
+                    print(stderr_text, end="" if stderr_text.endswith("\n") else "\n", file=sys.stderr)
             duration = round(time.time() - started, 2)
-            status = "ok" if proc.returncode == 0 else "error"
-            if proc.returncode != 0:
+            report_path = artifacts_dir / report_file
+            success = proc.returncode == 0 and report_path.is_file()
+            task_state.update({
+                "status": "completed" if success else "failed",
+                "exit_code": proc.returncode,
+                "report_exists": report_path.is_file(),
+                "duration_s": duration,
+                "finished_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            })
+            summary_path = report_path.with_name(report_path.stem + "_run_summary.json")
+            if summary_path.is_file():
+                try:
+                    task_state["metrics"] = json.loads(summary_path.read_text(encoding="utf-8"))
+                except (OSError, json.JSONDecodeError):
+                    pass
+            _atomic_json(state_path, task_state)
+            if not success:
                 failed += 1
+                print("  -> FAILED (exit {}, report {})".format(proc.returncode, report_path.is_file()))
             else:
                 done += 1
+            run_metadata["completed_count"] = done + skipped
+            run_metadata["failed_count"] = failed
+            _atomic_json(run_dir / "run.json", run_metadata)
 
-            entries.append(
-                {
-                    "study": study["study"],
-                    "variant": variant,
-                    "model": model,
-                    "repetition": repetition,
-                    "class": class_name,
-                    "project": project,
-                    "report_label": label,
-                    "result_dir": str(run_dir),
-                    "report_file": report_file,
-                    "exit_code": proc.returncode,
-                    "status": status,
-                    "duration_s": duration,
-                    "finished_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-                    "provenance": "recorded",
-                }
-            )
-
-        if args.dry_run:
-            print(
-                "\n  dry-run: {} class(es) would run, {} already present, {} invalid".format(
-                    done, skipped, failed
-                )
-            )
-            continue
-
-        if entries:
-            append_index(entries)
         total_ran += done
+        any_failed = any_failed or bool(failed)
+        run_metadata["status"] = "completed" if done + skipped == len(selected_tasks) and not failed else "failed"
+        run_metadata["completed_count"] = done + skipped
+        run_metadata["failed_count"] = failed
+        run_metadata["finished_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        _atomic_json(run_dir / "run.json", run_metadata)
         print(
-            "\n  summary: ran={} skipped(existing)={} failed={}  index={}".format(
-                done, skipped, failed, RUNS_INDEX
+            "\n  summary: completed={} skipped={} failed={}  run={}".format(
+                done, skipped, failed, run_dir
             )
         )
 
     print("\nTotal classes run: {}".format(total_ran))
-    return 0
+    return 1 if any_failed else 0
 
 
 def cmd_verify(args: argparse.Namespace) -> int:
     """Completeness gate: every planned class must have a result."""
+    if args.run_dir:
+        run_dir = Path(args.run_dir).expanduser().resolve()
+        run_json = run_dir / "run.json"
+        if not run_json.is_file():
+            print("No run.json found in {}".format(run_dir), file=sys.stderr)
+            return 2
+        metadata = json.loads(run_json.read_text(encoding="utf-8"))
+        expected = metadata.get("identity", {}).get("planned_tasks", [])
+        incomplete = []
+        for key in expected:
+            project, class_name = key.split("::", 1)
+            state_path = run_dir / "tasks" / _safe_slug(project) / _safe_slug(class_name) / "state.json"
+            if not state_path.is_file():
+                incomplete.append((key, "not started"))
+                continue
+            state = json.loads(state_path.read_text(encoding="utf-8"))
+            report = Path(state.get("report_path", "")) if state.get("report_path") else None
+            if state.get("status") != "completed" or state.get("exit_code") != 0 or report is None or not report.is_file():
+                incomplete.append((key, state.get("status", "unknown")))
+        print("run dir : {}".format(run_dir))
+        print("status  : {}".format(metadata.get("status", "unknown")))
+        print("tasks   : {}/{} complete".format(len(expected) - len(incomplete), len(expected)))
+        if incomplete:
+            for key, status in incomplete[:10]:
+                print("  incomplete: {} ({})".format(key, status))
+            if len(incomplete) > 10:
+                print("  ... and {} more".format(len(incomplete) - 10))
+            return 1
+        return 0
+
+    if not args.study:
+        print("--study is required when --run-dir is not supplied", file=sys.stderr)
+        return 2
     study = load_study(Path(args.study))
     dataset_path = dataset_path_for(study, args.dataset)
     dataset = read_classes(dataset_path)
@@ -713,11 +929,20 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--dry-run", action="store_true", help="Show what would run, change nothing")
     sp.add_argument("--limit", type=int, default=None, help="Stop after N classes (smoke test)")
     sp.add_argument("--force", action="store_true", help="Re-run classes that already have results")
+    sp.add_argument("--run-dir", default=None, help="Create this run directory (one configuration only)")
+    sp.add_argument("--resume", default=None, help="Resume an existing run directory after identity validation")
+    sp.add_argument("--prompt-type", default=None, help="Override the manifest prompt type")
+    sp.add_argument("--solver-model", default=None, help="Override the Constraint-Hints model")
     sp.add_argument("--quiet", action="store_true", help="Capture the tool's stdout/stderr")
     sp.set_defaults(func=cmd_run)
 
     sp = sub.add_parser("verify", help="Completeness gate: fail if any planned class is missing")
-    add_common(sp)
+    sp.add_argument("--study", "-s", required=False, help="Study manifest for legacy verification")
+    sp.add_argument("--variant", "-v", action="append")
+    sp.add_argument("--model", "-m", action="append")
+    sp.add_argument("--dataset", "-d", default=None)
+    sp.add_argument("--repeat", type=int, default=None)
+    sp.add_argument("--run-dir", default=None, help="Verify one run directory created by `run`")
     sp.set_defaults(func=cmd_verify)
 
     sp = sub.add_parser("backfill", help="Record provenance for existing result trees")

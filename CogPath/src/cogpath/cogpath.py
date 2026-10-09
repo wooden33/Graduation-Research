@@ -21,6 +21,21 @@ from . import provenance
 class Cogpath:
     def __init__(self, args):
         self.args = args
+        # Keep a byte-exact snapshot of every test path this run may touch. The
+        # run works on these files in place, then restores pre-existing files and
+        # removes only files it created itself.
+        self._test_file_snapshots = {}
+        for test_path in (args.test_code_file, args.test_file_output_path):
+            if not test_path:
+                continue
+            absolute_path = os.path.abspath(test_path)
+            if absolute_path in self._test_file_snapshots:
+                continue
+            original_bytes = None
+            if os.path.isfile(absolute_path):
+                with open(absolute_path, "rb") as test_file:
+                    original_bytes = test_file.read()
+            self._test_file_snapshots[absolute_path] = original_bytes
 
         # Extract project name from project directory path
         project_name = os.path.basename(args.project_directory.rstrip('/'))
@@ -149,22 +164,37 @@ class Cogpath:
             f.writelines(test_class_template)
 
     def duplicate_test_file(self):
-        if self.args.test_file_output_path != "":
+        if self.args.test_file_output_path != "" and os.path.abspath(
+            self.args.test_file_output_path
+        ) != os.path.abspath(self.args.test_code_file):
             shutil.copy(self.args.test_code_file, self.args.test_file_output_path)
         else:
             self.args.test_file_output_path = self.args.test_code_file
 
     def cleanup_test_file(self):
-        """Remove the generated/used test file after run completes."""
-        try:
-            path = self.args.test_file_output_path if self.args.test_file_output_path else self.args.test_code_file
-            if path and os.path.isfile(path):
-                os.remove(path)
-                self.logger.info(f"Cleaned up test file: {path}")
-            else:
-                self.logger.info(f"No test file to clean: {path}")
-        except Exception as e:
-            self.logger.error(f"Failed to cleanup test file: {str(e)}")
+        """Restore pre-existing test files and remove only run-created files."""
+        for path, original_bytes in self._test_file_snapshots.items():
+            try:
+                if original_bytes is None:
+                    if os.path.isfile(path):
+                        os.remove(path)
+                        self.logger.info("Removed run-created test file: %s", path)
+                    continue
+                os.makedirs(os.path.dirname(path), exist_ok=True)
+                with open(path, "wb") as test_file:
+                    test_file.write(original_bytes)
+                self.logger.info("Restored original test file: %s", path)
+            except OSError as e:
+                self.logger.error("Failed to restore test file %s: %s", path, e)
+
+    def _result_directory(self):
+        """Return the configured run directory or the legacy label directory."""
+        configured = getattr(self.args, "result_directory", "")
+        if configured:
+            return os.path.abspath(configured)
+        current_file = os.path.abspath(__file__)
+        project_root = os.path.dirname(os.path.dirname(os.path.dirname(current_file)))
+        return os.path.join(project_root, "result-files", self.report_label)
 
     def write_provenance(self, report_path, test_results=None, iterations=None, report_file=""):
         """Record the effective configuration and outcome next to the results.
@@ -337,7 +367,10 @@ class Cogpath:
 
                 iteration_count += 1              
         except Exception as e:
+            iteration_error = e
             self.logger.error("iteration stops due to error: %s", e)
+        else:
+            iteration_error = None
 
         if self.test_gen.current_coverage[0] >= (self.test_gen.target_coverage / 100):
             self.logger.info(
@@ -361,13 +394,11 @@ class Cogpath:
         # report write fail at the very end of a long run.
         report_file = self.args.report_filepath or f"{self.project_name}_{self.args.prompt_type}_test_results.html"
 
-        current_file = os.path.abspath(__file__)
-        project_root = os.path.dirname(os.path.dirname(os.path.dirname(current_file)))
-        report_path = os.path.join(project_root, "result-files", self.report_label)
+        report_path = self._result_directory()
         info_dict = {
-            "status": "INFO",
-            "reason": "",
-            "exit_code": 0,
+            "status": "FAIL" if iteration_error is not None else "INFO",
+            "reason": "Iteration error: {}".format(iteration_error) if iteration_error else "",
+            "exit_code": 1 if iteration_error is not None else 0,
             "stderr": "",
             "stdout": self.test_gen.prompt_builder.path_history,
             "test": "",
@@ -411,6 +442,7 @@ class Cogpath:
             self.logger.info(f"Paths Explored: {len(detailed_path_history[-1]['path_history']) if detailed_path_history else 0}")
         # Cleanup test file after run
         self.cleanup_test_file()
+        return 1 if iteration_error is not None else 0
 
     def run_symprompt(self):
         test_results_list = []
@@ -449,9 +481,7 @@ class Cogpath:
         else:
             report_file = "_".join(name_list) + ".html"
 
-        current_file = os.path.abspath(__file__)
-        project_root = os.path.dirname(os.path.dirname(os.path.dirname(current_file)))
-        report_path = os.path.join(project_root, "result-files", self.report_label)
+        report_path = self._result_directory()
         if not os.path.exists(report_path):
             os.makedirs(report_path)
         self.write_provenance(report_path, test_results_list, report_file=report_file)
@@ -500,9 +530,7 @@ class Cogpath:
         else:
             report_file = "_".join(name_list) + ".html"
 
-        current_file = os.path.abspath(__file__)
-        project_root = os.path.dirname(os.path.dirname(os.path.dirname(current_file)))
-        report_path = os.path.join(project_root, "result-files", self.report_label)
+        report_path = self._result_directory()
         if not os.path.exists(report_path):
             os.makedirs(report_path)
         self.write_provenance(report_path, test_results_list, report_file=report_file)

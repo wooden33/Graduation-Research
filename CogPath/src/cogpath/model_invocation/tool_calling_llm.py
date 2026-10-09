@@ -6,13 +6,17 @@ import litellm
 import openai
 from typing import Dict, List, Any, Optional, Callable
 from .llm_invocation import LLMInvocation, AzureOpenAIInvocation
+from .usage_log import record_usage
 
 
 class ToolCallingLLMInvocation(LLMInvocation):
     """支持工具调用的LLM接口，允许LLM主动调用文件访问等工具"""
     
-    def __init__(self, model: str, tools: Optional[Dict[str, Callable]] = None):
-        super().__init__(model)
+    def __init__(
+        self, model: str, tools: Optional[Dict[str, Callable]] = None,
+        component: str = "tool_calling",
+    ):
+        super().__init__(model, component=component)
         self.tools = tools or {}
         self.conversation_history = []
     
@@ -79,12 +83,9 @@ class ToolCallingLLMInvocation(LLMInvocation):
         
         for iteration in range(max_iterations):
             # 准备调用参数
-            completion_params = {
-                "model": self.model,
-                "messages": messages,
-                "max_tokens": max_tokens,
-                "temperature": temperature,
-            }
+            completion_params = self._completion_params(
+                messages, max_tokens, temperature
+            )
             
             # 如果有工具，添加工具定义
             if self.tools:
@@ -92,8 +93,19 @@ class ToolCallingLLMInvocation(LLMInvocation):
                 completion_params["tool_choice"] = "auto"
             
             # 调用模型
+            request_started = time.monotonic()
             try:
                 response = litellm.completion(**completion_params)
+
+                record_usage(
+                    alias=self.model,
+                    model_id=completion_params.get("model", self.model),
+                    component=self.component,
+                    started_at=request_started,
+                    usage=getattr(response, "usage", None),
+                    request_id=getattr(response, "id", None),
+                    attempt=iteration + 1,
+                )
                 
                 # 处理响应
                 message = response.choices[0].message
@@ -146,6 +158,15 @@ class ToolCallingLLMInvocation(LLMInvocation):
                     )
                     
             except Exception as e:
+                record_usage(
+                    alias=self.model,
+                    model_id=completion_params.get("model", self.model),
+                    component=self.component,
+                    started_at=request_started,
+                    status="error",
+                    error_type=type(e).__name__,
+                    attempt=iteration + 1,
+                )
                 print(f"Error in tool calling iteration {iteration}: {e}")
                 # 如果出错，返回当前结果
                 return (
@@ -240,13 +261,10 @@ class ToolCallingAzureOpenAIInvocation(AzureOpenAIInvocation):
         
         for iteration in range(max_iterations):
             # 准备调用参数
-            completion_params = {
-                "model": self.model,
-                "messages": messages,
-                "max_tokens": max_tokens,
-                "temperature": temperature,
-                "extra_headers": {"X-TT-LOGID": ""},
-            }
+            completion_params = self._completion_params(
+                messages, max_tokens, temperature,
+                extra_headers={"X-TT-LOGID": ""}, **self.azure_options
+            )
             
             # 如果有工具，添加工具定义
             if self.tools:
@@ -255,7 +273,7 @@ class ToolCallingAzureOpenAIInvocation(AzureOpenAIInvocation):
             
             # 调用模型
             try:
-                response = self.client.chat.completions.create(**completion_params)
+                response = litellm.completion(**completion_params)
                 
                 # 处理响应
                 message = response.choices[0].message

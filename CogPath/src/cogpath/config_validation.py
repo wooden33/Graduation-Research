@@ -51,6 +51,8 @@ STR_KEYS: Dict[str, str] = {
     "test_code_command_dir": ".",
     "included_files": "",
     "report_filepath": "",
+    # Optional per-run artifact directory. Empty keeps the historical label path.
+    "result_directory": "",
     "prompt_type": "control",
     "solver_model": "",
     "coverage_type": "jacoco",
@@ -299,16 +301,6 @@ def check(cfg: Mapping[str, Any]) -> Tuple[List[str], List[str]]:
     # -- mutually exclusive modes ------------------------------------------ #
     if cfg.get("run_symprompt") and cfg.get("run_hits"):
         errors.append("`run_symprompt` and `run_hits` are mutually exclusive")
-
-    # -- models that cannot work ------------------------------------------- #
-    for key in ("model", "solver_model"):
-        value = _as_str(cfg.get(key))
-        if "deepseek-r1" in value:
-            errors.append(
-                "`{}` = {!r} is not usable: LLMInvocation.call_model() replaces the "
-                "request for that model with a hard-coded SageMaker probe and "
-                "discards the caller's prompt, so no test generation happens.".format(key, value)
-            )
 
     # -- Constraint-Hints needs two candidate paths ------------------------ #
     if cfg.get("use_constraints"):

@@ -329,8 +329,29 @@ def read_class_result(
 
 def report_files(run_dir: Path, prompt_type: Optional[str] = None) -> List[Path]:
     """All report files in a run directory, sorted by class name."""
+    run_dir = Path(run_dir)
+    run_metadata_path = run_dir / "run.json"
+    if run_metadata_path.is_file():
+        try:
+            run_metadata = json.loads(run_metadata_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            run_metadata = {}
+        if run_metadata.get("schema_version") == 1:
+            found = []
+            for state_path in sorted(run_dir.glob("tasks/*/*/state.json")):
+                try:
+                    state = json.loads(state_path.read_text(encoding="utf-8"))
+                except (OSError, json.JSONDecodeError):
+                    continue
+                if state.get("status") != "completed" or state.get("exit_code") != 0:
+                    continue
+                path = Path(state.get("report_path", ""))
+                if path.is_file() and class_name_from_report(path.name, prompt_type):
+                    found.append(path)
+            return found
+
     found = []
-    for path in sorted(Path(run_dir).glob("*_test_results.html")):
+    for path in sorted(run_dir.rglob("*_test_results.html")):
         if class_name_from_report(path.name, prompt_type):
             found.append(path)
     return found
@@ -338,7 +359,7 @@ def report_files(run_dir: Path, prompt_type: Optional[str] = None) -> List[Path]
 
 def detect_prompt_type(run_dir: Path) -> str:
     """Infer the prompt token from the report file names in a directory."""
-    for path in sorted(Path(run_dir).glob("*_test_results.html")):
+    for path in report_files(run_dir):
         match = _REPORT_RE.match(path.name)
         if match:
             return match.group("prompt")
@@ -374,7 +395,7 @@ def read_run(
     )
 
     seen: set = set()
-    for path in sorted(run_dir.glob("*_test_results.html")):
+    for path in report_files(run_dir, prompt):
         class_name = class_name_from_report(path.name, prompt)
         if not class_name:
             result.extra_reports.append(path.name)

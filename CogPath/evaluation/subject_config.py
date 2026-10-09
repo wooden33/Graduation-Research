@@ -59,7 +59,6 @@ def subject_config(
     project_name: str,
     max_complexity: Any,
     prompt_type: str,
-    remove_existing_test: bool = True,
 ) -> Dict[str, Any]:
     """Build the subject-scoped part of a per-class config.
 
@@ -69,15 +68,12 @@ def subject_config(
         max_complexity: the class's maximum cyclomatic complexity, used as the
             iteration budget.
         prompt_type: names the per-class report file.
-        remove_existing_test: delete a pre-existing test file so the run starts
-            clean.  Enabled by default, matching the legacy driver.
+        The source subject is treated as read-only. The experiment runner maps
+        paths into a run-local workspace copy.
     """
     project_dir = project_directory(project_name)
     src_path = source_path(src_file_obj)
     t_path = test_path(project_name, src_file_obj)
-
-    if remove_existing_test and os.path.exists(t_path):
-        os.remove(t_path)
 
     test_file_name = os.path.splitext(os.path.basename(t_path))[0]
 

@@ -39,13 +39,18 @@ python experiment.py resolve --study experiments/studies/rq2_ablation.yaml \
 python experiment.py run --study experiments/studies/rq2_ablation.yaml \
     --variant w_o_cs_bs --model ollama/qwen3-coder:30b-a3b-q8_0 --dry-run --limit 5
 
-# 4. Run it
+# 4. Run it (one run directory contains all class tasks)
 python experiment.py run --study experiments/studies/rq2_ablation.yaml \
     --variant w_o_cs_bs --model ollama/qwen3-coder:30b-a3b-q8_0
 
-# 5. Is it complete enough to publish?
-python experiment.py verify --study experiments/studies/rq2_ablation.yaml \
-    --variant w_o_cs_bs --model ollama/qwen3-coder:30b-a3b-q8_0
+# If interrupted, resume the same run directory printed by the command:
+RUN_DIR=/absolute/path/printed/by/the/runner
+python experiment.py run --study experiments/studies/rq2_ablation.yaml \
+    --variant w_o_cs_bs --model ollama/qwen3-coder:30b-a3b-q8_0 \
+    --resume "$RUN_DIR"
+
+# Verify one complete run:
+python experiment.py verify --run-dir "$RUN_DIR"
 # exit 0 = complete, exit 1 = incomplete (do not publish)
 ```
 
@@ -153,33 +158,55 @@ different solver model for Constraint-Hints. `solver_model` is deliberately *not
 defaulted to `model` in the resolved config: it is part of the result directory
 name, and resolving it early would silently rename every run.
 
-**Model names that will be rejected:** anything containing `deepseek-r1`.
-`LLMInvocation.call_model()` replaces the request for that model with a hard-coded
-SageMaker probe and discards the prompt, so no test generation happens.
+Model names and provider settings are resolved through LiteLLM and optional model
+profiles. Keep credentials in environment variables or the local profile file; do
+not put API keys in experiment manifests or committed config files.
 
 ---
 
 ## What a run writes
 
-Per class, the runner writes into `result-files/<report label>/`:
+Each variant/model/repetition gets a unique directory. All class tasks and their
+outputs stay inside it:
 
 ```
-result-files/<report label>/
-├── <Class>_<prompt>_test_results.html          # the tool's report
-├── <Class>_<prompt>_test_results_run_summary.json
-├── config.resolved.json                        # effective config, shared
-├── run_meta.json                               # git/env/template hashes, shared
-└── _configs/
-    ├── <Class>.ini                             # the exact config passed via --config
-    └── <Class>.provenance.json                 # study/variant/model/repetition
+result-files/runs/<study>/<model>/<variant>/rep-001/<run-id>/
+├── run.json                         # identity, overall status and progress
+├── resolved-config.json             # effective variant/model config
+├── class_list.csv                   # dataset snapshot
+├── <study>.yaml                     # manifest snapshot
+├── tasks/<project>/<class>/
+│   ├── state.json                    # resumable task state
+│   ├── input-test.json               # whether the initial test existed
+│   ├── input-test.snapshot            # original test contents, if any
+│   └── attempts/001/
+│       ├── config.ini                # exact config passed via --config
+│       ├── stdout.log
+│       ├── stderr.log
+│       ├── token-usage.jsonl          # one redacted event per LiteLLM request
+│       ├── provenance.json
+│       └── artifacts/                # HTML, JSON summaries and path history
+└── workspaces/<project>/             # run-local copy of each subject project
 ```
 
-`run_meta.json` records the resolved configuration and its hash, the git commit and
-dirty state, dependency versions, the hashes of all 20 prompt templates, and the
-dataset hash — so a run can be audited without reconstructing anything.
+Resume skips a class only when its state is `completed`, the process exited with
+code 0, and the recorded report still exists. Failed, interrupted, or unfinished
+tasks get a new numbered attempt; prior logs and artifacts remain available.
+Each task's original test file is snapshotted and restored before retrying. The
+source Defects4J subjects are not modified. Resume checks hashes for the manifest,
+dataset, resolved config, and task plan before using an existing run.
 
-Per-class outcomes are also appended to `evaluation/runs_index.jsonl`, which is the
-authoritative record. **Never infer a run's configuration from a directory name.**
+`token-usage.jsonl` is appended during inference, so it survives interruption. Each
+event records alias, resolved model ID, component, prompt/completion/total tokens,
+request duration, status, and provider request ID when available. It never stores
+prompt text, generated content, or API credentials. The runner places the file inside
+each attempt, which makes per-task and per-run aggregation straightforward.
+
+Use `--run-dir <path>` to choose a new directory explicitly. Repetitions get
+separate directories. Existing `result-files/<old-label>/` outputs remain in
+place and continue to be readable; no automatic migration is performed. A later
+migration can first build a dry-run index, verify report counts and hashes, then
+move only legacy trees whose destination is unambiguous.
 
 Nothing writes to `src/cogpath/config.ini`; that file is now only for ad-hoc
 single-subject debugging.
@@ -189,13 +216,12 @@ single-subject debugging.
 ## `verify` — the completeness gate
 
 ```bash
-python experiment.py verify --study experiments/studies/rq2_ablation.yaml \
-    --variant cogpath --model openrouter/qwen/qwen3.5-397b-a17b
+python experiment.py verify --run-dir "$RUN_DIR"
 ```
 
 ```
-  PARTIAL cogpath / openrouter/qwen/qwen3.5-397b-a17b rep0: 2/130 classes
-           missing 128 e.g. Cli-40f::HelpFormatter, ...
+  tasks   : 2/130 complete
+  incomplete: Cli-40f::HelpFormatter (not started)
 VERIFY FAILED: 1 incomplete run(s). Do not publish these numbers.
 ```
 
@@ -225,13 +251,12 @@ Reads `legacy_map.yaml` and emits one index line per existing report with
 
 ## Relationship to the legacy drivers
 
-`execute_cogpath.py`, `execute_classes_with_high_complexity.py`,
-`execute_symprompt.py`, `execute_hits.py` and `execute_classes_pick_one.py` still
-exist and still work, with two changes:
+`execute_cogpath.py` is now a compatibility wrapper around the resumable runner.
+The other legacy scripts remain available, with two changes:
 
 1. `fill_config` now writes a **fresh** file instead of merging into the existing
    one, so a run can no longer inherit a stale factor.
-2. `execute_cogpath.py` and `execute_classes_with_high_complexity.py` now state
+2. `execute_classes_with_high_complexity.py` now states
    `use_constraints`, `use_backward_slice` and `fix_type` explicitly. They are
    therefore pinned to full CogPath and **cannot produce ablations** — use
    `experiment.py` for that.

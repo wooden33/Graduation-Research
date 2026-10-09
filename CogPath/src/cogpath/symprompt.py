@@ -63,7 +63,7 @@ class SymPrompt:
             self.test_context = self.extract_test_dependency() + f"\n{TEST_CLASS_JUNIT_4_IMPORTS}"
 
         self.logger = cogpathLogger.initialize_logger(__name__)
-        self.llm_invoker = LLMInvocation(model=llm_model)
+        self.llm_invoker = LLMInvocation(model=llm_model, component="symprompt")
 
     def extract_test_dependency(self):
         try:
@@ -160,7 +160,20 @@ class SymPrompt:
                 generated_test = self.generate_test_by_prompt_llm(self.prompt, max_tokens)
                 try:
                     if 'single_test' in generated_test and generated_test['single_test']:
-                        self.generated_tests[method_label].extend([generated_test['single_test']])
+                        single_tests = generated_test['single_test']
+                        # The prompt schema defines `single_test` as a list. Keep
+                        # individual test objects flat for UnitTestGenerator.validate_test.
+                        if isinstance(single_tests, dict):
+                            single_tests = [single_tests]
+                        if not isinstance(single_tests, list):
+                            self.logger.warning(
+                                "Ignoring malformed single_test response for %s",
+                                method_label,
+                            )
+                            continue
+                        self.generated_tests[method_label].extend(
+                            test for test in single_tests if isinstance(test, dict)
+                        )
                 except Exception as e:
                     self.logger.error(f"Error during test generation: {e}")
 

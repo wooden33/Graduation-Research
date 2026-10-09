@@ -78,7 +78,7 @@ class HITS:
         self.generated_tests = {}
         self.slices = {}
 
-        self.llm_invoker = LLMInvocation(model=llm_model)
+        self.llm_invoker = LLMInvocation(model=llm_model, component="hits")
 
         self.logger.info(
             f"Initialized HITS for {self.source_file_name} with JUnit {junit_version}")

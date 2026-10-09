@@ -90,7 +90,7 @@ class UnitTestGenerator:
         self.use_backward_slice = use_backward_slice
         self.fix_type = fix_type
 
-        self.llm_invoker = LLMInvocation(model=llm_model)
+        self.llm_invoker = LLMInvocation(model=llm_model, component="test_generator")
 
         # Both optional analysers must exist as attributes regardless of the
         # configuration: `build_prompt` and `_init_prompt_builder` read them
@@ -106,11 +106,13 @@ class UnitTestGenerator:
             # config validation deliberately leaves it empty rather than resolving
             # it, because the result-directory label includes it only when set.
             self.constraint_solver = LLMConstraintSolver(
-                LLMInvocation(model=solver_model or llm_model)
+                LLMInvocation(model=solver_model or llm_model, component="constraint_solver")
             )
 
         if self.use_backward_slice:
-            self.backward_slicer = LLMBackwardSlicer(llm_invoker=LLMInvocation(model=llm_model))
+            self.backward_slicer = LLMBackwardSlicer(
+                llm_invoker=LLMInvocation(model=llm_model, component="backward_slicer")
+            )
 
         self.logger = cogpathLogger.initialize_logger(__name__)
         self.logger.info(f"Using fix type: {self.fix_type}")

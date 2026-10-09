@@ -1,15 +1,35 @@
 import time
 import random
+import os
 import tiktoken
 import litellm
-import openai
 import ollama
 import tiktoken
+from .model_profiles import load_model_profile
+from .usage_log import record_usage
 
 
 class LLMInvocation:
-    def __init__(self, model: str):
+    def __init__(self, model: str, component: str = "unspecified"):
         self.model = model
+        self.component = component
+
+    def _completion_params(self, messages, max_tokens, temperature, **kwargs):
+        """Build one LiteLLM request from the model profile and call options."""
+        params = {
+            "model": self.model,
+            "messages": messages,
+            "max_tokens": max_tokens,
+            "temperature": temperature,
+        }
+        params.update(load_model_profile(self.model))
+        params.update(kwargs)
+        api_base = os.environ.get("COGPATH_LLM_API_BASE")
+        if api_base:
+            params["api_base"] = api_base
+        elif self.model.startswith("ollama"):
+            params.setdefault("api_base", "http://210.28.134.33:11434")
+        return params
 
     def call_model(self, prompt: dict, max_tokens=4096, temperature=0.2):
         """
@@ -28,53 +48,50 @@ class LLMInvocation:
                 {"role": "user", "content": prompt["user"]},
             ]
 
-        if self.model == "deepseek-r1":
-            # sample input
-            completion_params = {
-                "model": "sagemaker/endpoint-deepseek-r1-nashid",
-                "messages": [{"role": "user", "content": "Are you better than GPT-4o for test generation and why?"}],
-                "max_tokens": max_tokens,
-                "stream": True,
-                "temperature": temperature,
-                "aws_region_name": "us-east-2"
-            }
-        else:
-            completion_params = {
-                "model": self.model,
-                "messages": messages,
-                "max_tokens": max_tokens,
-                "stream": True,
-                "reasoning": {"enabled": False},
-                "temperature": temperature,
-            }
-            
-        if self.model.startswith("ollama"):
-            completion_params["api_base"] = "http://210.28.134.33:11434"
+        completion_params = self._completion_params(
+            messages, max_tokens, temperature, stream=True
+        )
 
-        max_retries = 5
+        max_retries = int(os.environ.get("COGPATH_LLM_MAX_RETRIES", "5"))
         base_delay = 2  # base delay in seconds
 
         for attempt in range(max_retries):
+            request_started = time.monotonic()
             try:
                 response = litellm.completion(**completion_params)
                 chunks = []
-                try:
-                    for chunk in response:
-                        print(
-                            chunk.choices[0].delta.content or "", end="", flush=True)
-                        chunks.append(chunk)
-                        time.sleep(0.01)
-                except Exception as e:
-                    print(f"Error during streaming: {e}")
+                for chunk in response:
+                    print(
+                        chunk.choices[0].delta.content or "", end="", flush=True)
+                    chunks.append(chunk)
+                    time.sleep(0.01)
                 print("\n")
                 model_response = litellm.stream_chunk_builder(
                     chunks, messages=messages)
+                record_usage(
+                    alias=self.model,
+                    model_id=completion_params.get("model", self.model),
+                    component=self.component,
+                    started_at=request_started,
+                    usage=model_response.get("usage"),
+                    request_id=model_response.get("id"),
+                    attempt=attempt + 1,
+                )
                 return (
                     model_response["choices"][0]["message"]["content"],
                     int(model_response["usage"]["prompt_tokens"]),
                     int(model_response["usage"]["completion_tokens"]),
                 )
             except Exception as e:
+                record_usage(
+                    alias=self.model,
+                    model_id=completion_params.get("model", self.model),
+                    component=self.component,
+                    started_at=request_started,
+                    status="error",
+                    error_type=type(e).__name__,
+                    attempt=attempt + 1,
+                )
                 delay = base_delay * (2 ** attempt) + random.uniform(0, 1)
                 print(f"Rate limit exceeded. "
                       f"Retrying in {delay:.2f} seconds... "
@@ -89,11 +106,12 @@ class LLMInvocation:
 class AzureOpenAIInvocation(LLMInvocation):
     def __init__(self, model: str, base_url: str, api_version: str, ak: str):
         super().__init__(model)
-        self.client = openai.AzureOpenAI(
-            azure_endpoint=base_url,
-            api_version=api_version,
-            api_key=ak,
-        )
+        self.azure_options = {
+            "api_base": base_url,
+            "api_version": api_version,
+            "api_key": ak,
+            "custom_llm_provider": "azure",
+        }
         
     def call_model(self, prompt: dict, max_tokens=4096, temperature=0.2):
         if "system" not in prompt or "user" not in prompt:
@@ -108,21 +126,17 @@ class AzureOpenAIInvocation(LLMInvocation):
                 {"role": "user", "content": prompt["user"]},
             ]
 
-        completion_params = {
-            "model": self.model,
-            "messages": messages,
-            "max_tokens": max_tokens,
-            "stream": True,
-            "temperature": temperature,
-            "extra_headers": {"X-TT-LOGID": ""},
-        }
+        completion_params = self._completion_params(
+            messages, max_tokens, temperature, stream=True,
+            extra_headers={"X-TT-LOGID": ""}, **self.azure_options
+        )
         
         max_retries = 5
         base_delay = 2  # base delay in seconds
 
         for attempt in range(max_retries):
             try:
-                response = self.client.chat.completions.create(**completion_params)
+                response = litellm.completion(**completion_params)
                 chunks = []
                 try:
                     for chunk in response:

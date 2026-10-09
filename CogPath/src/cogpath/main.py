@@ -98,9 +98,9 @@ def main(argv=None):
     elif config_args.run_hits:
         cogpath.run_hits()
     else:
-        cogpath.run()
+        return cogpath.run()
     return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

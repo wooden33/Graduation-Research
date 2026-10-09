@@ -3,6 +3,12 @@
 This directory turns CogPath result trees into the two CSVs that everything
 downstream (tables, figures) is built from.
 
+OpenHands and Aider have separate, one-case smoke adapters. They run in
+isolated copies and store raw logs plus final Maven/JaCoCo metrics:
+[agent_baselines/README.md](agent_baselines/README.md). They are not included in
+the 130-class experiment runner; validate and budget the single-case protocols
+before adding batch execution.
+
 > **For running experiments, see [`experiments/README.md`](experiments/README.md).**
 > This file is about *turning finished runs into numbers*.
 

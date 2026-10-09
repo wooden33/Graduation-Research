@@ -29,6 +29,7 @@ src/cogpath/cfg/src/comex.egg-info/
 
 src/cogpath/*.json
 src/cogpath/*.html
+src/cogpath/model_profiles.local.ini
 poetry.lock
 .ssh/
 *.pem
